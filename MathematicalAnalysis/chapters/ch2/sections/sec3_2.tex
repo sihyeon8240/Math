@@ -30,7 +30,7 @@
 
 \bigskip
 
-\begin{lemma} \label{lem:InclusionExclusionPrincipleForTwoDisjointFiniteSets}
+\begin{lemma} \label{lem:UnionOfTwoDisjointFiniteSetsIsFinite}
     Let $X, Y$ be finite sets with $X \cap Y = \emptyset$. Then the union $X \cup Y$ is finite.
 \end{lemma}
 
@@ -48,7 +48,7 @@
 
 \bigskip
 
-\begin{theorem} \label{thm:InclusionExclusionPrincipleForTwoFiniteSets}
+\begin{theorem} \label{thm:UnionAndIntersectionOfTwoFiniteSetsAreFinite}
     Let $X, Y$ be finite sets. Then the union $X \cup Y$ and intersection $X \cap Y$ are finite.
 \end{theorem}
 
@@ -65,12 +65,12 @@
         \item $Y = (Y \setminus X) \cup (X \cap Y) = B \cup C$.
         \item $X \cup Y = ((X \setminus Y) \cup (Y \setminus X)) \cup (X \cap Y) = (A \cup B) \cup C$.
     \end{itemize}
-    By \Cref{lem:InclusionExclusionPrincipleForTwoDisjointFiniteSets}, $X, Y, X \cup Y$ are finite.
+    By \Cref{lem:UnionOfTwoDisjointFiniteSetsIsFinite}, $X, Y, X \cup Y$ are finite.
 \end{proof}
 
 \bigskip
 
-\begin{theorem} \label{thm:InclusionExclusionPrincipleForFiniteSets}
+\begin{theorem} \label{thm:FiniteUnionAndIntersectionOfFiniteSetsAreFinite}
     Let $X_{1}, X_{2}, \dots, X_{n}$ be finite sets for some $n \in \mathbb{N}$ with $n \geq 2$. Then the union
     $\displaystyle\bigcup_{k = 1}^{n} X_{k}$ and intersection $\displaystyle\bigcap_{k = 1}^{n} X_{k}$ are finite.
 \end{theorem}
@@ -81,7 +81,7 @@
     is finite for some $n \in \mathbb{N}$, given $X_{1}, X_{2}, \dots, X_{n}$ are finite sets.
     \begin{itemize}
         \item \textbf{Base case:} Let $X_{1}, X_{2}$ be finite sets. 
-        Then, by \Cref{thm:InclusionExclusionPrincipleForTwoFiniteSets},
+        Then, by \Cref{thm:UnionAndIntersectionOfTwoFiniteSetsAreFinite},
         $\displaystyle\bigcup_{k = 1}^{2} X_{k}= X_{1} \cup X_{2}$ is finite. Thus, $P(2)$ is true.
         
         \item \textbf{Inductive step:} Assume that $P(n)$ is true for some $n \in \mathbb{N}$.
@@ -91,7 +91,7 @@
         \bigcup_{k = 1}^{n + 1} X_{k} = \paren*{\bigcup_{k = 1}^{n} X_{k}} \cup X_{n + 1}.
         \]
         By the inductive hypothesis, $\displaystyle\bigcup_{k = 1}^{n} X_{k}$ is finite. Then, by
-        \Cref{thm:InclusionExclusionPrincipleForTwoFiniteSets}, $\displaystyle\bigcup_{k = 1}^{n + 1} X_{k}$ is finite.
+        \Cref{thm:UnionAndIntersectionOfTwoFiniteSetsAreFinite}, $\displaystyle\bigcup_{k = 1}^{n + 1} X_{k}$ is finite.
         Thus $P(n + 1)$ is true whenever $P(n)$ is true.
     \end{itemize}
     By the \hyperref[rem:PrincipleOfMathematicalInduction]{principle of mathematical induction},

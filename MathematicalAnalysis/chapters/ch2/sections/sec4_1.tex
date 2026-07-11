@@ -109,12 +109,10 @@ A set $X$ is said to be \textbf{at most countable} if $X$ is either finite or co
 \begin{proof}
     Let $X \subseteq \N$ be an infinite subset. Let $X_{1} \coloneqq X$ and define a function $f: \N \to X$ as follows:
     \begin{itemize}
-        \item $f(1) = \min X_{1}$, $X_{2} = X_{1} \setminus \set{f(1)}$.
-        \item $f(2) = \min X_{2}$, $X_{3} = X_{2} \setminus \set{f(2)}$.
-        \item[] $\vdots$
-        \item $f(n) = \min X_{n}$, $X_{n + 1} = X_{n} \setminus \set{f(n)}$ for $n \geq 2$.
+        \item $f(n) = \min X_{n}$
+        \item $X_{n + 1} \coloneqq X_{n} \setminus \set{f(n)}$
     \end{itemize}
-    By \Cref{thm:WellOrderingProperty}, $X_{n}$ has a least element for all $n \in \N$, so $f$ is well-defined.
+    for each $n \in \N$. By \Cref{thm:WellOrderingProperty}, $X_{n}$ has a least element, so $f$ is well-defined.
     We will show that $f$ is bijective, which implies that $X$ is countable.
     \begin{itemize}
         \item \textbf{Injectivity:} Suppose $n_{1} \neq n_{2}$ for some $n_{1}, n_{2} \in \N$. Without loss of generality,

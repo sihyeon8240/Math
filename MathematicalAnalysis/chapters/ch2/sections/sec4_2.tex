@@ -1,3 +1,30 @@
+\bigskip
 
+\begin{theorem} \label{thm:AtMostCountableUnionOfAtMostCountableSetsIsAtMostCountable}
+    Suppose that $A$ is at most countable, and, for each $a \in A$, $B_{a}$ is at most countable. Then the union
+    \[
+    B = \bigcup_{a \in A} B_{a}
+    \]
+    is at most countable, i.e., any at most countable union of at most countable sets is at most countable.
+\end{theorem}
+
+\begin{proof}
+    We have 4 cases to consider:
+    \begin{itemize}
+        \item Finite union of finite sets is finite by \Cref{thm:FiniteUnionAndIntersectionOfFiniteSetsAreFinite}.
+        \item Finite union of countable sets is countable by \Cref{cor:FiniteUnionOfCountableSetsIsCountable}.
+        \item Countable union of finite sets is countable.
+        \item Countable union of countable sets is countable by \Cref{thm:CountableUnionOfCountableSetsIsCountable}.
+    \end{itemize}
+    Let us prove the 3rd case. Let $A$ be a countable set and $B_{a}$ be finite for each $a \in A$.
+    Then, there exists a bijection $f: \N \to A$, and for each $a \in A$, there exists a bijection
+    $g_{a}: J_{n_{a}} \to B_{a}$ for some $n_{a} \in \N$. Let $h: \N \to B$ be defined by
+    \begin{itemize}
+        \item $h(j) = g_{f(1)}(j)$ for $j = 1, 2, \cdots, n_{f(1)}$.
+        \item $h\displaystyle\paren*{\sum_{i = 1}^{k - 1} n_{f(i)} + m} = g_{f(k)}(m)$ 
+        for each $k \in \N$ and $m = 1, 2, \cdots, n_{f(k)}$.
+    \end{itemize}
+    Then, $h$ is a surjection from $\mathbb{N}$ to $B$. By \Cref{thm:SurjectionFromN}, $B$ is countable.
+\end{proof}
 
 \end{section}
