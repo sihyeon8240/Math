@@ -1,0 +1,181 @@
+name: Compile LaTeX and Release PDF
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  detect-changes:
+    runs-on: ubuntu-latest
+    outputs:
+      subjects: ${{ steps.set-matrix.outputs.subjects }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Check paths
+        id: filter
+        uses: dorny/paths-filter@v3
+        with:
+          filters: |
+            global:
+              - 'styles/**'
+              - 'images/**'
+
+      - name: Set dynamic matrix
+        id: set-matrix
+        run: |
+          ALL_SUBJECTS=$(find . -maxdepth 2 -name "Textbook.tex" | awk -F/ '{print $2}' | sort -u)
+          
+          if [ -z "$ALL_SUBJECTS" ]; then
+            echo "subjects=[]" >> $GITHUB_OUTPUT
+            exit 0
+          fi
+          
+          ALL_SUBJECTS_JSON=$(printf "%s\n" "$ALL_SUBJECTS" | jq -R . | jq -s -c .)
+
+          if [ "${{ steps.filter.outputs.global }}" = "true" ]; then
+            echo "Global changes (styles/images) detected. Compiling all subjects."
+            echo "subjects=$ALL_SUBJECTS_JSON" >> $GITHUB_OUTPUT
+          else
+            echo "Checking individual changed subjects..."
+            
+            BEFORE_SHA="${{ github.event.before }}"
+
+            if git cat-file -e "$BEFORE_SHA^{commit}" 2>/dev/null; then
+              CHANGED_DIRS=$(git diff --name-only "$BEFORE_SHA" HEAD | awk -F/ '{print $1}' | sort -u)
+            else
+              CHANGED_DIRS="$ALL_SUBJECTS"
+            fi
+
+            VALID_SUBJECTS=$(comm -12 <(printf "%s\n" "$ALL_SUBJECTS" | sort) <(printf "%s\n" "$CHANGED_DIRS" | sort))
+            
+            if [ -z "$VALID_SUBJECTS" ]; then
+              echo "subjects=[]" >> $GITHUB_OUTPUT
+            else
+              VALID_SUBJECTS_JSON=$(printf "%s\n" "$VALID_SUBJECTS" | jq -R . | jq -s -c .)
+              echo "subjects=$VALID_SUBJECTS_JSON" >> $GITHUB_OUTPUT
+            fi
+          fi
+
+  build:
+    needs: detect-changes
+    if: ${{ needs.detect-changes.outputs.subjects != '[]' && needs.detect-changes.outputs.subjects != '' }}
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        subject: ${{ fromJson(needs.detect-changes.outputs.subjects) }}
+    
+    container:
+      image: ghcr.io/sihyeon8240/latex:latest
+      credentials:
+        username: ${{ github.actor }}
+        password: ${{ secrets.GITHUB_TOKEN }}
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Restore LaTeX build cache
+        uses: actions/cache@v4
+        with:
+          path: |
+            ${{ matrix.subject }}/build/*.aux
+            ${{ matrix.subject }}/build/*.toc
+            ${{ matrix.subject }}/build/*.fls
+            ${{ matrix.subject }}/build/*.fdb_latexmk
+            ${{ matrix.subject }}/build/*.lof
+            ${{ matrix.subject }}/build/*.lot
+            ${{ matrix.subject }}/build/*.out
+            ${{ matrix.subject }}/build/*.bbl
+            ${{ matrix.subject }}/build/*.bcf
+            ${{ matrix.subject }}/build/*.run.xml
+            ${{ matrix.subject }}/build/*.synctex.gz
+          key: >
+            ${{ runner.os }}-latex-${{ matrix.subject }}-${{
+              hashFiles(
+                'styles/**/*.sty',
+                'styles/**/*.cls'
+              )
+            }}
+          restore-keys: |
+            ${{ runner.os }}-latex-${{ matrix.subject }}-
+
+      - name: Compile LaTeX document
+        run: |
+          cd ${{ matrix.subject }}
+          mkdir -p build
+          find chapters -type d -exec mkdir -p build/{} \; 2>/dev/null || true
+          latexmk -lualatex \
+          -synctex=1 \
+          -interaction=nonstopmode \
+          -file-line-error \
+          -shell-escape \
+          -outdir=build \
+          Textbook.tex
+
+      - name: Upload PDF Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: pdf-${{ matrix.subject }}
+          path: ${{ matrix.subject }}/build/Textbook.pdf
+
+  deploy:
+    needs: build
+    if: ${{ needs.build.result == 'success' }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Textbook branch
+        uses: actions/checkout@v4
+        with:
+          ref: Textbook
+          fetch-depth: 0
+
+      - name: Download all PDFs
+        uses: actions/download-artifact@v4
+        with:
+          path: downloaded_pdfs
+
+      - name: Overwrite PDFs and Track Updated Subjects
+        id: track
+        run: |
+          UPDATED_LIST=""
+          
+          if [ -d "downloaded_pdfs" ]; then
+            for dir in downloaded_pdfs/pdf-*; do
+              if [ -d "$dir" ]; then
+                SUBJECT_NAME=$(basename "$dir" | sed 's/pdf-//')
+                echo "Copying PDF for $SUBJECT_NAME"
+                cp "$dir/Textbook.pdf" "./${SUBJECT_NAME}.pdf"
+                
+                if [ -z "$UPDATED_LIST" ]; then
+                  UPDATED_LIST="$SUBJECT_NAME"
+                else
+                  UPDATED_LIST="$UPDATED_LIST, $SUBJECT_NAME"
+                fi
+              fi
+            done
+          fi
+          rm -rf downloaded_pdfs
+          
+          echo "updated_subjects=$UPDATED_LIST" >> $GITHUB_OUTPUT
+
+      - name: Commit and Push Changes
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+
+          find . -maxdepth 1 -name "*.pdf" -print0 | xargs -0 git add
+
+          if ! git diff --cached --exit-code; then
+            SUBJECTS="${{ steps.track.outputs.updated_subjects }}"
+            if [ -z "$SUBJECTS" ]; then SUBJECTS="various subjects"; fi
+            
+            git commit -m "chore: Update compiled PDFs for $SUBJECTS [skip ci]"
+            git push origin Textbook
+          else
+            echo "No PDF modifications found. Skipping commit."
+          fi
