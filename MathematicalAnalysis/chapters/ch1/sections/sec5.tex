@@ -101,24 +101,25 @@ We define $i = (0, 1) \in \C$. Then we have $i^{2} = -1$, and any complex number
 \begin{proof}
     Let $i, j \in \N$ with $1 \leq i < j \leq n$. Then we have
     \begin{align*}
-        &|{a_{i} b_{j} - a_{j} b_{i}}|^{2} = (a_{i} b_{j} - a_{j} b_{i}) \overline{(a_{i} b_{j} - a_{j} b_{i})} \\
-        = \; &|a_{i}|^{2} |b_{j}|^{2} + |a_{j}|^{2} |b_{i}|^{2} - (a_{i} \overline{b_{i}}\cdot
+        |{a_{i} b_{j} - a_{j} b_{i}}|^{2} &= (a_{i} b_{j} - a_{j} b_{i}) \overline{(a_{i} b_{j} - a_{j} b_{i})} \\
+        &= |a_{i}|^{2} |b_{j}|^{2} + |a_{j}|^{2} |b_{i}|^{2} - (a_{i} \overline{b_{i}}\cdot
         \overline{a_{j}} b_{j} +\overline{a_{i}} b_{i} \cdot a_{j} \overline{b_{j}}).
     \end{align*}
     Consider the following sums:
     \begin{align*}
-        &\sum_{i < j} (|a_{i}|^{2} |b_{j}|^{2} + |a_{j}|^{2} |b_{i}|^{2}) =
-        \sum_{i < j} (|a_{i}|^{2} |b_{j}|^{2}) + \sum_{j < i} (|a_{i}|^{2} |b_{j}|^{2}) \\
-        = \; &\sum_{i \neq j} (|a_{i}|^{2} |b_{j}|^{2}) = \sum_{k = 1}^{n} |a_{k}|^{2}
+        \sum_{i < j} (|a_{i}|^{2} |b_{j}|^{2} + |a_{j}|^{2} |b_{i}|^{2})
+        &= \sum_{i < j} (|a_{i}|^{2} |b_{j}|^{2}) + \sum_{j < i} (|a_{i}|^{2} |b_{j}|^{2}) \\
+        &= \sum_{i \neq j} (|a_{i}|^{2} |b_{j}|^{2}) \\
+        &= \sum_{k = 1}^{n} |a_{k}|^{2}
         \cdot \sum_{k = 1}^{n} |b_{k}|^{2} - \sum_{k = 1}^{n} |a_{k}|^{2} |b_{k}|^{2}.
     \end{align*}
     \begin{align*}
-        &\sum_{i < j} (a_{i} \overline{b_{i}} \cdot \overline{a_{j}} b_{j}
-        + \overline{a_{i}} b_{i} \cdot a_{j} \overline{b_{j}}) =
-        \sum_{i \neq j} (a_{i} \overline{b_{i}} \cdot \overline{a_{j}} b_{j}) \\
-        = \; &\sum_{i = 1}^{n} a_{i} \overline{b_{i}} \cdot \sum_{j = 1}^{n} \overline{a_{j}} b_{j}
-        - \sum_{k = 1}^{n} a_{k} \overline{b_{k}} \cdot \overline{a_{k}} b_{k}
-        = \abs*{\sum_{k = 1}^{n} a_{k} \overline{b_{k}}}^{2} - \sum_{k = 1}^{n} |a_{k}|^{2} |b_{k}|^{2}.
+        \sum_{i < j} (a_{i} \overline{b_{i}} \cdot \overline{a_{j}} b_{j}
+        + \overline{a_{i}} b_{i} \cdot a_{j} \overline{b_{j}})
+        &= \sum_{i \neq j} (a_{i} \overline{b_{i}} \cdot \overline{a_{j}} b_{j}) \\
+        &= \sum_{i = 1}^{n} a_{i} \overline{b_{i}} \cdot \sum_{j = 1}^{n} \overline{a_{j}} b_{j}
+        - \sum_{k = 1}^{n} a_{k} \overline{b_{k}} \cdot \overline{a_{k}} b_{k} \\
+        &= \abs*{\sum_{k = 1}^{n} a_{k} \overline{b_{k}}}^{2} - \sum_{k = 1}^{n} |a_{k}|^{2} |b_{k}|^{2}.
     \end{align*}
     Therefore, we have
     \[
@@ -152,17 +153,17 @@ We define $i = (0, 1) \in \C$. Then we have $i^{2} = -1$, and any complex number
         \item By \Cref{cor:CauchySchwarzInequalityForRealNumbers}, we have
         $(xu + yv)^{2} \leq (x^{2} + y^{2})(u^{2} + v^{2})$.
         \begin{align*}
-            |z + w|^{2} = \; &(x + u)^{2} + (y + v)^{2}\\
-            = \; &x^{2} + y^{2} + u^{2} + v^{2} + 2(xu + yv) \\
-            \leq \; &x^{2} + y^{2} + u^{2} + v^{2} + 2\sqrt{x^{2} + y^{2}} \cdot \sqrt{u^{2} + v^{2}} \\
-            = \; &(|z| + |w|)^{2}.
+            |z + w|^{2} &= (x + u)^{2} + (y + v)^{2} \\
+            &= x^{2} + y^{2} + u^{2} + v^{2} + 2(xu + yv) \\
+            &\leq x^{2} + y^{2} + u^{2} + v^{2} + 2\sqrt{x^{2} + y^{2}} \cdot \sqrt{u^{2} + v^{2}} \\
+            &= (|z| + |w|)^{2}.
         \end{align*}
         \item Again, by \Cref{cor:CauchySchwarzInequalityForRealNumbers}, we have
         \begin{align*}
-            |z - w|^{2} = \; &(x - u)^{2} + (y - v)^{2} \\
-            = \; &x^{2} + y^{2} + u^{2} + v^{2} - 2(xu + yv) \\
-            \geq \; &x^{2} + y^{2} + u^{2} + v^{2} - 2\sqrt{x^{2} + y^{2}} \cdot \sqrt{u^{2} + v^{2}} \\
-            = \; &(|z| - |w|)^{2}.
+            |z - w|^{2} &= (x - u)^{2} + (y - v)^{2} \\
+            &= x^{2} + y^{2} + u^{2} + v^{2} - 2(xu + yv) \\
+            &\geq x^{2} + y^{2} + u^{2} + v^{2} - 2\sqrt{x^{2} + y^{2}} \cdot \sqrt{u^{2} + v^{2}} \\
+            &= (|z| - |w|)^{2}.
         \end{align*}
     \end{enumerate}
 \end{proof}

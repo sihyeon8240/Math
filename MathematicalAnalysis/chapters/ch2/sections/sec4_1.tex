@@ -6,6 +6,18 @@ A set $X$ is said to be \textbf{at most countable} if $X$ is either finite or co
 
 \bigskip
 
+\begin{theorem} \label{thm:InfiniteSetMinusFiniteSetIsInfinite}
+    Let $X$ be an infinite set and $Y$ be a finite set. Then $X \setminus Y$ is infinite.
+\end{theorem}
+
+\begin{proof}
+    Suppose $X \setminus Y$ is finite. Since $Y$ is finite, by \Cref{thm:UnionAndIntersectionOfTwoFiniteSetsAreFinite},
+    $(X \setminus Y) \cup Y$ is finite. Then, by \Cref{thm:SubsetOfFiniteSetIsFinite}, $X \subseteq (X \setminus Y) \cup Y$
+    is finite, which contradicts the assumption. Thus, $X \setminus Y$ is infinite.
+\end{proof}
+
+\bigskip
+
 \begin{theorem} \label{thm:InfiniteSetBijection}
     Let $X$ be an infinite set. If $X \hyperref[thm:BijectionEquivalenceRelation]{\sim} Y$, then $Y$ is infinite.
 \end{theorem}
@@ -16,19 +28,6 @@ A set $X$ is said to be \textbf{at most countable} if $X$ is either finite or co
     \\[6mm]
     Then the composition $g^{-1} \circ f: J_{n} \to X$ is a bijection, which implies that $X$ is finite.
     This contradicts the assumption that $X$ is infinite. Thus, $Y$ is infinite.
-\end{proof}
-
-\bigskip
-
-\begin{theorem} \label{thm:CountableSetBijection}
-    Let $X$ be a countable set. If $X \hyperref[thm:BijectionEquivalenceRelation]{\sim} Y$, then $Y$ is countable.
-\end{theorem}
-
-\begin{proof}
-    Since $X$ is countable, there exists a bijection $f: \N \to X$.
-    Since $X \hyperref[thm:BijectionEquivalenceRelation]{\sim} Y$, there exists a bijection $g: X \to Y$.
-    Then, by \Cref{thm:PropertiesOfCompositionFunctions}, the composition $g \circ f: \N \to Y$ is a bijection,
-    which implies that $Y$ is countable.
 \end{proof}
 
 \bigskip
@@ -75,9 +74,9 @@ A set $X$ is said to be \textbf{at most countable} if $X$ is either finite or co
     Let $f: \N \to \Z$ be defined by
     \[
     f(n) = \begin{dcases}
-        -\frac{n}{2}, & \text{if } n \text{ is even}, \\
-        \frac{n - 1}{2}, & \text{if } n \text{ is odd}.
-    \end{dcases}
+        -\frac{n}{2}, & \text{if } n \text{ is even} \\
+        \frac{n - 1}{2}, & \text{if } n \text{ is odd}
+    \end{dcases}.
     \]
     We will show that $f$ is bijective, which implies that $\Z$ is countable.
     \begin{itemize}
@@ -112,7 +111,8 @@ A set $X$ is said to be \textbf{at most countable} if $X$ is either finite or co
         \item $f(n) = \min X_{n}$
         \item $X_{n + 1} \coloneqq X_{n} \setminus \set{f(n)}$
     \end{itemize}
-    for each $n \in \N$. By \Cref{thm:WellOrderingProperty}, $X_{n}$ has a least element, so $f$ is well-defined.
+    for each $n \in \N$. By \Cref{thm:InfiniteSetMinusFiniteSetIsInfinite}, $X_{n}$ is infinite for each $n \in \N$,
+    so is nonempty. Then, by \Cref{thm:WellOrderingProperty}, $X_{n}$ has a least element, so $f$ is well-defined.
     We will show that $f$ is bijective, which implies that $X$ is countable.
     \begin{itemize}
         \item \textbf{Injectivity:} Suppose $n_{1} \neq n_{2}$ for some $n_{1}, n_{2} \in \N$. Without loss of generality,
@@ -178,23 +178,26 @@ A set $X$ is said to be \textbf{at most countable} if $X$ is either finite or co
     Since each $X_{n}$ is countable, there exists a bijection $f_{n}: \N \to X_{n}$ for each $n \in \N$.
     For each $n \in \N$, we define the followings:
     \begin{itemize}
-        \item $t_{n} = \min\setbuilder*{k \in \N}{n \leq \dfrac{k(k + 1)}{2}}$.
-        \item $s_{n} = n - \dfrac{t_{n}(t_{n} - 1)}{2}$.
+        \item $t_{n} = \min T_{n}, \text{ where } T_{n} \coloneqq \setbuilder*{k \in \N}{n \leq \dfrac{k(k + 1)}{2}}$.
+        \item $s_{n} = n - \dfrac{t_{n}(t_{n} - 1)}{2} = n - \dfrac{t_{n}(t_{n} + 1)}{2} + t_{n} \in \N$.
     \end{itemize}
-    \Cref{thm:BoundedSubsetOfZHasExtremum} guarantees that such $t_{n}$ exists.
-    Let $g: \N \to \displaystyle \bigcup_{n = 1}^{\infty} X_{n}$ be defined by
+    Since $2n \in T_{n}$, $T_{n} \neq \emptyset$. Then, by \Cref{thm:WellOrderingProperty}, $T_{n}$ has a least element.
+    Thus, $t_{n}$ is well-defined. Since $\dfrac{t_{n}(t_{n} - 1)}{2} < n \leq \dfrac{t_{n}(t_{n} + 1)}{2}$, we have
+    \[
+    t_{n} - s_{n} + 1 = \dfrac{t_{n}(t_{n} + 1)}{2} - n + 1 \geq 1
+    \]
+    so $t_{n} - s_{n} + 1 \in \N$. Let $g: \N \to \displaystyle \bigcup_{n = 1}^{\infty} X_{n}$ be defined by
     \[
     g(k) = f_{s_{k}}(t_{k} - s_{k} + 1) \text{ for all } k \in \N.
     \]
     Let $x \in \displaystyle \bigcup_{n = 1}^{\infty} X_{n}$. Then there exists an $m \in \N$ such that
     $x \in X_{m}$. Since $f_{m}$ is surjective, there exists a $l \in \N$ such that $f_{m}(l) = x$. Let
+    \[
+    k = \dfrac{(l + m - 1)(l + m - 2)}{2} + m \in \N.
+    \]
+    We will show that $l + m - 2 \notin T_{k}$ and $l + m - 1 \in T_{k}$, which implies that
     \begin{itemize}
-        \item $k = \dfrac{(l + m - 1)(l + m - 2)}{2} + m \in \N$.
-        \item $T = \setbuilder*{z \in \N}{k \leq \dfrac{z(z + 1)}{2}}$.
-    \end{itemize}
-    We will show that $l + m - 2 \notin T$ and $l + m - 1 \in T$, which implies that
-    \begin{itemize}
-        \item $t_{k} = \min T = l + m - 1$.
+        \item $t_{k} = \min T_{k} = l + m - 1$.
         \item $s_{k} = k - \dfrac{t_{k}(t_{k} - 1)}{2} = m$.
         \item $g(k) = f_{s_{k}}(t_{k} - s_{k} + 1) = f_{m}(l + m - 1 - m + 1) = f_{m}(l) = x$.
     \end{itemize}
@@ -202,35 +205,18 @@ A set $X$ is said to be \textbf{at most countable} if $X$ is either finite or co
     \begin{itemize}
         \item Let $z = l + m - 2$. Then we have
         \begin{align*}
-            &k - \dfrac{(l + m - 2)(l + m - 1)}{2} \\
-            = \; &\dfrac{(l + m - 1)(l + m - 2)}{2} + m - \dfrac{(l + m - 2)(l + m - 1)}{2} \\
-            = \; &m > 0.
+            k - \dfrac{z(z + 1)}{2} &= k - \dfrac{(l + m - 2)(l + m - 1)}{2} \\
+            &= \dfrac{(l + m - 1)(l + m - 2)}{2} + m - \dfrac{(l + m - 2)(l + m - 1)}{2} \\
+            &= m > 0.
         \end{align*}
         \item Let $z = l + m - 1$. Then we have
         \begin{align*}
-            &k - \dfrac{(l + m - 1)(l + m)}{2} \\
-            = \; &\dfrac{(l + m - 1)(l + m - 2)}{2} + m - \dfrac{(l + m - 1)(l + m)}{2} \\
-            = \; &m - \dfrac{(l + m - 1)(l + m) - (l + m - 1)(l + m - 2)}{2} \\
-            = \; &m - (l + m - 1) = 1 - l \leq 0.
+            k - \dfrac{z(z + 1)}{2} &= k - \dfrac{(l + m - 1)(l + m)}{2} \\
+            &= \dfrac{(l + m - 1)(l + m - 2)}{2} + m - \dfrac{(l + m - 1)(l + m)}{2} \\
+            &= m - \dfrac{(l + m - 1)(l + m) - (l + m - 1)(l + m - 2)}{2} \\
+            &= m - (l + m - 1) = 1 - l \leq 0.
         \end{align*}
     \end{itemize}
     Thus $g$ is surjective, which implies that $\displaystyle \bigcup_{n = 1}^{\infty} X_{n}$
     is countable by \Cref{thm:SurjectionFromN}.
-\end{proof}
-
-\bigskip
-
-\begin{corollary} \label{cor:FiniteUnionOfCountableSetsIsCountable}
-    Let $X_{1}, X_{2}, \dots, X_{n}$ be countable sets. Then $\displaystyle \bigcup_{i = 1}^{n} X_{i}$ is countable,
-    i.e., any finite union of countable sets is countable.
-\end{corollary}
-
-\begin{proof}
-    Let $X_{n + 1}, X_{n + 2}, \dots$ be countable sets. Then, by \Cref{thm:CountableUnionOfCountableSetsIsCountable},
-    $\displaystyle \bigcup_{n = 1}^{\infty} X_{n}$ is countable. Suppose that $\displaystyle \bigcup_{i = 1}^{n} X_{i}$
-    is finite. Then $\displaystyle X_{1} \subseteq \bigcup_{i = 1}^{n} X_{i}$ is finite by
-    \Cref{thm:SubsetOfFiniteSetIsFinite}, which contradicts \Cref{thm:CountableSetIsInfinite}. Thus,
-    $\displaystyle \bigcup_{i = 1}^{n} X_{i}$ is infinite. Since $\displaystyle \bigcup_{i = 1}^{n} X_{i}
-    \subseteq \bigcup_{n = 1}^{\infty} X_{n}$, by \Cref{thm:InfiniteSubsetOfCountableSetIsCountable},
-    $\displaystyle \bigcup_{i = 1}^{n} X_{i}$ is countable. 
 \end{proof}
