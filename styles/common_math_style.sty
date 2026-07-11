@@ -1,0 +1,197 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{../styles/common_math_style}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Font
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% LuaLaTeX / XeLaTeX font support
+\RequirePackage{fontspec}
+\setmainfont{TeX Gyre Termes}
+
+% Better typography
+\RequirePackage{microtype}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Mathematics
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% AMS packages
+\RequirePackage{amsmath}
+\RequirePackage{amssymb}
+\RequirePackage{amsthm}
+
+% Extensions
+\RequirePackage{mathtools}
+\RequirePackage{mathrsfs}
+\RequirePackage{bm}
+
+% Utilities
+\RequirePackage{romannum}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Graphics
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\RequirePackage{graphicx}
+
+% Macros for including graphics conditionally
+\newcommand{\includeconditionalgraphics}[2][]{%
+  \IfFileExists{#2}{%
+    \includegraphics[#1]{#2}%
+  }{%
+    % If the file does not exist, do nothing
+  }%
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Lists
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\RequirePackage{enumitem}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Hyperlinks and Cross References
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\RequirePackage[
+    colorlinks=true,
+    linkcolor=blue,
+    citecolor=green,
+    urlcolor=cyan
+]{hyperref}
+
+\RequirePackage[nameinlink]{cleveref}
+\RequirePackage{aliascnt}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Theorem Environments
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\theoremstyle{plain}
+
+\newtheorem{theorem}{Theorem}[section]
+
+\newaliascnt{lemma}{theorem}
+\newtheorem{lemma}[lemma]{Lemma}
+\aliascntresetthe{lemma}
+
+\newaliascnt{proposition}{theorem}
+\newtheorem{proposition}[proposition]{Proposition}
+\aliascntresetthe{proposition}
+
+\newaliascnt{corollary}{theorem}
+\newtheorem{corollary}[corollary]{Corollary}
+\aliascntresetthe{corollary}
+
+\theoremstyle{definition}
+
+\newaliascnt{definition}{theorem}
+\newtheorem{definition}[definition]{Definition}
+\aliascntresetthe{definition}
+
+\newaliascnt{example}{theorem}
+\newtheorem{example}[example]{Example}
+\aliascntresetthe{example}
+
+\newaliascnt{exercise}{theorem}
+\newtheorem{exercise}[exercise]{Exercise}
+\aliascntresetthe{exercise}
+
+\newtheorem{problem}{Problem}[section]
+\newtheorem*{solution}{Solution}
+
+\theoremstyle{remark}
+
+\newtheorem*{remark}{Remark}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Cleveref Names
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\crefname{theorem}{theorem}{theorems}
+\Crefname{theorem}{Theorem}{Theorems}
+
+\crefname{lemma}{lemma}{lemmas}
+\Crefname{lemma}{Lemma}{Lemmas}
+
+\crefname{proposition}{proposition}{propositions}
+\Crefname{proposition}{Proposition}{Propositions}
+
+\crefname{corollary}{corollary}{corollaries}
+\Crefname{corollary}{Corollary}{Corollaries}
+
+\crefname{definition}{definition}{definitions}
+\Crefname{definition}{Definition}{Definitions}
+
+\crefname{example}{example}{examples}
+\Crefname{example}{Example}{Examples}
+
+\crefname{exercise}{exercise}{exercises}
+\Crefname{exercise}{Exercise}{Exercises}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Mathematical Operators
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Algebra
+\DeclareMathOperator{\Hom}{Hom}
+\DeclareMathOperator{\End}{End}
+\DeclareMathOperator{\Aut}{Aut}
+\DeclareMathOperator{\Spec}{Spec}
+
+% Linear Algebra / General
+\DeclareMathOperator{\Ker}{ker}
+\DeclareMathOperator{\im}{im}
+\DeclareMathOperator{\rank}{rank}
+\DeclareMathOperator{\Span}{span}
+\DeclareMathOperator{\diag}{diag}
+\DeclareMathOperator{\tr}{tr}
+\DeclareMathOperator{\sgn}{sgn}
+\DeclareMathOperator{\Null}{null}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Frequently Used Symbols
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Number systems
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+
+% Variant Greek letters
+\newcommand{\veps}{\varepsilon}
+\newcommand{\vphi}{\varphi}
+
+% Such that
+\newcommand{\st}{\mathrel{\text{s.t.}}}
+
+% Real and Imaginary parts of a complex number
+\newcommand{\Real}{\textnormal{Re}}
+\newcommand{\Imag}{\textnormal{Im}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Paired Delimiters
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\DeclarePairedDelimiter{\abs}{\lvert}{\rvert}
+\DeclarePairedDelimiter{\norm}{\lVert}{\rVert}
+\DeclarePairedDelimiter{\set}{\lbrace}{\rbrace}
+\DeclarePairedDelimiter{\paren}{(}{)}
+\DeclarePairedDelimiter{\bracket}{[}{]}
+\DeclarePairedDelimiter{\floor}{\lfloor}{\rfloor}
+\DeclarePairedDelimiter{\ceil}{\lceil}{\rceil}
+
+\DeclarePairedDelimiterX{\setbuilder}[2]
+{\lbrace}{\rbrace}
+{#1 \;\delimsize\vert\; #2}
+
+\DeclarePairedDelimiterX{\inner}[2]
+{\langle}{\rangle}
+{#1,#2}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% End of Package
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

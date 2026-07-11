@@ -1,0 +1,103 @@
+\documentclass[11pt, a4paper, oneside]{book}
+
+\usepackage{../styles/common_math_style}
+\setlength{\parindent}{0pt}
+
+% ==========================================
+% 본문 시작
+% ==========================================
+
+\begin{document}
+
+\frontmatter
+\begin{titlepage}
+    \centering
+    \vspace*{6cm}
+    
+    {\LARGE MTH251 \& MTH252}
+    \\[0.5cm]
+    {\Huge\bfseries Mathematical Analysis \Romannum{1} \& \Romannum{2}}
+    \\[1.5cm]
+    {\LARGE Course Textbook}
+
+    \vfill
+
+    {\Large Department of Mathematical Sciences}
+    \\[0.4cm]
+    {\Large\bfseries UNIST}
+\end{titlepage}
+
+\clearpage
+\thispagestyle{empty}
+
+\begin{flushright}
+    \includeconditionalgraphics[width=0.15\textwidth]{../images/unist_logo.png}
+\end{flushright}
+
+\begin{flushleft}
+    \vfill
+
+    {\large \textbf{Mathematical Analysis \Romannum{1} \& \Romannum{2}}}
+    \\[0.2cm]
+    {\small Course Textbook} \\
+    
+    \vspace{2cm}
+    
+    \textbf{Author} \\
+    Muho Choi (Department of Computer Science and Engineering) \\
+    Email: \href{mailto:sihyeon8240@unist.ac.kr}{\texttt{sihyeon8240@unist.ac.kr}} \\
+    GitHub: \url{https://github.com/sihyeon8240} \\
+    
+    \vspace{1cm}
+    
+    \textbf{Source Code \& Contributions} \\
+    GitHub: \url{https://github.com/sihyeon8240/Math} \\
+    \footnotesize{Feel free to open issues or pull requests for corrections.}
+    
+    \vspace{1cm}
+    
+    \copyright\ 2026. Muho Choi. All rights reserved. \\
+    \small{Developed for the Department of Mathematical Sciences, UNIST.} \\
+
+    \vspace{0.4cm}
+    
+    \footnotesize{
+        This textbook is licensed under a
+        \textbf{Creative Commons Attribution-NonCommercial-ShareAlike 4.0International License} (CC BY-NC-SA 4.0). \\
+        \vspace{0.1cm}
+        \textbf{You are free to:} Share, copy, and redistribute the material in any medium or format;
+        adapt, remix, transform, and build upon the material. \\
+        \textbf{Under the following terms:} You must give appropriate credit;
+        you may not use the material for commercial purposes;
+        if you remix or transform the material, you must distribute your contributions under the same license.
+    }
+\end{flushleft}
+
+\tableofcontents
+
+\mainmatter
+\include{chapters/ch1/ch1}
+\include{chapters/ch2/ch2}
+\include{chapters/ch3/ch3}
+\include{chapters/ch4/ch4}
+\include{chapters/ch5/ch5}
+\include{chapters/ch6/ch6}
+\include{chapters/ch7/ch7}
+\include{chapters/ch8/ch8}
+\include{chapters/ch9/ch9}
+\include{chapters/ch10/ch10}
+\include{chapters/ch11/ch11}
+
+\backmatter
+\begin{thebibliography}{9}
+    \bibitem{rudin}
+        Walter Rudin, \textit{Principles of Mathematical Analysis}, McGraw-Hill International Editions.
+    \bibitem{ross}
+        Kenneth Ross, \textit{Elementary Analysis}, Springer Nature.
+    \bibitem{douglass}
+        Steven Douglass, \textit{Introduction to Mathematical Analysis}, Pearson.
+    \bibitem{tao}
+        Terence Tao, \textit{Analysis I}, Springer Nature.
+\end{thebibliography}
+
+\end{document}

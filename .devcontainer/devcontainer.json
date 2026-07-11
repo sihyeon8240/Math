@@ -1,0 +1,47 @@
+{
+  "name": "LaTeX DevContainer",
+  "image": "ghcr.io/sihyeon8240/latex:latest",
+  
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "james-yu.latex-workshop",
+        "eamodio.gitlens",
+        "github.vscode-github-actions"
+      ],
+
+      "settings": {
+        "latex-workshop.latex.outDir": "%DIR%/build",
+
+        "latex-workshop.latex.autoBuild.run": "onSave",
+        "latex-workshop.view.pdf.viewer": "tab",
+        "latex-workshop.latex.recipe.default": "first",
+
+        "latex-workshop.latex.tools": [
+          {
+            "name": "latexmk",
+            "command": "latexmk",
+            "args": [
+              "-lualatex",
+              "-synctex=1",
+              "-interaction=nonstopmode",
+              "-file-line-error",
+              "-shell-escape",
+              "-outdir=%OUTDIR%",
+              "%DOC%"
+            ]
+          }
+        ],
+
+        "latex-workshop.latex.recipes": [
+          {
+            "name": "latexmk (LuaLaTeX)",
+            "tools": [
+              "latexmk"
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

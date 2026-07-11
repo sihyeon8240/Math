@@ -1,0 +1,123 @@
+\begin{proof}
+    Let $\abs{X} = m$ and $\abs{Y} = n$ for some $m, n \in \mathbb{N}$. Then there exist bijections
+    $f_{X}: J_{m} \to X$ and $f_{Y}: J_{n} \to Y$.
+    By \Cref{thm:InverseFunctionIsBijection,thm:PropertiesOfCompositionFunctions}, the composition
+    \[
+    F \equiv (f_{Y})^{-1} \circ f \circ f_{X}: J_{m} \to J_{n}
+    \]
+    is injective, surjective, or bijective if $f$ is injective, surjective, or bijective, respectively.
+    Then, by \Cref{lem:PropertiesOfJmJn}, we have the desired results:
+    \begin{enumerate}[label=\textbf{(\Alph*)}]
+        \item If $f$ is injective, then $F$ is injective, which implies that $m \leq n$.
+        \item If $f$ is surjective, then $F$ is surjective, which implies that $m \geq n$.
+        \item If $f$ is bijective, then $F$ is bijective, which implies that $m = n$.
+    \end{enumerate}
+    Also, by \Cref{thm:InverseFunctionIsBijection,thm:PropertiesOfCompositionFunctions}, the composition
+    \[
+    f \equiv f_{Y} \circ G \circ (f_{X})^{-1}: X \to Y
+    \]
+    is injective, surjective, or bijective if $G: J_{m} \to J_{n}$ is injective, surjective, or bijective, respectively.
+    Then, by \Cref{lem:PropertiesOfJmJnConverse}, we have the desired converses:
+    \begin{enumerate}[label=\textbf{(\Alph*)}]
+        \item If $m \leq n$, then there exists an injective function $G: J_{m} \to J_{n}$,
+        which implies that there exists an injective function $f: X \to Y$.
+        \item If $m \geq n$, then there exists a surjective function $G: J_{m} \to J_{n}$,
+        which implies that there exists a surjective function $f: X \to Y$.
+        \item If $m = n$, then there exists a bijective function $G: J_{m} \to J_{n}$,
+        which implies that there exists a bijective function $f: X \to Y$.
+    \end{enumerate}
+\end{proof}
+
+\bigskip
+
+\begin{lemma} \label{lem:InclusionExclusionPrincipleForTwoDisjointFiniteSets}
+    Let $X, Y$ be finite sets with $X \cap Y = \emptyset$. Then the union $X \cup Y$ is finite.
+\end{lemma}
+
+\begin{proof}
+    Let $m = \abs{X}$ and $n = \abs{Y}$. There exist bijections $f: J_{m} \to X$ and $g: J_{n} \to Y$.
+    Let $h: J_{m + n} \to X \cup Y$ be defined by
+    \[
+    h(i) = \begin{cases}
+        f(i), & \text{if } i \leq m \\
+        g(i - m), & \text{if } m < i \leq m + n
+    \end{cases}.
+    \]
+    Then $h$ is bijective, which implies that $X \cup Y$ is finite.
+\end{proof}
+
+\bigskip
+
+\begin{theorem} \label{thm:InclusionExclusionPrincipleForTwoFiniteSets}
+    Let $X, Y$ be finite sets. Then the union $X \cup Y$ and intersection $X \cap Y$ are finite.
+\end{theorem}
+
+\begin{proof}
+    Let $A, B, C$ be defined by
+    \begin{itemize}
+        \item $A = X \setminus Y \subseteq X$.
+        \item $B = Y \setminus X \subseteq Y$.
+        \item $C = X \cap Y \subseteq X$.
+    \end{itemize}
+    Then $A, B, C$ are finite by \Cref{thm:SubsetOfFiniteSetIsFinite} and are disjoint each other. We have the followings:
+    \begin{itemize}
+        \item $X = (X \setminus Y) \cup (X \cap Y) = A \cup C$.
+        \item $Y = (Y \setminus X) \cup (X \cap Y) = B \cup C$.
+        \item $X \cup Y = ((X \setminus Y) \cup (Y \setminus X)) \cup (X \cap Y) = (A \cup B) \cup C$.
+    \end{itemize}
+    By \Cref{lem:InclusionExclusionPrincipleForTwoDisjointFiniteSets}, $X, Y, X \cup Y$ are finite.
+\end{proof}
+
+\bigskip
+
+\begin{theorem} \label{thm:InclusionExclusionPrincipleForFiniteSets}
+    Let $X_{1}, X_{2}, \dots, X_{n}$ be finite sets for some $n \in \mathbb{N}$ with $n \geq 2$. Then the union
+    $\displaystyle\bigcup_{k = 1}^{n} X_{k}$ and intersection $\displaystyle\bigcap_{k = 1}^{n} X_{k}$ are finite.
+\end{theorem}
+
+\begin{proof}
+    Since $\displaystyle\bigcap_{k = 1}^{n} X_{k} \subseteq X_{1}$, $\displaystyle\bigcap_{k = 1}^{n} X_{k}$ is finite
+    by \Cref{thm:SubsetOfFiniteSetIsFinite} for any $n \in \mathbb{N}$. Let $P(n):$ $\displaystyle\bigcup_{k = 1}^{n} X_{k}$
+    is finite for some $n \in \mathbb{N}$, given $X_{1}, X_{2}, \dots, X_{n}$ are finite sets.
+    \begin{itemize}
+        \item \textbf{Base case:} Let $X_{1}, X_{2}$ be finite sets. 
+        Then, by \Cref{thm:InclusionExclusionPrincipleForTwoFiniteSets},
+        $\displaystyle\bigcup_{k = 1}^{2} X_{k}= X_{1} \cup X_{2}$ is finite. Thus, $P(2)$ is true.
+        
+        \item \textbf{Inductive step:} Assume that $P(n)$ is true for some $n \in \mathbb{N}$.
+        
+        Let $X_{1}, X_{2}, \dots, X_{n + 1}$ be finite sets. Then we have
+        \[
+        \bigcup_{k = 1}^{n + 1} X_{k} = \paren*{\bigcup_{k = 1}^{n} X_{k}} \cup X_{n + 1}.
+        \]
+        By the inductive hypothesis, $\displaystyle\bigcup_{k = 1}^{n} X_{k}$ is finite. Then, by
+        \Cref{thm:InclusionExclusionPrincipleForTwoFiniteSets}, $\displaystyle\bigcup_{k = 1}^{n + 1} X_{k}$ is finite.
+        Thus $P(n + 1)$ is true whenever $P(n)$ is true.
+    \end{itemize}
+    By the \hyperref[rem:PrincipleOfMathematicalInduction]{principle of mathematical induction},
+    $P(n)$ is true for all $n \in \mathbb{N}$.
+\end{proof}
+
+\bigskip
+
+\begin{theorem} \label{thm:CantorsTheorem}
+    Let $X$ be a nonempty set. Then there exists no surjection $f: X \to \mathcal{P}(X)$, where
+    \[
+    \mathcal{P}(X) = \setbuilder{E}{E \subseteq X}
+    \]
+    is the \textbf{power set} of $X$. In particular, if $X$ is finite, then $\abs{\mathcal{P}(X)} > \abs{X}$.
+    This theorem is called \textbf{Cantor's theorem}.
+\end{theorem}
+
+\begin{proof}
+    Let $S = \setbuilder{x \in X}{x \notin f(x)}$. Then $S \subseteq X$, which implies that $S \in \mathcal{P}(X)$.
+    Suppose that there exists a surjection $f: X \to \mathcal{P}(X)$. Then there exists $x \in X$ such that $f(x) = S$.
+    \\[6mm]
+    If $x \in S$, then $x \notin f(x) = S$, which is a contradiction. If $x \notin S$, then $x \in f(x) = S$,
+    which is also a contradiction. Therefore, there exists no surjection $f: X \to \mathcal{P}(X)$.
+    \\[6mm]
+    If $X$ is finite, by \Cref{thm:PropertiesOfCardinality}, there exists no surjection $f: X \to \mathcal{P}(X)$
+    if and only if $\abs{X} < \abs{\mathcal{P}(X)}$.
+\end{proof}
+
+\end{section}

@@ -1,0 +1,38 @@
+\begin{section}{The Extended Real Number System}
+
+The Extended real number system $\overline{\R}$ is defined as
+\[
+\overline{\R} \coloneqq \R \cup \set{-\infty, +\infty}.
+\]
+We define the following operations on $\overline{\R}$:
+\begin{itemize}
+    \item $x + (+\infty) = +\infty$ for all $x \in \R \cup \set{\infty}$.
+    \item $x + (-\infty) = -\infty$ for all $x \in \R \cup \set{-\infty}$.
+    \item $x \cdot (\pm \infty) = \pm \infty$ for all $x \in \R^{+} \cup \set{\infty}$.
+    \item $x \cdot (\pm \infty) = \mp \infty$ for all $x \in \R^{-} \cup \set{-\infty}$.
+    \item $\dfrac{x}{\pm \infty} = 0$ for all $x \in \R$.
+\end{itemize}
+
+$\overline{\R}$ is not a field, but it is an ordered set with the following order relation:
+\[
+-\infty < x < +\infty \quad \text{for all } x \in \R.
+\]
+
+\bigskip
+
+\begin{theorem} \label{thm:SupremumInfimumInExtendedRealNumberSystem}
+    Every subset of $\overline{\R}$ has a least upper bound and a greatest lower bound in $\overline{\R}$.
+\end{theorem}
+
+\begin{proof}
+    Let $E \subseteq \overline{\R}$. If $E = \emptyset$, then $\sup E = -\infty$ and $\inf E = +\infty$.
+    If $E \neq \emptyset$, then we have the following cases:
+    \begin{itemize}
+        \item If $E$ is bounded above in $\R$, then $\sup E$ exists in $\R$ by the least upper bound property of $\R$.
+        \item If $E$ is not bounded above in $\R$, then $\sup E = +\infty$.
+        \item If $E$ is bounded below in $\R$, then $\inf E$ exists in $\R$ by the greatest lower bound property of $\R$.
+        \item If $E$ is not bounded below in $\R$, then $\inf E = -\infty$.
+    \end{itemize}
+\end{proof}
+
+\end{section}
