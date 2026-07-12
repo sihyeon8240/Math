@@ -34,7 +34,7 @@ we define $\abs{X} = 0$. $X$ is said to be \textbf{infinite} if $X$ is not finit
         \end{itemize}
         Thus $P(n + 1)$ is true whenever $P(n)$ is true.
     \end{itemize}
-    By the \hyperref[rem:PrincipleOfMathematicalInduction]{principle of mathematical induction},
+    By the principle of mathematical induction,
     $P(n)$ is true for all $n \in \mathbb{N}$.
 \end{proof}
 
@@ -48,12 +48,12 @@ we define $\abs{X} = 0$. $X$ is said to be \textbf{infinite} if $X$ is not finit
 
 \begin{proof}
     Let $X$ be a finite set and $Y \subseteq X$. Then there exists a bijection $f: J_{n} \to X$ for some
-    $n \in \mathbb{N}$. Let $Z = f^{-1}(Y) \subseteq J_{n}$. 
-    Since $Z \subseteq J_{n}$, $Z$ is finite by \Cref{lem:SubsetOfJnIsFinite}, so there exists a bijection
-    $g: J_{m} \to Z$ for some $m \in \mathbb{N}$.
+    $n \in \mathbb{N}$. Let $Z = f^{-1}(Y) \subseteq J_{n}$. Since $Z \subseteq J_{n}$, $Z$ is finite by
+    \Cref{lem:SubsetOfJnIsFinite}, so there exists a bijection $g: J_{m} \to Z$ for some $m \in \mathbb{N}$.
     \\[6mm]
-    By \Cref{thm:PropertiesOfRestrictionFunctions}, $f|_{Z}^{Y}$ is bijective. Then, by \Cref{thm:PropertiesOfCompositionFunctions},
-    the composition $f|_{Z}^{Y} \circ g: J_{m} \to Y$ is bijective. Thus $Y$ is finite.
+    By \Cref{thm:PropertiesOfRestrictionFunctions}, $f|_{Z}^{Y}$ is bijective. Then, by
+    \Cref{thm:PropertiesOfCompositionFunctions}, the composition $f|_{Z}^{Y} \circ g: J_{m} \to Y$
+    is bijective. Thus $Y$ is finite.
 \end{proof}
 
 \bigskip
@@ -79,7 +79,7 @@ we define $\abs{X} = 0$. $X$ is said to be \textbf{infinite} if $X$ is not finit
         \end{itemize}
         Thus $P(n + 1)$ is true whenever $P(n)$ is true.
     \end{itemize}
-    By the \hyperref[rem:PrincipleOfMathematicalInduction]{principle of mathematical induction},
+    By the principle of mathematical induction,
     $P(n)$ is true for all $n \in \mathbb{N}$.
     \\[6mm]
     Next, we will show that $X$ has a greatest element by mathematical induction on $n$.
@@ -95,7 +95,7 @@ we define $\abs{X} = 0$. $X$ is said to be \textbf{infinite} if $X$ is not finit
         \end{itemize}
         Thus $Q(n + 1)$ is true whenever $Q(n)$ is true.
     \end{itemize}
-    By the \hyperref[rem:PrincipleOfMathematicalInduction]{principle of mathematical induction},
+    By the principle of mathematical induction,
     $Q(n)$ is true for all $n \in \mathbb{N}$.
 \end{proof}
 
@@ -147,7 +147,7 @@ we define $\abs{X} = 0$. $X$ is said to be \textbf{infinite} if $X$ is not finit
             \end{itemize}
             Thus $P(m + 1)$ is true whenever $P(m)$ is true.
         \end{itemize}
-        By the \hyperref[rem:PrincipleOfMathematicalInduction]{principle of mathematical induction},
+        By the principle of mathematical induction,
         $P(m)$ is true for all $m \in \mathbb{N}$.
         \item Let $m \in \mathbb{N}$ be fixed.
         Let $Q(n):$ If there exists a surjective function $f_{n}: J_{m} \to J_{n}$, then $m \geq n$.
@@ -192,7 +192,7 @@ we define $\abs{X} = 0$. $X$ is said to be \textbf{infinite} if $X$ is not finit
             \end{itemize}
             Thus $Q(n + 1)$ is true whenever $Q(n)$ is true.
         \end{itemize}
-        By the \hyperref[rem:PrincipleOfMathematicalInduction]{principle of mathematical induction},
+        By the principle of mathematical induction,
         $Q(n)$ is true for all $n \in \mathbb{N}$.
     \end{enumerate}
 \end{proof}

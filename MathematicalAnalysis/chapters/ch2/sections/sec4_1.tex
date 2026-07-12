@@ -12,8 +12,8 @@ A set $X$ is said to be \textbf{at most countable} if $X$ is either finite or co
 
 \begin{proof}
     Suppose $X \setminus Y$ is finite. Since $Y$ is finite, by \Cref{thm:UnionAndIntersectionOfTwoFiniteSetsAreFinite},
-    $(X \setminus Y) \cup Y$ is finite. Then, by \Cref{thm:SubsetOfFiniteSetIsFinite}, $X \subseteq (X \setminus Y) \cup Y$
-    is finite, which contradicts the assumption. Thus, $X \setminus Y$ is infinite.
+    $(X \setminus Y) \cup Y$ is finite. Then, by \Cref{thm:SubsetOfFiniteSetIsFinite},
+    $X \subseteq (X \setminus Y) \cup Y$ is finite, which contradicts the assumption. Thus, $X \setminus Y$ is infinite.
 \end{proof}
 
 \bigskip
@@ -38,8 +38,8 @@ A set $X$ is said to be \textbf{at most countable} if $X$ is either finite or co
 
 \begin{proof}
     Suppose $\N$ is finite. Then there exists a bijection $f: J_{n} \to \N$ for some $n \in \N$.
-    Then, by \Cref{thm:SubsetOfFiniteSetIsFinite}, $f(J_{n})$ is finite. By \Cref{thm:FiniteOrderedSetHasLeastAndGreatestElement},
-    $f(J_{n})$ has a greatest element, say $m$.
+    Then, by \Cref{thm:SubsetOfFiniteSetIsFinite}, $f(J_{n})$ is finite. By
+    \Cref{thm:FiniteOrderedSetHasLeastAndGreatestElement}, $f(J_{n})$ has a greatest element, say $m$.
     \\[6mm]
     Then we have $m + 1 \in \N$ and $m < m + 1 \notin f(J_{n})$,
     which contradicts the assumption that $f$ is surjective. Thus, $\N$ is infinite.

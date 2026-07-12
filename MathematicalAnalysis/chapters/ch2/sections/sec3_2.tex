@@ -71,7 +71,7 @@
 \bigskip
 
 \begin{theorem} \label{thm:FiniteUnionAndIntersectionOfFiniteSetsAreFinite}
-    Let $X_{1}, X_{2}, \dots, X_{n}$ be finite sets for some $n \in \mathbb{N}$ with $n \geq 2$. Then the union
+    Let $X_{1}, X_{2}, \dots, X_{n}$ be finite sets for some $n \in \mathbb{N}$. Then the union
     $\displaystyle\bigcup_{k = 1}^{n} X_{k}$ and intersection $\displaystyle\bigcap_{k = 1}^{n} X_{k}$ are finite.
 \end{theorem}
 
@@ -80,10 +80,8 @@
     by \Cref{thm:SubsetOfFiniteSetIsFinite} for any $n \in \mathbb{N}$. Let $P(n):$ $\displaystyle\bigcup_{k = 1}^{n} X_{k}$
     is finite for some $n \in \mathbb{N}$, given that $X_{1}, X_{2}, \dots, X_{n}$ are finite sets.
     \begin{itemize}
-        \item \textbf{Base case:} Let $X_{1}, X_{2}$ be finite sets. 
-        Then, by \Cref{thm:UnionAndIntersectionOfTwoFiniteSetsAreFinite},
-        $\displaystyle\bigcup_{k = 1}^{2} X_{k}= X_{1} \cup X_{2}$ is finite. Thus, $P(2)$ is true.
-        
+        \item \textbf{Base case:} Let $X_{1}$ be a finite set. Then,
+        $\displaystyle\bigcup_{k = 1}^{1} X_{k}= X_{1}$ is finite. Thus, $P(1)$ is true.
         \item \textbf{Inductive step:} Assume that $P(n)$ is true for some $n \in \mathbb{N}$.
         
         Let $X_{1}, X_{2}, \dots, X_{n + 1}$ be finite sets. Then we have
@@ -94,8 +92,49 @@
         \Cref{thm:UnionAndIntersectionOfTwoFiniteSetsAreFinite}, $\displaystyle\bigcup_{k = 1}^{n + 1} X_{k}$ is finite.
         Thus $P(n + 1)$ is true whenever $P(n)$ is true.
     \end{itemize}
-    By the \hyperref[rem:PrincipleOfMathematicalInduction]{principle of mathematical induction},
-    $P(n)$ is true for all $n \in \mathbb{N}$.
+    By the principle of mathematical induction, $P(n)$ is true for all $n \in \mathbb{N}$.
+\end{proof}
+
+\bigskip
+
+\begin{lemma} \label{lem:ProductOfTwoFiniteSetsIsFinite}
+    Let $X, Y$ be finite sets. Then the cartesian product $X \times Y$ is finite.
+\end{lemma}
+
+\begin{proof}
+    Let $m = \abs{X}$ and $n = \abs{Y}$. Then there exist bijections $f: J_{m} \to X$ and $g: J_{n} \to Y$.
+    Let $h: J_{mn} \to X \times Y$ be defined by
+    \[
+    h(i) = \paren*{f\paren*{\ceil*{\dfrac{i}{n}}}, g\paren*{i - n\paren*{\ceil*{\dfrac{i}{n}} - 1}}}
+    \text{ for all } i \in J_{mn}.
+    \]
+    Then $h$ is bijective, which implies that $X \times Y$ is finite.
+\end{proof}
+
+\bigskip
+
+\begin{theorem} \label{thm:ProductOfFiniteSetsIsFinite}
+    Let $X_{1}, X_{2}, \dots, X_{n}$ be finite sets for some $n \in \mathbb{N}$. Then the cartesian product
+    $\displaystyle\prod_{k = 1}^{n} X_{k}$ is finite.
+\end{theorem}
+
+\begin{proof}
+    Let $P(n):$ $\displaystyle \prod_{k = 1}^{n} X_{k}$ is finite for some $n \in \mathbb{N}$, given that
+    $X_{1}, X_{2}, \dots, X_{n}$ are finite sets.
+    \begin{itemize}
+        \item \textbf{Base case:} Let $X_{1}$ be a finite set. Then,
+        $\displaystyle \prod_{k = 1}^{1} X_{k}= X_{1}$ is finite. Thus, $P(1)$ is true.
+        \item \textbf{Inductive step:} Assume that $P(n)$ is true for some $n \in \mathbb{N}$.
+        
+        Let $X_{1}, X_{2}, \dots, X_{n + 1}$ be finite sets. Then we have
+        \[
+        \prod_{k = 1}^{n + 1} X_{k} = \paren*{\prod_{k = 1}^{n} X_{k}} \times X_{n + 1}.
+        \]
+        By the inductive hypothesis, $\displaystyle \prod_{k = 1}^{n} X_{k}$ is finite. Then, by
+        \Cref{lem:ProductOfTwoFiniteSetsIsFinite}, $\displaystyle \prod_{k = 1}^{n + 1} X_{k}$ is finite.
+        Thus $P(n + 1)$ is true whenever $P(n)$ is true.
+    \end{itemize}
+    By the principle of mathematical induction, $P(n)$ is true for all $n \in \mathbb{N}$.
 \end{proof}
 
 \bigskip

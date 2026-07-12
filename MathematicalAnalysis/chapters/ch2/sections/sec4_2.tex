@@ -1,8 +1,8 @@
 \bigskip
 
 \begin{corollary} \label{cor:FiniteUnionOfCountableSetsIsCountable}
-    Let $X_{1}, X_{2}, \dots, X_{n}$ be countable sets for some $n \in \N$. Then $\displaystyle \bigcup_{i = 1}^{n} X_{i}$
-    is countable, i.e., any finite union of countable sets is countable.
+    Let $X_{1}, X_{2}, \dots, X_{n}$ be countable sets for some $n \in \N$. Then $\displaystyle
+    \bigcup_{i = 1}^{n} X_{i}$ is countable, i.e., any finite union of countable sets is countable.
 \end{corollary}
 
 \begin{proof}
@@ -39,7 +39,7 @@
     \begin{itemize}
         \item $h(j) = g_{f(1)}(j)$ for $j = 1, 2, \cdots, n_{f(1)}$.
         \item $h\displaystyle\paren*{\sum_{i = 1}^{k - 1} n_{f(i)} + m} = g_{f(k)}(m)$ 
-        for each $k \in \N$ and $m = 1, 2, \cdots, n_{f(k)}$.
+        for each $k \in \N$ with $k \geq 2$, and $m = 1, 2, \cdots, n_{f(k)}$.
     \end{itemize}
     Then, $h$ is a surjection from $\mathbb{N}$ to $Y$. By \Cref{thm:SurjectionFromN}, $Y$ is countable.
 \end{proof}
@@ -93,8 +93,8 @@
 \bigskip
 
 \begin{theorem} \label{thm:ProductOfFiniteCountableSetsIsCountable}
-    Let $X_{1}, X_{2}, \dots, X_{n}$ be countable sets for some $n \in \N$. Then $\displaystyle \prod_{i = 1}^{n} X_{i}$
-    is countable, i.e., any finite product of countable sets is countable.
+    Let $X_{1}, X_{2}, \dots, X_{n}$ be countable sets for some $n \in \N$. Then $\displaystyle
+    \prod_{i = 1}^{n} X_{i}$ is countable, i.e., any finite product of countable sets is countable.
 \end{theorem}
 
 \begin{proof}
@@ -113,7 +113,7 @@
         \Cref{thm:ProductOfTwoCountableSetsIsCountable}, $\displaystyle \prod_{i = 1}^{n + 1} X_{i}$ is countable.
         Thus, $P(n + 1)$ is true when $P(n)$ is true.
     \end{itemize}
-    By the \hyperref[rem:PrincipleOfMathematicalInduction]{principle of mathematical induction},
+    By the principle of mathematical induction,
     $P(n)$ is true for all $n \in \N$.
 \end{proof}
 
@@ -128,8 +128,8 @@
     \[
     f: \Z \times \N \to \Q, \quad f(m, n) = \dfrac{m}{n} \text{ for all } (m, n) \in \Z \times \N.
     \]
-    is a surjection. By \Cref{thm:ZIsCountable,thm:ProductOfTwoCountableSetsIsCountable}, $\Z \times \N$ is countable.
-    Then, there exists a bijection $g: \N \to \Z \times \N$. Let $h \equiv f \circ g: \N \to \Q$. By
+    is a surjection. By \Cref{thm:ZIsCountable,thm:ProductOfTwoCountableSetsIsCountable}, $\Z \times \N$
+    is countable. Then, there exists a bijection $g: \N \to \Z \times \N$. Let $h \equiv f \circ g: \N \to \Q$. By
     \Cref{thm:PropertiesOfCompositionFunctions}, $h$ is a surjection.
     \\[6mm]
     Since $\N \subseteq \Q$, by \Cref{thm:SubsetOfFiniteSetIsFinite,lem:NIsInfinite}, $\Q$ is infinite.
@@ -154,8 +154,8 @@
         \item $g(2) = (a_{21}, a_{22}, a_{23}, \dots)$.
         \item[] $\vdots$
     \end{itemize}
-    Let $x = (b_{1}, b_{2}, b_{3}, \dots) \in X$ be defined by $b_{n} = 1 - a_{nn}$ for all $n \in \N$.
-    Then, $x \neq g(n)$ for all $n \in \N$, which contradicts the assumption that $g$ is surjective. Thus, $X$ is uncountable.
+    Let $x = (b_{1}, b_{2}, b_{3}, \dots) \in X$ be defined by $b_{n} = 1 - a_{nn}$ for all $n \in \N$. Then,
+    $x \neq g(n)$ for all $n \in \N$, which contradicts the assumption that $g$ is surjective. Thus, $X$ is uncountable.
 \end{proof}
 
 \bigskip
@@ -165,14 +165,41 @@
 \end{theorem}
 
 \begin{proof}
-    Since $\N \subseteq \R$, $\R$ is infinite, as like \hyperref[thm:QIsCountable]{$\Q$ is infinite}.
-    Let $f: \N \to [0, 1)$ be defined by $f(n) = \dfrac{1}{n + 1}$ for all $n \in \N$. $[0, 1) \subseteq \R$ is infinite as like
-    \hyperref[thm:InfiniteProductOfFiniteSetsIsUncountable]{above}. We will prove that $[0, 1) \subseteq \R$ is uncountable.
-    Then, by \Cref{thm:InfiniteSubsetOfCountableSetIsCountable}, $\R$ is uncountable.
+    Since $\N \subseteq \R$, $\R$ is infinite, as like \hyperref[thm:QIsCountable]{$\Q$ is infinite}. Let $f:
+    \N \to [0, 1)$ be defined by $f(n) = \dfrac{1}{n + 1}$ for all $n \in \N$. $[0, 1) \subseteq \R$ is infinite as like
+    \hyperref[thm:InfiniteProductOfFiniteSetsIsUncountable]{$X$ is infinite}. We will prove that $[0, 1) \subseteq \R$
+    is uncountable. Then, by \Cref{thm:InfiniteSubsetOfCountableSetIsCountable}, $\R$ is uncountable.
     \\[6mm]
-    Let $g: [0, 1) \to \displaystyle \prod_{n = 1}^{\infty} \set{0, 1}$ be defined by $g(x) \coloneqq$ (the
-    \hyperref[thm:BaseExpansionOfRealNumbers]{base-$2$ expansion} of $x$) for all $x \in [0, 1)$.
-    
+    Let $g: [0, 1) \to \displaystyle \prod_{n = 1}^{\infty} \set{0, 1}$ be defined by $g(x) =
+    \set{a_{n}^{x}}_{n = 1}^{\infty}$ for all $x \in [0, 1)$, where $\set{a_{n}^{x}}_{n = 1}^{\infty}$ is the
+    \emph{greedy base $2$ expansion} of $x$. Let $Y \coloneqq g([0, 1)) \subseteq \displaystyle \prod_{n = 1}^{\infty}
+    \set{0, 1}$. Then, by \Cref{thm:SameGreedyBaseExpansionImpliesEquality,thm:PropertiesOfRestrictionFunctions},
+    $g|^{Y}$ is bijective.
+    \\[6mm]
+    Suppose that $[0, 1)$ is countable. Then there exists a bijection $h: \N \to [0, 1)$. By
+    \Cref{thm:PropertiesOfCompositionFunctions}, $g|^{Y} \circ h: \N \to Y$ is bijective, so $Y \subseteq \displaystyle
+    \prod_{n = 1}^{\infty} \set{0, 1}$ is countable. Let $Z \coloneqq \displaystyle \prod_{n = 1}^{\infty} \set{0, 1}
+    \setminus Y$. By \Cref{thm:NoRealNumberMatchingGreedyBaseExpansion,thm:NoRealNumberMatchingGreedyBaseExpansionConverse},
+    we have
+    \[
+    Z = \setbuilder*{\set{a_{n}}_{n = 1}^{\infty} \in \displaystyle \prod_{n = 1}^{\infty} \set{0, 1}}{a_{n} = 1
+    \text{ for all } n \geq N \text{ for some } N \in \N}.
+    \]
+    Let $Z_{N}$ be defined by
+    \[
+    Z_{N} = \setbuilder*{\set{a_{n}}_{n = 1}^{\infty} \in \displaystyle \prod_{n = 1}^{\infty} \set{0, 1}}{a_{n} = 1
+    \text{ for all } n \geq N} \text{ for each } N \in \N.
+    \]
+    Let $F_{N}: \displaystyle \prod_{n = 1}^{N - 1} \set{0, 1} \to Z_{N}$ be defined by
+    \[
+    F_{N}\paren*{\set{a_{n}}_{n = 1}^{N - 1}} = \set{a_{n}}_{n = 1}^{N - 1} \cup \set{1}_{n = N}^{\infty}
+    \text{ for all } \set{a_{n}}_{n = 1}^{N - 1} \in \displaystyle \prod_{n = 1}^{N - 1} \set{0, 1}.
+    \]
+    Then $F_{N}$ is bijective, so $Z_{N}$ is finite by \Cref{thm:ProductOfFiniteSetsIsFinite}.
+    By \Cref{thm:AtMostCountableUnionOfAtMostCountableSetsIsAtMostCountable}, $Z = \displaystyle \bigcup_{N = 1}^{\infty}
+    Z_{N}$ is countable. Then, by \Cref{cor:FiniteUnionOfCountableSetsIsCountable}, $\displaystyle \prod_{n = 1}^{\infty}
+    \set{0, 1} = Y \cup Z$ is countable, which contradicts \Cref{thm:InfiniteProductOfFiniteSetsIsUncountable}.
+    Thus, $[0, 1)$ is uncountable.
 \end{proof}
 
 

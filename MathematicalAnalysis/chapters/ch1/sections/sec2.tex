@@ -1,4 +1,4 @@
-\begin{section}{Ordered Sets}
+\begin{section}{Ordered Sets and Ordered Fields}
 
 An \textbf{ordered set} is a set $S$ together with a relation $<$ such that for any $x, y, z \in S$,
 \begin{enumerate}[label=\textbf{(\Alph*)}]
@@ -17,10 +17,36 @@ $x > y$ means $y < x$, $x \leq y$ means ($x < y$ or $x = y$) and $x \geq y$ mean
 
 \bigskip
 
-\begin{example}
-    The set $\N$ and $\Z$ are ordered sets, where $m > n \iff m - n \in \N$.
-    The set $\Q$ is also an ordered set, where $m > n \iff m - n \in \Q^{+}$.
-\end{example}
+A set $F$ is called a \textbf{field} if it is equipped with two operations,
+\emph{addition} and \emph{multiplication}, and satisfies the following axioms:
+\begin{enumerate}[label=\textbf{(\Alph*)}]
+    \item Axioms for addition
+    \begin{itemize}
+        \item $x + y \in F$ for all $x, y \in F$.
+        \item $x + y = y + x$ for all $x, y \in F$.
+        \item $(x + y) + z = x + (y + z)$ for all $x, y, z \in F$.
+        \item There exists an element $0 \in F$ such that $x + 0 = x$ for all $x \in F$.
+        \item For each $x \in F$, there exists an element $-x \in F$ such that $x + (-x) = 0$.
+    \end{itemize}
+    \item Axioms for multiplication
+    \begin{itemize}
+        \item $x \cdot y \in F$ for all $x, y \in F$.
+        \item $x \cdot y = y \cdot x$ for all $x, y \in F$.
+        \item $(x \cdot y) \cdot z = x \cdot (y \cdot z)$ for all $x, y, z \in F$.
+        \item There exists an element $1 \in F$ with $1 \neq 0$ such that $x \cdot 1 = x$ for all $x \in F$.
+        \item For each $x \in F$ with $x \neq 0$, there exists an element $x^{-1} \in F$ such that $x \cdot x^{-1} = 1$.
+    \end{itemize}
+    \item The distributive law
+    \begin{itemize}
+        \item $x \cdot (y + z) = x \cdot y + x \cdot z$ for all $x, y, z \in F$.
+    \end{itemize}
+\end{enumerate}
+
+A set $F$ is called an \textbf{ordered field} if it is both an ordered set and a field, and satisfies the following axioms:
+\begin{itemize}
+    \item If $x, y, z \in F$ and $x < y$, then $x + z < y + z$.
+    \item If $x, y \in F$ and $x > 0$ and $y > 0$, then $x \cdot y > 0$.
+\end{itemize}
 
 \bigskip
 
@@ -37,8 +63,8 @@ $x > y$ means $y < x$, $x \leq y$ means ($x < y$ or $x = y$) and $x \geq y$ mean
 \bigskip
 
 \begin{theorem} \label{thm:BoundedSubsetOfZHasExtremum}
-    Any nonempty subset of $\Z$ which is bounded below has a least element,
-    and any nonempty subset of $\Z$ which is bounded above has a greatest element.
+    Any nonempty subset of $\Z$ which is bounded below has a unique least element,
+    and any nonempty subset of $\Z$ which is bounded above has a unique greatest element.
 \end{theorem}
 
 \begin{proof}
@@ -48,8 +74,8 @@ $x > y$ means $y < x$, $x \leq y$ means ($x < y$ or $x = y$) and $x \geq y$ mean
     \[
     n \leq x - m + 1 \text{ for all } x \in E \implies n + m - 1 \leq x \text{ for all } x \in E.
     \]
-    Since $n \in F$, there exists $x_{0} \in E$ such that $n = x_{0} - m + 1$,
-    so $x_{0} = n + m - 1$ is the least element of $E$.
+    Since $n \in F$, there exists a unique $x_{0} \in E$ such that $n = x_{0} - m + 1$,
+    so $x_{0} = n + m - 1$ is the unique least element of $E$.
     \\[6mm]
     Let $S \subseteq \Z$ be nonempty and bounded above. Then there exists $M \in \Z$ such that $x \leq M$ for all $x \in S$.
     Let $T \coloneqq \setbuilder{-x + M + 1}{x \in S} \subseteq \N$. By \Cref{thm:WellOrderingProperty},
@@ -57,8 +83,8 @@ $x > y$ means $y < x$, $x \leq y$ means ($x < y$ or $x = y$) and $x \geq y$ mean
     \[
     n \leq -x + M + 1 \text{ for all } x \in S \implies M - n + 1 \geq x \text{ for all } x \in S.
     \]
-    Since $n \in T$, there exists $x_{0} \in S$ such that $n = -x_{0} + M + 1$,
-    so $x_{0} = M - n + 1$ is the greatest element of $S$.
+    Since $n \in T$, there exists a unique $x_{0} \in S$ such that $n = -x_{0} + M + 1$,
+    so $x_{0} = M - n + 1$ is the unique greatest element of $S$.
 \end{proof}
 
 \bigskip
