@@ -1,3 +1,97 @@
 \begin{section}{Metric Spaces}
 
+Let $X$ be a set. A function $d: X \times X \to \R$ is called a \textbf{metric} on $X$ if for any $p, q \in X$, we have
+\begin{enumerate}[label=\textbf{(\Alph*)}]
+    \item $d(p, q) \geq 0$ and $d(p, q) = 0 \iff p = q$.
+    \item $d(p, q) = d(q, p)$.
+    \item $d(p, r) \leq d(p, q) + d(q, r)$ for any $r \in X$.
+\end{enumerate}
+\textbf{(C)} is called the \textbf{triangle inequality}. The pair $(X, d)$ is called a \textbf{metric space}.
+
+\bigskip
+
+\begin{theorem} \label{thm:StandardMetricOnRn}
+    We define a function $d: \R^{n} \times \R^{n} \to \R$ by
+    \[
+    d(\mathbf{x}, \mathbf{y}) = \norm{\mathbf{x} - \mathbf{y}} = \sqrt{\sum_{k = 1}^{n} (x_{k} - y_{k})^{2}}
+    \]
+    for all $\mathbf{x}, \mathbf{y} \in \R^{n}$. Then $d$ is a metric on $\R^{n}$.
+    Especially, $d$ is called the \textbf{standard metric} on $\R^{n}$.
+\end{theorem}
+
+\begin{proof}
+    Let $\mathbf{x}, \mathbf{y}, \mathbf{z} \in \R^{n}$ be given.
+    \begin{itemize}
+        \item $d(\mathbf{x}, \mathbf{y}) \geq 0$ is obvious. Also, we have
+        \begin{align*}
+            d(\mathbf{x}, \mathbf{y}) = 0 &\iff \norm{\mathbf{x} - \mathbf{y}} = 0 \\
+            &\iff x_{k} = y_{k} \text{ for all } k = 1, 2, \dots, n \\
+            &\iff \mathbf{x} = \mathbf{y}.
+        \end{align*}
+        \item $d(\mathbf{x}, \mathbf{y}) = d(\mathbf{y}, \mathbf{x})$ is obvious.
+        \item By \Cref{thm:PropertiesOfInnerProductNormDistance}, we have
+        \begin{align*}
+            d(\mathbf{x}, \mathbf{z}) &= \norm{\mathbf{x} - \mathbf{z}} =
+            \norm{\mathbf{x} - \mathbf{y} + (\mathbf{y} - \mathbf{z})} \\
+            &\leq \norm{\mathbf{x} - \mathbf{y}} + \norm{\mathbf{y} - \mathbf{z}}
+            = d(\mathbf{x},\mathbf{y}) + d(\mathbf{y},\mathbf{z})
+        \end{align*}
+    \end{itemize}
+    Therefore, $d$ is a metric on $\R^{n}$.
+\end{proof}
+
+\bigskip
+
+\begin{definition} \label{def:NeighborhoodOpenBall}
+    Let $(X, d)$ be a metric space. For any $p \in X$ and $r > 0$,
+    we define the \textbf{neighborhood} of $p$ with radius $r$ as
+    \[
+    N_{r}(p) \coloneqq \setbuilder{q \in X}{d(p, q) < r}.
+    \]
+    Especially, if $X = \R^{n}$ and $d$ is the standard metric on $\R^{n}$, then $N_{r}(p)$ is called the
+    \textbf{open ball} of radius $r$ centered at $p$, which is denoted by $B_{r}(p)$.
+\end{definition}
+
+\bigskip
+
+\begin{definition} \label{def:LimitIsolatedInteriorPoints}
+    Let $(X, d)$ be a metric space and $E \subseteq X$. Let $p \in X$.
+    \begin{itemize}
+        \item $p$ is called an \textbf{limit point} of $E$
+        if for any $r > 0$, we have $E \cap (N_{r}(p) \setminus \set{p}) \neq \emptyset$.
+        \item $p$ is called a \textbf{isolated point} of $E$
+        if there exists some $r > 0$ such that $N_{r}(p) \cap E = \set{p}$.
+        \item $p$ is called an \textbf{interior point} of $E$
+        if there exists some $r > 0$ such that $N_{r}(p) \subseteq E$.
+    \end{itemize}
+\end{definition}
+
+\bigskip
+
+\begin{definition} \label{def:OpenClosedSets}
+    Let $(X, d)$ be a metric space and $E \subseteq X$.
+    \begin{itemize}
+        \item $E$ is called \textbf{open} if every point of $E$ is an interior point of $E$.
+        \item $E$ is called \textbf{closed} if every limit point of $E$ belongs to $E$.
+    \end{itemize}
+\end{definition}
+
+\bigskip
+
+\begin{theorem} \label{thm:NeighborhoodIsOpen}
+    Let $(X, d)$ be a metric space. For any $p \in X$ and $r > 0$, the neighborhood $N_{r}(p)$ is open.
+\end{theorem}
+
+\begin{proof}
+    Let $q \in N_{r}(p)$ be given. Then we have $d(p, q) < r$. Put $\veps = r - d(p, q) > 0$.
+    We will show that $N_{\veps}(q) \subseteq N_{r}(p)$. Let $s \in N_{\veps}(q)$ be given.
+    Then we have $d(q, s) < \veps$. By the \emph{triangle inequality}, we have
+    \[
+    d(p, s) \leq d(p, q) + d(q, s) < d(p, q) + \veps = r.
+    \]
+    Therefore, we have $s \in N_{r}(p)$, which implies that $N_{\veps}(q) \subseteq N_{r}(p)$.
+    Since $q$ is an arbitrary point of $N_{r}(p)$, every point of $N_{r}(p)$ is an interior point of $N_{r}(p)$.
+    Thus, we conclude that $N_{r}(p)$ is open.
+\end{proof}
+
 \end{section}

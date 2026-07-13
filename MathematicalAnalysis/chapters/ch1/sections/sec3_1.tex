@@ -9,44 +9,68 @@ We can construct $\R$ from $\Q$. But for now, we will assume the existence of $\
 \bigskip
 
 \begin{theorem} \label{thm:ArchimedeanProperty}
-    If $x, y \in \R$ and $x > 0$, then there exists some $n \in \N$ such that $nx > y$.
+    For any $x\in \R^{+}$ and $y \in \R$, there exists some $n \in \N$ such that $nx > y$.
     This theorem is called the \textbf{Archimedean property} of $\R$.
 \end{theorem}
 
 \begin{proof}
-    Suppose $x, y \in \R$ and $x > 0$. Let $E \coloneqq \setbuilder{nx}{nx \leq y, \; n \in \N}$.
-    If $E = \emptyset$, which implies that $x > y$, $n = 1$ satisfies $nx > y$.
-    Otherwise, $E$ is nonempty and bounded above by $y$.
-    \\[3mm]
-    By the least upper bound property, there exists $\alpha = \sup E \in \R$.
-    Then $\alpha - x$ is not an upper bound of $E$. Therefore, there exists some
-    $m \in \N$ such that $mx > \alpha - x \implies (m + 1)x > \alpha$. Then $(m + 1)x \notin E$,
-    which implies that $(m + 1)x > y$. Therefore, we can take $n = m + 1$.
+    Suppose $x, y \in \R$ and $x > 0$. Let $E$ be defined as follows:
+    \[
+    E \coloneqq \setbuilder{nx}{nx \leq y, \; n \in \N}.
+    \]
+    If $E = \emptyset$, which implies that $x > y$, then $n = 1$ satisfies $nx > y$. Otherwise, $E$ is nonempty and bounded
+    above by $y$. By the least upper bound property, there exists $\alpha = \sup E \in \R$. Then we have the following:
+    \begin{itemize}
+        \item $\alpha - x$ is not an upper bound of $E \implies$ There exists some $m \in \N$ such that $mx > \alpha - x$.
+        \item $mx > \alpha - x \implies (m + 1)x > \alpha \implies (m + 1)x \notin E \implies (m + 1)x > y$.
+    \end{itemize}
+    Therefore, we can take $n = m + 1$ to complete the proof.
 \end{proof}
 
 \bigskip
 
 \begin{corollary} \label{cor:ArchimedeanPropertyCorollary}
-    For any $\epsilon > 0$, there exists some $n \in \N$ such that $b^{-n} < \epsilon$ for any $b \in \R$ with $b > 1$.
+    For any $\veps \in \R^{+}$ and $b \in \R$ with $b > 1$, there exists some $n \in \N$ such that $b^{-n} < \veps$.
 \end{corollary}
 
 \begin{proof}
-    For all $n \in \N$ and $x \in \R$ with $x \geq -1$, we have $(1 + x)^{n} \geq 1 + nx$. Let $a \in \R^{+}$ be given.
-    By \Cref{thm:ArchimedeanProperty}, there exists some $n \in \N$ such that $na > \dfrac{1}{\epsilon}$. Then we have
+    For any $n \in \N$ and $x \in \R$ with $x \geq -1$, we have
     \[
-    (1 + a)^{n} \geq 1 + na > na > \frac{1}{\epsilon} \implies (1 + a)^{-n} < \epsilon.
+    (1 + x)^{n} \geq 1 + nx.
+    \]
+    Let $a \in \R^{+}$ and $\veps \in \R^{+}$ be given. By \Cref{thm:ArchimedeanProperty},
+    there exists some $n \in \N$ such that $na > \dfrac{1}{\veps}$. Then we have
+    \[
+    (1 + a)^{n} \geq 1 + na > na > \frac{1}{\veps} \implies (1 + a)^{-n} < \veps.
     \]
     Since $b > 1$, we can take $a = b - 1 > 0$ to complete the proof.
 \end{proof}
 
 \bigskip
 
-\begin{remark}
-    \Cref{thm:BoundedSubsetOfZHasExtremum} supposes that $E$ is bounded in $\Z$. By \Cref{thm:ArchimedeanProperty},
-    we can always find an integer $k$ such that $k < x$ or $x < k$ for any $x \in \R$. 
-    Therefore, \Cref{thm:BoundedSubsetOfZHasExtremum} also holds when $E$ is bounded in $\R$, which is followed by
-    the fact that $E$ is also bounded in $\Z$.
-\end{remark}
+\begin{theorem} \label{thm:BoundedSubsetOfZInRHasExtremum}
+    Any nonempty subset of $\Z$ which is bounded below in $\R$ has a unique least element,
+    and any nonempty subset of $\Z$ which is bounded above in $\R$ has a unique greatest element.
+\end{theorem}
+
+\begin{proof}
+    Let $E$ be a nonempty subset of $\Z$ which is bounded below in $\R$. Then there exists a lower bound $\alpha \in \R$
+    of $E$. Then we have the following:
+    \begin{itemize}
+        \item If $\alpha \geq 0$, then $-1 \in \Z$ is a lower bound of $E$.
+        \item If $\alpha < 0$, then by \Cref{thm:ArchimedeanProperty}, there exists some $n \in \N$
+        such that $n > -\alpha$, which implies that $-n \in \Z$ is a lower bound of $E$.
+    \end{itemize}
+    Therefore, $E$ is bounded below in $\Z$. By \Cref{thm:BoundedSubsetOfZinZHasExtremum}, $E$ has a unique least element.
+    \\[6mm]
+    Let $F$ be a nonempty subset of $\Z$ which is bounded above in $\R$. Then there exists an upper bound $\beta \in \R$
+    of $F$. Then we have the following:
+    \begin{itemize}
+        \item By \Cref{thm:ArchimedeanProperty}, there exists some $n \in \N$
+        such that $n > \beta$, which implies that $n \in \Z$ is an upper bound of $F$.
+    \end{itemize}
+    Therefore, $F$ is bounded above in $\Z$. By \Cref{thm:BoundedSubsetOfZinZHasExtremum}, $F$ has a unique greatest element.
+\end{proof}
 
 \bigskip
 
@@ -57,40 +81,29 @@ We can construct $\R$ from $\Q$. But for now, we will assume the existence of $\
     \floor{x} \coloneqq \max\setbuilder{k \in \Z}{k \leq x}, \quad
     \ceil{x} \coloneqq \min\setbuilder{k \in \Z}{k \geq x}
     \]
+    \Cref{thm:BoundedSubsetOfZInRHasExtremum} guarantees the
+    \emph{existence} and \emph{uniqueness} of $\floor{x}$ and $\ceil{x}$.
 \end{definition}
 
 \bigskip
 
-\begin{theorem} \label{thm:FloorCeilingFunctionsExistenceAndUniqueness}
-    Let $x \in \R$ be given. Then $\floor{x}$ and $\ceil{x}$ exist and are unique.
-\end{theorem}
-
-\begin{proof}
-    Let $E \coloneqq \setbuilder{k \in \Z}{k \leq x}$. If $x \geq 0$, then $-1 \in E$. Otherwise, by
-    \Cref{thm:ArchimedeanProperty}, there exists some $n \in \N$ such that $n > -x$, which implies that $-n \in E$.
-    Then, by \Cref{thm:BoundedSubsetOfZHasExtremum}, $E$ has a unique greatest element.
-    \\[6mm]
-    Let $F \coloneqq \setbuilder{k \in \Z}{k \geq x}$. By \Cref{thm:ArchimedeanProperty}, there exists some $n \in \N$
-    such that $n > x$, which implies that $n \in F$. Then, by \Cref{thm:BoundedSubsetOfZHasExtremum},
-    $F$ has a unique least element.
-\end{proof}
-
-\bigskip
-
 \begin{theorem} \label{thm:QIsDenseInR}
-    If $x, y \in \R$ and $x < y$, then there exists some $p \in \Q$ such that $x < p < y$.
+    For any $x, y \in \R$ with $x < y$, there exists some $p \in \Q$ such that $x < p < y$.
     This theorem states that $\Q$ is \textbf{dense} in $\R$.
 \end{theorem}
 
 \begin{proof}
-    Let $\epsilon = y - x > 0$. By \Cref{thm:ArchimedeanProperty}, there exists some $n \in \N$
-    such that $\dfrac{1}{n} < \epsilon$. Let $S \coloneqq \setbuilder*{k \in \Z}{\dfrac{k}{n} < x}$.
-    Since $n\floor{x} - 1 \in S$, $S$ is nonempty and bounded above by $nx$.
-    By \Cref{thm:BoundedSubsetOfZHasExtremum}, $S$ has a greatest element $m = \max{S}$.
+    Let $\veps \coloneqq y - x > 0$. By \Cref{thm:ArchimedeanProperty}, there exists some $n \in \N$
+    such that $\dfrac{1}{n} < \veps$. Let $S$ be defined as follows:
+    \[
+    S \coloneqq \setbuilder*{k \in \Z}{\dfrac{k}{n} < x}.
+    \]
+    $S$ is nonempty since $n\floor{x} - 1 \in S$, and is bounded above by $nx \in \R$.
+    By \Cref{thm:BoundedSubsetOfZInRHasExtremum}, $S$ has a greatest element, say $m$.
     \[
     x < \frac{m + 1}{n} < x + \frac{1}{n} < x + (y - x) = y.
     \]
-    Therefore, we can take $p = \dfrac{m + 1}{n} \in \Q$.
+    Therefore, we can take $p = \dfrac{m + 1}{n} \in \Q$ to complete the proof.
 \end{proof}
 
 \bigskip
@@ -101,15 +114,19 @@ We can construct $\R$ from $\Q$. But for now, we will assume the existence of $\
 \end{theorem}
 
 \begin{proof}
-    Let $E \coloneqq \setbuilder{t \in \R^{+}}{t^{n} < x}$. Then $E \neq \emptyset$ since
-    $2^{-1} \in E$ if $x\geq 1$, and $x^{2} \in E$ otherwise. Moreover, $E$ is bounded above by $\max\set{x, 1}$.
-    By the least upper bound property, there exists $\alpha = \sup E \in \R^{+}$. We will show that $\alpha^{n} = x$.
+    Let $E$ be defined as follows:
+    \[
+    E \coloneqq \setbuilder{t \in \R^{+}}{t^{n} < x}.
+    \]
+    $E$ is nonempty since $2^{-1} \in E$ if $x\geq 1$, and $x^{2} \in E$ otherwise.
+    Also, $E$ is bounded above by $\max\set{x, 1}$. By the least upper bound property,
+    there exists $\alpha = \sup E \in \R^{+}$. We will show that $\alpha^{n} = x$.
     \\[6mm]
     For any $a, b \in \R^{+}$ with $a < b$, we have
     \[
     b^{n} - a^{n} = (b - a)\sum_{k = 0}^{n - 1} b^{n - 1 - k} a^{k} < (b - a)nb^{n - 1}.
     \]
-    Assume that $\alpha^{n} < x$. By \Cref{thm:QIsDenseInR}, we can choose $h \in \R^{+}$ such that
+    Assume that $\alpha^{n} < x$. By \Cref{thm:QIsDenseInR}, there exists some $h \in \R^{+}$ such that
     \[
     h < \min\set*{1, \; \frac{x - \alpha^{n}}{n(\alpha + 1)^{n - 1}}}.
     \]
@@ -118,9 +135,9 @@ We can construct $\R$ from $\Q$. But for now, we will assume the existence of $\
         &(\alpha + h)^{n} - \alpha^{n} < hn(\alpha + h)^{n - 1} < hn(\alpha + 1)^{n - 1} \\
         \implies &(\alpha + h)^{n} < \alpha^{n} + hn(\alpha + 1)^{n - 1} < \alpha^{n} + (x - \alpha^{n}) = x.
     \end{align*}
-    This shows that $\alpha + h \in E$, which contradicts the fact that $\alpha = \sup E$.
+    Therefore, we have $\alpha + h \in E$, which is a contradiction.
     \\[6mm]
-    Assume that $\alpha^{n} > x$. By \Cref{thm:QIsDenseInR}, we can choose $h \in \R^{+}$ such that
+    Assume that $\alpha^{n} > x$. By \Cref{thm:QIsDenseInR}, there exists some $h \in \R^{+}$ such that
     \[
     h < \min\set*{1, \; \alpha, \; \frac{\alpha^{n} - x}{n(\alpha + 1)^{n - 1}}}.
     \]
@@ -129,10 +146,10 @@ We can construct $\R$ from $\Q$. But for now, we will assume the existence of $\
         &\alpha^{n} - (\alpha - h)^{n} < hn\alpha^{n - 1} < hn(\alpha + 1)^{n - 1} \\
         \implies &(\alpha - h)^{n} > \alpha^{n} - hn(\alpha + 1)^{n - 1} > \alpha^{n} - (\alpha^{n} - x) = x.
     \end{align*}
-    This shows that $\alpha - h$ is an upper bound of $E$, which contradicts the fact that $\alpha = \sup E$.
+    Therefore, we have $\alpha - h$ is an upper bound of $E$, which is a contradiction.
     \\[6mm]
     Therefore, we have $\alpha^{n} = x$, which guarantees the \emph{existence} of $y$. For any $\alpha, \beta \in \R^{+}$,
-    $\alpha \neq \beta \implies \alpha^{n} \neq \beta^{n}$. Thus the \emph{uniqueness} of $y$ is guaranteed.
+    we have $\alpha \neq \beta \implies \alpha^{n} \neq \beta^{n}$, which guarantees the \emph{uniqueness} of $y$.
 \end{proof}
 
 \bigskip
@@ -166,7 +183,7 @@ We can construct $\R$ from $\Q$. But for now, we will assume the existence of $\
         for all $n \in \N$ with $n \geq 2$,
     \end{itemize}
     Suppose that $t_{n} \geq 0$ for some $n \in \N$. Since $0 \in T_{n}$ and $T_{n}$ is bounded above, $T_{n}$ has
-    a greatest element by \Cref{thm:BoundedSubsetOfZHasExtremum}, which implies that $\set{a_{n}}_{n = 1}^{\infty}$
+    a greatest element by \Cref{thm:BoundedSubsetOfZinZHasExtremum}, which implies that $\set{a_{n}}_{n = 1}^{\infty}$
     is well-defined. Let $P(n):$ $t_{n} \geq 0$ and $a_{n}$ is well-defined.
     \begin{itemize}
         \item \textbf{Base case:} $P(1)$ is true since $t_{1} = by \geq 0$.

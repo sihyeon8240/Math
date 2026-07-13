@@ -15,61 +15,57 @@ The axioms above are called the \textbf{Peano axioms} (or \emph{Peano Postulates
 \bigskip
 
 \begin{remark} \label{rem:PrincipleOfMathematicalInduction}
-    Let $P(n)$ be a statement about $n \in \N$ and $S \coloneqq \setbuilder{n \in \N}{P(n) \text{ is true}}$.
+    Let $P(n)$ be a statement about $n \in \N$, and let $S \coloneqq \setbuilder{n \in \N}{P(n) \text{ is true}}$.
     Suppose $P(n)$ satisfies the following conditions:
     \begin{itemize}
         \item $P(1)$ is true.
         \item $P(n + 1)$ is true whenever $P(n)$ is true.
     \end{itemize}
-    This implies that
+    Then, we have the following:
     \begin{itemize}
         \item $1 \in S$.
         \item $n + 1 \in S$ whenever $n \in S$.
     \end{itemize}
-    Thus $S = \N$, i.e., $P(n)$ is true for all $n \in \N$.
+    Thus, we have $S = \N$, i.e., $P(n)$ is true for all $n \in \N$.
     This method of proof is called the \textbf{principle of mathematical induction}.
 \end{remark}
 
 \bigskip
 
 \begin{theorem} \label{thm:WellOrderingProperty}
-    Every nonempty subset of $\N$ has a least element, i.e.,
-    if $E \subseteq \N$ and $E \neq \emptyset$, then there exists an element $m \in E$ such that
-    \[
-    m \leq n \quad \text{for all } n \in E.
-    \]
-    This property is called the \textbf{well-ordering property} of $\N$.
+    Every nonempty subset of $\N$ has a least element. This theorem is called the \textbf{well-ordering property} of $\N$.
 \end{theorem}
 
 \begin{proof}
-    Let $S$ be a nonempty subset of $\N$ which does not have a least element. We define a set
-    $T \coloneqq \N \setminus S$, and $L \coloneqq \setbuilder{n \in \N}{\set{1, 2, \dots, n} \subseteq T}$.
-    We will show that $L = \N$, which implies that $S = \emptyset$, a contradiction,
-    by mathematical induction.
+    Let $S$ be a nonempty subset of $\N$. Suppose $S$ does not have a least element.
+    Let $T$ and $L$ be defined as follows:
     \begin{itemize}
-        \item \textbf{Base case:} $1 \in L$ since $\set{1} \subseteq T$,
-        otherwise $1 \in S$ and $1$ is the least element of $S$.
-        \item \textbf{Inductive step:} Suppose $n \in L$, i.e., $\set{1, 2, \dots, n} \subseteq T$.
-        Then $n + 1 \notin S$, otherwise $n + 1$ is the least element of $S$. Therefore, $n + 1 \in T$,
-        and $\set{1, 2, \dots, n + 1} \subseteq T$, i.e., $n + 1 \in L$.
+        \item $T \coloneqq \N \setminus S$.
+        \item $L \coloneqq \setbuilder{n \in \N}{\set{1, 2, \dots, n} \subseteq T}$.
     \end{itemize}
-    By the principle of mathematical induction, $L = \N$.
+    We will show that $L = \N$, which implies that $S = \emptyset$, a contradiction.
+    \begin{itemize}
+        \item \textbf{Base case:} $1 \in L$ since $\set{1} \subseteq T$.
+        Otherwise, $1 \in S$ and $1$ is the least element of $S$.
+        \item \textbf{Inductive step:} Suppose $n \in L$, i.e., $\set{1, 2, \dots, n} \subseteq T$.
+        Then $n + 1 \notin S$. Otherwise, $n + 1$ is the least element of $S$. Therefore,
+        we have $n + 1 \in T$ and $\set{1, 2, \dots, n + 1} \subseteq T$. Thus, we have $n + 1 \in L$.
+    \end{itemize}
+    By the principle of mathematical induction, we have $L = \N$.
 \end{proof}
 
 \bigskip
 
-\begin{remark}
-    Now, we can define the set $\Z$ of integers and the set $\Q$ of rational numbers as follows:
-    \begin{itemize}
-        \item $\Z \coloneqq \setbuilder{m - n}{m, n \in \N}$.
-        \item $\Q \coloneqq \setbuilder*{\dfrac{m}{n}}{m \in \Z, \; n \in \N}$.
-    \end{itemize}
-    Also, we denote the set of positive numbers or negative numbers as follows:
-    \begin{itemize}
-        \item $\Z^{+} \coloneqq \setbuilder{n}{n \in \N}$, $\Z^{-} \coloneqq \setbuilder{-n}{n \in \N}$.
-        \item $\Q^{+} \coloneqq \setbuilder*{\dfrac{m}{n}}{m \in \N, \; n \in \N}$,
-        $\Q^{-} \coloneqq \setbuilder*{\dfrac{m}{n}}{m \in \Z^{-}, \; n \in \N}$.
-    \end{itemize}
-\end{remark}
+We define the set $\Z$ of integers and the set $\Q$ of rational numbers as follows:
+\begin{itemize}
+    \item $\Z \coloneqq \setbuilder{m - n}{m, n \in \N}$.
+    \item $\Q \coloneqq \setbuilder*{\dfrac{m}{n}}{m \in \Z, \; n \in \N}$.
+\end{itemize}
+Also, we denote the set of positive numbers or negative numbers as follows:
+\begin{itemize}
+    \item $\Z^{+} \coloneqq \setbuilder{n}{n \in \N}$, $\Z^{-} \coloneqq \setbuilder{-n}{n \in \N}$.
+    \item $\Q^{+} \coloneqq \setbuilder*{\dfrac{m}{n}}{m \in \N, \; n \in \N}$,
+    $\Q^{-} \coloneqq \setbuilder*{\dfrac{m}{n}}{m \in \Z^{-}, \; n \in \N}$.
+\end{itemize}
 
 \end{section}
