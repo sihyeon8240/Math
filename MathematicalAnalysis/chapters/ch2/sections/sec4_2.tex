@@ -29,8 +29,8 @@
     There exists a bijection $f: \N \to X$. Also, for each $x \in X$, there exists a bijection
     $g_{x}: J_{n_{x}} \to Y_x$ for some $n_{x} \in \N$. Let $h: \N \to Y$ be a function defined by
     \begin{itemize}
-        \item $h(j) \coloneqq g_{f(1)}(j)$ for $j = 1, 2, \cdots, n_{f(1)}$.
-        \item $h\displaystyle \paren*{\sum_{i = 1}^{k - 1} n_{f(i)} + m} \coloneqq
+        \item $h(j) = g_{f(1)}(j)$ for $j = 1, 2, \cdots, n_{f(1)}$.
+        \item $h\displaystyle \paren*{\sum_{i = 1}^{k - 1} n_{f(i)} + m} =
         g_{f(k)}(m)$ for each $k \in \N$ with $k \geq 2$, and $m = 1, 2, \cdots, n_{f(k)}$.
     \end{itemize}
     Then $h$ is surjective. Therefore, by \Cref{thm:SurjectionFromN}, $Y$ is countable.
@@ -46,7 +46,7 @@
     We will prove this lemma by explicitly constructing a bijection from $\N \times \N \to \N$.
     Let $f: \N \times \N \to \N$ be a function defined by
     \[
-    f(m, n) \coloneqq \frac{(m + n - 1)(m + n - 2)}{2} + m
+    f(m, n) = \frac{(m + n - 1)(m + n - 2)}{2} + m
     \]
     for each $(m, n) \in \N \times \N$. We will show that $f$ is bijective.
     \begin{itemize}
@@ -78,7 +78,7 @@
 \begin{proof}
     There exist bijections $f: \N \to X$ and $g: \N \to Y$. Let $h: \N \times \N \to X \times Y$ be a function defined by
     \[
-    h(m, n) \coloneqq (f(m), g(n)) \text{ for all } (m, n) \in \N \times \N.
+    h(m, n) = (f(m), g(n)) \text{ for all } (m, n) \in \N \times \N.
     \]
     Then $h$ is bijective. By \Cref{lem:NxNIsCountable}, $X \times Y$ is countable.
 \end{proof}
@@ -123,7 +123,7 @@
     Any $q \in \Q$ can be expressed as $q = \dfrac{m}{n}$ for some $m \in \Z$ and $n \in \N$.
     Let $f: \Z \times \N \to \Q$ be a function defined by
     \[
-    f(m, n) \coloneqq \dfrac{m}{n} \text{ for all } (m, n) \in \Z \times \N.
+    f(m, n) = \dfrac{m}{n} \text{ for all } (m, n) \in \Z \times \N.
     \]
     Then $f$ is surjective. By \Cref{thm:ZIsCountable,thm:ProductOfTwoCountableSetsIsCountable}, $\Z \times \N$
     is countable. Then there exists a bijection $g: \N \to \Z \times \N$.
@@ -142,7 +142,7 @@
 \begin{proof}
     For each $n \in \N$, let $e_{n} \in X$ be a sequence defined by
     \[
-    e_{nm} \coloneqq \begin{dcases}
+    e_{nm} = \begin{dcases}
         1 & \text{if } m = n \\
         0 & \text{Otherwise}
     \end{dcases}
@@ -162,7 +162,7 @@
     \end{itemize}
     Let $x = (b_{1}, b_{2}, b_{3}, \dots) \in X$ be a sequence defined by
     \[
-    b_{n} \coloneqq 1 - a_{nn} \text{ for all } n \in \N.
+    b_{n} = 1 - a_{nn} \text{ for all } n \in \N.
     \]
     Then, $x \neq g(n)$ for all $n \in \N$, which contradicts the assumption that $g$ is surjective.
     Therefore, $X$ is uncountable.
@@ -178,7 +178,7 @@
     Since $\N \subseteq \R$, by \Cref{lem:NIsInfinite,thm:SubsetOfFiniteSetIsFinite}, $\R$ is infinite.
     Let $f: \N \to [0, 1)$ be a function defined by
     \[
-    f(n) \coloneqq \dfrac{1}{n + 1} \text{ for all } n \in \N.
+    f(n) = \dfrac{1}{n + 1} \text{ for all } n \in \N.
     \]
     Then $f$ is injective. By \Cref{lem:NIsInfinite,thm:InjectionFromInfiniteSetIsInfinite},
     $[0, 1)$ is infinite. We will prove that $[0, 1) \subseteq \R$ is uncountable,
@@ -186,7 +186,7 @@
     \\[6mm]
     Let $g: [0, 1) \to \displaystyle \prod_{n = 1}^{\infty} \set{0, 1}$ be a function defined by
     \[
-    g(x) \coloneqq \set{a_{n}^{x}}_{n = 1}^{\infty} \text{ for all } x \in [0, 1)
+    g(x) = \set{a_{n}^{x}}_{n = 1}^{\infty} \text{ for all } x \in [0, 1)
     \]
     where $\set{a_{n}^{x}}_{n = 1}^{\infty}$ is the \emph{greedy base $2$ expansion} of $x$.
     Let $Y$ be a set defined by
@@ -211,7 +211,7 @@
     \]
     Let $F_{N}: \displaystyle \prod_{n = 1}^{N - 1} \set{0, 1} \to Z_{N}$ be a function defined by
     \[
-    F_{N}\paren*{\set{a_{n}}_{n = 1}^{N - 1}} \coloneqq \set{a_{n}}_{n = 1}^{N - 1} \cup \set{1}_{n = N}^{\infty}
+    F_{N}\paren*{\set{a_{n}}_{n = 1}^{N - 1}} = \set{a_{n}}_{n = 1}^{N - 1} \cup \set{1}_{n = N}^{\infty}
     \text{ for all } \set{a_{n}}_{n = 1}^{N - 1} \in \displaystyle \prod_{n = 1}^{N - 1} \set{0, 1}.
     \]
     Then $F_{N}$ is surjective. By \Cref{thm:ProductOfFiniteSetsIsFinite,thm:SurjectionFromFiniteSetIsFinite},

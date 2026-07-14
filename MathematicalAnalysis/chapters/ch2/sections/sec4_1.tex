@@ -113,10 +113,10 @@ A set $X$ is said to be \textbf{at most countable} if $X$ is either finite or co
     Let $X \subseteq \N$ be an infinite subset. Let $\set{X_{n}}_{n = 1}^{\infty}$ be a sequence
     and let $f: \N \to X$ be a function defined as follows:
     \begin{itemize}
-        \item $X_{1} \coloneqq X$, $f(1) = \min X_{1}$
-        \item $X_{2} \coloneqq X_{1} \setminus \set{f(1)}$, $f(2) = \min X_{2}$
+        \item $X_{1} = X$, $f(1) = \min X_{1}$
+        \item $X_{2} = X_{1} \setminus \set{f(1)}$, $f(2) = \min X_{2}$
         \item[] $\vdots$
-        \item $X_{n + 1} \coloneqq X_{n} \setminus \set{f(n)}$, $f(n + 1) = \min X_{n + 1}$
+        \item $X_{n + 1} = X_{n} \setminus \set{f(n)}$, $f(n + 1) = \min X_{n + 1}$
     \end{itemize}
     for each $n \in \N$. By \Cref{thm:InfiniteSetMinusFiniteSetIsInfinite}, $X_{n}$ is infinite for each $n \in \N$,
     so is nonempty. Then, by \Cref{thm:WellOrderingProperty}, $X_{n}$ has a least element, so $f$ is well-defined.
@@ -205,7 +205,7 @@ A set $X$ is said to be \textbf{at most countable} if $X$ is either finite or co
     \]
     so $t_{n} - s_{n} + 1 \in \N$. Let $g: \N \to \displaystyle \bigcup_{n = 1}^{\infty} X_{n}$ be a function defined by
     \[
-    g(k) \coloneqq f_{s_{k}}(t_{k} - s_{k} + 1) \text{ for all } k \in \N.
+    g(k) = f_{s_{k}}(t_{k} - s_{k} + 1) \text{ for all } k \in \N.
     \]
     Let $x \in \displaystyle \bigcup_{n = 1}^{\infty} X_{n}$ be given. Then there exists some $m \in \N$ such that
     $x \in X_{m}$. Since $f_{m}$ is surjective, there exists some $l \in \N$ such that $f_{m}(l) = x$. Let
