@@ -97,7 +97,7 @@ A set $F$ is called an \textbf{ordered field} if it is both an ordered set and a
 \bigskip
 
 \begin{definition} \label{def:SupremumInfimum}
-    Let $S$ be an ordered set. Suppose $E \subseteq S$ is bounded above. If there exists an $\alpha \in S$ such that
+    Let $S$ be an ordered set. Assume that $E \subseteq S$ is bounded above. If there exists an $\alpha \in S$ such that
     \begin{itemize}
         \item $\alpha$ is an upper bound of $E$.
         \item If $\beta < \alpha$, then $\beta$ is not an upper bound of $E$.
@@ -106,7 +106,7 @@ A set $F$ is called an \textbf{ordered field} if it is both an ordered set and a
     \[
     \alpha = \sup E.
     \]
-    Similarly, suppose $F \subseteq S$ is bounded below. If there exists an $\gamma \in F$ such that
+    Similarly, Assume that $F \subseteq S$ is bounded below. If there exists an $\gamma \in F$ such that
     \begin{itemize}
         \item $\gamma$ is a lower bound of $F$.
         \item If $\beta > \gamma$, then $\beta$ is not a lower bound of $F$.
@@ -168,16 +168,20 @@ A set $F$ is called an \textbf{ordered field} if it is both an ordered set and a
     Then, $L$ is nonempty and bounded above. By the least upper bound property,
     there exists $\alpha = \sup L \in S$. We will show that $\alpha = \inf E$.
     \\[6mm]
-    Suppose $\alpha \notin L$. Then we have the following:
+    Assume that $\alpha \notin L$. Then we have the following:
     \begin{itemize}
         \item $\alpha$ is not a lower bound of $E \implies$ There exists $\beta \in E$ such that $\beta < \alpha$.
         \item $\alpha = \sup L \implies \beta$ is not an upper bound of $L \implies$
         There exists $\gamma \in L$ such that $\beta < \gamma \leq \alpha$.
         \item $\gamma \in L \implies \gamma$ is a lower bound of $E \implies \gamma \leq \beta$.
     \end{itemize}
-    This is a contradiction. Therefore, $\alpha \in L$, i.e., $\alpha$ is a lower bound of $E$.
-    Since $\alpha$ is an upper bound of $L$, for any $\delta > \alpha$, we have $\delta \notin L
-    \implies \delta$ is not a lower bound of $E$. Therefore, $\alpha = \inf E$. 
+    This is a contradiction. Therefore, we have $\alpha \in L$, i.e., $\alpha$ is a lower bound of $E$.
+    Since $\alpha$ is an upper bound of $L$, the following holds:
+    \[
+    \text{For any } \delta > \alpha, \text{ we have } \delta \notin L
+    \implies \delta \text{ is not a lower bound of } E.
+    \]
+    Therefore, we can conclude that $\alpha = \inf E$. 
 \end{proof}
 
 \end{section}

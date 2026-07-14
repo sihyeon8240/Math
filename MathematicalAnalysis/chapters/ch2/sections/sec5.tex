@@ -11,7 +11,7 @@ Let $X$ be a set. A function $d: X \times X \to \R$ is called a \textbf{metric} 
 \bigskip
 
 \begin{theorem} \label{thm:StandardMetricOnRn}
-    We define a function $d: \R^{n} \times \R^{n} \to \R$ by
+    Let $d: \R^{n} \times \R^{n} \to \R$ be a function defined by
     \[
     d(\mathbf{x}, \mathbf{y}) = \norm{\mathbf{x} - \mathbf{y}} = \sqrt{\sum_{k = 1}^{n} (x_{k} - y_{k})^{2}}
     \]
@@ -32,7 +32,7 @@ Let $X$ be a set. A function $d: X \times X \to \R$ is called a \textbf{metric} 
         \item By \Cref{thm:PropertiesOfInnerProductNormDistance}, we have
         \begin{align*}
             d(\mathbf{x}, \mathbf{z}) &= \norm{\mathbf{x} - \mathbf{z}} =
-            \norm{\mathbf{x} - \mathbf{y} + (\mathbf{y} - \mathbf{z})} \\
+            \norm{(\mathbf{x} - \mathbf{y}) + (\mathbf{y} - \mathbf{z})} \\
             &\leq \norm{\mathbf{x} - \mathbf{y}} + \norm{\mathbf{y} - \mathbf{z}}
             = d(\mathbf{x},\mathbf{y}) + d(\mathbf{y},\mathbf{z})
         \end{align*}
@@ -55,7 +55,7 @@ Let $X$ be a set. A function $d: X \times X \to \R$ is called a \textbf{metric} 
 \bigskip
 
 \begin{definition} \label{def:LimitIsolatedInteriorPoints}
-    Let $(X, d)$ be a metric space and $E \subseteq X$. Let $p \in X$.
+    Let $(X, d)$ be a metric space and $E \subseteq X$. Let $p \in X$ be given.
     \begin{itemize}
         \item $p$ is called an \textbf{limit point} of $E$
         if for any $r > 0$, we have $E \cap (N_{r}(p) \setminus \set{p}) \neq \emptyset$.
@@ -71,8 +71,8 @@ Let $X$ be a set. A function $d: X \times X \to \R$ is called a \textbf{metric} 
 \begin{definition} \label{def:OpenClosedSets}
     Let $(X, d)$ be a metric space and $E \subseteq X$.
     \begin{itemize}
-        \item $E$ is called \textbf{open} if every point of $E$ is an interior point of $E$.
-        \item $E$ is called \textbf{closed} if every limit point of $E$ belongs to $E$.
+        \item $E$ is called \textbf{open} if Any point of $E$ is an interior point of $E$.
+        \item $E$ is called \textbf{closed} if Any limit point of $E$ belongs to $E$.
     \end{itemize}
 \end{definition}
 
@@ -84,14 +84,11 @@ Let $X$ be a set. A function $d: X \times X \to \R$ is called a \textbf{metric} 
 
 \begin{proof}
     Let $q \in N_{r}(p)$ be given. Then we have $d(p, q) < r$. Put $\veps = r - d(p, q) > 0$.
-    We will show that $N_{\veps}(q) \subseteq N_{r}(p)$. Let $s \in N_{\veps}(q)$ be given.
-    Then we have $d(q, s) < \veps$. By the \emph{triangle inequality}, we have
+    Let $s \in N_{\veps}(q)$ be given. Then we have $d(q, s) < \veps$ and
     \[
     d(p, s) \leq d(p, q) + d(q, s) < d(p, q) + \veps = r.
     \]
-    Therefore, we have $s \in N_{r}(p)$, which implies that $N_{\veps}(q) \subseteq N_{r}(p)$.
-    Since $q$ is an arbitrary point of $N_{r}(p)$, every point of $N_{r}(p)$ is an interior point of $N_{r}(p)$.
-    Thus, we conclude that $N_{r}(p)$ is open.
+    Thus $s \in N_{r}(p)$, which implies that $N_{\veps}(q) \subseteq N_{r}(p)$. Since $q$ is arbtrary, $N_{r}(p)$ is open.
 \end{proof}
 
 \end{section}

@@ -33,7 +33,7 @@ $f$ is said to be a \emph{function} of $X$ into $Y$, which is denoted by $f: X \
 \begin{definition} \label{def:InjectiveSurjectiveBijective}
     Let $f: X \to Y$ be a function. We define the properties of $f$ as follows:
     \begin{itemize}
-        \item $f$ is \textbf{injective} (or \emph{one-to-one}) if for any $x_1, x_2 \in X$,
+        \item $f$ is \textbf{injective} (or \emph{one-to-one}) if for any $x_1, x_2 \in X$, we have
         \[
         f(x_1) = f(x_2) \implies x_1 = x_2.
         \]
@@ -45,9 +45,12 @@ $f$ is said to be a \emph{function} of $X$ into $Y$, which is denoted by $f: X \
 \bigskip
 
 \begin{definition} \label{def:InverseFunction}
-    Let $f: X \to Y$ be a bijective function. Then for any $y \in Y$, there exists a
+    Let $f: X \to Y$ be a bijective function. Then, for any $y \in Y$, there exists a
     \emph{unique} $x \in X$ such that $f(x) = y$. Therefore, we can define a function
-    $f^{-1}: Y \to X$ by $f^{-1}(y) = x$. $f^{-1}$ is called the \textbf{inverse function} of $f$.
+    \[
+    f^{-1}: Y \to X, \quad f^{-1}(y) = x.
+    \]
+    Such a function $f^{-1}$ is called the \textbf{inverse function} of $f$.
 \end{definition}
 
 \bigskip
@@ -57,20 +60,20 @@ $f$ is said to be a \emph{function} of $X$ into $Y$, which is denoted by $f: X \
 \end{theorem}
 
 \begin{proof}
-    Let $y_1, y_2 \in Y$. Suppose that $f^{-1}(y_1) = f^{-1}(y_2) = x$. Then, by \Cref{def:InverseFunction},
-    we have both $f(x) = y_1$ and $f(x) = y_2$. Since $f$ is a function, we have $y_1 = y_2$,
-    which implies that $f^{-1}$ is injective.
-    \\[6mm]
-    By the definition of inverse image, we have $f^{-1}(Y) \subseteq X$.
-    Also, for any $x \in X$, we have $f(x) \in Y$, which implies that $x \in f^{-1}(Y)$. Therefore,
-    we have $f^{-1}(Y) \supseteq X \implies f^{-1}(Y) = X$, which implies that $f^{-1}$ is surjective.
+    Let $y_1, y_2 \in Y$ be given. Assume that $f^{-1}(y_1) = f^{-1}(y_2) = x$. Then, by \Cref{def:InverseFunction},
+    we have
+    \[
+    f(x) = y_1 \text{ and } f(x) = y_2 \implies y_1 = y_2
+    \]
+    since $f$ is a function. Therefore, we have that $f^{-1}$ is injective.
+    By the definition of image, we have that $f^{-1}(Y) = X$, which implies that $f^{-1}$ is surjective.
 \end{proof}
 
 \bigskip
 
 \begin{definition} \label{def:RestrictionFunction}
-    Let $f: X \to Y$ be a function. Let $E \subseteq X$ and $F \subseteq Y$ such that $f(E) \subseteq F$.
-    Then we define the restriction functions as follows:
+    Let $f: X \to Y$ be a function. Let $E \subseteq X$ and $F \subseteq Y$ be given with $f(E) \subseteq F$.
+    We define the restriction functions as follows:
     \begin{itemize}
         \item The \textbf{restriction} of $f$ to $E$ is defined by
         \[
@@ -91,7 +94,7 @@ $f$ is said to be a \emph{function} of $X$ into $Y$, which is denoted by $f: X \
 \bigskip
 
 \begin{theorem} \label{thm:PropertiesOfRestrictionFunctions}
-    Let $f: X \to Y$ be a function. Let $E \subseteq X$ and $F \subseteq Y$ such that $f(E) \subseteq F$.
+    Let $f: X \to Y$ be a function. Let $E \subseteq X$ and $F \subseteq Y$ be given with $f(E) \subseteq F$.
     Then we have the following properties:
     \begin{enumerate}[label=\textbf{(\Alph*)}]
         \item If $f$ is injective, then $f|_{E}^{F}$ is also injective.
@@ -107,7 +110,7 @@ $f$ is said to be a \emph{function} of $X$ into $Y$, which is denoted by $f: X \
         \[
         f|_{E}^{F}(x_1) = f|_{E}^{F}(x_2) \implies f(x_1) = f(x_2) \implies x_1 = x_2.
         \]
-        \item Assume that $f(E) = F$. Then for any $y \in F$, there exists $x \in E$ such that
+        \item Assume that $f(E) = F$. Then, for any $y \in F$, there exists $x \in E$ such that
         $f(x) = f|_{E}^{F}(x) = y$. Therefore, we have $f|_{E}^{F}(E) = F$.
     \end{enumerate}
 \end{proof}
@@ -115,10 +118,10 @@ $f$ is said to be a \emph{function} of $X$ into $Y$, which is denoted by $f: X \
 \bigskip
 
 \begin{definition} \label{def:CompositionFunction}
-    Let $X, Y, Z$ be sets and $f: X \to Y$, $g: Y \to Z$ be functions. Then we define the
+    Let $X, Y, Z$ be sets and $f: X \to Y$, $g: Y \to Z$ be functions. We define the
     \textbf{composition} of $f$ and $g$ as the function $g \circ f: X \to Z$ defined by
     \[
-    (g \circ f)(x) = g(f(x)) \quad \text{for all } x \in X.
+    (g \circ f)(x) \coloneqq g(f(x)) \quad \text{for all } x \in X.
     \]
 \end{definition}
 
@@ -134,14 +137,14 @@ $f$ is said to be a \emph{function} of $X$ into $Y$, which is denoted by $f: X \
 \end{theorem}
 
 \begin{proof}
-    \textbf{(C)} follows from \textbf{(A)} and \textbf{(B)}. Let $x_1, x_2 \in X$.
+    \textbf{(C)} follows from \textbf{(A)} and \textbf{(B)}. Let $x_1, x_2 \in X$ be given.
     \begin{enumerate}[label=\textbf{(\Alph*)}]
         \item Assume that $f$ and $g$ are injective. Then we have
         \begin{align*}
         (g \circ f)(x_1) = (g \circ f)(x_2) &\implies g(f(x_1)) = g(f(x_2)) \\
         \implies f(x_1) = f(x_2) &\implies x_1 = x_2.
         \end{align*}
-        \item Assume that $f$ and $g$ are surjective. Then for any $z \in Z$, there exists $y \in Y$ such that
+        \item Assume that $f$ and $g$ are surjective. Then, for any $z \in Z$, there exists $y \in Y$ such that
         $g(y) = z$. Since $f$ is surjective, there exists $x \in X$ such that $f(x) = y$. Therefore, we have
         $(g \circ f)(x) = g(f(x)) = g(y) = z$.
     \end{enumerate}
@@ -157,14 +160,14 @@ $f$ is said to be a \emph{function} of $X$ into $Y$, which is denoted by $f: X \
 \end{theorem}
 
 \begin{proof}
-    Let $X, Y, Z \in S$.
+    Let $X, Y, Z \in S$ be given.
     \begin{itemize}
-        \item \textbf{Reflexivity:} The identity function $id_{X}: X \to X$ defined by $id_{X}(x) = x$ for all $x \in X$
+        \item \textbf{Reflexivity:} The identity function $id_{X}: X \to X$, defined by $id_{X}(x) = x$ for all $x \in X$,
         is bijective. Therefore, we have $X \hyperref[thm:BijectionEquivalenceRelation]{\sim} X$.
-        \item \textbf{Symmetry:} Suppose that $X \hyperref[thm:BijectionEquivalenceRelation]{\sim} Y$. Then there exists
+        \item \textbf{Symmetry:} Assume that $X \hyperref[thm:BijectionEquivalenceRelation]{\sim} Y$. Then there exists
         a bijection $f: X \to Y$. By \Cref{thm:InverseFunctionIsBijection}, the inverse function
         $f^{-1}: Y \to X$ is also bijective. Therefore, we have $Y \hyperref[thm:BijectionEquivalenceRelation]{\sim} X$.
-        \item \textbf{Transitivity:} Suppose that $X \hyperref[thm:BijectionEquivalenceRelation]{\sim} Y$
+        \item \textbf{Transitivity:} Assume that $X \hyperref[thm:BijectionEquivalenceRelation]{\sim} Y$
         and $Y \hyperref[thm:BijectionEquivalenceRelation]{\sim} Z$. Then there exist bijections
         $f: X \to Y$ and $g: Y \to Z$. By \Cref{thm:PropertiesOfCompositionFunctions}, the composition
         $g \circ f: X \to Z$ is also bijective. Therefore, we have $X \hyperref[thm:BijectionEquivalenceRelation]{\sim} Z$.

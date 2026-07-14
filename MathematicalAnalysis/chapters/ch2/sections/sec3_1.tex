@@ -1,59 +1,100 @@
 \begin{section}{Finite Sets} \label{sec:FiniteSets}
 
-Let $J_{n} \coloneqq \set{1, 2, \dots, n}$ for each $n \in \mathbb{N}$. A set $X$ is said to be \textbf{finite}
-if $J_{n} \hyperref[thm:BijectionEquivalenceRelation]{\sim} X$ for some $n \in \mathbb{N}$. In this case,
-$n$ is called the \textbf{cardinality} of $X$, denoted by $\abs{X}$. Especially, if $X = \emptyset$,
-we define $\abs{X} = 0$. $X$ is said to be \textbf{infinite} if $X$ is not finite.
+Let $J_{n}$ be a set defined by
+\[
+J_{n} \coloneqq \set{1, 2, \dots, n} \quad \text{for each } n \in \N.
+\]
+A set $X$ is said to be \textbf{finite} if $J_{n} \hyperref[thm:BijectionEquivalenceRelation]{\sim} X$ for some
+$n \in \N$. In this case, $n$ is called the \textbf{cardinality} of $X$, denoted by $\abs{X}$.
+Especially, if $X = \emptyset$, we define $\abs{X} = 0$. $X$ is said to be \textbf{infinite} if $X$ is not finite.
 
 \bigskip
 
 \begin{lemma} \label{lem:SubsetOfJnIsFinite}
-    Every subset of $J_{n}$ is finite for each $n \in \mathbb{N}$.
+    Any subset of $J_{n}$ is finite for each $n \in \N$.
 \end{lemma}
 
 \begin{proof}
-    We will prove the lemma by mathematical induction on $n$. Let $P(n):$ Every subset of $J_{n}$ is finite.
+    Let $P(n)$ be the statement that any subset of $J_{n}$ is finite.
     \begin{itemize}
-        \item \textbf{Base case:} Let $n = 1$. Then $J_{1} = \set{1}$, whose only subsets are $\emptyset$ and $J_{1}$.
-        $J_{1} \hyperref[thm:BijectionEquivalenceRelation]{\sim} J_{1}$ by $f \coloneqq id_{J_{1}}$, and $\emptyset$ is
+        \item \textbf{Base case:} $J_{1} = \set{1}$ has $\emptyset$ and $J_{1}$ as its only subsets. We have
+        $J_{1} \hyperref[thm:BijectionEquivalenceRelation]{\sim} J_{1}$ by $f \equiv id_{J_{1}}$, and $\emptyset$ is
         finite by definition. Thus $P(1)$ is true.
-        \item \textbf{Inductive step:} Assume that $P(n)$ is true for some $n \in \mathbb{N}$. Let $A \subseteq J_{n + 1}$.
-        We have two cases:
+        \item \textbf{Inductive step:} Assume that $P(n)$ is true for some $n \in \N$.
+        Let $A \subseteq J_{n + 1}$ be given. We have two cases:
         \begin{itemize}
             \item If $n + 1 \notin A$, then $A \subseteq J_{n}$, which is finite by the inductive hypothesis.
             \item If $n + 1 \in A$, then $A = B \cup \set{n + 1}$ for some $B \subseteq J_{n}$.
             By the inductive hypothesis, $B$ is finite, so there exists a bijection $f: J_{m} \to B$
-            for some $m \in \mathbb{N}$. Let $g: J_{m + 1} \to A$ be defined by
+            for some $m \in \N$. Let $g: J_{m + 1} \to A$ be defined by
             \[
             g(k) = \begin{cases}
                 f(k) & \text{if } k \leq m \\
                 n + 1 & \text{if } k = m + 1
-            \end{cases}.
+            \end{cases}
             \]
             Then $g$ is bijective, which implies that $A$ is finite.
         \end{itemize}
         Thus $P(n + 1)$ is true whenever $P(n)$ is true.
     \end{itemize}
-    By the principle of mathematical induction,
-    $P(n)$ is true for all $n \in \mathbb{N}$.
+    By the principle of mathematical induction, $P(n)$ is true for all $n \in \N$.
 \end{proof}
 
 \bigskip
 
-\bigskip
-
 \begin{theorem} \label{thm:SubsetOfFiniteSetIsFinite}
-    Every subset of a finite set is finite.
+    Any subset of a finite set is finite.
 \end{theorem}
 
 \begin{proof}
-    Let $X$ be a finite set and $Y \subseteq X$. Then there exists a bijection $f: J_{n} \to X$ for some
-    $n \in \mathbb{N}$. Let $Z = f^{-1}(Y) \subseteq J_{n}$. Since $Z \subseteq J_{n}$, $Z$ is finite by
-    \Cref{lem:SubsetOfJnIsFinite}, so there exists a bijection $g: J_{m} \to Z$ for some $m \in \mathbb{N}$.
+    Let $X$ be a finite set and $Y \subseteq X$. Then there exists a bijection
+    $f: J_{n} \to X$ for some $n \in \N$. Let $Z$ be defined by
+    \[
+    Z \coloneqq f^{-1}(Y) \subseteq J_{n}.
+    \]
+    Since $Z \subseteq J_{n}$, $Z$ is finite by
+    \Cref{lem:SubsetOfJnIsFinite}, so there exists a bijection $g: J_{m} \to Z$ for some $m \in \N$.
     \\[6mm]
     By \Cref{thm:PropertiesOfRestrictionFunctions}, $f|_{Z}^{Y}$ is bijective. Then, by
     \Cref{thm:PropertiesOfCompositionFunctions}, the composition $f|_{Z}^{Y} \circ g: J_{m} \to Y$
-    is bijective. Thus $Y$ is finite.
+    is also bijective. Therefore, $Y$ is finite.
+\end{proof}
+
+\bigskip
+
+\begin{lemma} \label{lem:SurjectionFromJnIsFinite}
+    Let $J_{n}$ be given for some $n \in \N$. If there exists an surjection $f: J_{n} \to Y$, then $Y$ is finite.
+\end{lemma}
+
+\begin{proof}
+    Let $f: J_{n} \to Y$ be a surjective function. For any $y \in Y$, let $N_{y}$ be a set defined by
+    \[
+    N_{y} \coloneqq f^{-1}(\set{y}) \subseteq J_{n}.
+    \]
+    Since $f$ is surjective, $N_{y}$ is nonempty. By \Cref{thm:WellOrderingProperty}, $N_{y}$ has a least element, say
+    $n_{y}$. Let $M_{Y}$ be a set defined by
+    \[
+    M_{Y} \coloneqq \setbuilder{n_{y}}{y \in Y} \subseteq J_{n}.
+    \]
+    Let $g: M_{Y} \to Y$ be a function defined by
+    \[
+    g(n_{y}) = y \quad \text{for each } n_{y} \in M_{Y}.
+    \]
+    Then $g$ is bijective. By \Cref{lem:SubsetOfJnIsFinite}, $M_{Y}$ is finite, so there exists
+    a bijection $h: J_{m} \to M_{Y}$ for some $m \in \N$. Then, by \Cref{thm:PropertiesOfCompositionFunctions},
+    the composition $g \circ h: J_{m} \to Y$ is bijective. Therefore, $Y$ is finite.
+\end{proof}
+
+\bigskip
+
+\begin{theorem} \label{thm:SurjectionFromFiniteSetIsFinite}
+    Let $X$ be a finite set. If there exists an surjection $f: X \to Y$, then $Y$ is finite.
+\end{theorem}
+
+\begin{proof}
+    Let $f: X \to Y$ be a surjective function. Since $X$ is finite, there exists a bijection $g: J_{n} \to X$
+    for some $n \in \N$. Then, by \Cref{thm:PropertiesOfCompositionFunctions}, the composition $f \circ g: J_{n} \to Y$
+    is surjective. Therefore, by \Cref{lem:SurjectionFromJnIsFinite}, $Y$ is finite.
 \end{proof}
 
 \bigskip
@@ -63,16 +104,23 @@ we define $\abs{X} = 0$. $X$ is said to be \textbf{infinite} if $X$ is not finit
 \end{theorem}
 
 \begin{proof}
-    Since $X$ is finite, there exists a bijection $f: J_{n} \to X$ for some $n \in \mathbb{N}$. The elements
+    Since $X$ is finite, there exists a bijection $f: J_{n} \to X$ for some $n \in \N$. The elements
     of $X$ can be listed as $X = \set{a_{1}, a_{2}, \dots, a_{n}}$, where $a_{k} = f(k)$ for each $k = 1, 2, \dots, n$.
     \\[6mm]
-    First, we will show that $X$ has a least element by mathematical induction on $n$.
-    Let $P(n):$ Any finite ordered set of cardinality $n$ has a least element.
+    First, we will show that $X$ has a least element. Let $P(n)$ be the statement that
+    any finite ordered set of cardinality $n$ has a least element.
     \begin{itemize}
-        \item \textbf{Base case:} Let $n = 1$. Then $X = \set{a_{1}}$, which has a least element $a_{1}$.
-        \item \textbf{Inductive step:} Assume that $P(n)$ is true for some $n \in \mathbb{N}$. Let $X =
-        \set{a_{1}, a_{2}, \dots, a_{n + 1}}$. By the inductive hypothesis, the subset $\set{a_{1}, a_{2},
-        \dots, a_{n}}$ has a least element, say $a_{k}$ for some $k = 1, 2, \dots, n$. We have two cases:
+        \item \textbf{Base case:} $X = \set{a_{1}}$ has a least element $a_{1}$. Thus $P(1)$ is true.
+        \item \textbf{Inductive step:} Assume that $P(n)$ is true for some $n \in \N$.
+        Let $X$ be a finite ordered set of cardinality $n + 1$ such that
+        \[
+        X = \set{a_{1}, a_{2}, \dots, a_{n + 1}}.
+        \]
+        By the inductive hypothesis, a finite ordered subset $Y \subseteq X$ of cardinality $n$ such that 
+        \[
+        Y = \set{a_{1}, a_{2}, \dots, a_{n}}
+        \]
+        has a least element, say $a_{k}$ for some $k = 1, 2, \dots, n$. We have two cases:
         \begin{itemize}
             \item If $a_{k} \leq a_{n + 1}$, then $a_{k}$ is the least element of $X$.
             \item If $a_{n + 1} < a_{k}$, then $a_{n + 1}$ is the least element of $X$.
@@ -80,15 +128,22 @@ we define $\abs{X} = 0$. $X$ is said to be \textbf{infinite} if $X$ is not finit
         Thus $P(n + 1)$ is true whenever $P(n)$ is true.
     \end{itemize}
     By the principle of mathematical induction,
-    $P(n)$ is true for all $n \in \mathbb{N}$.
+    $P(n)$ is true for all $n \in \N$.
     \\[6mm]
-    Next, we will show that $X$ has a greatest element by mathematical induction on $n$.
-    Let $Q(n):$ Any finite ordered set of cardinality $n$ has a greatest element.
+    Next, we will show that $X$ has a greatest element. Let $Q(n)$ be the statement that
+    any finite ordered set of cardinality $n$ has a greatest element.
     \begin{itemize}
-        \item \textbf{Base case:} Let $n = 1$. Then $X = \set{a_{1}}$, which has a greatest element $a_{1}$.
-        \item \textbf{Inductive step:} Assume that $Q(n)$ is true for some $n \in \mathbb{N}$. Let $X = 
-        \set{a_{1}, a_{2}, \dots, a_{n + 1}}$. By the inductive hypothesis, the subset $\set{a_{1}, a_{2},
-        \dots, a_{n}}$ has a greatest element, say $a_{k}$ for some $k = 1, 2, \dots, n$. We have two cases:
+        \item \textbf{Base case:} $X = \set{a_{1}}$ has a greatest element $a_{1}$. Thus $Q(1)$ is true.
+        \item \textbf{Inductive step:} Assume that $Q(n)$ is true for some $n \in \N$.
+        Let $X$ be a finite ordered set of cardinality $n + 1$ such that
+        \[
+        X = \set{a_{1}, a_{2}, \dots, a_{n + 1}}.
+        \]
+        By the inductive hypothesis, a finite ordered subset $Y \subseteq X$ of cardinality $n$ such that
+        \[
+        Y = \set{a_{1}, a_{2}, \dots, a_{n}}
+        \]
+        has a greatest element, say $a_{k}$ for some $k = 1, 2, \dots, n$. We have two cases:
         \begin{itemize}
             \item If $a_{k} \geq a_{n + 1}$, then $a_{k}$ is the greatest element of $X$.
             \item If $a_{n + 1} > a_{k}$, then $a_{n + 1}$ is the greatest element of $X$.
@@ -96,142 +151,92 @@ we define $\abs{X} = 0$. $X$ is said to be \textbf{infinite} if $X$ is not finit
         Thus $Q(n + 1)$ is true whenever $Q(n)$ is true.
     \end{itemize}
     By the principle of mathematical induction,
-    $Q(n)$ is true for all $n \in \mathbb{N}$.
+    $Q(n)$ is true for all $n \in \N$.
 \end{proof}
 
 \bigskip
 
 \begin{lemma} \label{lem:PropertiesOfJmJn}
-    Let $J_{m}, J_{n}$ be given for some $m, n \in \mathbb{N}$. Then we have the following properties:
+    Let $J_{m}, J_{n}$ be given for some $m, n \in \N$. Then we have the following properties:
     \begin{enumerate}[label=\textbf{(\Alph*)}]
-        \item If there exists an injection $f: J_{m} \to J_{n}$, then $m \leq n$.
-        \item If there exists a surjection $f: J_{m} \to J_{n}$, then $m \geq n$.
-        \item If there exists a bijection $f: J_{m} \to J_{n}$, then $m = n$.
+        \item If there exists an injection $f: J_{m} \to J_{n}$, then we have $m \leq n$.
+        \item If there exists a surjection $f: J_{m} \to J_{n}$, then we have $m \geq n$.
+        \item If there exists a bijection $f: J_{m} \to J_{n}$, then we have $m = n$.
     \end{enumerate}
-    This lemma guarantees the uniqueness of the cardinality of a finite set.
-    If $J_{m} \hyperref[thm:BijectionEquivalenceRelation]{\sim} X$ and
-    $J_{n} \hyperref[thm:BijectionEquivalenceRelation]{\sim} X$,
-    then $J_{m} \hyperref[thm:BijectionEquivalenceRelation]{\sim} J_{n}$, which implies that $m = n$ by \textbf{(C)}.
+    This lemma guarantees the uniqueness of the cardinality. If $J_{m} \hyperref[thm:BijectionEquivalenceRelation]{\sim} X$
+    and $J_{n} \hyperref[thm:BijectionEquivalenceRelation]{\sim} X$, then we have
+    $J_{m} \hyperref[thm:BijectionEquivalenceRelation]{\sim} J_{n}$, which implies that $m = n$ by \textbf{(C)}.
 \end{lemma}
 
 \begin{proof}
     We will prove \textbf{(A)} by mathematical induction on $m$, \textbf{(B)} by mathematical induction on $n$,
     and \textbf{(C)} follows from \textbf{(A)} and \textbf{(B)}.
     \begin{enumerate}[label=\textbf{(\Alph*)}]
-        \item Let $n \in \mathbb{N}$ be fixed.
-        Let $P(m):$ If there exists an injective function $f_{m}: J_{m} \to J_{n}$, then $m \leq n$.
+        \item Let $n \in \N$ be fixed.
+        Let $P(m)$ be the statement that if there exists an injective function
+        $f_{m}: J_{m} \to J_{n}$, then we have $m \leq n$.
         \begin{itemize} 
-            \item \textbf{Base case:} Let $m = 1$. Then $m \leq n$ holds.
-            \item \textbf{Inductive step:} Assume that $P(m)$ is true for some $m \in \mathbb{N}$.
+            \item \textbf{Base case:} Let $m = 1$. Then $m \leq n$ holds. Thus $P(1)$ is true.
+            \item \textbf{Inductive step:} Assume that $P(m)$ is true for some $m \in \N$.
             If $n = 1$, there does not exist an injective function $f_{m + 1}: J_{m + 1} \to J_{n}$
             since $f_{m+1}(1) \neq f_{m+1}(m + 1)$, where $P(m + 1)$ is true.
-            \\[3mm]
-            Otherwise, suppose that such a function $f_{m+1}$ exists. We have two cases:
+            \\[6mm]
+            Otherwise, assume that such a function $f_{m+1}$ exists. We have two cases:
             \begin{itemize}
-                \item $f_{m+1}(m + 1) = n$. Let $f_{m} \equiv f_{m+1}|_{J_{m}}^{J_{n - 1}}$. 
-                Then $f_{m}: J_{m} \to J_{n - 1}$ is injective by \Cref{thm:PropertiesOfRestrictionFunctions}.
+                \item If $f_{m+1}(m + 1) = n$, let $f_{m}$ be a function defined by
+                \[
+                f_{m} \equiv f_{m+1}|_{J_{m}}^{J_{n - 1}}: J_{m} \to J_{n - 1}.
+                \]
+                Then $f_{m}$ is injective by \Cref{thm:PropertiesOfRestrictionFunctions}.
                 By the inductive hypothesis, we have $m \leq n - 1$, which implies that $m + 1 \leq n$.
-                \item $f_{m+1}(m + 1) = x \neq n$.
-                Let $g_{n}: J_{n} \to J_{n}$ be defined by
+                \item If $f_{m+1}(m + 1) = x \neq n$, let $g_{n}: J_{n} \to J_{n}$ be defined by
                 \[
                 g_{n}(y) = \begin{cases}
                     x, & \text{if } y = n \\
                     n, & \text{if } y = x \\
                     y, & \text{otherwise}
-                \end{cases}.
+                \end{cases}
                 \]
-                Then $g_{n}$ is bijective. Let $f_{m} \equiv (g_{n} \circ f_{m+1})|_{J_{m}}^{J_{n - 1}}$. 
-                Then $f_{m}: J_{m} \to J_{n - 1}$ is injective by
-                \Cref{thm:PropertiesOfCompositionFunctions,thm:PropertiesOfRestrictionFunctions}.
+                Then $g_{n}$ is bijective. Let $f_{m}$ be a function defined by
+                \[
+                f_{m} \equiv (g_{n} \circ f_{m+1})|_{J_{m}}^{J_{n - 1}}: J_{m} \to J_{n - 1}.
+                \]
+                Then $f_{m}$ is injective by \Cref{thm:PropertiesOfCompositionFunctions,thm:PropertiesOfRestrictionFunctions}.
                 By the inductive hypothesis, we have $m \leq n - 1$, which implies that $m + 1 \leq n$.
             \end{itemize}
-            Thus $P(m + 1)$ is true whenever $P(m)$ is true.
+            Therefore, $P(m + 1)$ is true whenever $P(m)$ is true.
         \end{itemize}
         By the principle of mathematical induction,
-        $P(m)$ is true for all $m \in \mathbb{N}$.
-        \item Let $m \in \mathbb{N}$ be fixed.
-        Let $Q(n):$ If there exists a surjective function $f_{n}: J_{m} \to J_{n}$, then $m \geq n$.
+        $P(m)$ is true for all $m \in \N$.
+        \item Let $m \in \N$ be fixed.
+        Let $Q(n)$ be the statement that if there exists a surjective function
+        $f_{n}: J_{m} \to J_{n}$, then we have $m \geq n$.
         \begin{itemize}
-            \item \textbf{Base case:} Let $n = 1$. Then $m \geq n$ holds.
-            \item \textbf{Inductive step:} Assume that $Q(n)$ is true for some $n \in \mathbb{N}$.
+            \item \textbf{Base case:} Let $n = 1$. Then $m \geq n$ holds. Thus $Q(1)$ is true.
+            \item \textbf{Inductive step:} Assume that $Q(n)$ is true for some $n \in \N$.
             If $m = 1$, there does not exist a surjective function $f_{n + 1}: J_{m} \to J_{n + 1}$
             since $f_{n+1}(1)$ is unique, where $Q(n + 1)$ is true.
-            \\[3mm]
-            Otherwise, suppose that such a function $f_{n+1}$ exists. We have two cases:
+            \\[6mm]
+            Otherwise, assume that such a function $f_{n+1}$ exists. We have two cases:
             \begin{itemize}
-                \item $f_{n+1}(m) = n + 1$.
-                Let $K_{n + 1} \coloneqq (f_{n + 1})^{-1}(\set{n + 1}) \subseteq J_{m}$.
-                Let $f_{n}: J_{m} \to J_{n}$ be defined by
+                \item If $f_{n+1}(m) = n + 1$, let $K_{n + 1}$ be a set defined by
+                \[
+                K_{n + 1} \coloneqq (f_{n + 1})^{-1}(\set{n + 1}) \subseteq J_{m}.
+                \]
+                Let $f_{n}: J_{m} \to J_{n}$ be a function defined by
                 \[
                 f_{n}(y) = \begin{cases}
                     f_{n+1}(y), & \text{if } y \in J_{m} \setminus K_{n + 1} \\
                     n, & \text{if } y \in K_{n + 1}
-                \end{cases}.
+                \end{cases}
                 \]
                 Then $f_{n}$ is surjective. By the inductive hypothesis, we have $m - 1 \geq n$,
                 which implies that $m \geq n + 1$.
-                \item $f_{n+1}(m) = x \neq n + 1$.
-                Let $g_{n+1}: J_{n + 1} \to J_{n + 1}$ be defined by
+                \item If $f_{n+1}(m) = x \neq n + 1$, let $g_{n+1}: J_{n + 1} \to J_{n + 1}$ be a function defined by
                 \[
                 g_{n+1}(y) = \begin{cases}
                     x, & \text{if } y = n + 1 \\
                     n + 1, & \text{if } y = x \\
                     y, & \text{otherwise}
-                \end{cases}.
+                \end{cases}
                 \]
-                Then $g_{n+1}$ is bijective. Let $K_{n + 1} \coloneqq (g_{n + 1})^{-1}(\set{n + 1}) \subseteq J_{m}$.
-                Let $f_{n}: J_{m} \to J_{n}$ be defined by
-                \[
-                f_{n}(y) = \begin{cases}
-                    (g_{n+1} \circ f_{n+1})(y), & \text{if } y \in J_{m} \setminus K_{n + 1} \\
-                    n, & \text{if } y \in K_{n + 1}
-                \end{cases}.
-                \]
-                Then $f_{n}$ is surjective by \Cref{thm:PropertiesOfCompositionFunctions}.
-                By the inductive hypothesis, we have $m - 1 \geq n$, which implies that $m \geq n + 1$.
-            \end{itemize}
-            Thus $Q(n + 1)$ is true whenever $Q(n)$ is true.
-        \end{itemize}
-        By the principle of mathematical induction,
-        $Q(n)$ is true for all $n \in \mathbb{N}$.
-    \end{enumerate}
-\end{proof}
-
-\bigskip
-
-\begin{lemma} \label{lem:PropertiesOfJmJnConverse}
-    Let $J_{m}, J_{n}$ be given for some $m, n \in \mathbb{N}$. Then we have the following properties:
-    \begin{enumerate}[label=\textbf{(\Alph*)}]
-        \item If $m \leq n$, then there exists an injection $f: J_{m} \to J_{n}$.
-        \item If $m \geq n$, then there exists a surjection $f: J_{m} \to J_{n}$.
-        \item If $m = n$, then there exists a bijection $f: J_{m} \to J_{n}$.
-    \end{enumerate}
-    This lemma is the converse of \Cref{lem:PropertiesOfJmJn}.
-\end{lemma}
-
-\begin{proof}
-    We will prove the lemma by explicitly constructing the functions.
-    \begin{enumerate}[label=\textbf{(\Alph*)}]
-        \item If $m \leq n$, define $f: J_{m} \to J_{n}$ by $f(i) = i$ for all $i \in J_{m}$.
-        Then $f$ is an injection.
-        \item If $m \geq n$, define $f: J_{m} \to J_{n}$ by $f(i) = i$ for all $i \in J_{n} \subseteq J_{m}$
-        and $f(i) = n$ for all $i \in J_{m} \setminus J_{n}$. Then $f$ is a surjection.
-        \item If $m = n$, define $f: J_{m} \to J_{n}$ by $f(i) = i$ for all $i \in J_{m}$.
-        Then $f$ is a bijection.
-    \end{enumerate}
-\end{proof}
-
-\bigskip
-
-\begin{theorem} \label{thm:PropertiesOfCardinality}
-    Let $X, Y$ be finite sets. Then we have the following properties:
-    \begin{enumerate}[label=\textbf{(\Alph*)}]
-        \item If there exists an injection $f: X \to Y$, then $\abs{X} \leq \abs{Y}$.
-        \item If there exists a surjection $f: X \to Y$, then $\abs{X} \geq \abs{Y}$.
-        \item If there exists a bijection $f: X \to Y$, then $\abs{X} = \abs{Y}$.
-    \end{enumerate}
-    Moreover, the converses of \textbf{(A)}, \textbf{(B)}, and \textbf{(C)} are also true.
-    \\[3mm]
-    The contraposition of \textbf{(A)} is called the \textbf{pigeonhole principle}, which states that
-    if $\abs{X} > \abs{Y}$, then there exists no injection $f: X \to Y$.
-\end{theorem}

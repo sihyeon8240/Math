@@ -6,8 +6,8 @@ The complex field $\C$ is defined as
 \]
 We define the following operations on $\C$:
 \begin{itemize}
-    \item $(x, y) + (u, v) = (x + u, y + v)$ for all $(x, y), (u, v) \in \C$.
-    \item $(x, y) \cdot (u, v) = (xu - yv, xv + yu)$ for all $(x, y), (u, v) \in \C$.
+    \item $(x, y) + (u, v) \coloneqq (x + u, y + v)$ for all $(x, y), (u, v) \in \C$.
+    \item $(x, y) \cdot (u, v) \coloneqq (xu - yv, xv + yu)$ for all $(x, y), (u, v) \in \C$.
 \end{itemize}
 
 $\C$ is a field with the following properties:
@@ -27,9 +27,8 @@ $\C$ is a field with the following properties:
     \[
     f: \setbuilder{(x, 0)}{x \in \R} \subseteq \C \to \R
     \]
-    defined by $f((x, 0)) = x$ is an \emph{isomorphism}.
-    Then we can identify $\R$ with the subfield $\setbuilder{(x, 0)}{x \in \R}$ of $\C$.
-    Now we will denote $(x, 0) \in \C$ by $x \in \R$.
+    defined by $f((x, 0)) = x$ is an \emph{isomorphism}. We can identify $\R$ with the subfield
+    $\setbuilder{(x, 0)}{x \in \R}$ of $\C$. We denote $(x, 0) \in \C$ by $x \in \R$.
 \end{remark}
 
 \bigskip
@@ -61,7 +60,8 @@ We define $i = (0, 1) \in \C$. Then we have $i^{2} = -1$, and any complex number
 \bigskip
 
 \begin{theorem} \label{thm:PropertiesOfComplexConjugate}
-    Let $z, w \in \C$. Then we have the following properties:
+    Let $z = x + yi \in \C$ and let $w = u + vi \in \C$ for some $x, y, u, v \in \R$.
+    Then we have the following properties:
     \begin{itemize}
         \item $\overline{\paren{\overline{z}}} = z$.
         \item $z = \overline{z} \iff z \in \R$.
@@ -79,12 +79,12 @@ We define $i = (0, 1) \in \C$. Then we have $i^{2} = -1$, and any complex number
 \bigskip
 
 \begin{definition} \label{def:Modulus}
-    Let $z \in \C$. the \textbf{modulus} of $z$ is defined as
+    Let $z = x + yi \in \C$ for some $x, y \in \R$. the \textbf{modulus} of $z$ is defined as
     \[
     |z| = \sqrt{z\overline{z}} = \sqrt{x^{2} + y^{2}} \in \R^{+} \cup \set{0}.
     \]
-    The \emph{existence} and \emph{uniqueness} of $|z|$ follows from the last part of
-    \Cref{thm:PropertiesOfComplexConjugate} and \Cref{thm:ExistenceOfNthRoots}.
+    The \emph{existence} and \emph{uniqueness} of $|z|$ follows from
+    \Cref{thm:PropertiesOfComplexConjugate,thm:ExistenceOfNthRoots}.
 \end{definition}
 
 \bigskip
@@ -147,7 +147,7 @@ We define $i = (0, 1) \in \C$. Then we have $i^{2} = -1$, and any complex number
 \end{theorem}
 
 \begin{proof}
-    Let $z = x + yi$ and $w = u + vi$ for some $x, y, u, v \in \R$. Then we have
+    Let $z = x + yi$ and $w = u + vi$ for some $x, y, u, v \in \R$.
     \begin{enumerate}[label=\textbf{(\Alph*)}]
         \item $|zw|^{2} = (xu - yv)^{2} + (xv + yu)^{2} = (x^{2} + y^{2})(u^{2} + v^{2}) = |z|^{2} \cdot |w|^{2}$.
         \item By \Cref{cor:CauchySchwarzInequalityForRealNumbers}, we have

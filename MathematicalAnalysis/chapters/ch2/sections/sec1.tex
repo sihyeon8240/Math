@@ -22,7 +22,7 @@ R \coloneqq \setbuilder*{(x, y) \in S \times S}{x \sim y}, \quad x \sim y \iff (
     A \textbf{partition} of a set $S$ is a collection $\set{A_{\alpha}}_{\alpha \in I}$ of nonempty subsets of $S$ such that
     \begin{itemize}
         \item $A_{\alpha} \cap A_{\beta} = \emptyset$ for all $\alpha, \beta \in I$ with $\alpha \neq \beta$.
-        \item $\displaystyle\bigcup_{\alpha \in I} A_{\alpha} = S$.
+        \item $\displaystyle \bigcup_{\alpha \in I} A_{\alpha} = S$.
     \end{itemize}
 \end{definition}
 
@@ -48,37 +48,44 @@ R \coloneqq \setbuilder*{(x, y) \in S \times S}{x \sim y}, \quad x \sim y \iff (
 \end{theorem}
 
 \begin{proof}
-    Suppose $[x] \cap [y] \neq \emptyset$. Then there exists $z \in S$ such that $z \in [x]$ and $z \in [y]$.
-    This implies that $z \sim x$ and $z \sim y$. By the symmetry and transitivity of $\sim$,
-    we have $x \sim z$ and $z \sim y$, which implies that $x \sim y$.
-    \\[3mm]
-    Therefore, for any $w \in [x]$, we have $w \sim x$ and $x \sim y$, which implies that
-    $w \sim y$, so $w \in [y]$. This shows that $[x] \subseteq [y]$. Similarly, we can show that $[y] \subseteq [x]$,
-    so $[x] = [y]$.
+    Assume that $[x] \cap [y] \neq \emptyset$. There exists some $z \in S$
+    such that $z \in [x]$ and $z \in [y]$. Then we have
+    \[
+    z \sim x \text{ and } z \sim y \implies x \sim z \text{ and } z \sim y \implies x \sim y
+    \]
+    by the symmetry and transitivity of $\sim$. Therefore, for any $w \in [x]$, we have 
+    \[
+    w \sim x \text{ and } x \sim y, \implies w \sim y \implies w \in [y].
+    \]
+    This shows that $[x] \subseteq [y]$. Similarly, we can show that $[y] \subseteq [x]$.
+    Therefore, we have $[x] = [y]$ whenever $[x] \cap [y] \neq \emptyset$.
 \end{proof}
 
 \bigskip
 
 \begin{theorem} \label{thm:PartitionDefinesEquivalenceRelation}
-    Let $\set{A_{\alpha}}_{\alpha \in I}$ be a partition of a set $S$. Define a relation $\sim$ on $S$ by
+    Let $\set{A_{\alpha}}_{\alpha \in I}$ be a partition of a set $S$. Let $\sim$ be a relation on $S$ defined by
     \[
     x \sim y \iff x, y \in A_{\alpha} \text{ for some } \alpha \in I.
     \]
-    Then $\sim$ is an equivalence relation on $S$,
+    Then, we have that $\sim$ is an equivalence relation on $S$,
     and the equivalence classes of $\sim$ are precisely the sets $A_{\alpha}$.
 \end{theorem}
 
 \begin{proof}
     We need to show that $\sim$ is reflexive, symmetric, and transitive.
     \begin{itemize}
-        \item Reflexivity: For any $x \in S$, there exists $\alpha \in I$ such that $x \in A_{\alpha}$, so $x \sim x$.
-        \item Symmetry: If $x \sim y$, then there exists $\alpha \in I$ such that $x, y \in A_{\alpha}$, so $y \sim x$.
+        \item Reflexivity: For any $x \in S$, there exists $\alpha \in I$ such that $x \in A_{\alpha}$.
+        \item Symmetry: If $x \sim y$, then there exists $\alpha \in I$ such that $y, x \in A_{\alpha}$.
         \item Transitivity: If $x \sim y$ and $y \sim z$, then there exist $\alpha, \beta \in I$ such that
-        $x, y \in A_{\alpha}$ and $y, z \in A_{\beta}$. Since $y \in A_{\alpha} \cap A_{\beta}$ and the sets
-        $\set{A_{\alpha}}_{\alpha \in I}$ are disjoint, we must have $\alpha = \beta$, so $x, z \in A_{\alpha}$ and $x \sim z$.
+        \[
+        x, y \in A_{\alpha} \text{ and } y, z \in A_{\beta}.
+        \]
+        Since $y \in A_{\alpha} \cap A_{\beta}$ and the sets $\set{A_{\alpha}}_{\alpha \in I}$ are disjoint,
+        we have $\alpha = \beta$, which implies that $x, z \in A_{\alpha}$.
     \end{itemize}
-    Therefore, $\sim$ is an equivalence relation on $S$. The equivalence class of any $x \in S$
-    is precisely the set $A_{\alpha}$ containing $x$, so the equivalence classes of $\sim$ are exactly the sets $A_{\alpha}$.
+    Therefore, $\sim$ is an equivalence relation on $S$.
+    The equivalence class of any $x \in S$ is precisely the set $A_{\alpha}$ containing $x$.
 \end{proof}
 
 \end{section}

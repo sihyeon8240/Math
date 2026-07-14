@@ -1,5 +1,77 @@
+                Then $g_{n+1}$ is bijective. Let $K_{n + 1}$ be a set defined by
+                \[
+                K_{n + 1} \coloneqq (g_{n + 1} \circ f_{n+1})^{-1}(\set{n + 1}) \subseteq J_{m}.
+                \]
+                Let $f_{n}: J_{m} \to J_{n}$ be a function defined by
+                \[
+                f_{n}(y) = \begin{cases}
+                    (g_{n+1} \circ f_{n+1})(y), & \text{if } y \in J_{m} \setminus K_{n + 1} \\
+                    n, & \text{if } y \in K_{n + 1}
+                \end{cases}
+                \]
+                Then $f_{n}$ is surjective by \Cref{thm:PropertiesOfCompositionFunctions}.
+                By the inductive hypothesis, we have $m - 1 \geq n$, which implies that $m \geq n + 1$.
+            \end{itemize}
+            Thus $Q(n + 1)$ is true whenever $Q(n)$ is true.
+        \end{itemize}
+        By the principle of mathematical induction,
+        $Q(n)$ is true for all $n \in \N$.
+    \end{enumerate}
+\end{proof}
+
+\bigskip
+
+\begin{lemma} \label{lem:PropertiesOfJmJnConverse}
+    Let $J_{m}, J_{n}$ be given for some $m, n \in \N$. Then we have the following properties:
+    \begin{enumerate}[label=\textbf{(\Alph*)}]
+        \item If $m \leq n$, then there exists an injection $f: J_{m} \to J_{n}$.
+        \item If $m \geq n$, then there exists a surjection $f: J_{m} \to J_{n}$.
+        \item If $m = n$, then there exists a bijection $f: J_{m} \to J_{n}$.
+    \end{enumerate}
+    This lemma is the converse of \Cref{lem:PropertiesOfJmJn}.
+\end{lemma}
+
 \begin{proof}
-    Let $\abs{X} = m$ and $\abs{Y} = n$ for some $m, n \in \mathbb{N}$. Then there exist bijections
+    We will prove this lemma by explicitly constructing the functions.
+    \begin{enumerate}[label=\textbf{(\Alph*)}]
+        \item If $m \leq n$, let $f: J_{m} \to J_{n}$ be a function defined by
+        \[
+        f(i) = i \quad \text{for all } i \in J_{m}.
+        \]
+        Then $f$ is an injection.
+        \item If $m \geq n$, let $f: J_{m} \to J_{n}$ be a function defined by
+        \[
+        f(i) = \begin{dcases}
+            i, & \text{if } i \leq n \\
+            n, & \text{if } i > n
+        \end{dcases}
+        \]
+        Then $f$ is a surjection.
+        \item If $m = n$, let $f: J_{m} \to J_{n}$ be a function defined by
+        \[
+        f(i) = i \quad \text{for all } i \in J_{m}.
+        \]
+        Then $f$ is a bijection.
+    \end{enumerate}
+\end{proof}
+
+\bigskip
+
+\begin{theorem} \label{thm:PropertiesOfCardinality}
+    Let $X, Y$ be finite sets. Then we have the following properties:
+    \begin{enumerate}[label=\textbf{(\Alph*)}]
+        \item If there exists an injection $f: X \to Y$, then we have $\abs{X} \leq \abs{Y}$.
+        \item If there exists a surjection $f: X \to Y$, then we have $\abs{X} \geq \abs{Y}$.
+        \item If there exists a bijection $f: X \to Y$, then we have $\abs{X} = \abs{Y}$.
+    \end{enumerate}
+    Moreover, the converses of \textbf{(A)}, \textbf{(B)}, and \textbf{(C)} are also true.
+    \\[6mm]
+    The contraposition of \textbf{(A)} is called the \textbf{pigeonhole principle}, which states that
+    if $\abs{X} > \abs{Y}$, then there exists no injection $f: X \to Y$.
+\end{theorem}
+
+\begin{proof}
+    Let $\abs{X} = m$ and $\abs{Y} = n$ for some $m, n \in \N$. Then there exist bijections
     $f_{X}: J_{m} \to X$ and $f_{Y}: J_{n} \to Y$.
     By \Cref{thm:InverseFunctionIsBijection,thm:PropertiesOfCompositionFunctions}, the composition
     \[
@@ -36,12 +108,12 @@
 
 \begin{proof}
     Let $m = \abs{X}$ and $n = \abs{Y}$. There exist bijections $f: J_{m} \to X$ and $g: J_{n} \to Y$.
-    Let $h: J_{m + n} \to X \cup Y$ be defined by
+    Let $h: J_{m + n} \to X \cup Y$ be a function defined by
     \[
     h(i) = \begin{cases}
         f(i), & \text{if } i \leq m \\
         g(i - m), & \text{if } m < i \leq m + n
-    \end{cases}.
+    \end{cases}
     \]
     Then $h$ is bijective, which implies that $X \cup Y$ is finite.
 \end{proof}
@@ -53,7 +125,7 @@
 \end{theorem}
 
 \begin{proof}
-    Let $A, B, C$ be defined by
+    Let $A, B, C$ be sets defined by
     \begin{itemize}
         \item $A = X \setminus Y \subseteq X$.
         \item $B = Y \setminus X \subseteq Y$.
@@ -71,28 +143,30 @@
 \bigskip
 
 \begin{theorem} \label{thm:FiniteUnionAndIntersectionOfFiniteSetsAreFinite}
-    Let $X_{1}, X_{2}, \dots, X_{n}$ be finite sets for some $n \in \mathbb{N}$. Then the union
-    $\displaystyle\bigcup_{k = 1}^{n} X_{k}$ and intersection $\displaystyle\bigcap_{k = 1}^{n} X_{k}$ are finite.
+    Let $X_{1}, X_{2}, \dots, X_{n}$ be finite sets for some $n \in \N$. Then the union
+    $\displaystyle \bigcup_{k = 1}^{n} X_{k}$ and intersection $\displaystyle \bigcap_{k = 1}^{n} X_{k}$ are finite.
 \end{theorem}
 
 \begin{proof}
-    Since $\displaystyle\bigcap_{k = 1}^{n} X_{k} \subseteq X_{1}$, $\displaystyle\bigcap_{k = 1}^{n} X_{k}$ is finite
-    by \Cref{thm:SubsetOfFiniteSetIsFinite} for any $n \in \mathbb{N}$. Let $P(n):$ $\displaystyle\bigcup_{k = 1}^{n} X_{k}$
-    is finite for some $n \in \mathbb{N}$, given that $X_{1}, X_{2}, \dots, X_{n}$ are finite sets.
+    $\displaystyle \bigcap_{k = 1}^{n} X_{k} \subseteq X_{1}$ is finite by \Cref{thm:SubsetOfFiniteSetIsFinite}
+    for any $n \in \N$. Let $P(n)$ be the statement that
+    \[
+    X_{1}, X_{2}, \dots, X_{n} \text{ are finite sets} \implies \bigcup_{k = 1}^{n} X_{k} \text{ is finite}.
+    \]
     \begin{itemize}
-        \item \textbf{Base case:} Let $X_{1}$ be a finite set. Then,
-        $\displaystyle\bigcup_{k = 1}^{1} X_{k}= X_{1}$ is finite. Thus, $P(1)$ is true.
-        \item \textbf{Inductive step:} Assume that $P(n)$ is true for some $n \in \mathbb{N}$.
+        \item \textbf{Base case:} Let $X_{1}$ be a finite set. Then
+        $\displaystyle \bigcup_{k = 1}^{1} X_{k}= X_{1}$ is finite. Thus $P(1)$ is true.
+        \item \textbf{Inductive step:} Assume that $P(n)$ is true for some $n \in \N$.
         
         Let $X_{1}, X_{2}, \dots, X_{n + 1}$ be finite sets. Then we have
         \[
         \bigcup_{k = 1}^{n + 1} X_{k} = \paren*{\bigcup_{k = 1}^{n} X_{k}} \cup X_{n + 1}.
         \]
-        By the inductive hypothesis, $\displaystyle\bigcup_{k = 1}^{n} X_{k}$ is finite. Then, by
-        \Cref{thm:UnionAndIntersectionOfTwoFiniteSetsAreFinite}, $\displaystyle\bigcup_{k = 1}^{n + 1} X_{k}$ is finite.
+        By the inductive hypothesis, $\displaystyle \bigcup_{k = 1}^{n} X_{k}$ is finite. Then, by
+        \Cref{thm:UnionAndIntersectionOfTwoFiniteSetsAreFinite}, $\displaystyle \bigcup_{k = 1}^{n + 1} X_{k}$ is finite.
         Thus $P(n + 1)$ is true whenever $P(n)$ is true.
     \end{itemize}
-    By the principle of mathematical induction, $P(n)$ is true for all $n \in \mathbb{N}$.
+    By the principle of mathematical induction, $P(n)$ is true for all $n \in \N$.
 \end{proof}
 
 \bigskip
@@ -102,8 +176,8 @@
 \end{lemma}
 
 \begin{proof}
-    Let $m = \abs{X}$ and $n = \abs{Y}$. Then there exist bijections $f: J_{m} \to X$ and $g: J_{n} \to Y$.
-    Let $h: J_{mn} \to X \times Y$ be defined by
+    Let $m = \abs{X}$ and $n = \abs{Y}$. There exist bijections $f: J_{m} \to X$ and $g: J_{n} \to Y$.
+    Let $h: J_{mn} \to X \times Y$ be a function defined by
     \[
     h(i) = \paren*{f\paren*{\ceil*{\dfrac{i}{n}}}, g\paren*{i - n\paren*{\ceil*{\dfrac{i}{n}} - 1}}}
     \text{ for all } i \in J_{mn}.
@@ -114,17 +188,19 @@
 \bigskip
 
 \begin{theorem} \label{thm:ProductOfFiniteSetsIsFinite}
-    Let $X_{1}, X_{2}, \dots, X_{n}$ be finite sets for some $n \in \mathbb{N}$. Then the cartesian product
-    $\displaystyle\prod_{k = 1}^{n} X_{k}$ is finite.
+    Let $X_{1}, X_{2}, \dots, X_{n}$ be finite sets for some $n \in \N$. Then the cartesian product
+    $\displaystyle \prod_{k = 1}^{n} X_{k}$ is finite.
 \end{theorem}
 
 \begin{proof}
-    Let $P(n):$ $\displaystyle \prod_{k = 1}^{n} X_{k}$ is finite for some $n \in \mathbb{N}$, given that
-    $X_{1}, X_{2}, \dots, X_{n}$ are finite sets.
+    Let $P(n)$ be the statement that
+    \[
+    X_{1}, X_{2}, \dots, X_{n} \text{ are finite sets} \implies \prod_{k = 1}^{n} X_{k} \text{ is finite}.
+    \]
     \begin{itemize}
         \item \textbf{Base case:} Let $X_{1}$ be a finite set. Then,
-        $\displaystyle \prod_{k = 1}^{1} X_{k}= X_{1}$ is finite. Thus, $P(1)$ is true.
-        \item \textbf{Inductive step:} Assume that $P(n)$ is true for some $n \in \mathbb{N}$.
+        $\displaystyle \prod_{k = 1}^{1} X_{k}= X_{1}$ is finite. Thus $P(1)$ is true.
+        \item \textbf{Inductive step:} Assume that $P(n)$ is true for some $n \in \N$.
         
         Let $X_{1}, X_{2}, \dots, X_{n + 1}$ be finite sets. Then we have
         \[
@@ -134,7 +210,7 @@
         \Cref{lem:ProductOfTwoFiniteSetsIsFinite}, $\displaystyle \prod_{k = 1}^{n + 1} X_{k}$ is finite.
         Thus $P(n + 1)$ is true whenever $P(n)$ is true.
     \end{itemize}
-    By the principle of mathematical induction, $P(n)$ is true for all $n \in \mathbb{N}$.
+    By the principle of mathematical induction, $P(n)$ is true for all $n \in \N$.
 \end{proof}
 
 \bigskip
@@ -142,21 +218,21 @@
 \begin{theorem} \label{thm:CantorsTheorem}
     Let $X$ be a nonempty set. Then there exists no surjection $f: X \to \mathcal{P}(X)$, where
     \[
-    \mathcal{P}(X) = \setbuilder{E}{E \subseteq X}
+    \mathcal{P}(X) \coloneqq \setbuilder{E}{E \subseteq X}
     \]
-    is the \textbf{power set} of $X$. In particular, if $X$ is finite, then $\abs{\mathcal{P}(X)} > \abs{X}$.
-    This theorem is called \textbf{Cantor's theorem}.
+    is called the \textbf{power set} of $X$. This theorem is called \textbf{Cantor's theorem}.
 \end{theorem}
 
 \begin{proof}
-    Let $S = \setbuilder{x \in X}{x \notin f(x)}$. Then $S \subseteq X$, which implies that $S \in \mathcal{P}(X)$.
-    Suppose that there exists a surjection $f: X \to \mathcal{P}(X)$. Then there exists $x \in X$ such that $f(x) = S$.
+    Let $S$ be a set defined by
+    \[
+    S \coloneqq \setbuilder{x \in X}{x \notin f(x)}.
+    \]
+    Since $S \subseteq X$, we have that $S \in \mathcal{P}(X)$. Assume that there exists a surjection
+    $f: X \to \mathcal{P}(X)$. Then there exists $x \in X$ such that $f(x) = S$.
     \\[6mm]
-    If $x \in S$, then $x \notin f(x) = S$, which is a contradiction. If $x \notin S$, then $x \in f(x) = S$,
-    which is also a contradiction. Therefore, there exists no surjection $f: X \to \mathcal{P}(X)$.
-    \\[6mm]
-    If $X$ is finite, by \Cref{thm:PropertiesOfCardinality}, there exists no surjection $f: X \to \mathcal{P}(X)$
-    if and only if $\abs{X} < \abs{\mathcal{P}(X)}$.
+    If $x \in S$, then we have $x \notin f(x) = S$, which is a contradiction. If $x \notin S$, then we have
+    $x \in f(x) = S$, which is also a contradiction. Therefore, there exists no surjection $f: X \to \mathcal{P}(X)$.
 \end{proof}
 
 \end{section}

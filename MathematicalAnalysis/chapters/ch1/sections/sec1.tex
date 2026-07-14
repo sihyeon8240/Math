@@ -16,7 +16,7 @@ The axioms above are called the \textbf{Peano axioms} (or \emph{Peano Postulates
 
 \begin{remark} \label{rem:PrincipleOfMathematicalInduction}
     Let $P(n)$ be a statement about $n \in \N$, and let $S \coloneqq \setbuilder{n \in \N}{P(n) \text{ is true}}$.
-    Suppose $P(n)$ satisfies the following conditions:
+    Assume that $P(n)$ satisfies the following conditions:
     \begin{itemize}
         \item $P(1)$ is true.
         \item $P(n + 1)$ is true whenever $P(n)$ is true.
@@ -26,18 +26,18 @@ The axioms above are called the \textbf{Peano axioms} (or \emph{Peano Postulates
         \item $1 \in S$.
         \item $n + 1 \in S$ whenever $n \in S$.
     \end{itemize}
-    Thus, we have $S = \N$, i.e., $P(n)$ is true for all $n \in \N$.
+    Therefore, we have $S = \N$, i.e., $P(n)$ is true for all $n \in \N$.
     This method of proof is called the \textbf{principle of mathematical induction}.
 \end{remark}
 
 \bigskip
 
 \begin{theorem} \label{thm:WellOrderingProperty}
-    Every nonempty subset of $\N$ has a least element. This theorem is called the \textbf{well-ordering property} of $\N$.
+    Any nonempty subset of $\N$ has a least element. This theorem is called the \textbf{well-ordering property} of $\N$.
 \end{theorem}
 
 \begin{proof}
-    Let $S$ be a nonempty subset of $\N$. Suppose $S$ does not have a least element.
+    Let $S$ be a nonempty subset of $\N$. Assume that $S$ does not have a least element.
     Let $T$ and $L$ be defined as follows:
     \begin{itemize}
         \item $T \coloneqq \N \setminus S$.
@@ -47,9 +47,12 @@ The axioms above are called the \textbf{Peano axioms} (or \emph{Peano Postulates
     \begin{itemize}
         \item \textbf{Base case:} $1 \in L$ since $\set{1} \subseteq T$.
         Otherwise, $1 \in S$ and $1$ is the least element of $S$.
-        \item \textbf{Inductive step:} Suppose $n \in L$, i.e., $\set{1, 2, \dots, n} \subseteq T$.
-        Then $n + 1 \notin S$. Otherwise, $n + 1$ is the least element of $S$. Therefore,
-        we have $n + 1 \in T$ and $\set{1, 2, \dots, n + 1} \subseteq T$. Thus, we have $n + 1 \in L$.
+        \item \textbf{Inductive step:} Assume that $n \in L \implies \set{1, 2, \dots, n} \subseteq T$.
+        Then $n + 1 \notin S$. Otherwise, $n + 1$ is the least element of $S$. Therefore, we have
+        \[
+        n + 1 \in T \implies \set{1, 2, \dots, n + 1} \subseteq T.
+        \]
+        Thus $n + 1 \in L$.
     \end{itemize}
     By the principle of mathematical induction, we have $L = \N$.
 \end{proof}
