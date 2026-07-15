@@ -91,4 +91,98 @@ Let $X$ be a set. A function $d: X \times X \to \R$ is called a \textbf{metric} 
     Thus $s \in N_{r}(p)$, which implies that $N_{\veps}(q) \subseteq N_{r}(p)$. Since $q$ is arbtrary, $N_{r}(p)$ is open.
 \end{proof}
 
+\bigskip
+
+\begin{theorem} \label{thm:LimitPointNeighborhoodIsInfinite}
+    Let $p$ be a limit point of a set $E$. For any $r > 0$, we have
+    \[
+    E \cap (N_{r}(p)) \text{ is infinite.}
+    \]
+\end{theorem}
+
+\begin{proof}
+    Assume that there exists some $r > 0$ such that $E \cap N_{r}(p)$ is finite. Then we have
+    \[
+    E \cap N_{r}(p) = \set{q_{1}, q_{2}, \dots, q_{n}} \text{ for some } n \in \N.
+    \]
+    Let $S$ be a set defined by
+    \[
+    S \coloneqq \setbuilder{d(p, q)}{q \in N_{r}(p) \setminus \set{p}} \neq \emptyset.
+    \]
+    By \Cref{thm:FiniteOrderedSetHasExtremum},  $S$ has a minimum element,
+    say $\veps = \min S > 0$. Then we have
+    \[
+    E \cap (N_{\veps}(p) \setminus \set{p}) = \emptyset.
+    \]
+    This contradicts the assumption that $p$ is a limit point of $E$. Therefore, $E \cap (N_{r}(p))$ is infinite.
+\end{proof}
+
+\bigskip
+
+\begin{theorem} \label{thm:OpenSetComplementIsClosedSet}
+    Let $(X, d)$ be a metric space and $E \subseteq X$. Then we have
+    \[
+    E \text{ is open} \iff E^{c} \text{ is closed.}
+    \]
+\end{theorem}
+
+\begin{proof}
+    Assume that $E$ is open. Let $p$ be a limit point of $E^{c}$. Then, for any $r > 0$, we have
+    \[
+    E^{c} \cap (N_{r}(p) \setminus \set{p}) \neq \emptyset.
+    \]
+    If $p \in E$, then there exists some $\veps > 0$ such that $N_{\veps}(p) \subseteq E$. This implies that
+    \[
+    E^{c} \cap (N_{\veps}(p) \setminus \set{p}) = \emptyset,
+    \]
+    which is a contradiction. Therefore, we have $p \in E^{c}$, which implies that $E^{c}$ is closed.
+    \\[6mm]
+    Conversely, assume that $E^{c}$ is closed. Let $p$ be a point of $E$. If $p$ is not an interior point of $E$,
+    then for any $r > 0$, we have
+    \[
+    E^{c} \cap N_{r}(p) \neq \emptyset.
+    \]
+    Since $p \in E$, we have
+    \[
+    E^{c} \cap (N_{r}(p) \setminus \set{p}) \neq \emptyset,
+    \]
+    which implies that $p$ is a limit point of $E^{c}$. Since $E^{c}$ is closed, we have $p \in E^{c}$,
+    which is a contradiction. Therefore, $p$ is an interior point of $E$, which implies that $E$ is open.
+\end{proof}
+
+\bigskip
+
+\begin{corollary} \label{thm:ClosedSetComplementIsOpenSet}
+    Let $(X, d)$ be a metric space and $E \subseteq X$. Then we have
+    \[
+    E \text{ is closed} \iff E^{c} \text{ is open.}
+    \]
+\end{corollary}
+
+\bigskip
+
+\begin{theorem} \label{thm:ArbitraryUnionOfOpenSetsIsOpen}
+    Let $(X, d)$ be a metric space. Let $E_{y} \subseteq X$ be an open set for each $y \in Y$. Then we have
+    \[
+    \bigcup_{y \in Y} E_y \text{ is open}
+    \]
+    whether $Y$ is finite, countable, or uncountable. This theorem states that an arbitrary union of open sets is open.
+\end{theorem}
+
+\begin{proof}
+    Let $p \in \displaystyle \bigcup_{y \in Y} E_{y}$ be given. Then there exists some $y_{0} \in Y$ such that $p \in E_{y_{0}}$.
+    Since $E_{y_{0}}$ is open, there exists some $r > 0$ such that $N_{r}(p) \subseteq E_{y_{0}}$. This implies that
+    \[
+    N_{r}(p) \subseteq \bigcup_{y \in Y} E_y,
+    \]
+    which implies that $p$ is an interior point of $\displaystyle \bigcup_{y \in Y} E_y$.
+    Since $p$ is arbitrary, $\displaystyle \bigcup_{y \in Y} E_y$ is open.
+\end{proof}
+
+\bigskip
+
+\begin{theorem}
+    A finite intersection of open sets is open.
+\end{theorem}
+
 \end{section}
