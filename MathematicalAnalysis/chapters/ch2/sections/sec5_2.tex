@@ -1,0 +1,123 @@
+\bigskip
+
+\begin{corollary} \label{cor:ArbitraryIntersectionOfClosedSetsIsClosed}
+    Let $(X, d)$ be a metric space. Let $E_{y} \subseteq X$ be a closed set for each $y \in Y$. Then we have
+    \[
+    \bigcap_{y \in Y} E_{y} \text{ is closed}
+    \]
+    whether $Y$ is finite, countable, or uncountable. This corollary states
+    that an arbitrary intersection of closed sets is closed.
+\end{corollary}
+
+\begin{proof}
+    By \Cref{cor:ClosedSetComplementIsOpenSet}, $(E_{y})^{c}$ is open for each $y \in Y$.
+    Then, by \Cref{thm:ArbitraryUnionOfOpenSetsIsOpen}, we have
+    \[
+    \bigcup_{y \in Y} (E_{y})^{c} \text{ is open.}
+    \]
+    By \Cref{thm:OpenSetComplementIsClosedSet}, we have
+    \[
+    \bigcap_{y \in Y} E_{y} = \paren*{\bigcup_{y \in Y} (E_{y})^{c}}^{c} \text{ is closed.}
+    \]
+\end{proof}
+
+\bigskip
+
+\begin{theorem} \label{thm:FiniteIntersectionOfOpenSetsIsOpen}
+    Let $(X, d)$ be a metric space. Let $E_{1}, E_{2}, \dots, E_{n} \subseteq X$
+    be open sets for some $n \in \N$. Then we have
+    \[
+    \bigcap_{k = 1}^{n} E_{k} \text{ is open.}
+    \]
+    This theorem states that a finite intersection of open sets is open.
+\end{theorem}
+
+\begin{proof}
+    Let $p \in \displaystyle \bigcap_{k = 1}^{n} E_{k}$ be given. Then we have $p \in E_{j}$ for all $j = 1, 2, \dots, n$.
+    Since $E_{j}$ is open, there exists some $r_{j} \in \R^{+}$ such that $N_{r_{j}}(p) \subseteq E_{j}$ for each $j = 
+    1, 2, \dots, n$. Let $R$ be a set defined by
+    \[
+    R \coloneqq \setbuilder{r_{j}}{j = 1, 2, \dots, n} \subseteq \R^{+}.
+    \]
+    Let $f: J_{n} \to R$ be a function defined by
+    \[
+    f(j) = r_{j}.
+    \]
+    Then $f$ is surjective. By \Cref{lem:SubsetOfJnIsFinite,thm:SurjectionFromFiniteSetIsFinite}, $R$ is finite.
+    Then, by \Cref{thm:FiniteOrderedSetHasExtremum}, $R$ has a minimum element, say $r = \min R > 0$. Then we have
+    \[
+    N_{r}(p) \subseteq N_{r_{j}}(p) \subseteq E_{j} \text{ for all } j = 1, 2, \dots, n
+    \implies N_{r}(p) \subseteq \bigcap_{k = 1}^{n} E_{k},
+    \]
+    which implies that $p$ is an interior point of $\displaystyle \bigcap_{k = 1}^{n} E_{k}$.
+    Since $p$ is arbitrary, $\displaystyle \bigcap_{k = 1}^{n} E_{k}$ is open.
+\end{proof}
+
+\bigskip
+
+\begin{corollary} \label{cor:FiniteUnionOfClosedSetsIsClosed}
+    Let $(X, d)$ be a metric space. Let $E_{1}, E_{2}, \dots, E_{n} \subseteq X$
+    be closed sets for some $n \in \N$. Then we have
+    \[
+    \bigcup_{k = 1}^{n} E_{k} \text{ is closed.}
+    \]
+    This corollary states that a finite union of closed sets is closed.
+\end{corollary}
+
+\begin{proof}
+    By \Cref{cor:ClosedSetComplementIsOpenSet}, $(E_{k})^{c}$ is open for each $k = 1, 2, \dots, n$.
+    Then, by \Cref{thm:FiniteIntersectionOfOpenSetsIsOpen}, we have
+    \[
+    \bigcap_{k = 1}^{n} (E_{k})^{c} \text{ is open.}
+    \]
+    By \Cref{thm:OpenSetComplementIsClosedSet}, we have
+    \[
+    \bigcup_{k = 1}^{n} E_{k} = \paren*{\bigcap_{k = 1}^{n} (E_{k})^{c}}^{c} \text{ is closed.}
+    \]
+\end{proof}
+
+\bigskip
+
+\begin{definition} \label{def:Closure}
+    Let $(X, d)$ be a metric space and $E \subseteq X$. Let $E'$ be the set of all limit points of $E$.    
+    The \textbf{closure} of $E$, which is denoted by $\overline{E}$, is defined by
+    \[
+    \overline{E} \coloneqq E \cup E'.
+    \]
+\end{definition}
+
+\bigskip
+
+\begin{theorem} \label{thm:}
+    Let $(X, d)$ be a metric space and $E \subseteq X$. Then we have the following properties:
+    \begin{enumerate}[label=\textbf{(\Alph*)}]
+        \item $\overline{E}$ is closed.
+        \item $E = \overline{E} \iff E$ is closed.
+        \item For any closed subset $F \subseteq X$ such that $E \subseteq F$, we have $\overline{E} \subseteq F$.
+    \end{enumerate}
+    \textbf{(C)} states that the closure of $E$ is the smallest closed set containing $E$.
+\end{theorem}
+
+\begin{proof}
+    \begin{enumerate}[label=\textbf{(\Alph*)}]
+        \item Let $p$ be a limit point of $\overline{E}$. If $p \in E$, then we have $p \in \overline{E}$.
+        Otherwise, for any $r \in \R^{+}$, we have 
+        \begin{align*}
+            \overline{E} \cap Q_{r}(p) \neq \emptyset
+            \implies &(E \cup E') \cap Q_{r}(p) \neq \emptyset \\
+            \implies &(E \cap Q_{r}(p)) \cup (E' \cap Q_{r}(p)) \neq \emptyset \\
+            \implies &E \cap Q_{r}(p) \neq \emptyset, \quad E' \cap Q_{r}(p) \neq \emptyset,
+        \end{align*}
+        which implies that $p \in E' \subseteq \overline{E}$. Therefore, $\overline{E}$ is closed.
+        \item $E$ is closed $\iff E' \subseteq E \iff E \cup E' = E \iff \overline{E} = E$.
+        \item Let $F \subseteq X$ be a closed set such that $E \subseteq F$. Let $p \in E'$ be given.
+        Then, for any $r \in \R^{+}$, we have
+        \[
+        E \cap Q_{r}(p) \neq \emptyset \implies F \cap Q_{r}(p) \neq \emptyset,
+        \]
+        which implies that $p \in F' \subseteq F$. Therefore, we have $E' \subseteq F$.
+        Since $E \subseteq F$, we have $\overline{E} = E \cup E' \subseteq F$.
+    \end{enumerate}
+\end{proof}
+
+\end{section}

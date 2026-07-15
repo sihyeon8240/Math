@@ -1,171 +1,38 @@
-\begin{section}{The Complex Field}
+\begin{section}{The Extended Real Number System}
 
-The complex field $\C$ is defined as
+The Extended real number system $\overline{\R}$ is defined as
 \[
-\C \coloneqq \setbuilder*{(x, y)}{x, y \in \R}.
+\overline{\R} \coloneqq \R \cup \set{-\infty, +\infty}.
 \]
-We define the following operations on $\C$:
+We define the following operations on $\overline{\R}$:
 \begin{itemize}
-    \item $(x, y) + (u, v) \coloneqq (x + u, y + v)$ for all $(x, y), (u, v) \in \C$.
-    \item $(x, y) \cdot (u, v) \coloneqq (xu - yv, xv + yu)$ for all $(x, y), (u, v) \in \C$.
+    \item $x + (+\infty) \coloneqq +\infty$ for all $x \in \R \cup \set{+\infty}$.
+    \item $x + (-\infty) \coloneqq -\infty$ for all $x \in \R \cup \set{-\infty}$.
+    \item $x \cdot (\pm \infty) \coloneqq \pm \infty$ for all $x \in \R^{+} \cup \set{+\infty}$.
+    \item $x \cdot (\pm \infty) \coloneqq \mp \infty$ for all $x \in \R^{-} \cup \set{-\infty}$.
+    \item $\dfrac{x}{\pm \infty} \coloneqq 0$ for all $x \in \R$.
 \end{itemize}
 
-$\C$ is a field with the following properties:
-\begin{itemize}
-    \item The additive identity is $(0, 0)$ and the multiplicative identity is $(1, 0)$.
-    \item The additive inverse of $(x, y)$ is $(-x, -y)$ and the multiplicative inverse of $(x, y)$ is
-    \[
-    \left(\dfrac{x}{x^{2} + y^{2}}, -\dfrac{y}{x^{2} + y^{2}}\right)
-    \]
-    for all $(x, y) \in \C$ with $(x, y) \neq (0, 0)$.
-\end{itemize}
-
-\bigskip
-
-\begin{remark}
-    The function
-    \[
-    f: \setbuilder{(x, 0)}{x \in \R} \subseteq \C \to \R
-    \]
-    defined by $f((x, 0)) = x$ is an \emph{isomorphism}. We can identify $\R$ with the subfield
-    $\setbuilder{(x, 0)}{x \in \R}$ of $\C$. We denote $(x, 0) \in \C$ by $x \in \R$.
-\end{remark}
-
-\bigskip
-
-\begin{remark}
-We define $i \coloneqq (0, 1) \in \C$. Then we have $i^{2} = -1$, and any complex number $(x, y) \in \C$ can be written as
+$\overline{\R}$ is not a field, but it is an ordered set with the following order relation:
 \[
-(x, y) = x + yi.
+-\infty < x < +\infty \quad \text{for all } x \in \R.
 \]
-\end{remark}
 
 \bigskip
 
-\begin{definition} \label{def:RealPartImaginaryPartComplexConjugate}
-    Let $z = x + yi \in \C$ for some $x, y \in \R$. The \textbf{real part} of $z$ is defined as
-    \[
-    \Re(z) \coloneqq x \text{ or } \Real(z) \coloneqq x,
-    \]
-    the \textbf{imaginary part} of $z$ is defined as
-    \[
-    \Im(z) \coloneqq y \text{ or } \Imag(z) \coloneqq y,
-    \]
-    and the \textbf{complex conjugate} of $z$ is defined as
-    \[
-    \overline{z} \coloneqq x - yi.
-    \]
-\end{definition}
+\begin{theorem} \label{thm:SupremumInfimumInExtendedRealNumberSystem}
+    Any subset of $\overline{\R}$ has a least upper bound and a greatest lower bound in $\overline{\R}$.
+\end{theorem}
 
-\bigskip
-
-\begin{theorem} \label{thm:PropertiesOfComplexConjugate}
-    Let $z = x + yi \in \C$ and let $w = u + vi \in \C$ for some $x, y, u, v \in \R$.
-    Then we have the following properties:
+\begin{proof}
+    Let $E \subseteq \overline{\R}$. If $E = \emptyset$, then $\sup E = -\infty$ and $\inf E = +\infty$.
+    If $E \neq \emptyset$, then we have the following cases:
     \begin{itemize}
-        \item $\overline{\paren{\overline{z}}} = z$.
-        \item $z = \overline{z} \iff z \in \R$.
-        \item $\overline{z + w} = \overline{z} + \overline{w}$.
-        \item $\overline{zw} = \overline{z} \cdot \overline{w}$.
-        \item $z + \overline{z} = 2\Real(z)$ and $z - \overline{z} = 2i\Imag(z)$.
-        \item $z\overline{z} = x^{2} + y^{2} \in \R^{+} \cup \set{0}$.
+        \item If $E$ is bounded above in $\R$, then $\sup E$ exists in $\R$ by the least upper bound property of $\R$.
+        \item If $E$ is not bounded above in $\R$, then $\sup E = +\infty$.
+        \item If $E$ is bounded below in $\R$, then $\inf E$ exists in $\R$ by the greatest lower bound property of $\R$.
+        \item If $E$ is not bounded below in $\R$, then $\inf E = -\infty$.
     \end{itemize}
-\end{theorem}
-
-\begin{proof}
-    The proof follows directly from the definitions and properties of the operations on $\C$.
-\end{proof}
-
-\bigskip
-
-\begin{definition} \label{def:Modulus}
-    Let $z = x + yi \in \C$ for some $x, y \in \R$. the \textbf{modulus} of $z$ is defined as
-    \[
-    |z| \coloneqq \sqrt{z\overline{z}} = \sqrt{x^{2} + y^{2}} \in \R^{+} \cup \set{0}.
-    \]
-    The \emph{existence} and \emph{uniqueness} of $|z|$ follows from
-    \Cref{thm:PropertiesOfComplexConjugate,thm:ExistenceOfNthRoots}.
-\end{definition}
-
-\bigskip
-
-\begin{theorem} \label{thm:CauchySchwarzInequality}
-    Let $a_{1}, a_{2}, \ldots, a_{n} \in \C$ and $b_{1}, b_{2}, \ldots, b_{n} \in \C$. Then we have
-    \[
-    \abs*{\sum_{k = 1}^{n} a_{k} \overline{b_{k}}}^{2}
-    \leq \sum_{k = 1}^{n} |a_{k}|^{2} \cdot \sum_{k = 1}^{n} |b_{k}|^{2}.
-    \]
-    This theorem is called the \textbf{Cauchy-Schwarz inequality}.
-\end{theorem}
-
-\begin{proof}
-    Let $i, j \in \N$ with $1 \leq i < j \leq n$. Then we have
-    \begin{align*}
-        |{a_{i} b_{j} - a_{j} b_{i}}|^{2} &= (a_{i} b_{j} - a_{j} b_{i}) \overline{(a_{i} b_{j} - a_{j} b_{i})} \\
-        &= |a_{i}|^{2} |b_{j}|^{2} + |a_{j}|^{2} |b_{i}|^{2} - (a_{i} \overline{b_{i}}\cdot
-        \overline{a_{j}} b_{j} +\overline{a_{i}} b_{i} \cdot a_{j} \overline{b_{j}}).
-    \end{align*}
-    Consider the following sums:
-    \begin{align*}
-        \sum_{i < j} (|a_{i}|^{2} |b_{j}|^{2} + |a_{j}|^{2} |b_{i}|^{2})
-        &= \sum_{i < j} (|a_{i}|^{2} |b_{j}|^{2}) + \sum_{j < i} (|a_{i}|^{2} |b_{j}|^{2}) \\
-        &= \sum_{i \neq j} (|a_{i}|^{2} |b_{j}|^{2}) \\
-        &= \sum_{k = 1}^{n} |a_{k}|^{2}
-        \cdot \sum_{k = 1}^{n} |b_{k}|^{2} - \sum_{k = 1}^{n} |a_{k}|^{2} |b_{k}|^{2}.
-    \end{align*}
-    \begin{align*}
-        \sum_{i < j} (a_{i} \overline{b_{i}} \cdot \overline{a_{j}} b_{j}
-        + \overline{a_{i}} b_{i} \cdot a_{j} \overline{b_{j}})
-        &= \sum_{i \neq j} (a_{i} \overline{b_{i}} \cdot \overline{a_{j}} b_{j}) \\
-        &= \sum_{i = 1}^{n} a_{i} \overline{b_{i}} \cdot \sum_{j = 1}^{n} \overline{a_{j}} b_{j}
-        - \sum_{k = 1}^{n} a_{k} \overline{b_{k}} \cdot \overline{a_{k}} b_{k} \\
-        &= \abs*{\sum_{k = 1}^{n} a_{k} \overline{b_{k}}}^{2} - \sum_{k = 1}^{n} |a_{k}|^{2} |b_{k}|^{2}.
-    \end{align*}
-    Therefore, we have
-    \[
-    \sum_{i < j} |{a_{i} b_{j} - a_{j} b_{i}}|^{2} = \sum_{k = 1}^{n} |a_{k}|^{2} \cdot
-    \sum_{k = 1}^{n} |b_{k}|^{2} - \abs*{\sum_{k = 1}^{n} a_{k} \overline{b_{k}}}^{2} \geq 0.
-    \]
-\end{proof}
-
-\begin{corollary} \label{cor:CauchySchwarzInequalityForRealNumbers}
-    Let $a_{1}, a_{2}, \ldots, a_{n} \in \R$ and $b_{1}, b_{2}, \ldots, b_{n} \in \R$. Then we have
-    \[
-    \paren*{\sum_{k = 1}^{n} a_{k} b_{k}}^{2} \leq \sum_{k = 1}^{n} a_{k}^{2} \cdot \sum_{k = 1}^{n} b_{k}^{2}.
-    \]
-\end{corollary}
-
-\bigskip
-
-\begin{theorem} \label{thm:PropertiesOfModulus}
-    Let $z, w \in \C$. Then we have the following properties:
-    \begin{enumerate}[label=\textbf{(\Alph*)}]
-        \item $|zw| = |z| \cdot |w|$.
-        \item $|z + w| \leq |z| + |w|$.
-        \item $|z| - |w| \leq |z - w|$.
-    \end{enumerate}
-\end{theorem}
-
-\begin{proof}
-    Let $z = x + yi$ and $w = u + vi$ for some $x, y, u, v \in \R$.
-    \begin{enumerate}[label=\textbf{(\Alph*)}]
-        \item $|zw|^{2} = (xu - yv)^{2} + (xv + yu)^{2} = (x^{2} + y^{2})(u^{2} + v^{2}) = |z|^{2} \cdot |w|^{2}$.
-        \item By \Cref{cor:CauchySchwarzInequalityForRealNumbers}, we have
-        $(xu + yv)^{2} \leq (x^{2} + y^{2})(u^{2} + v^{2})$.
-        \begin{align*}
-            |z + w|^{2} &= (x + u)^{2} + (y + v)^{2} \\
-            &= x^{2} + y^{2} + u^{2} + v^{2} + 2(xu + yv) \\
-            &\leq x^{2} + y^{2} + u^{2} + v^{2} + 2\sqrt{x^{2} + y^{2}} \cdot \sqrt{u^{2} + v^{2}} \\
-            &= (|z| + |w|)^{2}.
-        \end{align*}
-        \item Again, by \Cref{cor:CauchySchwarzInequalityForRealNumbers}, we have
-        \begin{align*}
-            |z - w|^{2} &= (x - u)^{2} + (y - v)^{2} \\
-            &= x^{2} + y^{2} + u^{2} + v^{2} - 2(xu + yv) \\
-            &\geq x^{2} + y^{2} + u^{2} + v^{2} - 2\sqrt{x^{2} + y^{2}} \cdot \sqrt{u^{2} + v^{2}} \\
-            &= (|z| - |w|)^{2}.
-        \end{align*}
-    \end{enumerate}
 \end{proof}
 
 \end{section}

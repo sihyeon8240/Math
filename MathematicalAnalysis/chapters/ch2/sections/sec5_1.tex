@@ -22,13 +22,13 @@ Let $X$ be a set. A function $d: X \times X \to \R$ is called a \textbf{metric} 
 \begin{proof}
     Let $\mathbf{x}, \mathbf{y}, \mathbf{z} \in \R^{n}$ be given.
     \begin{itemize}
-        \item $d(\mathbf{x}, \mathbf{y}) \geq 0$ is obvious. Also, we have
+        \item $d(\mathbf{x}, \mathbf{y}) \geq 0$ is trivial. Also, we have
         \begin{align*}
             d(\mathbf{x}, \mathbf{y}) = 0 &\iff \norm{\mathbf{x} - \mathbf{y}} = 0 \\
             &\iff x_{k} = y_{k} \text{ for all } k = 1, 2, \dots, n \\
             &\iff \mathbf{x} = \mathbf{y}.
         \end{align*}
-        \item $d(\mathbf{x}, \mathbf{y}) = d(\mathbf{y}, \mathbf{x})$ is obvious.
+        \item $d(\mathbf{x}, \mathbf{y}) = d(\mathbf{y}, \mathbf{x})$ is trivial.
         \item By \Cref{thm:PropertiesOfInnerProductNormDistance}, we have
         \begin{align*}
             d(\mathbf{x}, \mathbf{z}) &= \norm{\mathbf{x} - \mathbf{z}} =
@@ -43,26 +43,30 @@ Let $X$ be a set. A function $d: X \times X \to \R$ is called a \textbf{metric} 
 \bigskip
 
 \begin{definition} \label{def:NeighborhoodOpenBall}
-    Let $(X, d)$ be a metric space. For any $p \in X$ and $r > 0$,
+    Let $(X, d)$ be a metric space. For any $p \in X$ and $r \in \R^{+}$,
     we define the \textbf{neighborhood} of $p$ with radius $r$ as
     \[
     N_{r}(p) \coloneqq \setbuilder{q \in X}{d(p, q) < r}.
     \]
-    Especially, if $X = \R^{n}$ and $d$ is the standard metric on $\R^{n}$, then $N_{r}(p)$ is called the
-    \textbf{open ball} of radius $r$ centered at $p$, which is denoted by $B_{r}(p)$.
+    Especially, if $X = \R^{n}$ and $d$ is the standard metric on $\R^{n}$ for some $n \in \N$,
+    then $N_{r}(p)$ is called the \textbf{open ball} of radius $r$ centered at $p$, which is denoted by $B_{r}(p)$.
 \end{definition}
 
 \bigskip
 
 \begin{definition} \label{def:LimitIsolatedInteriorPoints}
     Let $(X, d)$ be a metric space and $E \subseteq X$. Let $p \in X$ be given.
+    For each $r \in \R^{+}$, let $Q_{r}(p)$ be a set defined by
+    \[
+    Q_{r}(p) \coloneqq N_{r}(p) \setminus \set{p} = \setbuilder{q \in X}{0 < d(p, q) < r}.
+    \]
     \begin{itemize}
         \item $p$ is called an \textbf{limit point} of $E$
-        if for any $r > 0$, we have $E \cap (N_{r}(p) \setminus \set{p}) \neq \emptyset$.
+        if for any $r \in \R^{+}$, we have $E \cap Q_{r}(p) \neq \emptyset$.
         \item $p$ is called a \textbf{isolated point} of $E$
-        if there exists some $r > 0$ such that $N_{r}(p) \cap E = \set{p}$.
+        if there exists some $r \in \R^{+}$ such that $N_{r}(p) \cap E = \set{p}$.
         \item $p$ is called an \textbf{interior point} of $E$
-        if there exists some $r > 0$ such that $N_{r}(p) \subseteq E$.
+        if there exists some $r \in \R^{+}$ such that $N_{r}(p) \subseteq E$.
     \end{itemize}
 \end{definition}
 
@@ -78,15 +82,27 @@ Let $X$ be a set. A function $d: X \times X \to \R$ is called a \textbf{metric} 
 
 \bigskip
 
+\begin{definition} \label{def:BoundedPerfectDenseSets}
+    Let $(X, d)$ be a metric space and $E \subseteq X$.
+    \begin{itemize}
+        \item $E$ is called \textbf{bounded} if there exists some $p \in X$ and
+        $r \in \R^{+}$ such that$E \subseteq N_{r}(p)$.
+        \item $E$ is called \textbf{perfect} if any point of $E$ is a limit point of $E$.
+        \item $E$ is called \textbf{dense} in $X$ if any point of $X$ is either a limit point of $E$ or a point of $E$.
+    \end{itemize}
+\end{definition}
+
+\bigskip
+
 \begin{theorem} \label{thm:NeighborhoodIsOpen}
-    Let $(X, d)$ be a metric space. For any $p \in X$ and $r > 0$, the neighborhood $N_{r}(p)$ is open.
+    Let $(X, d)$ be a metric space. For any $p \in X$ and $r \in \R^{+}$, the neighborhood $N_{r}(p)$ is open.
 \end{theorem}
 
 \begin{proof}
     Let $q \in N_{r}(p)$ be given. Then we have $d(p, q) < r$. Put $\veps = r - d(p, q) > 0$.
-    Let $s \in N_{\veps}(q)$ be given. Then we have $d(q, s) < \veps$ and
+    Let $s \in N_{\veps}(q)$ be given. Then we have
     \[
-    d(p, s) \leq d(p, q) + d(q, s) < d(p, q) + \veps = r.
+    d(q, s) < \veps \implies d(p, s) \leq d(p, q) + d(q, s) < d(p, q) + \veps = r.
     \]
     Thus $s \in N_{r}(p)$, which implies that $N_{\veps}(q) \subseteq N_{r}(p)$. Since $q$ is arbtrary, $N_{r}(p)$ is open.
 \end{proof}
@@ -94,27 +110,31 @@ Let $X$ be a set. A function $d: X \times X \to \R$ is called a \textbf{metric} 
 \bigskip
 
 \begin{theorem} \label{thm:LimitPointNeighborhoodIsInfinite}
-    Let $p$ be a limit point of a set $E$. For any $r > 0$, we have
-    \[
-    E \cap (N_{r}(p)) \text{ is infinite.}
-    \]
+    Let $(X, d)$ be a metric space and $E \subseteq X$. Let $p$ be a limit point of $E$.
+    For any $r \in \R^{+}$, we have $E \cap N_{r}(p)$ is infinite.
 \end{theorem}
 
 \begin{proof}
-    Assume that there exists some $r > 0$ such that $E \cap N_{r}(p)$ is finite. Then we have
+    Assume that there exists some $r \in \R^{+}$ such that $E \cap N_{r}(p)$ is finite. Let $S$ be a set defined by
     \[
-    E \cap N_{r}(p) = \set{q_{1}, q_{2}, \dots, q_{n}} \text{ for some } n \in \N.
+    S \coloneqq (E \cap N_{r}(p)) \setminus \set{p} = E \cap Q_{r}(p).
     \]
-    Let $S$ be a set defined by
+    Since $p$ is a limit point of $E$, we have $S \neq \emptyset$. Since $E \cap N_{r}(p)$ is finite,
+    
+    $S \subseteq E \cap N_{r}(p)$ is also finite by \Cref{thm:SubsetOfFiniteSetIsFinite}. Let $T$ be a set defined by
     \[
-    S \coloneqq \setbuilder{d(p, q)}{q \in N_{r}(p) \setminus \set{p}} \neq \emptyset.
+    T \coloneqq \setbuilder{d(p, q)}{q \in S} \neq \emptyset.
     \]
-    By \Cref{thm:FiniteOrderedSetHasExtremum},  $S$ has a minimum element,
-    say $\veps = \min S > 0$. Then we have
+    Since $p \notin S$, we have $0 \notin T$. Let $f: S \to T$ be a function defined by
     \[
-    E \cap (N_{\veps}(p) \setminus \set{p}) = \emptyset.
+    f(q) = d(p, q).
     \]
-    This contradicts the assumption that $p$ is a limit point of $E$. Therefore, $E \cap (N_{r}(p))$ is infinite.
+    Then $f$ is surjective. By \Cref{thm:SurjectionFromFiniteSetIsFinite}, $T$ is finite. Then, by
+    \Cref{thm:FiniteOrderedSetHasExtremum}, $T$ has a minimum element, say $\veps = \min T > 0$. Then we have
+    \[
+    N_{\veps}(p) \subset N_{r}(p), \quad E \cap Q_{\veps}(p) = \emptyset.
+    \]
+    This contradicts the assumption that $p$ is a limit point of $E$. Therefore, $E \cap N_{r}(p)$ is infinite.
 \end{proof}
 
 \bigskip
@@ -127,32 +147,32 @@ Let $X$ be a set. A function $d: X \times X \to \R$ is called a \textbf{metric} 
 \end{theorem}
 
 \begin{proof}
-    Assume that $E$ is open. Let $p$ be a limit point of $E^{c}$. Then, for any $r > 0$, we have
+    Assume that $E$ is open. Let $p$ be a limit point of $E^{c}$. Then, for any $r \in \R^{+}$, we have
     \[
-    E^{c} \cap (N_{r}(p) \setminus \set{p}) \neq \emptyset.
+    E^{c} \cap Q_{r}(p) \neq \emptyset.
     \]
-    If $p \in E$, then there exists some $\veps > 0$ such that $N_{\veps}(p) \subseteq E$. This implies that
+    If $p \in E$, then there exists some $\veps \in \R^{+}$ such that $N_{\veps}(p) \subseteq E$. Then we have
     \[
-    E^{c} \cap (N_{\veps}(p) \setminus \set{p}) = \emptyset,
+    E^{c} \cap Q_{\veps}(p) = \emptyset,
     \]
     which is a contradiction. Therefore, we have $p \in E^{c}$, which implies that $E^{c}$ is closed.
     \\[6mm]
-    Conversely, assume that $E^{c}$ is closed. Let $p$ be a point of $E$. If $p$ is not an interior point of $E$,
-    then for any $r > 0$, we have
+    Conversely, assume that $E^{c}$ is closed. Let $p$ be a point of $E$.
+    If $p$ is not an interior point of $E$, then for any $r \in \R^{+}$, we have
     \[
     E^{c} \cap N_{r}(p) \neq \emptyset.
     \]
-    Since $p \in E$, we have
+    Since $p \in E \implies p \notin E^{c}$, we have
     \[
-    E^{c} \cap (N_{r}(p) \setminus \set{p}) \neq \emptyset,
+    E^{c} \cap Q_{r}(p) \neq \emptyset,
     \]
     which implies that $p$ is a limit point of $E^{c}$. Since $E^{c}$ is closed, we have $p \in E^{c}$,
-    which is a contradiction. Therefore, $p$ is an interior point of $E$, which implies that $E$ is open.
+    which is a contradiction. Therefore, $p$ is an interior point of $E$. Since $p$ is arbitrary, $E$ is open.
 \end{proof}
 
 \bigskip
 
-\begin{corollary} \label{thm:ClosedSetComplementIsOpenSet}
+\begin{corollary} \label{cor:ClosedSetComplementIsOpenSet}
     Let $(X, d)$ be a metric space and $E \subseteq X$. Then we have
     \[
     E \text{ is closed} \iff E^{c} \text{ is open.}
@@ -164,25 +184,18 @@ Let $X$ be a set. A function $d: X \times X \to \R$ is called a \textbf{metric} 
 \begin{theorem} \label{thm:ArbitraryUnionOfOpenSetsIsOpen}
     Let $(X, d)$ be a metric space. Let $E_{y} \subseteq X$ be an open set for each $y \in Y$. Then we have
     \[
-    \bigcup_{y \in Y} E_y \text{ is open}
+    \bigcup_{y \in Y} E_{y} \text{ is open}
     \]
     whether $Y$ is finite, countable, or uncountable. This theorem states that an arbitrary union of open sets is open.
 \end{theorem}
 
 \begin{proof}
-    Let $p \in \displaystyle \bigcup_{y \in Y} E_{y}$ be given. Then there exists some $y_{0} \in Y$ such that $p \in E_{y_{0}}$.
-    Since $E_{y_{0}}$ is open, there exists some $r > 0$ such that $N_{r}(p) \subseteq E_{y_{0}}$. This implies that
+    Let $p \in \displaystyle \bigcup_{y \in Y} E_{y}$ be given. Then there exists some $y_{0} \in Y$
+    such that $p \in E_{y_{0}}$. Since $E_{y_{0}}$ is open, there exists some $r \in \R^{+}$
+    such that $N_{r}(p) \subseteq E_{y_{0}}$. Then we have
     \[
-    N_{r}(p) \subseteq \bigcup_{y \in Y} E_y,
+    N_{r}(p) \subseteq E_{y_{0}} \subseteq \bigcup_{y \in Y} E_{y},
     \]
-    which implies that $p$ is an interior point of $\displaystyle \bigcup_{y \in Y} E_y$.
-    Since $p$ is arbitrary, $\displaystyle \bigcup_{y \in Y} E_y$ is open.
+    which implies that $p$ is an interior point of $\displaystyle \bigcup_{y \in Y} E_{y}$.
+    Since $p$ is arbitrary, $\displaystyle \bigcup_{y \in Y} E_{y}$ is open.
 \end{proof}
-
-\bigskip
-
-\begin{theorem}
-    A finite intersection of open sets is open.
-\end{theorem}
-
-\end{section}
