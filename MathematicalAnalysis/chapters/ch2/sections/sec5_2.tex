@@ -88,7 +88,7 @@
 
 \bigskip
 
-\begin{theorem} \label{thm:}
+\begin{theorem} \label{thm:PropertiesOfClosure}
     Let $(X, d)$ be a metric space and $E \subseteq X$. Then we have the following properties:
     \begin{enumerate}[label=\textbf{(\Alph*)}]
         \item $\overline{E}$ is closed.
@@ -100,15 +100,28 @@
 
 \begin{proof}
     \begin{enumerate}[label=\textbf{(\Alph*)}]
-        \item Let $p$ be a limit point of $\overline{E}$. If $p \in E$, then we have $p \in \overline{E}$.
-        Otherwise, for any $r \in \R^{+}$, we have 
+        \item We will show that $\paren*{\overline{E}}^{c}$ is open. Let $p \in \paren*{\overline{E}}^{c}$ be given.
+        Since $p \notin E$ and $p \notin E'$, there exists some $r \in \R^{+}$ such that
+        \[
+        E \cap Q_{r}(p) = \emptyset \implies E \cap N_{r}(p) = \emptyset \implies N_{r}(p) \subseteq E^{c}.
+        \]
+        By \Cref{thm:NeighborhoodIsOpen}, $N_{r}(p)$ is open. Then, for any $q \in N_{r}(p)$,
+        there exists $\veps \in \R^{+}$ such that
         \begin{align*}
-            \overline{E} \cap Q_{r}(p) \neq \emptyset
-            \implies &(E \cup E') \cap Q_{r}(p) \neq \emptyset \\
-            \implies &(E \cap Q_{r}(p)) \cup (E' \cap Q_{r}(p)) \neq \emptyset \\
-            \implies &E \cap Q_{r}(p) \neq \emptyset, \quad E' \cap Q_{r}(p) \neq \emptyset,
+            N_{\veps}(q) \subseteq N_{r}(p) \subseteq E^{c}
+            \implies &E \cap N_{\veps}(q) = \emptyset \\
+            \implies &E \cap \paren*{Q_{\veps}(q) \cup \set{q}} = \emptyset \\ 
+            \implies &\paren*{E \cap Q_{\veps}(q)} \cup \paren*{E \cap \set{q}} = \emptyset \\
+            \implies &E \cap Q_{\veps}(q) = \emptyset \\
+            \implies &q \notin E'.
         \end{align*}
-        which implies that $p \in E' \subseteq \overline{E}$. Therefore, $\overline{E}$ is closed.
+        Since $q$ is arbitrary, we have
+        \[
+        N_{r}(p) \subseteq \paren*{E'}^{c} \implies N_{r}(p) \subseteq
+        \paren*{\overline{E}}^{c} = E^{c} \cap \paren*{E'}^{c},
+        \]
+        which implies that $p$ is an interior point of $\paren*{\overline{E}}^{c}$. Since $p$ is arbitrary, $\paren*{
+        \overline{E}}^{c}$ is open, which implies that $\overline{E}$ is closed by \Cref{cor:ClosedSetComplementIsOpenSet}.
         \item $E$ is closed $\iff E' \subseteq E \iff E \cup E' = E \iff \overline{E} = E$.
         \item Let $F \subseteq X$ be a closed set such that $E \subseteq F$. Let $p \in E'$ be given.
         Then, for any $r \in \R^{+}$, we have
@@ -120,4 +133,59 @@
     \end{enumerate}
 \end{proof}
 
+\bigskip
+
+\begin{remark}
+    Let $(X, d)$ be a metric space and $Y \subseteq X$. Then, $(Y, d|_{Y \times Y})$ is also a metric space, since
+    \[
+    d|_{Y \times Y}: Y \times Y \to \R
+    \]
+    satisfies the properties of a metric. We call $(Y, d|_{Y \times Y})$ a \textbf{subspace} of $(X, d)$. For the
+    sake of simplicity, we will denote $d|_{Y \times Y}$ by $d$ and write $(Y, d)$ instead of $(Y, d|_{Y \times Y})$.
+\end{remark}
+
+\bigskip
+
+\begin{definition} \label{def:OpenSetRelativeToSubspace}
+    Let $(X, d)$ be a metric space and $E \subseteq Y \subseteq X$. $E$ is called \textbf{open relative} to $Y$
+    if $E$ is open in the subspace $(Y, d)$. That is, for any $p \in E$, there exists some $r \in \R^{+}$ such that 
+    \[
+    Y \cap N_{r}(p) \subseteq E.
+    \]
+\end{definition}
+
 \end{section}
+
+\bigskip
+
+\begin{theorem} \label{thm:OpenSetRelativeToSubspace}
+    Let $(X, d)$ be a metric space and $E \subseteq Y \subseteq X$. Then $E$ is open relative to $Y$
+    if and only if there exists an open set $V$ in $X$ such that $E = V \cap Y$.
+\end{theorem}
+
+\begin{proof}
+    \textbf{($\implies$)} Let $E$ be an open set relative to $Y$.
+    Then, for each $p \in E$, there exists some $r_{p} \in \R^{+}$ such that
+    \[
+    Y \cap N_{r_{p}}(p) \subseteq E.
+    \]
+    Let $V$ be a set defined by
+    \[
+    V \coloneqq \bigcup_{p \in E} N_{r_{p}}(p).
+    \]
+    By \Cref{thm:NeighborhoodIsOpen,thm:ArbitraryUnionOfOpenSetsIsOpen}, $V$ is open in $X$.
+    Since $p \in N_{r_{p}}(p) \subseteq V$ for each $p \in E$, we have
+    \begin{itemize}
+        \item $E \subseteq Y$ and $E \subseteq V \implies E \subseteq V \cap Y$.
+        \item $\displaystyle \bigcup_{p \in E} \paren*{Y \cap N_{r_{p}}(p)} \subseteq E \implies Y \cap
+        \bigcup_{p \in E} N_{r_{p}}(p) \subseteq E \implies Y \cap V \subseteq E$.
+    \end{itemize}
+    Therefore, we have $E = V \cap Y$.
+    \\[6mm]
+    \textbf{($\impliedby$)} Let $V$ be an open set in $X$ such that $E = V \cap Y$.
+    Then, for each $p \in E \subseteq V$, there exists some $r_{p} \in \R^{+}$ such that
+    \[
+    N_{r_{p}}(p) \subseteq V \implies Y \cap N_{r_{p}}(p) \subseteq V \cap Y = E.
+    \]
+    
+\end{proof}

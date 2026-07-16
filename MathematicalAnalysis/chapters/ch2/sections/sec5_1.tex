@@ -48,6 +48,10 @@ Let $X$ be a set. A function $d: X \times X \to \R$ is called a \textbf{metric} 
     \[
     N_{r}(p) \coloneqq \setbuilder{q \in X}{d(p, q) < r}.
     \]
+    Also, we define the \textbf{deleted neighborhood} of $p$ with radius $r$ as
+    \[
+    Q_{r}(p) \coloneqq N_{r}(p) \setminus \set{p} = \setbuilder{q \in X}{0 < d(p, q) < r}.
+    \]
     Especially, if $X = \R^{n}$ and $d$ is the standard metric on $\R^{n}$ for some $n \in \N$,
     then $N_{r}(p)$ is called the \textbf{open ball} of radius $r$ centered at $p$, which is denoted by $B_{r}(p)$.
 \end{definition}
@@ -56,10 +60,6 @@ Let $X$ be a set. A function $d: X \times X \to \R$ is called a \textbf{metric} 
 
 \begin{definition} \label{def:LimitIsolatedInteriorPoints}
     Let $(X, d)$ be a metric space and $E \subseteq X$. Let $p \in X$ be given.
-    For each $r \in \R^{+}$, let $Q_{r}(p)$ be a set defined by
-    \[
-    Q_{r}(p) \coloneqq N_{r}(p) \setminus \set{p} = \setbuilder{q \in X}{0 < d(p, q) < r}.
-    \]
     \begin{itemize}
         \item $p$ is called an \textbf{limit point} of $E$
         if for any $r \in \R^{+}$, we have $E \cap Q_{r}(p) \neq \emptyset$.
@@ -147,7 +147,8 @@ Let $X$ be a set. A function $d: X \times X \to \R$ is called a \textbf{metric} 
 \end{theorem}
 
 \begin{proof}
-    Assume that $E$ is open. Let $p$ be a limit point of $E^{c}$. Then, for any $r \in \R^{+}$, we have
+    \textbf{($\implies$)} Assume that $E$ is open. Let $p$ be a limit point of $E^{c}$.
+    Then, for any $r \in \R^{+}$, we have
     \[
     E^{c} \cap Q_{r}(p) \neq \emptyset.
     \]
@@ -157,7 +158,7 @@ Let $X$ be a set. A function $d: X \times X \to \R$ is called a \textbf{metric} 
     \]
     which is a contradiction. Therefore, we have $p \in E^{c}$, which implies that $E^{c}$ is closed.
     \\[6mm]
-    Conversely, assume that $E^{c}$ is closed. Let $p$ be a point of $E$.
+    \textbf{($\impliedby$)} Assume that $E^{c}$ is closed. Let $p$ be a point of $E$.
     If $p$ is not an interior point of $E$, then for any $r \in \R^{+}$, we have
     \[
     E^{c} \cap N_{r}(p) \neq \emptyset.
