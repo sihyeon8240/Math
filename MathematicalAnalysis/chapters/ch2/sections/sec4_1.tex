@@ -65,7 +65,7 @@ A set $X$ is said to be \textbf{at most countable} if $X$ is either finite or co
 
 \begin{remark}
     Let $X$ be a countable set. Then there exists a bijection $f: \N \to X$. The elements of $X$
-    can be listed as $X = \set{x_1, x_2, x_3, \dots}$, where $x_n = f(n)$ for all $n \in \N$.
+    can be listed as $X = \set*{x_1, x_2, x_3, \dots}$, where $x_n = f(n)$ for all $n \in \N$.
     In other words, the elements of $X$ can be arranged in a sequence.
 \end{remark}
 
@@ -110,13 +110,13 @@ A set $X$ is said to be \textbf{at most countable} if $X$ is either finite or co
 \end{lemma}
 
 \begin{proof}
-    Let $X \subseteq \N$ be an infinite subset. Let $\set{X_{n}}_{n = 1}^{\infty}$ be a sequence
+    Let $X \subseteq \N$ be an infinite subset. Let $\set*{X_{n}}_{n = 1}^{\infty}$ be a sequence
     and let $f: \N \to X$ be a function defined as follows:
     \begin{itemize}
         \item $X_{1} = X$, $f(1) = \min X_{1}$
-        \item $X_{2} = X_{1} \setminus \set{f(1)}$, $f(2) = \min X_{2}$
+        \item $X_{2} = X_{1} \setminus \set*{f(1)}$, $f(2) = \min X_{2}$
         \item[] $\vdots$
-        \item $X_{n + 1} = X_{n} \setminus \set{f(n)}$, $f(n + 1) = \min X_{n + 1}$
+        \item $X_{n + 1} = X_{n} \setminus \set*{f(n)}$, $f(n + 1) = \min X_{n + 1}$
     \end{itemize}
     for each $n \in \N$. By \Cref{thm:InfiniteSetMinusFiniteSetIsInfinite}, $X_{n}$ is infinite for each $n \in \N$,
     so is nonempty. Then, by \Cref{thm:WellOrderingProperty}, $X_{n}$ has a least element, so $f$ is well-defined.
@@ -127,19 +127,19 @@ A set $X$ is said to be \textbf{at most countable} if $X$ is either finite or co
         \[
         f(n_{1}) \in X_{n_{1}} \text{ and } f(n_{2}) \in X_{n_{2}}.
         \]
-        Since $X_{n_{2}} \subseteq X_{n_{1}} \setminus \set{f(n_{1})}$,
+        Since $X_{n_{2}} \subseteq X_{n_{1}} \setminus \set*{f(n_{1})}$,
         we have $f(n_{2}) \neq f(n_{1})$. Thus $f$ is injective.
         \item \textbf{Surjectivity:} Let $x \in X$ be given. Let $S$ be a set defined as
         \[
-        S \coloneqq \setbuilder{n \in X}{n < x}.
+        S \coloneqq \setbuilder*{n \in X}{n < x}.
         \]
         If $S = \emptyset$, then $f(1) = x$. Otherwise, by \Cref{lem:SubsetOfJnIsFinite}, $S \subseteq J_{x - 1}$ is finite.
-        Let $k = |S|$, $S = \set{s_{1}, s_{2}, \dots, s_{k}}$ with $s_{1} < s_{2} < \dots < s_{k}$. Then we have
+        Let $k = |S|$, $S = \set*{s_{1}, s_{2}, \dots, s_{k}}$ with $s_{1} < s_{2} < \dots < s_{k}$. Then we have
         \begin{itemize}
-            \item $\min X_{1} = \min S \implies X_{2} = X \setminus \set{s_{1}}$.
-            \item $\min X_{2} = \min S \setminus \set{s_{1}} \implies X_{3} = X \setminus \set{s_{1}, s_{2}}$.
+            \item $\min X_{1} = \min S \implies X_{2} = X \setminus \set*{s_{1}}$.
+            \item $\min X_{2} = \min S \setminus \set*{s_{1}} \implies X_{3} = X \setminus \set*{s_{1}, s_{2}}$.
             \item[] $\vdots$
-            \item $\min X_{k} = \min S \setminus \set{s_{1}, s_{2}, \dots, s_{k - 1}} \implies X_{k + 1} = X \setminus S$.
+            \item $\min X_{k} = \min S \setminus \set*{s_{1}, s_{2}, \dots, s_{k - 1}} \implies X_{k + 1} = X \setminus S$.
         \end{itemize}
         Thus $f(k + 1) = \min X_{k + 1} = x$. Therefore, $f$ is surjective.
     \end{itemize}
@@ -169,7 +169,7 @@ A set $X$ is said to be \textbf{at most countable} if $X$ is either finite or co
 \begin{proof}
     For each $k \in X$, let $S_{k}$ be a set defined as
     \[
-    S_{k} \coloneqq f^{-1}(\set{k}).
+    S_{k} \coloneqq f^{-1}(\set*{k}).
     \]
     Since $f$ is surjective, $S_{k} \neq \emptyset$ and by \Cref{thm:WellOrderingProperty},
     $S_{k}$ has a least element for all $k \in X$. Let $g: X \to \N$ be a function defined by
@@ -188,7 +188,7 @@ A set $X$ is said to be \textbf{at most countable} if $X$ is either finite or co
 \bigskip
 
 \begin{theorem} \label{thm:CountableUnionOfCountableSetsIsCountable}
-    Let $\set{X_{n}}_{n \in \N}$ be a sequence of countable sets. Then $\displaystyle
+    Let $\set*{X_{n}}_{n \in \N}$ be a sequence of countable sets. Then $\displaystyle
     \bigcup_{n = 1}^{\infty} X_{n}$ is countable, i.e., any countable union of countable sets is countable.
 \end{theorem}
 

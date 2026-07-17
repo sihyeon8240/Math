@@ -46,11 +46,11 @@ Let $X$ be a set. A function $d: X \times X \to \R$ is called a \textbf{metric} 
     Let $(X, d)$ be a metric space. For any $p \in X$ and $r \in \R^{+}$,
     we define the \textbf{neighborhood} of $p$ with radius $r$ as
     \[
-    N_{r}(p) \coloneqq \setbuilder{q \in X}{d(p, q) < r}.
+    N_{r}(p) \coloneqq \setbuilder*{q \in X}{d(p, q) < r}.
     \]
     Also, we define the \textbf{deleted neighborhood} of $p$ with radius $r$ as
     \[
-    Q_{r}(p) \coloneqq N_{r}(p) \setminus \set{p} = \setbuilder{q \in X}{0 < d(p, q) < r}.
+    Q_{r}(p) \coloneqq N_{r}(p) \setminus \set*{p} = \setbuilder*{q \in X}{0 < d(p, q) < r}.
     \]
     Especially, if $X = \R^{n}$ and $d$ is the standard metric on $\R^{n}$ for some $n \in \N$,
     then $N_{r}(p)$ is called the \textbf{open ball} of radius $r$ centered at $p$, which is denoted by $B_{r}(p)$.
@@ -64,7 +64,7 @@ Let $X$ be a set. A function $d: X \times X \to \R$ is called a \textbf{metric} 
         \item $p$ is called an \textbf{limit point} of $E$
         if for any $r \in \R^{+}$, we have $E \cap Q_{r}(p) \neq \emptyset$.
         \item $p$ is called a \textbf{isolated point} of $E$
-        if there exists some $r \in \R^{+}$ such that $N_{r}(p) \cap E = \set{p}$.
+        if there exists some $r \in \R^{+}$ such that $N_{r}(p) \cap E = \set*{p}$.
         \item $p$ is called an \textbf{interior point} of $E$
         if there exists some $r \in \R^{+}$ such that $N_{r}(p) \subseteq E$.
     \end{itemize}
@@ -75,8 +75,8 @@ Let $X$ be a set. A function $d: X \times X \to \R$ is called a \textbf{metric} 
 \begin{definition} \label{def:OpenClosedSets}
     Let $(X, d)$ be a metric space and $E \subseteq X$.
     \begin{itemize}
-        \item $E$ is called \textbf{open} if any point of $E$ is an interior point of $E$.
-        \item $E$ is called \textbf{closed} if any limit point of $E$ belongs to $E$.
+        \item $E$ is said to be \textbf{open} if any point of $E$ is an interior point of $E$.
+        \item $E$ is said to be \textbf{closed} if any limit point of $E$ belongs to $E$.
     \end{itemize}
 \end{definition}
 
@@ -85,10 +85,10 @@ Let $X$ be a set. A function $d: X \times X \to \R$ is called a \textbf{metric} 
 \begin{definition} \label{def:BoundedPerfectDenseSets}
     Let $(X, d)$ be a metric space and $E \subseteq X$.
     \begin{itemize}
-        \item $E$ is called \textbf{bounded} if there exists some $p \in X$ and
+        \item $E$ is said to be \textbf{bounded} if there exists some $p \in X$ and
         $r \in \R^{+}$ such that$E \subseteq N_{r}(p)$.
-        \item $E$ is called \textbf{perfect} if any point of $E$ is a limit point of $E$.
-        \item $E$ is called \textbf{dense} in $X$ if any point of $X$ is either a limit point of $E$ or a point of $E$.
+        \item $E$ is said to be \textbf{perfect} if any point of $E$ is a limit point of $E$.
+        \item $E$ is said to be \textbf{dense} in $X$ if any point of $X$ is either a limit point of $E$ or a point of $E$.
     \end{itemize}
 \end{definition}
 
@@ -117,13 +117,13 @@ Let $X$ be a set. A function $d: X \times X \to \R$ is called a \textbf{metric} 
 \begin{proof}
     Assume that there exists some $r \in \R^{+}$ such that $E \cap N_{r}(p)$ is finite. Let $S$ be a set defined by
     \[
-    S \coloneqq (E \cap N_{r}(p)) \setminus \set{p} = E \cap Q_{r}(p).
+    S \coloneqq (E \cap N_{r}(p)) \setminus \set*{p} = E \cap Q_{r}(p).
     \]
     Since $p$ is a limit point of $E$, we have $S \neq \emptyset$. Since $E \cap N_{r}(p)$ is finite,
     
     $S \subseteq E \cap N_{r}(p)$ is also finite by \Cref{thm:SubsetOfFiniteSetIsFinite}. Let $T$ be a set defined by
     \[
-    T \coloneqq \setbuilder{d(p, q)}{q \in S} \neq \emptyset.
+    T \coloneqq \setbuilder*{d(p, q)}{q \in S} \neq \emptyset.
     \]
     Since $p \notin S$, we have $0 \notin T$. Let $f: S \to T$ be a function defined by
     \[
@@ -131,9 +131,10 @@ Let $X$ be a set. A function $d: X \times X \to \R$ is called a \textbf{metric} 
     \]
     Then $f$ is surjective. By \Cref{thm:SurjectionFromFiniteSetIsFinite}, $T$ is finite. Then, by
     \Cref{thm:FiniteOrderedSetHasExtremum}, $T$ has a minimum element, say $\veps = \min T > 0$. Then we have
-    \[
-    N_{\veps}(p) \subset N_{r}(p), \quad E \cap Q_{\veps}(p) = \emptyset.
-    \]
+    \begin{itemize}
+        \item $N_{\veps}(p) \subset N_{r}(p)$.
+        \item $E \cap Q_{\veps}(p) = \emptyset$.
+    \end{itemize}
     This contradicts the assumption that $p$ is a limit point of $E$. Therefore, $E \cap N_{r}(p)$ is infinite.
 \end{proof}
 

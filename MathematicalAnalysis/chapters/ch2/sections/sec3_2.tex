@@ -1,6 +1,6 @@
                 Then $g_{n+1}$ is bijective. Let $K_{n + 1}$ be a set defined by
                 \[
-                K_{n + 1} \coloneqq (g_{n + 1} \circ f_{n+1})^{-1}(\set{n + 1}) \subseteq J_{m}.
+                K_{n + 1} \coloneqq (g_{n + 1} \circ f_{n+1})^{-1}(\set*{n + 1}) \subseteq J_{m}.
                 \]
                 Let $f_{n}: J_{m} \to J_{n}$ be a function defined by
                 \[
@@ -142,14 +142,13 @@
 
 \bigskip
 
-\begin{theorem} \label{thm:FiniteUnionAndIntersectionOfFiniteSetsAreFinite}
+\begin{theorem} \label{thm:FiniteUnionOfFiniteSetsAreFinite}
     Let $X_{1}, X_{2}, \dots, X_{n}$ be finite sets for some $n \in \N$. Then the union
-    $\displaystyle \bigcup_{k = 1}^{n} X_{k}$ and intersection $\displaystyle \bigcap_{k = 1}^{n} X_{k}$ are finite.
+    $\displaystyle \bigcup_{k = 1}^{n} X_{k}$ is finite, i.e., any finite union of finite sets is finite.
 \end{theorem}
 
 \begin{proof}
-    $\displaystyle \bigcap_{k = 1}^{n} X_{k} \subseteq X_{1}$ is finite by \Cref{thm:SubsetOfFiniteSetIsFinite}
-    for any $n \in \N$. Let $P(n)$ be the statement that
+    Let $P(n)$ be the statement that
     \[
     X_{1}, X_{2}, \dots, X_{n} \text{ are finite sets} \implies \bigcup_{k = 1}^{n} X_{k} \text{ is finite}.
     \]
@@ -218,7 +217,7 @@
 \begin{theorem} \label{thm:CantorsTheorem}
     Let $X$ be a nonempty set. Then there exists no surjection $f: X \to \mathcal{P}(X)$, where
     \[
-    \mathcal{P}(X) \coloneqq \setbuilder{E}{E \subseteq X}
+    \mathcal{P}(X) \coloneqq \setbuilder*{E}{E \subseteq X}
     \]
     is called the \textbf{power set} of $X$. This theorem is called \textbf{Cantor's theorem}.
 \end{theorem}
@@ -226,7 +225,7 @@
 \begin{proof}
     Let $S$ be a set defined by
     \[
-    S \coloneqq \setbuilder{x \in X}{x \notin f(x)}.
+    S \coloneqq \setbuilder*{x \in X}{x \notin f(x)}.
     \]
     Since $S \subseteq X$, we have that $S \in \mathcal{P}(X)$. Assume that there exists a surjection
     $f: X \to \mathcal{P}(X)$. Then there exists $x \in X$ such that $f(x) = S$.

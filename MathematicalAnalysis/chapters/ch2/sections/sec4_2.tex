@@ -136,7 +136,7 @@
 \bigskip
 
 \begin{lemma} \label{lem:InfiniteProductOfFiniteSetsIsUncountable}
-    $X \coloneqq \displaystyle \prod_{n = 1}^{\infty} \set{0, 1}$ is uncountable.
+    $X \coloneqq \displaystyle \prod_{n = 1}^{\infty} \set*{0, 1}$ is uncountable.
 \end{lemma}
 
 \begin{proof}
@@ -154,7 +154,7 @@
     Then $f$ is injective. By \Cref{lem:NIsInfinite,thm:InjectionFromInfiniteSetIsInfinite}, $X$ is infinite.
     \\[6mm]
     Assume that $X$ is countable. Then, there exists a bijection $g: \N \to X$.
-    Let $X = \set{g(1), g(2), g(3), \dots}$, where
+    Let $X = \set*{g(1), g(2), g(3), \dots}$, where
     \begin{itemize}
         \item $g(1) = (a_{11}, a_{12}, a_{13}, \dots)$.
         \item $g(2) = (a_{21}, a_{22}, a_{23}, \dots)$.
@@ -184,41 +184,41 @@
     $[0, 1)$ is infinite. We will prove that $[0, 1) \subseteq \R$ is uncountable,
     which implies that $\R$ is uncountable by \Cref{thm:InfiniteSubsetOfCountableSetIsCountable}.
     \\[6mm]
-    Let $g: [0, 1) \to \displaystyle \prod_{n = 1}^{\infty} \set{0, 1}$ be a function defined by
+    Let $g: [0, 1) \to \displaystyle \prod_{n = 1}^{\infty} \set*{0, 1}$ be a function defined by
     \[
-    g(x) = \set{a_{n}^{x}}_{n = 1}^{\infty} \text{ for all } x \in [0, 1)
+    g(x) = \set*{a_{n}^{x}}_{n = 1}^{\infty} \text{ for all } x \in [0, 1)
     \]
-    where $\set{a_{n}^{x}}_{n = 1}^{\infty}$ is the \emph{greedy base $2$ expansion} of $x$.
+    where $\set*{a_{n}^{x}}_{n = 1}^{\infty}$ is the \emph{greedy base $2$ expansion} of $x$.
     Let $Y$ be a set defined by
     \[
-    Y \coloneqq g([0, 1)) \subseteq \displaystyle \prod_{n = 1}^{\infty} \set{0, 1}.
+    Y \coloneqq g([0, 1)) \subseteq \displaystyle \prod_{n = 1}^{\infty} \set*{0, 1}.
     \]
     Then, by \Cref{thm:SameGreedyBaseExpansionImpliesEquality,thm:PropertiesOfRestrictionFunctions},
     $g|^{Y}$ is bijective.
     \\[6mm]
     Assume that $[0, 1)$ is countable. Then there exists a bijection $h: \N \to [0, 1)$. By
     \Cref{thm:PropertiesOfCompositionFunctions}, $g|^{Y} \circ h: \N \to Y$ is bijective, so $Y$ is countable.
-    Let $Z \coloneqq \displaystyle \prod_{n = 1}^{\infty} \set{0, 1} \setminus Y$. By
+    Let $Z \coloneqq \displaystyle \prod_{n = 1}^{\infty} \set*{0, 1} \setminus Y$. By
     \Cref{thm:NoRealNumberMatchingGreedyBaseExpansion,thm:NoRealNumberMatchingGreedyBaseExpansionConverse}, we have
     \[
-    Z = \setbuilder*{\set{a_{n}}_{n = 1}^{\infty} \in \displaystyle \prod_{n = 1}^{\infty} \set{0, 1}}{a_{n} = 1
+    Z = \setbuilder*{\set*{a_{n}}_{n = 1}^{\infty} \in \displaystyle \prod_{n = 1}^{\infty} \set*{0, 1}}{a_{n} = 1
     \text{ for all } n \geq N \text{ for some } N \in \N}.
     \]
     Let $Z_{N}$ be a set defined by
     \[
-    Z_{N} \coloneqq \setbuilder*{\set{a_{n}}_{n = 1}^{\infty} \in \displaystyle \prod_{n = 1}^{\infty}
-    \set{0, 1}}{a_{n} = 1 \text{ for all } n \geq N} \text{ for each } N \in \N.
+    Z_{N} \coloneqq \setbuilder*{\set*{a_{n}}_{n = 1}^{\infty} \in \displaystyle \prod_{n = 1}^{\infty}
+    \set*{0, 1}}{a_{n} = 1 \text{ for all } n \geq N} \text{ for each } N \in \N.
     \]
-    Let $F_{N}: \displaystyle \prod_{n = 1}^{N - 1} \set{0, 1} \to Z_{N}$ be a function defined by
+    Let $F_{N}: \displaystyle \prod_{n = 1}^{N - 1} \set*{0, 1} \to Z_{N}$ be a function defined by
     \[
-    F_{N}\paren*{\set{a_{n}}_{n = 1}^{N - 1}} = \set{a_{n}}_{n = 1}^{N - 1} \cup \set{1}_{n = N}^{\infty}
-    \text{ for all } \set{a_{n}}_{n = 1}^{N - 1} \in \displaystyle \prod_{n = 1}^{N - 1} \set{0, 1}.
+    F_{N}\paren*{\set*{a_{n}}_{n = 1}^{N - 1}} = \set*{a_{n}}_{n = 1}^{N - 1} \cup \set*{1}_{n = N}^{\infty}
+    \text{ for all } \set*{a_{n}}_{n = 1}^{N - 1} \in \displaystyle \prod_{n = 1}^{N - 1} \set*{0, 1}.
     \]
     Then $F_{N}$ is surjective. By \Cref{thm:ProductOfFiniteSetsIsFinite,thm:SurjectionFromFiniteSetIsFinite},
     $Z_{N}$ is finite. Then, by \Cref{thm:CountableUnionOfFiniteSetsIsCountable},
     $Z = \displaystyle \bigcup_{N = 1}^{\infty} Z_{N}$ is countable.
     \\[6mm]
-    By \Cref{cor:FiniteUnionOfCountableSetsIsCountable}, $\displaystyle \prod_{n = 1}^{\infty} \set{0, 1} = Y \cup Z$
+    By \Cref{cor:FiniteUnionOfCountableSetsIsCountable}, $\displaystyle \prod_{n = 1}^{\infty} \set*{0, 1} = Y \cup Z$
     is countable. \Cref{lem:InfiniteProductOfFiniteSetsIsUncountable} shows that this is a contradiction.
     Therefore, $[0, 1)$ is uncountable.
 \end{proof}

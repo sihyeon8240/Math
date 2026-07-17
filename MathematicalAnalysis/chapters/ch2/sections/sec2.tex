@@ -14,7 +14,7 @@ $f$ is said to be a \emph{function} of $X$ into $Y$, which is denoted by $f: X \
 \begin{remark}
     Let $f: X \to Y$ be a function. For any subset $E \subseteq X$, we define the \textbf{image} of $E$ under $f$ as
     \[
-    f(E) \coloneqq \setbuilder{f(x)}{x \in E} \subseteq Y.
+    f(E) \coloneqq \setbuilder*{f(x)}{x \in E} \subseteq Y.
     \]
     Especially, if $E = X$, then $f(X) \subseteq Y$ is called the \textbf{range} of $f$.
 \end{remark}
@@ -24,7 +24,7 @@ $f$ is said to be a \emph{function} of $X$ into $Y$, which is denoted by $f: X \
 \begin{remark}
     Let $f: X \to Y$ be a function. For any subset $E \subseteq Y$, we define the \textbf{inverse image} of $E$ under $f$ as
     \[
-    f^{-1}(E) \coloneqq \setbuilder{x \in X}{f(x) \in E} \subseteq X.
+    f^{-1}(E) \coloneqq \setbuilder*{x \in X}{f(x) \in E} \subseteq X.
     \]
 \end{remark}
 
@@ -48,7 +48,7 @@ $f$ is said to be a \emph{function} of $X$ into $Y$, which is denoted by $f: X \
     Let $f: X \to Y$ be a bijective function. Then, for any $y \in Y$, there exists a
     \emph{unique} $x \in X$ such that $f(x) = y$. Therefore, we can define a function
     \[
-    f^{-1}: Y \to X, \quad f^{-1}(y) = x.
+    f^{-1}: Y \to X \quad \text{such that} \quad f^{-1}(y) = x.
     \]
     Such a function $f^{-1}$ is called the \textbf{inverse function} of $f$.
 \end{definition}
@@ -77,15 +77,15 @@ $f$ is said to be a \emph{function} of $X$ into $Y$, which is denoted by $f: X \
     \begin{itemize}
         \item The \textbf{restriction} of $f$ to $E$ is defined by
         \[
-        f|_{E}: E \to Y, \quad f|_{E}(x) = f(x) \quad \text{for all } x \in E.
+        f|_{E}: E \to Y \quad \text{such that} \quad f|_{E}(x) = f(x) \quad \text{for all } x \in E.
         \]
         \item The \textbf{Corestriction} of $f$ to $F$ is defined by
         \[
-        f|^{F}: X \to F, \quad f|^{F}(x) = f(x) \quad \text{for all } x \in X.
+        f|^{F}: X \to F \quad \text{such that} \quad f|^{F}(x) = f(x) \quad \text{for all } x \in X.
         \]
         \item The \textbf{Bi-restriction} of $f$ to $E$ and $F$ is defined by
         \[
-        f|_{E}^{F}: E \to F, \quad f|_{E}^{F}(x) = f(x) \quad \text{for all } x \in E.
+        f|_{E}^{F}: E \to F \quad \text{such that} \quad f|_{E}^{F}(x) = f(x) \quad \text{for all } x \in E.
         \]
     \end{itemize}
     We will simply call all of them as just \emph{restriction}, if there is no ambiguity.

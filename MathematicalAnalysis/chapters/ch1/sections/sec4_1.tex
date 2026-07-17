@@ -17,7 +17,7 @@ separately in \hyperref[chap:ConstructionOfR]{Appendix}. In this section, we wil
 \begin{proof}
     Assume that $x, y \in \R$ and $x > 0$. Let $E$ be defined as follows:
     \[
-    E \coloneqq \setbuilder{nx}{nx \leq y, \; n \in \N}.
+    E \coloneqq \setbuilder*{nx}{nx \leq y, \; n \in \N}.
     \]
     If $E = \emptyset$, which implies that $x > y$, then $n = 1$ satisfies $nx > y$. Otherwise, $E$ is nonempty and bounded
     above by $y$. By the least upper bound property, there exists $\alpha = \sup E \in \R$. Then we have the following:
@@ -78,10 +78,10 @@ separately in \hyperref[chap:ConstructionOfR]{Appendix}. In this section, we wil
 \begin{definition} \label{def:FloorCeilingFunctions}
     For any $x \in \R$, the \textbf{floor function} $\floor{x}$
     and \textbf{ceiling function} $\ceil{x}$ are defined as follows:
-    \[
-    \floor{x} \coloneqq \max\setbuilder{k \in \Z}{k \leq x}, \quad
-    \ceil{x} \coloneqq \min\setbuilder{k \in \Z}{k \geq x}
-    \]
+    \begin{itemize}
+        \item $\floor{x} \coloneqq \max\setbuilder*{k \in \Z}{k \leq x}$.
+        \item $\ceil{x} \coloneqq \min\setbuilder*{k \in \Z}{k \geq x}$.
+    \end{itemize}
     \Cref{thm:BoundedSubsetOfZInRHasExtremum} guarantees the
     \emph{existence} and \emph{uniqueness} of $\floor{x}$ and $\ceil{x}$.
 \end{definition}
@@ -117,10 +117,10 @@ separately in \hyperref[chap:ConstructionOfR]{Appendix}. In this section, we wil
 \begin{proof}
     Let $E$ be defined as follows:
     \[
-    E \coloneqq \setbuilder{t \in \R^{+}}{t^{n} < x}.
+    E \coloneqq \setbuilder*{t \in \R^{+}}{t^{n} < x}.
     \]
     $E$ is nonempty since $2^{-1} \in E$ if $x\geq 1$, and $x^{2} \in E$ otherwise.
-    Also, $E$ is bounded above by $\max\set{x, 1}$. By the least upper bound property,
+    Also, $E$ is bounded above by $\max\set*{x, 1}$. By the least upper bound property,
     there exists $\alpha = \sup E \in \R^{+}$. We will show that $\alpha^{n} = x$.
     \\[6mm]
     For any $a, b \in \R^{+}$ with $a < b$, we have
@@ -156,12 +156,12 @@ separately in \hyperref[chap:ConstructionOfR]{Appendix}. In this section, we wil
 \bigskip
 
 \begin{definition} \label{def:GreedyBaseExpansionOfRealNumbers}
-    Let $y \in [0, 1)$ and $b \in \N$ be given with $b \geq 2$. A sequence $\set{a_{n}}_{n = 1}^{\infty}$
+    Let $y \in [0, 1)$ and $b \in \N$ be given with $b \geq 2$. A sequence $\set*{a_{n}}_{n = 1}^{\infty}$
     is called the \textbf{greedy base $b$ expansion} of $y$ if for each $n \in \N$, we have
     \[
     0 \leq y - \sum_{k = 1}^{n} \frac{a_{k}}{b^{k}} < \frac{1}{b^{n}}
     \]
-    where $a_{k} \in S_{b} \coloneqq \set{0, 1, 2, \dots, b - 1}$ for all $k \in \N$.
+    where $a_{k} \in S_{b} \coloneqq \set*{0, 1, 2, \dots, b - 1}$ for all $k \in \N$.
     Especially, if $b = 10$, the sequence is called the \textbf{greedy decimal expansion} of $y$.
 \end{definition}
 
@@ -172,10 +172,10 @@ separately in \hyperref[chap:ConstructionOfR]{Appendix}. In this section, we wil
 \end{theorem}
 
 \begin{proof}
-    Let $\set{t_{n}}_{n = 1}^{\infty}$, $\set{T_{n}}_{n = 1}^{\infty}$
-    and $\set{a_{n}}_{n = 1}^{\infty}$ be defined as follows:
+    Let $\set*{t_{n}}_{n = 1}^{\infty}$, $\set*{T_{n}}_{n = 1}^{\infty}$
+    and $\set*{a_{n}}_{n = 1}^{\infty}$ be defined as follows:
     \begin{itemize}
-        \item $t_{1} \coloneqq by$, $T_{1} \coloneqq \setbuilder{t \in S_{b}}{t \leq t_{1}}$, $a_{1} \coloneqq \max T_{1}$.
+        \item $t_{1} \coloneqq by$, $T_{1} \coloneqq \setbuilder*{t \in S_{b}}{t \leq t_{1}}$, $a_{1} \coloneqq \max T_{1}$.
         \item $t_{2} \coloneqq b^{2}y - ba_{1}$, $T_{2} \coloneqq \setbuilder*{t \in S_{b}}{t \leq t_{2}}$,
         $a_{2} \coloneqq \max T_{2}$.
         \item[] $\vdots$ 
@@ -185,7 +185,7 @@ separately in \hyperref[chap:ConstructionOfR]{Appendix}. In this section, we wil
         for all $n \in \N$ with $n \geq 2$,
     \end{itemize}
     Assume that $0 \leq t_{n} < b$ for some $n \in \N$. Then, since $0 \in T_{n}$ and $T_{n}$ is bounded above, $T_{n}$ has
-    a greatest element by \Cref{thm:BoundedSubsetOfZinZHasExtremum}, which implies that $\set{a_{n}}_{n = 1}^{\infty}$
+    a greatest element by \Cref{thm:BoundedSubsetOfZinZHasExtremum}, which implies that $\set*{a_{n}}_{n = 1}^{\infty}$
     is well-defined. Let $P(n)$ be the statement that
     \[
     P(n) : 0 \leq t_{n} < b \text{ and } a_{n} \text{ is well-defined}.
@@ -197,7 +197,7 @@ separately in \hyperref[chap:ConstructionOfR]{Appendix}. In this section, we wil
             t_{n + 1} &= b^{n + 1}y - \sum_{k = 1}^{n} a_{k}b^{n + 1 - k} \\
             &= b\paren*{b^{n}y - \sum_{k = 1}^{n} a_{k}b^{n - k}} \\
             &= b\paren*{b^{n}y - \sum_{k = 1}^{n - 1} a_{k}b^{n - k} - a_{n}} \\
-            &= b\paren{t_{n} - a_{n}}.
+            &= b\paren*{t_{n} - a_{n}}.
         \end{align*}
         Since $a_{n} = \max T_{n}$ and $t_{n} < b$, we have
         \[

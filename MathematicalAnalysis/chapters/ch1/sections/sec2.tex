@@ -39,7 +39,7 @@ $x > y$ means $y < x$, $x \leq y$ means ($x < y$ or $x = y$) and $x \geq y$ mean
     Let $E$ be a nonempty subset of $\Z$ which is bounded below in $\Z$.
     Then there exists a lower bound $m \in \Z$ of $E$. Let $F$ be defined as follows:
     \[
-    F \coloneqq \setbuilder{x - m + 1}{x \in E} \subseteq \N.
+    F \coloneqq \setbuilder*{x - m + 1}{x \in E} \subseteq \N.
     \]
     By \Cref{thm:WellOrderingProperty}, $F$ has a least element $n$. Then we have
     \[
@@ -51,7 +51,7 @@ $x > y$ means $y < x$, $x \leq y$ means ($x < y$ or $x = y$) and $x \geq y$ mean
     Let $S$ be a nonempty subset of $\Z$ which is bounded above in $\Z$.
     Then there exists an upper bound $M \in \Z$ of $S$. Let $T$ be defined as follows:
     \[
-    T \coloneqq \setbuilder{-x + M + 1}{x \in S} \subseteq \N.
+    T \coloneqq \setbuilder*{-x + M + 1}{x \in S} \subseteq \N.
     \]
     By \Cref{thm:WellOrderingProperty}, $T$ has a least element $n$. Then we have
     \[
@@ -89,7 +89,7 @@ $x > y$ means $y < x$, $x \leq y$ means ($x < y$ or $x = y$) and $x \geq y$ mean
 \begin{example}
     Let $S \subseteq \Q^{+}$ be defined as
     \[
-    S \coloneqq \setbuilder{p \in \Q^{+}}{p^{2} < 2}.
+    S \coloneqq \setbuilder*{p \in \Q^{+}}{p^{2} < 2}.
     \]
     For any $p \in S$, let
     \[
@@ -130,7 +130,7 @@ $x > y$ means $y < x$, $x \leq y$ means ($x < y$ or $x = y$) and $x \geq y$ mean
 \begin{proof}
     Let $E$ be a nonempty subset of $S$ which is bounded below. Let $L$ be defined as follows:
     \[
-    L \coloneqq \setbuilder{\lambda}{\lambda \text{ is a lower bound of } E}.
+    L \coloneqq \setbuilder*{\lambda}{\lambda \text{ is a lower bound of } E}.
     \]
     Then, $L$ is nonempty and bounded above. By the least upper bound property,
     there exists $\alpha = \sup L \in S$. We will show that $\alpha = \inf E$.

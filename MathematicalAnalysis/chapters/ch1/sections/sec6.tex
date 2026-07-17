@@ -25,10 +25,10 @@ $\C$ is a field with the following properties:
 \begin{remark}
     The function
     \[
-    f: \setbuilder{(x, 0)}{x \in \R} \subseteq \C \to \R
+    f: \setbuilder*{(x, 0)}{x \in \R} \subseteq \C \to \R
     \]
     defined by $f((x, 0)) = x$ is an \emph{isomorphism}. We can identify $\R$ with the subfield
-    $\setbuilder{(x, 0)}{x \in \R}$ of $\C$. We denote $(x, 0) \in \C$ by $x \in \R$.
+    $\setbuilder*{(x, 0)}{x \in \R}$ of $\C$. We denote $(x, 0) \in \C$ by $x \in \R$.
 \end{remark}
 
 \bigskip
@@ -63,12 +63,12 @@ We define $i \coloneqq (0, 1) \in \C$. Then we have $i^{2} = -1$, and any comple
     Let $z = x + yi \in \C$ and let $w = u + vi \in \C$ for some $x, y, u, v \in \R$.
     Then we have the following properties:
     \begin{itemize}
-        \item $\overline{\paren{\overline{z}}} = z$.
+        \item $\overline{\paren*{\overline{z}}} = z$.
         \item $z = \overline{z} \iff z \in \R$.
         \item $\overline{z + w} = \overline{z} + \overline{w}$.
         \item $\overline{zw} = \overline{z} \cdot \overline{w}$.
         \item $z + \overline{z} = 2\Real(z)$ and $z - \overline{z} = 2i\Imag(z)$.
-        \item $z\overline{z} = x^{2} + y^{2} \in \R^{+} \cup \set{0}$.
+        \item $z\overline{z} = x^{2} + y^{2} \in \R^{+} \cup \set*{0}$.
     \end{itemize}
 \end{theorem}
 
@@ -81,7 +81,7 @@ We define $i \coloneqq (0, 1) \in \C$. Then we have $i^{2} = -1$, and any comple
 \begin{definition} \label{def:Modulus}
     Let $z = x + yi \in \C$ for some $x, y \in \R$. the \textbf{modulus} of $z$ is defined as
     \[
-    |z| \coloneqq \sqrt{z\overline{z}} = \sqrt{x^{2} + y^{2}} \in \R^{+} \cup \set{0}.
+    |z| \coloneqq \sqrt{z\overline{z}} = \sqrt{x^{2} + y^{2}} \in \R^{+} \cup \set*{0}.
     \]
     The \emph{existence} and \emph{uniqueness} of $|z|$ follows from
     \Cref{thm:PropertiesOfComplexConjugate,thm:ExistenceOfNthRoots}.

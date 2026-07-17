@@ -1,9 +1,10 @@
 \begin{section}{Relations}
 
 A \textbf{relation} $\sim$ on a set $S$ defines a subset $R$ of $S \times S$, and vice versa.
-\[
-R \coloneqq \setbuilder*{(x, y) \in S \times S}{x \sim y}, \quad x \sim y \iff (x, y) \in R.
-\]
+\begin{itemize}
+    \item $R \coloneqq \setbuilder*{(x, y) \in S \times S}{x \sim y}$.
+    \item $x \sim y \iff (x, y) \in R$.
+\end{itemize}
 
 \bigskip
 
@@ -19,7 +20,7 @@ R \coloneqq \setbuilder*{(x, y) \in S \times S}{x \sim y}, \quad x \sim y \iff (
 \bigskip
 
 \begin{definition} \label{def:Partition}
-    A \textbf{partition} of a set $S$ is a collection $\set{A_{\alpha}}_{\alpha \in I}$ of nonempty subsets of $S$ such that
+    A \textbf{partition} of a set $S$ is a collection $\set*{A_{\alpha}}_{\alpha \in I}$ of nonempty subsets of $S$ such that
     \begin{itemize}
         \item $A_{\alpha} \cap A_{\beta} = \emptyset$ for all $\alpha, \beta \in I$ with $\alpha \neq \beta$.
         \item $\displaystyle \bigcup_{\alpha \in I} A_{\alpha} = S$.
@@ -64,7 +65,7 @@ R \coloneqq \setbuilder*{(x, y) \in S \times S}{x \sim y}, \quad x \sim y \iff (
 \bigskip
 
 \begin{theorem} \label{thm:PartitionDefinesEquivalenceRelation}
-    Let $\set{A_{\alpha}}_{\alpha \in I}$ be a partition of a set $S$. Let $\sim$ be a relation on $S$ defined by
+    Let $\set*{A_{\alpha}}_{\alpha \in I}$ be a partition of a set $S$. Let $\sim$ be a relation on $S$ defined by
     \[
     x \sim y \iff x, y \in A_{\alpha} \text{ for some } \alpha \in I.
     \]
@@ -81,7 +82,7 @@ R \coloneqq \setbuilder*{(x, y) \in S \times S}{x \sim y}, \quad x \sim y \iff (
         \[
         x, y \in A_{\alpha} \text{ and } y, z \in A_{\beta}.
         \]
-        Since $y \in A_{\alpha} \cap A_{\beta}$ and the sets $\set{A_{\alpha}}_{\alpha \in I}$ are disjoint,
+        Since $y \in A_{\alpha} \cap A_{\beta}$ and the sets $\set*{A_{\alpha}}_{\alpha \in I}$ are disjoint,
         we have $\alpha = \beta$, which implies that $x, z \in A_{\alpha}$.
     \end{itemize}
     Therefore, $\sim$ is an equivalence relation on $S$.

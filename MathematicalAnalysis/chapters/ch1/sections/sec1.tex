@@ -1,6 +1,6 @@
 \begin{section}{The Natural, Integer, and Rational Number Systems}
 
-We denote the set $\set{1, 2, 3, \dots}$ of natural numbers by $\N$.
+We denote the set $\set*{1, 2, 3, \dots}$ of natural numbers by $\N$.
 The set $\N$ is defined by the following axioms:
 \begin{itemize}
     \item $1 \in \N$.
@@ -24,7 +24,7 @@ The axioms above are called the \textbf{Peano axioms} (or \emph{Peano Postulates
 \bigskip
 
 \begin{remark}
-    Let $P(n)$ be a statement about $n \in \N$, and let $S \coloneqq \setbuilder{n \in \N}{P(n) \text{ is true}}$.
+    Let $P(n)$ be a statement about $n \in \N$, and let $S \coloneqq \setbuilder*{n \in \N}{P(n) \text{ is true}}$.
     Assume that $P(n)$ satisfies the following conditions:
     \begin{itemize}
         \item $P(1)$ is true.
@@ -50,16 +50,16 @@ The axioms above are called the \textbf{Peano axioms} (or \emph{Peano Postulates
     Let $T$ and $L$ be defined as follows:
     \begin{itemize}
         \item $T \coloneqq \N \setminus S$.
-        \item $L \coloneqq \setbuilder{n \in \N}{\set{1, 2, \dots, n} \subseteq T}$.
+        \item $L \coloneqq \setbuilder*{n \in \N}{\set*{1, 2, \dots, n} \subseteq T}$.
     \end{itemize}
     We will show that $L = \N$, which implies that $S = \emptyset$, a contradiction.
     \begin{itemize}
-        \item \textbf{Base case:} $1 \in L$ since $\set{1} \subseteq T$.
+        \item \textbf{Base case:} $1 \in L$ since $\set*{1} \subseteq T$.
         Otherwise, $1 \in S$ and $1$ is the least element of $S$.
-        \item \textbf{Inductive step:} Assume that $n \in L \implies \set{1, 2, \dots, n} \subseteq T$.
+        \item \textbf{Inductive step:} Assume that $n \in L \implies \set*{1, 2, \dots, n} \subseteq T$.
         Then $n + 1 \notin S$. Otherwise, $n + 1$ is the least element of $S$. Therefore, we have
         \[
-        n + 1 \in T \implies \set{1, 2, \dots, n + 1} \subseteq T.
+        n + 1 \in T \implies \set*{1, 2, \dots, n + 1} \subseteq T.
         \]
         Thus $n + 1 \in L$.
     \end{itemize}
@@ -70,12 +70,12 @@ The axioms above are called the \textbf{Peano axioms} (or \emph{Peano Postulates
 
 We define the set $\Z$ of integers and the set $\Q$ of rational numbers as follows:
 \begin{itemize}
-    \item $\Z \coloneqq \setbuilder{m - n}{m, n \in \N}$.
+    \item $\Z \coloneqq \setbuilder*{m - n}{m, n \in \N}$.
     \item $\Q \coloneqq \setbuilder*{\dfrac{m}{n}}{m \in \Z, \; n \in \N}$.
 \end{itemize}
 Also, we denote the set of positive numbers or negative numbers as follows:
 \begin{itemize}
-    \item $\Z^{+} \coloneqq \setbuilder{n}{n \in \N}$, $\Z^{-} \coloneqq \setbuilder{-n}{n \in \N}$.
+    \item $\Z^{+} \coloneqq \setbuilder*{n}{n \in \N}$, $\Z^{-} \coloneqq \setbuilder*{-n}{n \in \N}$.
     \item $\Q^{+} \coloneqq \setbuilder*{\dfrac{m}{n}}{m \in \N, \; n \in \N}$,
     $\Q^{-} \coloneqq \setbuilder*{\dfrac{m}{n}}{m \in \Z^{-}, \; n \in \N}$.
 \end{itemize}
