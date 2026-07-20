@@ -42,13 +42,13 @@ Let $X$ be a set. A function $d: X \times X \to \R$ is called a \textbf{metric} 
 
 \bigskip
 
-\begin{definition} \label{def:NCell}
-    Let $(\R^{n}, \norm{\cdot})$ be given for some $n \in \N$. A set $E \subseteq \R^{n}$ defined by
+\begin{definition} \label{def:KCell}
+    Let $k \in \N$ be given. A set $E \subseteq \R^{k}$ defined by
     \[
-    E \coloneqq \setbuilder*{\bm{x} = (x_{1}, x_{2}, \dots, x_{n})
-    \in \R^{n}}{a_{k} \leq x_{k} \leq b_{k} \text{ for all } k = 1, 2, \dots, n}
+    E \coloneqq \setbuilder*{\bm{x} = (x_{1}, x_{2}, \dots, x_{k})
+    \in \R^{k}}{a_{j} \leq x_{j} \leq b_{j} \text{ for all } j = 1, 2, \dots, k}
     \]
-    is called an \textbf{$n$-cell}, where $a_{k}, b_{k} \in \R$ with $a_{k} \leq b_{k}$ for all $k = 1, 2, \dots, n$.
+    is called an \textbf{$k$-cell}, where $a_{j}, b_{j} \in \R$ with $a_{j} \leq b_{j}$ for all $j = 1, 2, \dots, k$.
 \end{definition}
 
 \bigskip
@@ -110,7 +110,7 @@ Let $X$ be a set. A function $d: X \times X \to \R$ is called a \textbf{metric} 
 \end{theorem}
 
 \begin{proof}
-    Let $q \in N_{r}(p)$ be given. Then we have $d(p, q) < r$. Put $\veps = r - d(p, q) > 0$.
+    Let $q \in N_{r}(p)$ be given. Then we have $d(p, q) < r \implies \veps \coloneqq r - d(p, q) > 0$.
     Let $s \in N_{\veps}(q)$ be given. Then we have
     \[
     d(q, s) < \veps \implies d(p, s) \leq d(p, q) + d(q, s) < d(p, q) + \veps = r.
