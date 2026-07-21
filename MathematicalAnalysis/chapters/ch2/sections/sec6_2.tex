@@ -1,5 +1,79 @@
 \bigskip
 
+\begin{theorem} \label{thm:InfiniteSubsetOfCompactSetHasLimitPoint}
+    Let $(X, d)$ be a metric space and $E \subseteq X$. If $E$ is compact,
+    then any infinite subset of $E$ has a limit point in $E$.
+\end{theorem}
+
+\begin{proof}
+    Let $E$ be compact. Let $F \subseteq E$ be an infinite subset of $E$. Assume that $F$ has
+    no limit point in $E$. Then, for each $p \in E$, there exists $r_{p} \in \R^{+}$ such that
+    \[
+    Q_{r_{p}}(p) \cap F = \emptyset \implies N_{r_{p}}(p) \cap F \subseteq \set*{p}.
+    \]
+    Let $\set*{G_{\alpha}}_{\alpha \in E}$ be a collection of open sets defined by
+    \[
+    G_{\alpha} = N_{r_{\alpha}}(\alpha) \quad \text{for each } \alpha \in E.
+    \]
+    Since $\alpha \in G_{\alpha}$ for each $\alpha \in E$, we have
+    \[
+    E \subseteq \bigcup_{\alpha \in E} G_{\alpha} \implies \set*{G_{\alpha}}_{\alpha \in E} \text{ is an open cover of } E.
+    \]
+    Since $E$ is compact, there exists a finite subcover $\set*{G_{\alpha}}_{\alpha \in S}$ of $E$. Then we have
+    \[
+    E \subseteq \bigcup_{\alpha \in S} G_{\alpha} \implies F \subseteq E \subseteq \bigcup_{\alpha \in S} G_{\alpha}.
+    \]
+    Since $F \subseteq \displaystyle \bigcup_{\alpha \in S} G_{\alpha}$, we have
+    \[
+    F = F \cap \bigcup_{\alpha \in S} G_{\alpha} = \bigcup_{\alpha \in S} \paren*{F \cap G_{\alpha}}
+    \subseteq \bigcup_{\alpha \in S} \set*{\alpha} = S,
+    \]
+    which is a contradiction by \Cref{thm:SubsetOfFiniteSetIsFinite}.
+    Therefore, any infinite subset of $E$ has a limit point in $E$.
+\end{proof}
+
+\bigskip
+
+\begin{theorem} \label{thm:FiniteCompactIntersectionProperty}
+    Let $(X, d)$ be a metric space and let $\set*{K_{\alpha}}_{\alpha \in A}$ be a collection of compact sets. Then we have
+    \[
+    \bigcap_{\alpha \in B} K_{\alpha} \neq \emptyset \quad \text{for all finite subset }
+    B \subseteq A \implies \bigcap_{\alpha \in A} K_{\alpha} \neq \emptyset.
+    \]
+\end{theorem}
+
+\begin{proof}
+    Assume that $\displaystyle \bigcap_{\alpha \in A} K_{\alpha} = \emptyset$. Then we have
+    \[
+    X = \paren*{\bigcap_{\alpha \in A} K_{\alpha}}^{c} = \bigcup_{\alpha \in A} \paren*{K_{\alpha}}^{c}.
+    \]
+    Since each $K_{\alpha}$ is compact, $K_{\alpha}$ is closed by \Cref{thm:CompactSetsAreClosed}.
+    Then, by \Cref{cor:ClosedSetComplementIsOpenSet}, we have
+    \[
+    \text{Each } \paren*{K_{\alpha}}^{c} \text{ is open} \implies
+    \set*{\paren*{K_{\alpha}}^{c}}_{\alpha \in A} \text{ is an open cover of } X.
+    \]
+    Since $K_{\alpha} \subseteq X \subseteq \displaystyle \bigcup_{\beta \in A} \paren*{K_{\beta}}^{c}$, we have
+    \[
+    \set*{\paren*{K_{\beta}}^{c}}_{\beta \in A} \text{ is an open cover of } K_{\alpha}.
+    \]
+    Since $K_{\alpha}$ is compact, there exists a finite subcover
+    $\set*{\paren*{K_{\beta}}^{c}}_{\beta \in B_{\alpha}}$ of $K_{\alpha}$. Then we have
+    \begin{align*}
+        K_{\alpha} \subseteq \bigcup_{\beta \in B_{\alpha}} \paren*{K_{\beta}}^{c}
+        &= \paren*{\bigcap_{\beta \in B_{\alpha}} K_{\beta}}^{c} \\
+        &\implies K_{\alpha} \cap \paren*{\bigcap_{\beta \in B_{\alpha}} K_{\beta}} = \emptyset \\
+        &\implies \bigcap_{\beta \in B_{\alpha} \cup \set*{\alpha}} K_{\beta} = \emptyset.
+    \end{align*}
+    Since $\set*{\alpha}$ and $B_{\alpha}$ are finite, $B_{\alpha} \cup \set*{\alpha}$ is also finite
+    by \Cref{thm:FiniteUnionOfFiniteSetsIsFinite}, which contradicts the assumption. Therefore, we have
+    \[
+    \bigcap_{\alpha \in A} K_{\alpha} \neq \emptyset.
+    \]
+\end{proof}
+
+\bigskip
+
 \begin{lemma} \label{lem:NestedIntervals}
     Let $\set*{a_{n}}_{n = 1}^{\infty}$ and $\set*{b_{n}}_{n = 1}^{\infty}$ be sequences in $\R$,
     and let $\set*{I_{n}}_{n = 1}^{\infty}$ be a sequence of intervals in $\R$ such that
@@ -52,7 +126,7 @@
 \end{theorem}
 
 \begin{proof}
-    Let $\set{I_{n, j}}_{n = 1}^{\infty}$ be a sequence of intervals in $\R$ defined by
+    Let $\set*{I_{n, j}}_{n = 1}^{\infty}$ be a sequence of intervals in $\R$ defined by
     \[
     I_{n, j} = [a_{n, j}, b_{n, j}] \quad \text{for all } j = 1, 2, \dots, k \text{ and } n \in \N.
     \]
@@ -75,16 +149,16 @@
 \bigskip
 
 \begin{theorem} \label{thm:KCellsAreCompact}
-    Let $k \in \N$ be given. Then any $k$-cell is compact in $\paren*{\R^{k}, \norm*{\cdot}}$.
+    Let $\paren*{\R^{k}, \norm*{\cdot}}$ be given for some $k \in \N$. Then any $k$-cell is compact.
 \end{theorem}
 
 \begin{proof}
-    Let $I$ be a $k$-cell in $\paren*{\R^{k}, \norm*{\cdot}}$, and let $I_{1} \coloneqq I$. Then we have
+    Let $I$ be a $k$-cell in $\R^{k}$, and let $I_{1} \coloneqq I$. Then we have
     \[
     I_{1} = \prod_{j = 1}^{k} \bracket*{a_{1, j}, b_{1, j}} \subseteq \R^{k},
     \]
     where $a_{1, j}, b_{1, j} \in \R$ with $a_{1, j} \leq b_{1, j}$ for all $j = 1, 2, \dots, k$.
-    Let $\set{I_{1, j, m}}$ be an interval in $\R$ defined by
+    Let $\set*{I_{1, j, m}}$ be an interval in $\R$ defined by
     \[
     I_{1, j, m} \coloneqq \begin{dcases}
         \bracket*{a_{1, j}, \frac{a_{1, j} + b_{1, j}}{2}} & \text{if } m = 1 \\
@@ -100,118 +174,13 @@
     \[
     I_{1} = \bigcup_{\bm{m} \in S_{k}} \paren*{\prod_{j = 1}^{k} I_{1, j, m_{j}}}.
     \]
-    Let $\set{G_{\alpha}}_{\alpha \in A}$ be an open cover of $I_{1}$. Assume that $I_{1}$ has no finite subcover.
+    Let $\set*{G_{\alpha}}_{\alpha \in A}$ be an open cover of $I_{1}$. Assume that $I_{1}$ has no finite subcover.
     Then, for each $\bm{m} \in S_{k}$, we have
     \[
     \prod_{j = 1}^{k} I_{1, j, m_{j}} \subseteq I_{1} \subseteq \bigcup_{\alpha \in A} G_{\alpha},
     \]
-    which implies that $\set{G_{\alpha}}_{\alpha \in A}$ is an open cover of $\displaystyle
+    which implies that $\set*{G_{\alpha}}_{\alpha \in A}$ is an open cover of $\displaystyle
     \prod_{j = 1}^{k} I_{1, j, m_{j}}$. Assume that for each $\bm{m} \in S_{k}$, we have
     \[
-    \prod_{j = 1}^{k} I_{1, j, m_{j}} \text{ has a finite subcover } \set{G_{\alpha}}_{\alpha \in A_{\bm{m}}}.
+    \prod_{j = 1}^{k} I_{1, j, m_{j}} \text{ has a finite subcover } \set*{G_{\alpha}}_{\alpha \in A_{\bm{m}}}.
     \]
-    Then we have
-    \[
-    \prod_{j = 1}^{k} I_{1, j, m_{j}} \subseteq \bigcup_{\alpha \in A_{\bm{m}}} G_{\alpha}
-    \quad \text{for all } \bm{m} \in S_{k},
-    \]
-    where $\displaystyle \bigcup_{\alpha \in A_{\bm{m}}} G_{\alpha}$ is open by \Cref{thm:ArbitraryUnionOfOpenSetsIsOpen}.
-    Then we have
-    \[
-    I_{1} \subseteq \bigcup_{\bm{m} \in S_{k}} \paren*{\bigcup_{\alpha \in A_{\bm{m}}} G_{\alpha}}
-    = \bigcup_{\alpha \in A} G_{\alpha},
-    \]
-    where $A \coloneqq \displaystyle \bigcup_{\bm{m} \in S_{k}} A_{\bm{m}}$ is finite by
-    \Cref{thm:FiniteUnionOfFiniteSetsIsFinite}. Thus $I_{1}$ has a finite subcover, which is a contradiction.
-    Therefore, there exists $\bm{m_{1}} \in S_{k}$ such that
-    \[
-    \prod_{j = 1}^{k} I_{1, j, \paren*{m_{1}}_{j}} \text{ has no finite subcover}.
-    \]
-    Let $I_{2}$ be a $k$-cell in $\paren*{\R^{k}, \norm*{\cdot}}$ defined by
-    \[
-    I_{2} \coloneqq \prod_{j = 1}^{k} \bracket{a_{2, j}, b_{2, j}} \subseteq \R^{k},
-    \]
-    where $a_{2, j}, b_{2, j} \in \R$ is defined by
-    \begin{itemize}
-        \item $a_{2, j} \coloneqq \begin{dcases}
-            a_{1, j} & \text{if } \paren*{m_{1}}_{j} = 1 \\
-            \frac{a_{1, j} + b_{1, j}}{2} & \text{if } \paren*{m_{1}}_{j} = 2
-        \end{dcases}$
-        \item $b_{2, j} \coloneqq \begin{dcases}
-            \frac{a_{1, j} + b_{1, j}}{2} & \text{if } \paren*{m_{1}}_{j} = 1 \\
-            b_{1, j} & \text{if } \paren*{m_{1}}_{j} = 2
-        \end{dcases}$
-    \end{itemize}
-    for all $j = 1, 2, \dots, k$. Then, for each $j = 1, 2, \dots, k$, we have
-    \[
-    \bracket{a_{2, j}, b_{2, j}} = I_{1, j, \paren*{m_{1}}_{j}} \subseteq \bracket{a_{1, j}, b_{1, j}},
-    \]
-    which implies that
-    \[
-    I_{2} = \prod_{j = 1}^{k} I_{1, j, \paren*{m_{1}}_{j}} \subseteq I_{1}.
-    \]
-    Let $\set{I_{2, j, m}}$ be an interval in $\R$ defined by
-    \[
-    I_{2, j, m} \coloneqq \begin{dcases}
-        \bracket*{a_{2, j}, \frac{a_{2, j} + b_{2, j}}{2}} & \text{if } m = 1 \\
-        \bracket*{\frac{a_{2, j} + b_{2, j}}{2}, b_{2, j}} & \text{if } m = 2
-    \end{dcases} \quad \text{for all } j = 1, 2, \dots, k.
-    \]
-    Then we have
-    \[
-    I_{2} = \bigcup_{\bm{m} \in S_{k}} \paren*{\prod_{j = 1}^{k} I_{2, j, m_{j}}}.
-    \]
-    We have shown that $\set{G_{\alpha}}_{\alpha \in A}$ is an open cover of $I_{2}$, and $I_{2}$ has no finite subcover.
-    Then, for each $\bm{m} \in S_{k}$, we have
-    \[
-    \prod_{j = 1}^{k} I_{2, j, m_{j}} \subseteq I_{2} \subseteq \bigcup_{\alpha \in A} G_{\alpha},
-    \]
-    which implies that $\set{G_{\alpha}}_{\alpha \in A}$ is an open cover of
-    $\displaystyle \prod_{j = 1}^{k} I_{2, j, m_{j}}$. Therefore, there exists $\bm{m_{2}} \in S_{k}$ such that
-    \[
-    \prod_{j = 1}^{k} I_{2, j, \paren*{m_{2}}_{j}} \text{ has no finite subcover}.
-    \]
-    By repeating this process, we can construct the following sequences:
-    \begin{itemize}
-        \item The sequence $\set{\bm{m_{n}}}_{n = 1}^{\infty}$ in $S_{k}$.
-        \item The sequences $\set{a_{n, j}}_{n = 1}^{\infty}$ and
-        $\set{b_{n, j}}_{n = 1}^{\infty}$ in $\R$ for all $j = 1, 2, \dots, k$.
-        \item The sequence $\set{I_{n, j, m}}_{n = 1}^{\infty}$ of intervals in $\R$
-        for all $j = 1, 2, \dots, k$ and $m = 1, 2$.
-        \item The sequence $\set{I_{n}}_{n = 1}^{\infty}$ of $k$-cells in $\R^{k}$.
-    \end{itemize}
-    We have the following properties:
-    \begin{itemize}
-        \item $I_{n + 1} \subseteq I_{n}$ for all $n \in \N$.
-        \item $I_{n}$ has no finite subcover for all $n \in \N$.
-        \item $a_{n, j} \leq a_{n + 1, j} \leq b_{n + 1, j} \leq b_{n, j}$ for all $j = 1, 2, \dots, k$ and $n \in \N$.
-        \item $b_{n + 1, j} - a_{n + 1, j} = \dfrac{1}{2}(b_{n, j} - a_{n, j}) \implies b_{n, j} - a_{n, j} =
-        \dfrac{1}{2^{n - 1}}(b_{1, j} - a_{1, j})$ for all $j = 1, 2, \dots, k$ and $n \in \N$.
-    \end{itemize}
-    Let $\delta \coloneqq \displaystyle \sqrt{\sum_{j = 1}^{k} (b_{1, j} - a_{1, j})^{2}}$. Then we have
-    \[
-    \norm*{\bm{x} - \bm{y}} \leq \sqrt{\sum_{j = 1}^{k} (b_{n, j} - a_{n, j})^{2}} =
-    \frac{\delta}{2^{n - 1}} \quad \text{for all } \bm{x}, \bm{y} \in I_{n} \text{ and } n \in \N.
-    \]
-    By \Cref{thm:NestedKCells}, we have $\displaystyle \bigcap_{n = 1}^{\infty} I_{n} \neq \emptyset$.
-    Let $\bm{\beta} \in \displaystyle \bigcap_{n = 1}^{\infty} I_{n}$ be given. Then there exists $\alpha_{0} \in A$
-    such that $\bm{\beta} \in G_{\alpha_{0}}$. Since $G_{\alpha_{0}}$ is open, there exists $\veps \in \R^{+}$ such that
-    \[
-    B_{\veps}(\bm{\beta}) \subseteq G_{\alpha_{0}}.
-    \]
-    By \Cref{cor:ArchimedeanPropertyCorollary}, there exists $N \in \N$
-    such that $\dfrac{1}{2^{N}} < \dfrac{\veps}{2\delta}$. Since $\bm{\beta} \in I_{N}$, we have
-    \[
-    \norm*{\bm{x} - \bm{\beta}} \leq \frac{\delta}{2^{N - 1}} < \veps \quad \text{for all } \bm{x} \in I_{N},
-    \]
-    which implies that $I_{N} \subseteq B_{\veps}(\bm{\beta}) \subseteq G_{\alpha_{0}}$. Therefore, $I_{N}$ has a
-    finite subcover $\set{G_{\alpha_{0}}}$, which is a contradiction. Thus $I$ has a finite subcover, and $I$ is compact.
-\end{proof}
-
-\bigskip
-
-\begin{corollary} \label{cor:ClosedIntervalsAreCompact}
-    For any $a, b \in \R$ with $a \leq b$, the closed interval $[a, b]$ is compact in $\paren*{\R, \norm*{\cdot}}$.
-\end{corollary}
-
-\end{section}

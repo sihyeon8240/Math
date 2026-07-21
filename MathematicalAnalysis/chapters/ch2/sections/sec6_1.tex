@@ -87,13 +87,13 @@ open cover $\set*{G_{\alpha}}_{\alpha \in A}$ of $E$, there exists a subset $S_{
 
 \bigskip
 
-\begin{theorem} \label{thm:CompactSetIsClosed}
+\begin{theorem} \label{thm:CompactSetsAreClosed}
     Let $(X, d)$ be a metric space and $E \subseteq X$. If $E$ is compact, then $E$ is closed.
 \end{theorem}
 
 \begin{proof}
-    We will prove that $E^{c}$ is open, which implies that $E$ is closed by \Cref{cor:ClosedSetComplementIsOpenSet}.
-    Let $p \in E^{c}$ be given. Since $p \notin E$, we have 
+    Let $E$ be compact. We will prove that $E^{c}$ is open, which implies that $E$ is closed
+    by \Cref{cor:ClosedSetComplementIsOpenSet}. Let $p \in E^{c}$ be given. Since $p \notin E$, we have 
     \[
     r_{q} \coloneqq \frac{d(p, q)}{2} > 0 \quad \text{for each } q \in E.
     \]
@@ -131,6 +131,33 @@ open cover $\set*{G_{\alpha}}_{\alpha \in A}$ of $E$, there exists a subset $S_{
 
 \bigskip
 
+\begin{theorem} \label{thm:CompactSetsAreBounded}
+    Let $(X, d)$ be a metric space and $E \subseteq X$. If $E$ is compact, then $E$ is bounded.
+\end{theorem}
+
+\begin{proof}
+    Let $E$ be compact. Let $p \in E$ be given. Let $\set*{G_{n}}_{n \in \N}$ be a collection of open sets defined by
+    \[
+    G_{n} = N_{n}(p) \quad \text{for each } n \in \N.
+    \]
+    Then we have
+    \[
+    n \leq m \implies G_{n} \subseteq G_{m} \quad \text{for each } n, m \in \N.
+    \]
+    For any $q \in X$, by \Cref{thm:ArchimedeanProperty}, there exists $n \in \N$ such that $n > d(p, q)$. Thus we have
+    \[
+    E \subseteq X \subseteq \bigcup_{n = 1}^{\infty} G_{n} \implies \set*{G_{n}}_{n \in \N} \text{ is an open cover of } E.
+    \]
+    Since $E$ is compact, there exists a finite subcover $\set*{G_{n}}_{n \in S}$ of $E$. Since $S \subseteq \N$ is finite,
+    by \Cref{thm:FiniteOrderedSetHasExtremum}, $S$ has a greatest element, say $m = \max S$. Then we have
+    \[
+    E \subseteq \bigcup_{n \in S} G_{n} \subseteq G_{m} = N_{m}(p),
+    \]
+    which implies that $E$ is bounded.
+\end{proof}
+
+\bigskip
+
 \begin{theorem} \label{thm:ClosedSubsetOfCompactSetIsCompact}
     Let $(X, d)$ be a metric space and $E \subseteq X$. If $E$ is compact, then any closed subset $F \subseteq E$ is compact.
 \end{theorem}
@@ -162,43 +189,4 @@ open cover $\set*{G_{\alpha}}_{\alpha \in A}$ of $E$, there exists a subset $S_{
     F \subseteq \bigcup_{\alpha \in B} H_{\alpha}.
     \]
     Thus $\set*{H_{\alpha}}_{\alpha \in B}$ is a finite subcover of $F$. Therefore, $F$ is compact.
-\end{proof}
-
-\bigskip
-
-\begin{theorem} \label{thm:FiniteCompactIntersectionProperty}
-    Let $(X, d)$ be a metric space and let $\set*{K_{\alpha}}_{\alpha \in A}$ be a collection of compact sets. Then we have
-    \[
-    \bigcap_{\alpha \in B} K_{\alpha} \neq \emptyset \quad \text{for all finite subset }
-    B \subseteq A \implies \bigcap_{\alpha \in A} K_{\alpha} \neq \emptyset.
-    \]
-\end{theorem}
-
-\begin{proof}
-    Assume that $\displaystyle \bigcap_{\alpha \in A} K_{\alpha} = \emptyset$. Then we have
-    \[
-    X = \paren*{\bigcap_{\alpha \in A} K_{\alpha}}^{c} = \bigcup_{\alpha \in A} \paren*{K_{\alpha}}^{c}.
-    \]
-    Since each $K_{\alpha}$ is compact, $K_{\alpha}$ is closed by \Cref{thm:CompactSetIsClosed}. Then we have
-    \[
-    \text{Each } \paren*{K_{\alpha}}^{c} \text{ is open} \implies
-    \set*{\paren*{K_{\alpha}}^{c}}_{\alpha \in A} \text{ is an open cover of } X.
-    \]
-    Since $K_{\alpha} \subseteq X \subseteq \displaystyle \bigcup_{\beta \in A} \paren*{K_{\beta}}^{c}$, we have
-    \[
-    \set{\paren*{K_{\beta}}^{c}}_{\beta \in A} \text{ is an open cover of } K_{\alpha}.
-    \]
-    Since $K_{\alpha}$ is compact, there exists a finite subcover
-    $\set*{\paren*{K_{\beta}}^{c}}_{\beta \in B_{\alpha}}$ of $K_{\alpha}$. Then we have
-    \begin{align*}
-        K_{\alpha} \subseteq \bigcup_{\beta \in B_{\alpha}} \paren*{K_{\beta}}^{c}
-        &= \paren*{\bigcap_{\beta \in B_{\alpha}} K_{\beta}}^{c} \\
-        &\implies K_{\alpha} \cap \paren*{\bigcap_{\beta \in B_{\alpha}} K_{\beta}} = \emptyset \\
-        &\implies \bigcap_{\beta \in B_{\alpha} \cup \set{\alpha}} K_{\beta} = \emptyset.
-    \end{align*}
-    Since $\set{\alpha}$ and $B_{\alpha}$ are finite, $B_{\alpha} \cup \set{\alpha}$ is also finite
-    by \Cref{thm:FiniteUnionOfFiniteSetsIsFinite}, which contradicts the assumption. Therefore, we have
-    \[
-    \bigcap_{\alpha \in A} K_{\alpha} \neq \emptyset.
-    \]
 \end{proof}

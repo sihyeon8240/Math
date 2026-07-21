@@ -60,18 +60,18 @@
 \begin{theorem} \label{thm:PropertiesOfCardinality}
     Let $X, Y$ be finite sets. Then we have the following properties:
     \begin{enumerate}[label=\textbf{(\Alph*)}]
-        \item If there exists an injection $f: X \to Y$, then we have $\abs{X} \leq \abs{Y}$.
-        \item If there exists a surjection $f: X \to Y$, then we have $\abs{X} \geq \abs{Y}$.
-        \item If there exists a bijection $f: X \to Y$, then we have $\abs{X} = \abs{Y}$.
+        \item If there exists an injection $f: X \to Y$, then we have $\abs*{X} \leq \abs*{Y}$.
+        \item If there exists a surjection $f: X \to Y$, then we have $\abs*{X} \geq \abs*{Y}$.
+        \item If there exists a bijection $f: X \to Y$, then we have $\abs*{X} = \abs*{Y}$.
     \end{enumerate}
     Moreover, the converses of \textbf{(A)}, \textbf{(B)}, and \textbf{(C)} are also true.
     \\[6mm]
     The contraposition of \textbf{(A)} is called the \textbf{pigeonhole principle}, which states that
-    if $\abs{X} > \abs{Y}$, then there exists no injection $f: X \to Y$.
+    if $\abs*{X} > \abs*{Y}$, then there exists no injection $f: X \to Y$.
 \end{theorem}
 
 \begin{proof}
-    Let $\abs{X} = m$ and $\abs{Y} = n$ for some $m, n \in \N$. Then there exist bijections
+    Let $\abs*{X} = m$ and $\abs*{Y} = n$ for some $m, n \in \N$. Then there exist bijections
     $f_{X}: J_{m} \to X$ and $f_{Y}: J_{n} \to Y$.
     By \Cref{thm:InverseFunctionIsBijection,thm:PropertiesOfCompositionFunctions}, the composition
     \[
@@ -107,7 +107,7 @@
 \end{lemma}
 
 \begin{proof}
-    Let $m = \abs{X}$ and $n = \abs{Y}$. There exist bijections $f: J_{m} \to X$ and $g: J_{n} \to Y$.
+    Let $m = \abs*{X}$ and $n = \abs*{Y}$. There exist bijections $f: J_{m} \to X$ and $g: J_{n} \to Y$.
     Let $h: J_{m + n} \to X \cup Y$ be a function defined by
     \[
     h(i) = \begin{cases}
@@ -175,7 +175,7 @@
 \end{lemma}
 
 \begin{proof}
-    Let $m = \abs{X}$ and $n = \abs{Y}$. There exist bijections $f: J_{m} \to X$ and $g: J_{n} \to Y$.
+    Let $m = \abs*{X}$ and $n = \abs*{Y}$. There exist bijections $f: J_{m} \to X$ and $g: J_{n} \to Y$.
     Let $h: J_{mn} \to X \times Y$ be a function defined by
     \[
     h(i) = \paren*{f\paren*{\ceil*{\dfrac{i}{n}}}, g\paren*{i - n\paren*{\ceil*{\dfrac{i}{n}} - 1}}}

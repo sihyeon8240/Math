@@ -13,7 +13,7 @@ Let $X$ be a set. A function $d: X \times X \to \R$ is called a \textbf{metric} 
 \begin{theorem} \label{thm:StandardMetricOnRn}
     For some $n \in \N$, let $d: \R^{n} \times \R^{n} \to \R$ be a function defined by
     \[
-    d(\bm{x}, \bm{y}) = \norm{\bm{x} - \bm{y}} = \sqrt{\sum_{k = 1}^{n} (x_{k} - y_{k})^{2}}
+    d(\bm{x}, \bm{y}) = \norm*{\bm{x} - \bm{y}} = \sqrt{\sum_{k = 1}^{n} (x_{k} - y_{k})^{2}}
     \]
     for all $\bm{x}, \bm{y} \in \R^{n}$. Then $d$ is a metric on $\R^{n}$.
     Especially, $d$ is called the \textbf{standard metric} on $\R^{n}$.
@@ -24,16 +24,16 @@ Let $X$ be a set. A function $d: X \times X \to \R$ is called a \textbf{metric} 
     \begin{itemize}
         \item $d(\bm{x}, \bm{y}) \geq 0$ is trivial. Also, we have
         \begin{align*}
-            d(\bm{x}, \bm{y}) = 0 &\iff \norm{\bm{x} - \bm{y}} = 0 \\
+            d(\bm{x}, \bm{y}) = 0 &\iff \norm*{\bm{x} - \bm{y}} = 0 \\
             &\iff x_{k} = y_{k} \text{ for all } k = 1, 2, \dots, n \\
             &\iff \bm{x} = \bm{y}.
         \end{align*}
         \item $d(\bm{x}, \bm{y}) = d(\bm{y}, \bm{x})$ is trivial.
         \item By \Cref{thm:PropertiesOfInnerProductNormDistance}, we have
         \begin{align*}
-            d(\bm{x}, \bm{z}) &= \norm{\bm{x} - \bm{z}} =
-            \norm{(\bm{x} - \bm{y}) + (\bm{y} - \bm{z})} \\
-            &\leq \norm{\bm{x} - \bm{y}} + \norm{\bm{y} - \bm{z}}
+            d(\bm{x}, \bm{z}) &= \norm*{\bm{x} - \bm{z}} =
+            \norm*{(\bm{x} - \bm{y}) + (\bm{y} - \bm{z})} \\
+            &\leq \norm*{\bm{x} - \bm{y}} + \norm*{\bm{y} - \bm{z}}
             = d(\bm{x},\bm{y}) + d(\bm{y},\bm{z})
         \end{align*}
     \end{itemize}
@@ -59,7 +59,7 @@ Let $X$ be a set. A function $d: X \times X \to \R$ is called a \textbf{metric} 
     \[
     N_{r}(p) \coloneqq \setbuilder*{q \in X}{d(p, q) < r}.
     \]
-    Also, we define the \textbf{deleted neighborhood} of $p$ with radius $r$ as
+    Also, we define the \textbf{punctured neighborhood} of $p$ with radius $r$ as
     \[
     Q_{r}(p) \coloneqq N_{r}(p) \setminus \set*{p} = \setbuilder*{q \in X}{0 < d(p, q) < r}.
     \]
@@ -191,24 +191,3 @@ Let $X$ be a set. A function $d: X \times X \to \R$ is called a \textbf{metric} 
     E \text{ is closed} \iff E^{c} \text{ is open.}
     \]
 \end{corollary}
-
-\bigskip
-
-\begin{theorem} \label{thm:ArbitraryUnionOfOpenSetsIsOpen}
-    Let $(X, d)$ be a metric space. Let $E_{y} \subseteq X$ be an open set for each $y \in Y$. Then we have
-    \[
-    \bigcup_{y \in Y} E_{y} \text{ is open}
-    \]
-    whether $Y$ is finite, countable, or uncountable. This theorem states that an arbitrary union of open sets is open.
-\end{theorem}
-
-\begin{proof}
-    Let $p \in \displaystyle \bigcup_{y \in Y} E_{y}$ be given. Then there exists some $y_{0} \in Y$
-    such that $p \in E_{y_{0}}$. Since $E_{y_{0}}$ is open, there exists some $r \in \R^{+}$
-    such that $N_{r}(p) \subseteq E_{y_{0}}$. Then we have
-    \[
-    N_{r}(p) \subseteq E_{y_{0}} \subseteq \bigcup_{y \in Y} E_{y},
-    \]
-    which implies that $p$ is an interior point of $\displaystyle \bigcup_{y \in Y} E_{y}$.
-    Since $p$ is arbitrary, $\displaystyle \bigcup_{y \in Y} E_{y}$ is open.
-\end{proof}

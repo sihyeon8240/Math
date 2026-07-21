@@ -1,12 +1,12 @@
 \begin{section}{Euclidean Spaces}
 
-For each $n \in \N$, we define the \textbf{Euclidean $n$-space} $\R^{n}$
-as the set of all ordered $n$-tuples of real numbers, i.e,
+For each $n \in \N$, we call the set of all ordered $n$-tuples of real numbers as
+the \textbf{Euclidean $n$-space}, and denote it as $\R^{n}$. We can identify $\R^{n}$ as
 \[
-\R^{n} \coloneqq \setbuilder*{\bm{x} = (x_{1}, x_{2}, \dots, x_{n})}{x_{k} \in \R \text{ for all } k = 1, 2, \dots, n}
+\R^{n} = \setbuilder*{\bm{x} = (x_{1}, x_{2}, \dots, x_{n})}{x_{k} \in \R \text{ for all } k = 1, 2, \dots, n},
 \]
-where $x_{1}, x_{2}, \dots, x_{n}$ are called the \textbf{coordinates} of $\bm{x}$.
-The elements of $\R^{n}$ with $n > 1$ are called \textbf{vectors} or \emph{points}, which are denoted by boldface letters.
+where $x_{1}, x_{2}, \dots, x_{n}$ are called the \textbf{coordinates} of $\bm{x}$. The elements of $\R^{n}$
+with $n > 1$ are called \textbf{points} (or \emph{vectors}), which are denoted by boldface letters.
 \\[6mm]
 Let $\bm{x}, \bm{y} \in \R^{n}$ for some $n \in \N$, and let $\alpha \in \R$. We define the following operations on $\R^{n}$:
 \begin{itemize}
@@ -24,13 +24,13 @@ Then, $\R^{n}$ is a \emph{vector space} over $\R$ with the zero vector $\bm{0} =
     \]
     The \textbf{norm} of $\bm{x}$ is defined as
     \[
-    \norm{\bm{x}} \coloneqq \sqrt{\bm{x} \cdot \bm{x}} = \sqrt{\sum_{k = 1}^{n} x_{k}^{2}}.
+    \norm*{\bm{x}} \coloneqq \sqrt{\bm{x} \cdot \bm{x}} = \sqrt{\sum_{k = 1}^{n} x_{k}^{2}}.
     \]
     The \textbf{distance} between $\bm{x}$ and $\bm{y}$ is defined as
     \[
-    d(\bm{x}, \bm{y}) \coloneqq \norm{\bm{x} - \bm{y}} = \sqrt{\sum_{k = 1}^{n} (x_{k} - y_{k})^{2}}.
+    d(\bm{x}, \bm{y}) \coloneqq \norm*{\bm{x} - \bm{y}} = \sqrt{\sum_{k = 1}^{n} (x_{k} - y_{k})^{2}}.
     \]
-    We can confirm that $d(x, y) = \abs{x - y}$ in the case of $n = 1$.
+    We can confirm that $d(x, y) = \abs*{x - y}$ in the case of $n = 1$.
 \end{definition}
 
 \bigskip
@@ -38,9 +38,9 @@ Then, $\R^{n}$ is a \emph{vector space} over $\R$ with the zero vector $\bm{0} =
 \begin{theorem} \label{thm:PropertiesOfInnerProductNormDistance}
     Let $\bm{x}, \bm{y}, \bm{z} \in \R^{n}$ for some $n \in \N$. Then we have the following properties:
     \begin{enumerate}[label=\textbf{(\Alph*)}]
-        \item $\abs{\bm{x} \cdot \bm{y}} \leq \norm{\bm{x}} \cdot \norm{\bm{y}}$.
-        \item $\norm{\bm{x} + \bm{y}} \leq \norm{\bm{x}} + \norm{\bm{y}}$.
-        \item $\norm{\bm{x} - \bm{y}} \geq \abs{\norm{\bm{x}} - \norm{\bm{y}}}$.
+        \item $\abs*{\bm{x} \cdot \bm{y}} \leq \norm*{\bm{x}} \cdot \norm*{\bm{y}}$.
+        \item $\norm*{\bm{x} + \bm{y}} \leq \norm*{\bm{x}} + \norm*{\bm{y}}$.
+        \item $\norm*{\bm{x} - \bm{y}} \geq \abs*{\norm*{\bm{x}} - \norm*{\bm{y}}}$.
     \end{enumerate}
 \end{theorem}
 
@@ -48,24 +48,24 @@ Then, $\R^{n}$ is a \emph{vector space} over $\R$ with the zero vector $\bm{0} =
     \begin{enumerate}[label=\textbf{(\Alph*)}]
         \item By \Cref{cor:CauchySchwarzInequalityForRealNumbers}, we have
             \[
-            \abs{\bm{x} \cdot \bm{y}}^{2} = \abs*{\sum_{k = 1}^{n} x_{k}y_{k}}^{2} \leq
+            \abs*{\bm{x} \cdot \bm{y}}^{2} = \abs*{\sum_{k = 1}^{n} x_{k}y_{k}}^{2} \leq
             \sum_{k = 1}^{n} x_{k}^{2} \cdot \sum_{k = 1}^{n} y_{k}^{2}
-            = \norm{\bm{x}}^{2} \cdot \norm{\bm{y}}^{2}.
+            = \norm*{\bm{x}}^{2} \cdot \norm*{\bm{y}}^{2}.
             \]
         \item By part \textbf{(A)}, we have
             \begin{align*}
-                \norm{\bm{x} + \bm{y}}^{2} &= (\bm{x} + \bm{y}) \cdot (\bm{x} + \bm{y})
-                = \norm{\bm{x}}^{2} + 2\bm{x} \cdot \bm{y} + \norm{\bm{y}}^{2} \\
-                &\leq \norm{\bm{x}}^{2} + 2\abs{\bm{x} \cdot \bm{y}} + \norm{\bm{y}}^{2}
-                \leq \norm{\bm{x}}^{2} + 2\norm{\bm{x}} \cdot \norm{\bm{y}} + \norm{\bm{y}}^{2} \\
-                &= (\norm{\bm{x}} + \norm{\bm{y}})^{2}.
+                \norm*{\bm{x} + \bm{y}}^{2} &= (\bm{x} + \bm{y}) \cdot (\bm{x} + \bm{y})
+                = \norm*{\bm{x}}^{2} + 2\bm{x} \cdot \bm{y} + \norm*{\bm{y}}^{2} \\
+                &\leq \norm*{\bm{x}}^{2} + 2\abs*{\bm{x} \cdot \bm{y}} + \norm*{\bm{y}}^{2}
+                \leq \norm*{\bm{x}}^{2} + 2\norm*{\bm{x}} \cdot \norm*{\bm{y}} + \norm*{\bm{y}}^{2} \\
+                &= (\norm*{\bm{x}} + \norm*{\bm{y}})^{2}.
             \end{align*}
         \item By part \textbf{(B)}, we have
             \begin{align*}
-                &\norm{\bm{x}} = \norm{(\bm{x} - \bm{y}) + \bm{y}} \leq \norm{\bm{x} - \bm{y}}
-                + \norm{\bm{y}} \implies \norm{\bm{x}} - \norm{\bm{y}} \leq \norm{\bm{x} - \bm{y}}. \\
-                &\norm{\bm{y}} = \norm{(\bm{y} - \bm{x}) + \bm{x}} \leq \norm{\bm{y} - \bm{x}}
-                + \norm{\bm{x}} \implies \norm{\bm{y}} - \norm{\bm{x}} \leq \norm{\bm{x} - \bm{y}}.
+                &\norm*{\bm{x}} = \norm*{(\bm{x} - \bm{y}) + \bm{y}} \leq \norm*{\bm{x} - \bm{y}}
+                + \norm*{\bm{y}} \implies \norm*{\bm{x}} - \norm*{\bm{y}} \leq \norm*{\bm{x} - \bm{y}}. \\
+                &\norm*{\bm{y}} = \norm*{(\bm{y} - \bm{x}) + \bm{x}} \leq \norm*{\bm{y} - \bm{x}}
+                + \norm*{\bm{x}} \implies \norm*{\bm{y}} - \norm*{\bm{x}} \leq \norm*{\bm{x} - \bm{y}}.
             \end{align*}
     \end{enumerate}
 \end{proof}
