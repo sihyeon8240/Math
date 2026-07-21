@@ -9,7 +9,7 @@
     Let $X_{n + 1}, X_{n + 2}, \dots$ be countable sets. Then, by \Cref{thm:CountableUnionOfCountableSetsIsCountable},
     $\displaystyle \bigcup_{n = 1}^{\infty} X_{n}$ is countable. Assume that $\displaystyle \bigcup_{i = 1}^{n} X_{i}$
     is finite. Then $\displaystyle X_{1} \subseteq \bigcup_{i = 1}^{n} X_{i}$ is finite by
-    \Cref{thm:SubsetOfFiniteSetIsFinite}, which contradicts \Cref{thm:CountableSetIsInfinite}. Thus
+    \Cref{thm:SubsetOfFiniteSetIsFinite}, which contradicts \Cref{thm:CountableSetsAreInfinite}. Thus
     $\displaystyle \bigcup_{i = 1}^{n} X_{i}$ is infinite. Since $\displaystyle \bigcup_{i = 1}^{n} X_{i}
     \subseteq \bigcup_{n = 1}^{\infty} X_{n}$, by \Cref{thm:InfiniteSubsetOfCountableSetIsCountable},
     $\displaystyle \bigcup_{i = 1}^{n} X_{i}$ is countable. 
@@ -151,7 +151,7 @@
     \[
     f(n) = e_{n} \text{ for all } n \in \N.
     \]
-    Then $f$ is injective. By \Cref{lem:NIsInfinite,thm:InjectionFromInfiniteSetIsInfinite}, $X$ is infinite.
+    Then $f$ is injective. By \Cref{lem:NIsInfinite,thm:InjectionFromInfiniteSetImpliesInfinite}, $X$ is infinite.
     \\[6mm]
     Assume that $X$ is countable. Then, there exists a bijection $g: \N \to X$.
     Let $X = \set*{g(1), g(2), g(3), \dots}$, where
@@ -180,7 +180,7 @@
     \[
     f(n) = \dfrac{1}{n + 1} \text{ for all } n \in \N.
     \]
-    Then $f$ is injective. By \Cref{lem:NIsInfinite,thm:InjectionFromInfiniteSetIsInfinite},
+    Then $f$ is injective. By \Cref{lem:NIsInfinite,thm:InjectionFromInfiniteSetImpliesInfinite},
     $[0, 1)$ is infinite. We will prove that $[0, 1) \subseteq \R$ is uncountable,
     which implies that $\R$ is uncountable by \Cref{thm:InfiniteSubsetOfCountableSetIsCountable}.
     \\[6mm]
@@ -214,7 +214,7 @@
     F_{N}\paren*{\set*{a_{n}}_{n = 1}^{N - 1}} = \set*{a_{n}}_{n = 1}^{N - 1} \cup \set*{1}_{n = N}^{\infty}
     \text{ for all } \set*{a_{n}}_{n = 1}^{N - 1} \in \displaystyle \prod_{n = 1}^{N - 1} \set*{0, 1}.
     \]
-    Then $F_{N}$ is surjective. By \Cref{thm:ProductOfFiniteSetsIsFinite,thm:SurjectionFromFiniteSetIsFinite},
+    Then $F_{N}$ is surjective. By \Cref{thm:ProductOfFiniteSetsIsFinite,thm:SurjectionFromFiniteSetImpliesFinite},
     $Z_{N}$ is finite. Then, by \Cref{thm:CountableUnionOfFiniteSetsIsCountable},
     $Z = \displaystyle \bigcup_{N = 1}^{\infty} Z_{N}$ is countable.
     \\[6mm]

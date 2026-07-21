@@ -11,7 +11,7 @@ A set $X$ is said to be \textbf{at most countable} if $X$ is either finite or co
 \end{theorem}
 
 \begin{proof}
-    Assume that $X \setminus Y$ is finite. Since $Y$ is finite, by \Cref{thm:UnionAndIntersectionOfTwoFiniteSetsAreFinite},
+    Assume that $X \setminus Y$ is finite. Since $Y$ is finite, by \Cref{thm:UnionOfTwoFiniteSetsIsFinite},
     $(X \setminus Y) \cup Y$ is finite. Then, by \Cref{thm:SubsetOfFiniteSetIsFinite},
     $X \subseteq (X \setminus Y) \cup Y$ is finite, which contradicts the assumption.
     Therefore, $X \setminus Y$ is infinite.
@@ -19,7 +19,7 @@ A set $X$ is said to be \textbf{at most countable} if $X$ is either finite or co
 
 \bigskip
 
-\begin{theorem} \label{thm:InjectionFromInfiniteSetIsInfinite}
+\begin{theorem} \label{thm:InjectionFromInfiniteSetImpliesInfinite}
     Let $X$ be an infinite set. If there exists a injection $f: X \to Y$, then $Y$ is infinite.
 \end{theorem}
 
@@ -31,7 +31,7 @@ A set $X$ is said to be \textbf{at most countable} if $X$ is either finite or co
         f^{-1}(y_{0}), & \text{Otherwise}
     \end{dcases}
     \]
-    where $y_{0} \in f(X)$ is fixed. Then $g$ is surjective. By \Cref{thm:SurjectionFromFiniteSetIsFinite},
+    where $y_{0} \in f(X)$ is fixed. Then $g$ is surjective. By \Cref{thm:SurjectionFromFiniteSetImpliesFinite},
     $X$ is finite, which is a contradiction. Therefore, $Y$ is infinite.
 \end{proof}
 
@@ -52,13 +52,13 @@ A set $X$ is said to be \textbf{at most countable} if $X$ is either finite or co
 
 \bigskip
 
-\begin{theorem} \label{thm:CountableSetIsInfinite}
+\begin{theorem} \label{thm:CountableSetsAreInfinite}
     Any countable set is infinite.
 \end{theorem}
 
 \begin{proof}
     Let $X$ be a countable set. Then there exists a bijection $f: \N \to X$. By
-    \Cref{thm:InjectionFromInfiniteSetIsInfinite,lem:NIsInfinite}, $X$ is infinite.
+    \Cref{thm:InjectionFromInfiniteSetImpliesInfinite,lem:NIsInfinite}, $X$ is infinite.
 \end{proof}
 
 \bigskip
@@ -79,7 +79,7 @@ A set $X$ is said to be \textbf{at most countable} if $X$ is either finite or co
     Let $f: \N \to \Z$ be a function defined by
     \[
     f(n) = \begin{dcases}
-        -\frac{n}{2}, & \text{if } n \text{ is even} \\
+        - \frac{n}{2}, & \text{if } n \text{ is even} \\
         \frac{n - 1}{2}, & \text{if } n \text{ is odd}
     \end{dcases}
     \]
@@ -88,7 +88,7 @@ A set $X$ is said to be \textbf{at most countable} if $X$ is either finite or co
         \item \textbf{Injectivity:} Assume that $f(n_1) = f(n_2)$ for some $n_1, n_2 \in \N$. Since $f(n) \geq 0$
         for odd $n$ and $f(n) < 0$ for even $n$, we have $n_1$ and $n_2$ are either both even or both odd.
             \begin{itemize}
-                \item If both $n_1$ and $n_2$ are even, then we have $-\dfrac{n_1}{2} = -\dfrac{n_2}{2}$,
+                \item If both $n_1$ and $n_2$ are even, then we have $- \dfrac{n_1}{2} = - \dfrac{n_2}{2}$,
                 which implies $n_1 = n_2$.
                 \item If both $n_1$ and $n_2$ are odd, then we have $\dfrac{n_1 - 1}{2} = \dfrac{n_2 - 1}{2}$,
                 which implies $n_1 = n_2$.
@@ -97,7 +97,7 @@ A set $X$ is said to be \textbf{at most countable} if $X$ is either finite or co
         \item \textbf{Surjectivity:} Let $k \in \Z$ be given. We need to find an $n \in \N$ such that $f(n) = k$.
             \begin{itemize}
                 \item If $k \geq 0$, let $n = 2k + 1$. Then we have $f(n) = \dfrac{n - 1}{2} = \dfrac{2k}{2} = k$.
-                \item If $k < 0$, let $n = -2k$. Then we have $f(n) = -\dfrac{n}{2} = -\dfrac{-2k}{2} = k$.
+                \item If $k < 0$, let $n = -2k$. Then we have $f(n) = - \dfrac{n}{2} = - \dfrac{-2k}{2} = k$.
             \end{itemize}
             Thus $f$ is surjective.
     \end{itemize}
@@ -154,7 +154,7 @@ A set $X$ is said to be \textbf{at most countable} if $X$ is either finite or co
 \begin{proof}
     Let $X$ be a countable set and let $Y \subseteq X$ be an infinite subset. Since $X$ is countable, there exists
     a bijection $f: \N \to X$. By \Cref{thm:PropertiesOfRestrictionFunctions}, $f|_{f^{-1}(Y)}^{Y}: f^{-1}(Y) \to Y$
-    is bijective. Then, by \Cref{thm:SurjectionFromFiniteSetIsFinite}, $f^{-1}(Y) \subseteq \N$ is infinite.
+    is bijective. Then, by \Cref{thm:SurjectionFromFiniteSetImpliesFinite}, $f^{-1}(Y) \subseteq \N$ is infinite.
     \\[6mm]
     By \Cref{lem:InfiniteSubsetOfNIsCountable}, $f^{-1}(Y)$ is countable. Then there exists a bijection $g: \N \to f^{-1}(Y)$.
     The composition $f|_{f^{-1}(Y)}^{Y} \circ g: \N \to Y$ is bijective, which implies that $Y$ is countable.
@@ -181,7 +181,7 @@ A set $X$ is said to be \textbf{at most countable} if $X$ is either finite or co
     k_{1} = k_{2}$. Thus $g$ is injective.
     \\[6mm]
     Since $g$ is injective, by \Cref{thm:PropertiesOfRestrictionFunctions}, $g|^{g(X)}: X \to g(X)$ is bijective.
-    Since $X$ is infinite, $g(X) \subseteq \N$ is infinite by \Cref{thm:InjectionFromInfiniteSetIsInfinite}. Then, by
+    Since $X$ is infinite, $g(X) \subseteq \N$ is infinite by \Cref{thm:InjectionFromInfiniteSetImpliesInfinite}. Then, by
     \Cref{lem:InfiniteSubsetOfNIsCountable}, $g(X)$ is countable, which implies that $X$ is countable.
 \end{proof}
 

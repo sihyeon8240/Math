@@ -15,7 +15,7 @@ separately in \hyperref[chap:ConstructionOfR]{Appendix}. In this section, we wil
 \end{theorem}
 
 \begin{proof}
-    Assume that $x, y \in \R$ and $x > 0$. Let $E$ be defined as follows:
+    Let $x \in \R^{+}$ and $y \in \R$ be given. Let $E$ be defined as follows:
     \[
     E \coloneqq \setbuilder*{nx}{nx \leq y, \; n \in \N}.
     \]
@@ -31,11 +31,11 @@ separately in \hyperref[chap:ConstructionOfR]{Appendix}. In this section, we wil
 \bigskip
 
 \begin{corollary} \label{cor:ArchimedeanPropertyCorollary}
-    For any $\veps \in \R^{+}$ and $b \in \R$ with $b > 1$, there exists some $n \in \N$ such that $b^{-n} < \veps$.
+    For any $\veps \in \R^{+}$ and $b \in (1, + \infty)$, there exists some $n \in \N$ such that $b^{-n} < \veps$.
 \end{corollary}
 
 \begin{proof}
-    For any $n \in \N$ and $x \in \R$ with $x \geq -1$, we have
+    For any $n \in \N$ and $x \in [-1, + \infty)$, we have
     \[
     (1 + x)^{n} \geq 1 + nx.
     \]
@@ -60,7 +60,7 @@ separately in \hyperref[chap:ConstructionOfR]{Appendix}. In this section, we wil
     \begin{itemize}
         \item If $\alpha \geq 0$, then $-1 \in \Z$ is a lower bound of $E$.
         \item If $\alpha < 0$, then by \Cref{thm:ArchimedeanProperty}, there exists some $n \in \N$
-        such that $n > -\alpha$, which implies that $-n \in \Z$ is a lower bound of $E$.
+        such that $n > - \alpha$, which implies that $-n \in \Z$ is a lower bound of $E$.
     \end{itemize}
     Therefore, $E$ is bounded below in $\Z$. By \Cref{thm:BoundedSubsetOfZinZHasExtremum}, $E$ has a unique least element.
     \\[6mm]
@@ -89,7 +89,7 @@ separately in \hyperref[chap:ConstructionOfR]{Appendix}. In this section, we wil
 \bigskip
 
 \begin{theorem} \label{thm:QIsDenseInR}
-    For any $x, y \in \R$ with $x < y$, there exists some $p \in \Q$ such that $x < p < y$.
+    For any $- \infty < x < y < + \infty$, there exists some $p \in \Q$ such that $x < p < y$.
     This theorem states that $\Q$ is \textbf{dense} in $\R$.
 \end{theorem}
 

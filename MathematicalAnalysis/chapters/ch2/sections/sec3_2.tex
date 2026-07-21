@@ -73,7 +73,7 @@
 \begin{proof}
     Let $\abs*{X} = m$ and $\abs*{Y} = n$ for some $m, n \in \N$. Then there exist bijections
     $f_{X}: J_{m} \to X$ and $f_{Y}: J_{n} \to Y$.
-    By \Cref{thm:InverseFunctionIsBijection,thm:PropertiesOfCompositionFunctions}, the composition
+    By \Cref{thm:InverseFunctionIsBijective,thm:PropertiesOfCompositionFunctions}, the composition
     \[
     F \equiv (f_{Y})^{-1} \circ f \circ f_{X}: J_{m} \to J_{n}
     \]
@@ -84,7 +84,7 @@
         \item If $f$ is surjective, then $F$ is surjective, which implies that $m \geq n$.
         \item If $f$ is bijective, then $F$ is bijective, which implies that $m = n$.
     \end{enumerate}
-    Also, by \Cref{thm:InverseFunctionIsBijection,thm:PropertiesOfCompositionFunctions}, the composition
+    Also, by \Cref{thm:InverseFunctionIsBijective,thm:PropertiesOfCompositionFunctions}, the composition
     \[
     f \equiv f_{Y} \circ G \circ (f_{X})^{-1}: X \to Y
     \]
@@ -120,8 +120,8 @@
 
 \bigskip
 
-\begin{theorem} \label{thm:UnionAndIntersectionOfTwoFiniteSetsAreFinite}
-    Let $X, Y$ be finite sets. Then the union $X \cup Y$ and intersection $X \cap Y$ are finite.
+\begin{theorem} \label{thm:UnionOfTwoFiniteSetsIsFinite}
+    Let $X, Y$ be finite sets. Then the union $X \cup Y$ is finite.
 \end{theorem}
 
 \begin{proof}
@@ -137,7 +137,7 @@
         \item $Y = (Y \setminus X) \cup (X \cap Y) = B \cup C$.
         \item $X \cup Y = ((X \setminus Y) \cup (Y \setminus X)) \cup (X \cap Y) = (A \cup B) \cup C$.
     \end{itemize}
-    By \Cref{lem:UnionOfTwoDisjointFiniteSetsIsFinite}, $X, Y, X \cup Y$ are finite.
+    By \Cref{lem:UnionOfTwoDisjointFiniteSetsIsFinite}, $X \cup Y$ is finite.
 \end{proof}
 
 \bigskip
@@ -162,7 +162,7 @@
         \bigcup_{k = 1}^{n + 1} X_{k} = \paren*{\bigcup_{k = 1}^{n} X_{k}} \cup X_{n + 1}.
         \]
         By the inductive hypothesis, $\displaystyle \bigcup_{k = 1}^{n} X_{k}$ is finite. Then, by
-        \Cref{thm:UnionAndIntersectionOfTwoFiniteSetsAreFinite}, $\displaystyle \bigcup_{k = 1}^{n + 1} X_{k}$ is finite.
+        \Cref{thm:UnionOfTwoFiniteSetsIsFinite}, $\displaystyle \bigcup_{k = 1}^{n + 1} X_{k}$ is finite.
         Thus $P(n + 1)$ is true whenever $P(n)$ is true.
     \end{itemize}
     By the principle of mathematical induction, $P(n)$ is true for all $n \in \N$.

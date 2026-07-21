@@ -62,7 +62,7 @@ Especially, if $X = \emptyset$, we define $\abs*{X} = 0$. $X$ is said to be \tex
 
 \bigskip
 
-\begin{lemma} \label{lem:SurjectionFromJnIsFinite}
+\begin{lemma} \label{lem:SurjectionFromJnImpliesFinite}
     Let $J_{n}$ be given for some $n \in \N$. If there exists an surjection $f: J_{n} \to Y$, then $Y$ is finite.
 \end{lemma}
 
@@ -87,14 +87,14 @@ Especially, if $X = \emptyset$, we define $\abs*{X} = 0$. $X$ is said to be \tex
 
 \bigskip
 
-\begin{theorem} \label{thm:SurjectionFromFiniteSetIsFinite}
+\begin{theorem} \label{thm:SurjectionFromFiniteSetImpliesFinite}
     Let $X$ be a finite set. If there exists an surjection $f: X \to Y$, then $Y$ is finite.
 \end{theorem}
 
 \begin{proof}
     Let $f: X \to Y$ be a surjective function. Since $X$ is finite, there exists a bijection $g: J_{n} \to X$
     for some $n \in \N$. Then, by \Cref{thm:PropertiesOfCompositionFunctions}, the composition $f \circ g: J_{n} \to Y$
-    is surjective. Therefore, by \Cref{lem:SurjectionFromJnIsFinite}, $Y$ is finite.
+    is surjective. Therefore, by \Cref{lem:SurjectionFromJnImpliesFinite}, $Y$ is finite.
 \end{proof}
 
 \bigskip

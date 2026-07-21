@@ -1,3 +1,59 @@
-\begin{section}{Perfect Sets}
+\begin{section}{Connected Sets}
+
+Let $(X, d)$ be a metric space and $E \subseteq X$. $E$ is called \textbf{connected}
+if there exists no pair of sets $A, B \subseteq X$ such that
+\begin{itemize}
+    \item $\emptyset \neq A \subseteq E$ and $\emptyset \neq B \subseteq E$.
+    \item $\overline{A} \cap B = A \cap \overline{B} = \emptyset$.
+    \item $E = A \cup B$.
+\end{itemize}
+Such pair of $A$ and $B$ is called \textbf{separated}. If $E$ is not connected, then $E$ is called \textbf{disconnected}.
+
+\bigskip
+
+\begin{theorem}
+    Let $(\R, \norm*{\cdot})$ be given. Then $E \subseteq \R$ is connected if and only if
+    \[
+    a < x < b \implies x \in E \quad \text{for all } a, b \in E \text{ and } x \in \R.
+    \]
+\end{theorem}
+
+\begin{proof}
+    \textbf{($\implies$)} Let $E \subseteq \R$ be connected. Assume that there exist $a, b \in E$ and $x \in \R$ such that
+    \[
+    a < x < b \text{ and } x \notin E.
+    \]
+    Let $A, B$ be sets defined by
+    \begin{itemize}
+        \item $A \coloneqq E \cap (-\infty, x) \subseteq E$.
+        \item $B \coloneqq E \cap (x, \infty) \subseteq E$.
+    \end{itemize}
+    Then we have
+    \begin{itemize}
+        \item $A \neq \emptyset$ and $B \neq \emptyset$ since $a \in A$ and $b \in B$.
+        \item $\overline{A} \cap B = A \cap \overline{B} = \emptyset$.
+        \item $E = A \cup B$ since $x \notin E$.
+    \end{itemize}
+    Thus $A$ and $B$ are separated, which is a contradiction. Therefore, we have
+    \[
+    a < x < b \implies x \in E \quad \text{for all } a, b \in E \text{ and } x \in \R.
+    \]
+    \\[6mm]
+    \textbf{($\impliedby$)} Let $E \subseteq \R$ be a set such that
+    \[
+    a < x < b \implies x \in E \quad \text{for all } a, b \in E \text{ and } x \in \R.
+    \]
+    Assume that $E$ is disconnected. Then there exist separated sets $A, B \subseteq X$ such that
+    \begin{itemize}
+        \item $\emptyset \neq A \subseteq E$ and $\emptyset \neq B \subseteq E$.
+        \item $\overline{A} \cap B = A \cap \overline{B} = \emptyset$.
+        \item $E = A \cup B$.
+    \end{itemize}
+    Let $a \in A$ and $b \in B$ be given. Without loss of generality, assume that $a < b$. Let
+    \[
+    x \coloneqq \sup\paren*{A \cap [a, b]},
+    \]
+    whose \emph{existence} is guaranteed by the \hyperref[def:LeastUpperBoundProperty]{least upper bound property}.
+\end{proof}
 
 \end{section}
