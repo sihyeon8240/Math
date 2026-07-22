@@ -7,11 +7,12 @@ if there exists no pair of sets $A, B \subseteq X$ such that
     \item $\overline{A} \cap B = A \cap \overline{B} = \emptyset$.
     \item $E = A \cup B$.
 \end{itemize}
-Such pair of $A$ and $B$ is called \textbf{separated}. If $E$ is not connected, then $E$ is called \textbf{disconnected}.
+Such pair of sets $A$ and $B$ is called \textbf{separated}.
+If $E$ is not connected, then $E$ is called \textbf{disconnected}.
 
 \bigskip
 
-\begin{theorem}
+\begin{theorem} \label{thm:ConnectedSetsInR}
     Let $(\R, \norm*{\cdot})$ be given. Then $E \subseteq \R$ is connected if and only if
     \[
     a < x < b \implies x \in E \quad \text{for all } a, b \in E \text{ and } x \in \R.
@@ -43,7 +44,7 @@ Such pair of $A$ and $B$ is called \textbf{separated}. If $E$ is not connected, 
     \[
     a < x < b \implies x \in E \quad \text{for all } a, b \in E \text{ and } x \in \R.
     \]
-    Assume that $E$ is disconnected. Then there exist separated sets $A, B \subseteq X$ such that
+    Assume that $E$ is disconnected. Then there exist separated sets $A, B \subseteq \R$ such that
     \begin{itemize}
         \item $\emptyset \neq A \subseteq E$ and $\emptyset \neq B \subseteq E$.
         \item $\overline{A} \cap B = A \cap \overline{B} = \emptyset$.
@@ -51,9 +52,51 @@ Such pair of $A$ and $B$ is called \textbf{separated}. If $E$ is not connected, 
     \end{itemize}
     Let $a \in A$ and $b \in B$ be given. Without loss of generality, assume that $a < b$. Let
     \[
-    x \coloneqq \sup\paren*{A \cap [a, b]},
+    \alpha \coloneqq \sup\paren*{A \cap [a, b]} \in \R,
     \]
-    whose \emph{existence} is guaranteed by the \hyperref[def:LeastUpperBoundProperty]{least upper bound property}.
+    where we have
+    \begin{itemize}
+        \item $a \in A \implies A \cap [a, b] \neq \emptyset$.
+        \item $A \cap [a, b]$ is bounded above by $b$.
+    \end{itemize}
+    Then the \emph{existence} of $\alpha$ is guaranteed by the \emph{least upper bound property}.
+    By \Cref{thm:SupremumInClosure}, we have
+    \[
+    \alpha \in \overline{\paren*{A \cap [a, b]}} = \paren*{A \cap [a, b]} \cup \paren*{A \cap [a, b]}'.
+    \]
+    By \Cref{def:LimitIsolatedInteriorPoints}, it is clear that
+    \[
+    \paren*{A \cap [a, b]}' \subseteq A'.
+    \]
+    Thus we have
+    \[
+    \alpha \in \paren*{A \cap [a, b]} \subseteq A \quad \text{or} \quad
+    \alpha \in \paren*{A \cap [a, b]}' \subseteq A' \implies \alpha \in \overline{A}.
+    \]
+    Then the following statements hold:
+    \begin{itemize}
+        \item $\alpha = \sup\paren*{A \cap [a, b]} \implies a \leq \alpha \leq b$.
+        \item $\alpha \in \overline{A} \implies \alpha \notin B \implies \alpha \neq b$.
+    \end{itemize}
+    If $\alpha \notin A$, then we have
+    \begin{itemize}
+        \item $\alpha \neq a \implies a < \alpha < b$
+        \item $\alpha \notin A$ and $\alpha \notin B \implies \alpha \notin E$
+    \end{itemize}
+    which is a contradiction. Otherwise, we have
+    \[
+    \alpha \in A \implies \alpha \notin \overline{B}.
+    \]
+    Then there exists $r \in \paren*{0, b - \alpha}$ such that
+    \[
+    \widetilde{N}_{r}(\alpha) \cap B = \emptyset \implies \beta \coloneqq \alpha + r \notin B.
+    \]
+    Then we have
+    \begin{itemize}
+        \item $a \leq \alpha < \beta < b$
+        \item $\beta > \alpha \implies \beta \notin A \implies \beta \notin E$
+    \end{itemize}
+    which is a contradiction. Therefore, we conclude that $E$ is connected.
 \end{proof}
 
 \end{section}

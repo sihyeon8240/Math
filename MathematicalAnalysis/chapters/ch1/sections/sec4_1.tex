@@ -1,7 +1,7 @@
 \begin{section}{The Real Field}
 
 There exists an ordered field $(\R, +, \cdot)$ which has the
-\hyperref[def:LeastUpperBoundProperty]{least upper bound property}. Moreover, $\R$ contains $\Q$ as a subfield, i.e.,
+\emph{least upper bound property}. Moreover, $\R$ contains $\Q$ as a subfield, i.e.,
 $\Q \subseteq \R$ and the operations of addition and multiplication on $\R$ coincide with those on $\Q$.
 \\[6mm]
 We can construct $\R$ from $\Q$. The construction of $\R$ is rather complicated, so it will be discussed
@@ -156,7 +156,7 @@ separately in \hyperref[chap:ConstructionOfR]{Appendix}. In this section, we wil
 \bigskip
 
 \begin{definition} \label{def:GreedyBaseExpansionOfRealNumbers}
-    Let $y \in [0, 1)$ and $b \in \N$ be given with $b \geq 2$. A sequence $\set*{a_{n}}_{n = 1}^{\infty}$
+    Let $y \in [0, 1)$ and $b \in \N$ be given with $b \geq 2$. A sequence $\paren*{a_{n}}_{n = 1}^{\infty}$
     is called the \textbf{greedy base $b$ expansion} of $y$ if for each $n \in \N$, we have
     \[
     0 \leq y - \sum_{k = 1}^{n} \frac{a_{k}}{b^{k}} < \frac{1}{b^{n}}
@@ -172,8 +172,8 @@ separately in \hyperref[chap:ConstructionOfR]{Appendix}. In this section, we wil
 \end{theorem}
 
 \begin{proof}
-    Let $\set*{t_{n}}_{n = 1}^{\infty}$, $\set*{T_{n}}_{n = 1}^{\infty}$
-    and $\set*{a_{n}}_{n = 1}^{\infty}$ be defined as follows:
+    Let $\paren*{t_{n}}_{n = 1}^{\infty}$, $\paren*{T_{n}}_{n = 1}^{\infty}$
+    and $\paren*{a_{n}}_{n = 1}^{\infty}$ be defined as follows:
     \begin{itemize}
         \item $t_{1} \coloneqq by$, $T_{1} \coloneqq \setbuilder*{t \in S_{b}}{t \leq t_{1}}$, $a_{1} \coloneqq \max T_{1}$.
         \item $t_{2} \coloneqq b^{2}y - ba_{1}$, $T_{2} \coloneqq \setbuilder*{t \in S_{b}}{t \leq t_{2}}$,
@@ -185,7 +185,7 @@ separately in \hyperref[chap:ConstructionOfR]{Appendix}. In this section, we wil
         for all $n \in \N$ with $n \geq 2$,
     \end{itemize}
     Assume that $0 \leq t_{n} < b$ for some $n \in \N$. Then, since $0 \in T_{n}$ and $T_{n}$ is bounded above, $T_{n}$ has
-    a greatest element by \Cref{thm:BoundedSubsetOfZinZHasExtremum}, which implies that $\set*{a_{n}}_{n = 1}^{\infty}$
+    a greatest element by \Cref{thm:BoundedSubsetOfZinZHasExtremum}, which implies that $\paren*{a_{n}}_{n = 1}^{\infty}$
     is well-defined. Let $P(n)$ be the statement that
     \[
     P(n) : 0 \leq t_{n} < b \text{ and } a_{n} \text{ is well-defined}.

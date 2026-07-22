@@ -1,3 +1,71 @@
 \begin{section}{Convergent Sequences}
 
+Let $(X, d)$ be a metric space. A \textbf{sequence} $\paren*{x_{n}}_{n = 1}^{\infty}$
+in $(X, d)$ is a function $f: \N \to X$, where $x_{n} = f(n)$ for each $n \in \N$.
+\\[6mm]
+A sequence $\paren*{x_{n}}_{n = 1}^{\infty}$ in $(X, d)$ is said to be
+\textbf{convergent} if there exists $x \in X$ such that
+\[
+\text{For any } \veps \in \R^{+}, \text{ there exists } N \in \N \text{ such that } n \geq N \implies d(x_{n}, x) < \veps.
+\]
+In this case, we say that
+\begin{itemize}
+    \item $\paren*{x_{n}}_{n = 1}^{\infty}$ \textbf{converges} to $x$.
+    \item $x$ is the \textbf{limit} of $\paren*{x_{n}}_{n = 1}^{\infty}$.
+\end{itemize}
+We denote the limit of $\paren*{x_{n}}_{n = 1}^{\infty}$ by
+\begin{itemize}
+    \item $\displaystyle \lim_{n \to \infty} x_{n} = x$.
+    \item $x_{n} \to x$ as $n \to \infty$.
+\end{itemize}
+If $\paren*{x_{n}}_{n = 1}^{\infty}$ is not convergent, it is said to be \textbf{divergent}.
+
+\bigskip
+
+\begin{example}
+    Let $\paren*{\R, \norm*{\cdot}}$ be given. Let $\paren*{x_{n}}_{n = 1}^{\infty}$
+    be a sequence in $\paren*{\R, \norm*{\cdot}}$ defined by
+    \[
+    x_{n} = \frac{1}{n} \quad \text{for each } n \in \N.
+    \]
+    Then, for each $\veps \in \R^{+}$, we have
+    \[
+    n > \frac{1}{\veps} \implies \norm*{x_{n} - 0} = \abs*{\frac{1}{n} - 0} = \frac{1}{n} < \veps.
+    \]
+    Therefore, $\paren*{x_{n}}_{n = 1}^{\infty}$ converges to $0$.
+    \\[6mm]
+    Let $\paren*{\R^{+}, \norm*{\cdot}}$ be a subspace of $\paren*{\R, \norm*{\cdot}}$.
+    Let $\paren*{x_{n}}_{n = 1}^{\infty}$ be a sequence in $\paren*{\R^{+}, \norm*{\cdot}}$ defined by
+    \[
+    x_{n} = \frac{1}{n} \quad \text{for each } n \in \N.
+    \]
+    By \Cref{thm:ArchimedeanProperty}, for each $y \in \R^{+}$, there exists $N_{y} \in \N$ such that $N_{y} >
+    \frac{1}{y}$. Let
+    \[
+    \veps_{y} \coloneqq y - \frac{1}{N_{y}} \in \R^{+} \quad \text{for each } y \in \R^{+}.
+    \]
+    Then we have
+    \[
+    n > N_{y} \implies \norm*{x_{n} - y} = \abs*{\frac{1}{n} - y} > \abs*{\frac{1}{N_{y}} - y} = \veps_{y}.
+    \]
+    Therefore, $\paren*{x_{n}}_{n = 1}^{\infty}$ diverges in $\paren*{\R^{+}, \norm*{\cdot}}$.
+\end{example}
+
+\bigskip
+
+\begin{remark}
+    Let $(X, d)$ be a metric space. In this textbook, $\paren*{x_{n}}_{n = 1}^{\infty}$ represents
+    a sequence in $(X, d)$, while $\set*{x_{n}}_{n = 1}^{\infty}$ represents a set defined by
+    \[
+    \set*{x_{n}}_{n = 1}^{\infty} \coloneqq \setbuilder*{x_{n}}{n \in \N} \subseteq X.
+    \]
+\end{remark}
+
+\bigskip
+
+\begin{definition} \label{def:BoundedSequence}
+    Let $(X, d)$ be a metric space. A sequence $\paren*{x_{n}}_{n = 1}^{\infty}$ in $(X, d)$ is said to be
+    \textbf{Bounded} if $\set*{x_{n}}_{n = 1}^{\infty}$ is bounded in $(X, d)$. 
+\end{definition}
+
 \end{section}

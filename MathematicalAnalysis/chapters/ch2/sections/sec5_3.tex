@@ -1,9 +1,43 @@
+\begin{proof}
+    \textbf{($\subseteq$)} Let $p \in E \setminus E'$ be given.
+    Since $p \notin E'$, there exists some $r \in \R^{+}$ such that
+    \[
+    E \cap \widetilde{N}_{r}(p) = \emptyset \implies \paren*{E \cap N_{r}(p)} \setminus \set*{p} = \emptyset.
+    \]
+    Since $p \in E$ and $p \in N_{r}(p)$, we have
+    \[
+    E \cap N_{r}(p) = \set*{p},
+    \]
+    which implies that $p$ is an isolated point of $E$.
+    \\[6mm]
+    \textbf{($\supseteq$)} Let $p$ be an isolated point of $E$. Then there exists some $r \in \R^{+}$ such that
+    \[
+    E \cap N_{r}(p) = \set*{p}.
+    \]
+    Then we have
+    \begin{itemize}
+        \item $E \cap \widetilde{N}_{r}(p) = \emptyset \implies p \notin E'$.
+        \item $p \in E$.
+    \end{itemize}
+    Therefore, we have $p \in E \setminus E'$.
+\end{proof}
+
 \bigskip
 
-\begin{lemma} \label{lem:PuncturedNeighborhoodInRnIsNonEmpty}
+\begin{definition} \label{def:Boundary}
+    Let $(X, d)$ be a metric space and $E \subseteq X$. The \textbf{boundary} of $E$,
+    which is denoted by $\partial E$, is defined by
+    \[
+    \partial E \coloneqq \overline{E} \cap \overline{E^{c}}.
+    \]
+\end{definition}
+
+\bigskip
+
+\begin{lemma} \label{lem:DeletedNeighborhoodInRnIsNonEmpty}
     Let $(\R^{n}, \norm*{\cdot})$ be given for some $n \in \N$. Then we have
     \[
-    Q_r(\bm{p}) \neq \emptyset \quad \text{for all } \bm{p} \in \R^{n} \text{ and } r \in \R^{+}.
+    \widetilde{N}_r(\bm{p}) \neq \emptyset \quad \text{for all } \bm{p} \in \R^{n} \text{ and } r \in \R^{+}.
     \]
 \end{lemma}
 
@@ -15,7 +49,7 @@
     \]
     where $\bm{e_{1}} = (1, 0, 0, \dots, 0) \in \R^{n}$. Therefore, we have
     \[
-    \bm{p} \neq \paren*{\bm{p} + \frac{r}{2} \bm{e_{1}}} \in Q_r(\bm{p}) \implies Q_r(\bm{p}) \neq \emptyset.
+    \bm{p} \neq \paren*{\bm{p} + \frac{r}{2} \bm{e_{1}}} \in \widetilde{N}_r(\bm{p}) \implies \widetilde{N}_r(\bm{p}) \neq \emptyset.
     \]
 \end{proof}
 
@@ -68,19 +102,19 @@
     \end{align*}
     For any $\bm{p} \in E \setminus E'$, there exists some $r \in \R^{+}$ such that
     \[
-    E \cap Q_{r}(\bm{p}) = \emptyset \implies Q_{r}(\bm{p}) \subseteq E^{c}.
+    E \cap \widetilde{N}_{r}(\bm{p}) = \emptyset \implies \widetilde{N}_{r}(\bm{p}) \subseteq E^{c}.
     \]
-    By \Cref{lem:PuncturedNeighborhoodInRnIsNonEmpty}, we have
+    By \Cref{lem:DeletedNeighborhoodInRnIsNonEmpty}, we have
     \[
-    Q_{s}(\bm{p}) \cap Q_{r}(\bm{p}) = Q_{\min(s,r)}(\bm{p}) \neq \emptyset\quad \text{for all } s \in \R^{+}.
+    \widetilde{N}_{s}(\bm{p}) \cap \widetilde{N}_{r}(\bm{p}) = \widetilde{N}_{\min(s,r)}(\bm{p}) \neq \emptyset\quad \text{for all } s \in \R^{+}.
     \]
     Then, for any $s \in \R^{+}$, we have
     \begin{align*}
-        Q_{s}(\bm{p}) \cap Q_{r}(\bm{p}) \neq \emptyset &\implies Q_{s}(\bm{p}) \cap
-        \paren*{Q_{r}(\bm{p}) \cap E^{c}} \neq \emptyset \\
-        &\implies \emptyset \neq \paren*{Q_{s}(\bm{p}) \cap E^{c}} \cap Q_{r}(\bm{p})
-        \subseteq Q_{s}(\bm{p}) \cap E^{c} \\
-        &\implies E^{c} \cap Q_{s}(\bm{p}) \neq \emptyset,
+        \widetilde{N}_{s}(\bm{p}) \cap \widetilde{N}_{r}(\bm{p}) \neq \emptyset &\implies \widetilde{N}_{s}(\bm{p}) \cap
+        \paren*{\widetilde{N}_{r}(\bm{p}) \cap E^{c}} \neq \emptyset \\
+        &\implies \emptyset \neq \paren*{\widetilde{N}_{s}(\bm{p}) \cap E^{c}} \cap \widetilde{N}_{r}(\bm{p})
+        \subseteq \widetilde{N}_{s}(\bm{p}) \cap E^{c} \\
+        &\implies E^{c} \cap \widetilde{N}_{s}(\bm{p}) \neq \emptyset,
     \end{align*}
     which implies that $\bm{p} \in (E^{c})'$. Then we have
     \[

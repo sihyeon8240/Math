@@ -6,8 +6,8 @@
     \end{align*}
     for each $n \in \N$. Therefore, the \emph{existence} of the \emph{greedy base $b$ expansion} of $y$ is guaranteed.
     \\[6mm]
-    Next, assume that there exist two sequences $\set*{a_{n}}_{n = 1}^{\infty}$
-    and $\set*{c_{n}}_{n = 1}^{\infty}$ such that for each $n \in \N$, we have
+    Next, assume that there exist two sequences $\paren*{a_{n}}_{n = 1}^{\infty}$
+    and $\paren*{c_{n}}_{n = 1}^{\infty}$ such that for each $n \in \N$, we have
 
     \begin{itemize}
         \item $\displaystyle 0 \leq y - \sum_{k = 1}^{n} \frac{a_{k}}{b^{k}} < \frac{1}{b^{n}}$
@@ -60,8 +60,8 @@
 \bigskip
 
 \begin{theorem} \label{thm:SameGreedyBaseExpansionImpliesEquality}
-    Let $b \in \N$ be given with $b \geq 2$. Let $\set*{a_{n}}_{n = 1}^{\infty}$ be the greedy base $b$ expansion of
-    $a \in [0, 1)$, and let $\set*{c_{n}}_{n = 1}^{\infty}$ be the greedy base $b$ expansion of $c \in [0, 1)$.
+    Let $b \in \N$ be given with $b \geq 2$. Let $\paren*{a_{n}}_{n = 1}^{\infty}$ be the greedy base $b$ expansion of
+    $a \in [0, 1)$, and let $\paren*{c_{n}}_{n = 1}^{\infty}$ be the greedy base $b$ expansion of $c \in [0, 1)$.
     If $a_{n} = c_{n}$ for all $n \in \N$, then we have $a = c$.
 \end{theorem}
 
@@ -93,10 +93,10 @@
 \bigskip
 
 \begin{theorem} \label{thm:NoRealNumberMatchingGreedyBaseExpansion}
-    Let $b \in \N$ be given with $b \geq 2$, and let $\set*{a_{n}}_{n = 1}^{\infty}$ be given with $a_{k} \in S_{b}$
+    Let $b \in \N$ be given with $b \geq 2$, and let $\paren*{a_{n}}_{n = 1}^{\infty}$ be given with $a_{k} \in S_{b}$
     for all $k \in \N$. If there exists no $y \in [0, 1)$ such that
     \[
-    \set*{a_{n}}_{n = 1}^{\infty} \text{ is the greedy base $b$ expansion of $y$},
+    \paren*{a_{n}}_{n = 1}^{\infty} \text{ is the greedy base $b$ expansion of $y$},
     \]
     then there exists some $N \in \N$ such that
     \[
@@ -109,7 +109,7 @@
     \[
     n \geq N \text{ and } a_{n} \neq b - 1,
     \]
-    then there exists $y \in [0, 1)$ such that $\set*{a_{n}}_{n = 1}^{\infty}$ is the \emph{greedy base $b$ expansion} of $y$.
+    then there exists $y \in [0, 1)$ such that $\paren*{a_{n}}_{n = 1}^{\infty}$ is the \emph{greedy base $b$ expansion} of $y$.
     \\[6mm]
     Assume that the condition of the above claim holds. Let $x_{n} \coloneqq \displaystyle \sum_{k = 1}^{n}
     \frac{a_{k}}{b^{k}}$ for each $n \in \N$. Since $a_{k} \in S_{b}$ for all $k \in \N$, we have
@@ -117,7 +117,7 @@
     0 \leq x_{n} \leq \sum_{k = 1}^{n} \frac{b - 1}{b^{k}} = 1 - \frac{1}{b^{n}} < 1 \quad \text{for all } n \in \N.
     \]
     Then, we have that $X \coloneqq \setbuilder*{x_{n}}{n \in \N}$ is bounded above. By the
-    \hyperref[def:LeastUpperBoundProperty]{least upper bound property}, there exists $y = \sup X \geq 0$.
+    \emph{least upper bound property}, there exists $y = \sup X \geq 0$.
     \\[6mm]
     First, we will show that $y < 1$. By the assumption, there exists $m \in \N$ such that $a_{m} \neq b - 1$.
     Then, for all $n > m$, we have
@@ -137,7 +137,7 @@
     y \leq 1 - \frac{1}{b^{m}} < 1 \implies y \in [0, 1).
     \]
     \\[6mm]
-    Next, we will show that $\set*{a_{n}}_{n = 1}^{\infty}$ is the \emph{greedy base $b$ expansion} of $y$.
+    Next, we will show that $\paren*{a_{n}}_{n = 1}^{\infty}$ is the \emph{greedy base $b$ expansion} of $y$.
     Let $n \in \N$ be fixed. By the assumption, there exists $m \in \N$ such that $m \geq n$ and $a_{m} \leq b - 2$.
     \begin{align*}
         &x_{m} = x_{n} + \sum_{k = n + 1}^{m} \frac{a_{k}}{b^{k}} < x_{n} + \sum_{k = n + 1}^{m} \frac{b - 1}{b^{k}} \\
@@ -149,23 +149,23 @@
     \[
     y \leq x_{m} + \frac{1}{b^{m}} < x_{n} + \frac{1}{b^{n}} \implies 0 \leq y - x_{n} < \frac{1}{b^{n}}.
     \]
-    Therefore, $\set*{a_{n}}_{n = 1}^{\infty}$ is the \emph{greedy base $b$ expansion} of $y$.
+    Therefore, $\paren*{a_{n}}_{n = 1}^{\infty}$ is the \emph{greedy base $b$ expansion} of $y$.
 \end{proof}
 
 \bigskip
 
 \begin{theorem} \label{thm:NoRealNumberMatchingGreedyBaseExpansionConverse}
-    Let $b \in \N$ be given with $b \geq 2$ and let $\set*{a_{n}}_{n = 1}^{\infty}$ be given with $a_{k} \in S_{b}$
+    Let $b \in \N$ be given with $b \geq 2$ and let $\paren*{a_{n}}_{n = 1}^{\infty}$ be given with $a_{k} \in S_{b}$
     for all $k \in \N$. If there exists some $N \in \N$ such that
     \[
     a_{n} = b - 1 \quad \text{for all } n \geq N,
     \]
-    then there exists no $y \in [0, 1)$ such that $\set*{a_{n}}_{n = 1}^{\infty}$ is the greedy base $b$ expansion of $y$.
+    then there exists no $y \in [0, 1)$ such that $\paren*{a_{n}}_{n = 1}^{\infty}$ is the greedy base $b$ expansion of $y$.
     This theorem is the converse of \Cref{thm:NoRealNumberMatchingGreedyBaseExpansion}.
 \end{theorem}
 
 \begin{proof}
-    Assume that there exists some $y \in [0, 1)$ such that $\set*{a_{n}}_{n = 1}^{\infty}$
+    Assume that there exists some $y \in [0, 1)$ such that $\paren*{a_{n}}_{n = 1}^{\infty}$
     is the \emph{greedy base $b$ expansion} of $y$. Then we have
     \[
     0 \leq y - \sum_{k = 1}^{n} \frac{a_{k}}{b^{k}} < \frac{1}{b^{n}} \quad \text{for all } n \in \N.
@@ -183,7 +183,7 @@
     \frac{1}{b^{n}} < x_{N - 1} + \frac{1}{b^{N - 1}} - y,
     \]
     which is a contradiction. Therefore, there exists no $y \in [0, 1)$ such that
-    $\set*{a_{n}}_{n = 1}^{\infty}$ is the \emph{greedy base $b$ expansion} of $y$.
+    $\paren*{a_{n}}_{n = 1}^{\infty}$ is the \emph{greedy base $b$ expansion} of $y$.
 \end{proof}
 
 \end{section}
