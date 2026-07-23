@@ -38,7 +38,7 @@
     \[
     I_{2} = \prod_{j = 1}^{k} I_{1, j, \paren*{m_{1}}_{j}} \subseteq I_{1}.
     \]
-    Let $\set*{I_{2, j, m}}$ be an interval in $\R$ defined by
+    Let $I_{2, j, m}$ be an interval in $\R$ defined by
     \[
     I_{2, j, m} \coloneqq \begin{dcases}
         \bracket*{a_{2, j}, \frac{a_{2, j} + b_{2, j}}{2}} & \text{if } m = 1 \\
@@ -61,12 +61,12 @@
     \]
     By repeating this process, we can construct the following sequences:
     \begin{itemize}
-        \item The sequence $\set*{\bm{m_{n}}}_{n = 1}^{\infty}$ in $S_{k}$.
-        \item The sequences $\set*{a_{n, j}}_{n = 1}^{\infty}$ and
-        $\set*{b_{n, j}}_{n = 1}^{\infty}$ in $\R$ for all $j = 1, 2, \dots, k$.
-        \item The sequence $\set*{I_{n, j, m}}_{n = 1}^{\infty}$ of intervals in $\R$
+        \item The sequence $\paren*{\bm{m}_{n}}_{n = 1}^{\infty}$ in $S_{k}$.
+        \item The sequences $\paren*{a_{n, j}}_{n = 1}^{\infty}$ and
+        $\paren*{b_{n, j}}_{n = 1}^{\infty}$ in $\R$ for all $j = 1, 2, \dots, k$.
+        \item The sequence $\paren*{I_{n, j, m}}_{n = 1}^{\infty}$ of intervals in $\R$
         for all $j = 1, 2, \dots, k$ and $m = 1, 2$.
-        \item The sequence $\set*{I_{n}}_{n = 1}^{\infty}$ of $k$-cells in $\R^{k}$.
+        \item The sequence $\paren*{I_{n}}_{n = 1}^{\infty}$ of $k$-cells in $\R^{k}$.
     \end{itemize}
     We have the following properties:
     \begin{itemize}
@@ -98,7 +98,7 @@
 
 \bigskip
 
-\begin{corollary} \label{cor:ClosedIntervalsAreCompact}
+\begin{corollary} \label{cor:ClosedIntervalInRIsCompact}
     For any $- \infty < a \leq b < + \infty$, the closed interval $[a, b]$ is compact in $\paren*{\R, \norm*{\cdot}}$.
 \end{corollary}
 
@@ -114,15 +114,15 @@
 \end{theorem}
 
 \begin{proof}
-    \textbf{($\implies$)} Let $E$ be compact. $E$ is closed by \Cref{thm:CompactSetsAreClosed}, and $E$ is
-    bounded by \Cref{thm:CompactSetsAreBounded}.
+    \textbf{($\implies$)} Let $E$ be compact. $E$ is closed by \Cref{thm:CompactSetIsClosed}, and $E$ is
+    bounded by \Cref{thm:CompactSetIsBounded}.
     \\[6mm]
     \textbf{($\impliedby$)} Let $E$ be closed and bounded. Then there exists some $\bm{p} \in \R^{n}$ and
     $r \in \R^{+}$ such that $E \subseteq B_{r}(\bm{p})$. Let $I$ be a $n$-cell in $\R^{n}$ defined by
     \[
     I \coloneqq \prod_{j = 1}^{n} \bracket*{p_{j} - r, p_{j} + r} \subseteq \R^{n}.
     \]
-    Then we have $E \subseteq B_{r}(\bm{p}) \subseteq I$. By \Cref{thm:KCellsAreCompact}, $I$ is compact.
+    Then we have $E \subseteq B_{r}(\bm{p}) \subseteq I$. By \Cref{thm:KCellIsCompact}, $I$ is compact.
     Since $E$ is closed, by \Cref{thm:ClosedSubsetOfCompactSetIsCompact}, $E$ is compact.
 \end{proof}
 

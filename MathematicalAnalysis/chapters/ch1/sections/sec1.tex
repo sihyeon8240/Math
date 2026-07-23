@@ -3,39 +3,67 @@
 We denote the set $\set*{1, 2, 3, \dots}$ of natural numbers by $\N$.
 The set $\N$ is defined by the following axioms:
 \begin{itemize}
-    \item $1 \in \N$.
-    \item If $n \in \N$, then $s(n) \in \N$ where $s(n) = n + 1$ is called the \textbf{successor} of $n$.
-    \item $1$ is not the successor of any element of $\N$.
-    \item If $m, n \in \N$ and $s(m) = s(n)$, then $m = n$.
-    \item Any subset of $\N$ which contains $1$, and contains $s(n)$ whenever
-    it contains $n$, must be equal to $\N$.
+    \item $1 \in \N$
+    \item $n \in \N \implies s(n) \in \N$
+    \item $\nexists n \in \N$ such that $s(n) = 1$
+    \item $m, n \in \N, s(m) = s(n) \implies m = n$
+    \item If $S \subseteq \N$ satisfies
+    \begin{itemize}
+        \item $1 \in S$
+        \item $n \in S \implies s(n) \in S$
+    \end{itemize}
+    then $S = \N$
 \end{itemize}
-The axioms above are called the \textbf{Peano axioms} (or \emph{Peano Postulates}).
+$s(n) \coloneqq n + 1$ is called the \textbf{successor} of $n$.
+These axioms are called the \textbf{Peano axioms} (or \emph{Peano Postulates}).
+\\[6mm]
+We define the set $\Z$ of integers and the set $\Q$ of rational numbers as follows:
+\begin{itemize}
+    \item $\Z \coloneqq \setbuilder*{m - n}{m, n \in \N}$
+    \item $\Q \coloneqq \setbuilder*{\dfrac{m}{n}}{m \in \Z, \; n \in \N}$
+\end{itemize}
+Also, we denote the set of positive numbers or negative numbers as follows:
+\begin{itemize}
+    \item $\Z^{+} \coloneqq \setbuilder*{n}{n \in \N}$, $\Z^{-} \coloneqq \setbuilder*{-n}{n \in \N}$
+    \item $\Q^{+} \coloneqq \setbuilder*{\dfrac{m}{n}}{m \in \N, \; n \in \N}$,
+    $\Q^{-} \coloneqq \setbuilder*{\dfrac{m}{n}}{m \in \Z^{-}, \; n \in \N}$
+\end{itemize}
 
 \bigskip
 
 \begin{remark}
-    The \textbf{Peano axioms} does not guarantee the \emph{existence} of $\N$, which is guaranteed by the
-    \textbf{axiom of infinity} in the \textbf{ZFC axioms}. In this textbook, the \textbf{ZFC axioms} will
-    not be discussed, so we will just assume that $\N$ exists. Also, we will reject the
-    \textbf{axiom of choice} and provide constructive proofs as far as possible.
+    The \textbf{Peano axioms} do not guarantee the \emph{existence} of $\N$, which is guaranteed by the
+    \textbf{axiom of infinity} in the \textbf{ZFC axioms}.
+    \\[6mm]
+    In this textbook, the \textbf{ZFC axioms} will not be discussed, so we will just assume that $\N$ exists.
+    Also, we will reject the \textbf{axiom of choice} and provide constructive proofs as far as possible.
 \end{remark}
 
 \bigskip
 
 \begin{remark}
-    Let $P(n)$ be a statement about $n \in \N$, and let $S \coloneqq \setbuilder*{n \in \N}{P(n) \text{ is true}}$.
-    Assume that $P(n)$ satisfies the following conditions:
+    Let $P(n)$ be a statement about $n \in \N$, and let
+    \[
+    S \coloneqq \setbuilder*{n \in \N}{P(n) \text{ is true}}
+    \]
+    Assume that $P(n)$ satisfies
     \begin{itemize}
-        \item $P(1)$ is true.
-        \item $P(n + 1)$ is true whenever $P(n)$ is true.
+        \item $P(1)$ is true
+        \item $P(n)$ is true $\implies P(n + 1)$ is true
     \end{itemize}
-    Then, we have the following:
+    This implies that
     \begin{itemize}
-        \item $1 \in S$.
-        \item $n + 1 \in S$ whenever $n \in S$.
+        \item $1 \in S$
+        \item $n \in S \implies n + 1 \in S$
     \end{itemize}
-    Therefore, we have $S = \N$, i.e., $P(n)$ is true for all $n \in \N$.
+    Therefore,
+    \[
+    \begin{array}{c}
+        S = \N \\
+        \Downarrow \\
+        P(n) \text{ is true for all } n \in \N
+    \end{array}
+    \]
     This method of proof is called the \textbf{principle of mathematical induction}.
 \end{remark}
 
@@ -46,38 +74,78 @@ The axioms above are called the \textbf{Peano axioms} (or \emph{Peano Postulates
 \end{theorem}
 
 \begin{proof}
-    Let $S$ be a nonempty subset of $\N$. Assume that $S$ does not have a least element.
-    Let $T$ and $L$ be defined as follows:
+    Let $S \subseteq \N$ be nonempty. Assume that $S$ has no least element. Let
     \begin{itemize}
-        \item $T \coloneqq \N \setminus S$.
-        \item $L \coloneqq \setbuilder*{n \in \N}{\set*{1, 2, \dots, n} \subseteq T}$.
+        \item $T \coloneqq \N \setminus S$
+        \item $L \coloneqq \setbuilder*{n \in \N}{\set*{1, 2, \dots, n} \subseteq T}$
     \end{itemize}
-    We will show that $L = \N$, which implies that $S = \emptyset$, a contradiction.
+    We will show that
+    \[
+    \begin{array}{c}
+        L = \N \\
+        \Downarrow \\
+        T = \N \\
+        \Downarrow \\
+        S = \emptyset \\
+        \Downarrow \\
+        \bot
+    \end{array}
+    \]
     \begin{itemize}
-        \item \textbf{Base case:} $1 \in L$ since $\set*{1} \subseteq T$.
-        Otherwise, $1 \in S$ and $1$ is the least element of $S$.
-        \item \textbf{Inductive step:} Assume that $n \in L \implies \set*{1, 2, \dots, n} \subseteq T$.
-        Then $n + 1 \notin S$. Otherwise, $n + 1$ is the least element of $S$. Therefore, we have
+        \item \textbf{Base case:} If $1 \in S$, then
         \[
-        n + 1 \in T \implies \set*{1, 2, \dots, n + 1} \subseteq T.
+        \begin{array}{c}
+            1 \in S \\
+            \Downarrow \\
+            1 = \min S \\
+            \Downarrow \\
+            \bot
+        \end{array}
         \]
-        Thus $n + 1 \in L$.
+        Therefore,
+        \[
+        \begin{array}{c}
+            1 \notin S \\
+            \Downarrow \\
+            1 \in T \\
+            \Downarrow \\
+            1 \in L
+        \end{array}
+        \]
+        \item \textbf{Inductive step:} Assume that $n \in L$ for some $n \in \N$. Then
+        \[
+        \begin{array}{c}
+            n \in L \\
+            \Downarrow \\
+            \set*{1, 2, \dots, n} \subseteq T \\
+            \Downarrow \\
+            \set*{1, 2, \dots, n} \cap S = \emptyset
+        \end{array}
+        \]
+        If $n + 1 \in S$, then 
+        \[
+        \begin{array}{c}
+            n + 1 \in S \\
+            \Downarrow \\
+            n + 1 = \min S \\
+            \Downarrow \\
+            \bot
+        \end{array}
+        \]
+        Therefore,
+        \[
+        \begin{array}{c}
+            n + 1 \notin S \\
+            \Downarrow \\
+            n + 1 \in T \\
+            \Downarrow \\
+            \set*{1, 2, \dots, n + 1} \subseteq T \\
+            \Downarrow \\
+            n + 1 \in L
+        \end{array}
+        \]
     \end{itemize}
-    By the principle of mathematical induction, we have $L = \N$.
+    By the \emph{principle of mathematical induction}, $L = \N$.
 \end{proof}
-
-\bigskip
-
-We define the set $\Z$ of integers and the set $\Q$ of rational numbers as follows:
-\begin{itemize}
-    \item $\Z \coloneqq \setbuilder*{m - n}{m, n \in \N}$.
-    \item $\Q \coloneqq \setbuilder*{\dfrac{m}{n}}{m \in \Z, \; n \in \N}$.
-\end{itemize}
-Also, we denote the set of positive numbers or negative numbers as follows:
-\begin{itemize}
-    \item $\Z^{+} \coloneqq \setbuilder*{n}{n \in \N}$, $\Z^{-} \coloneqq \setbuilder*{-n}{n \in \N}$.
-    \item $\Q^{+} \coloneqq \setbuilder*{\dfrac{m}{n}}{m \in \N, \; n \in \N}$,
-    $\Q^{-} \coloneqq \setbuilder*{\dfrac{m}{n}}{m \in \Z^{-}, \; n \in \N}$.
-\end{itemize}
 
 \end{section}

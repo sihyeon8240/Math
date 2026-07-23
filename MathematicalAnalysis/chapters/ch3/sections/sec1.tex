@@ -1,10 +1,9 @@
 \begin{section}{Convergent Sequences}
 
 Let $(X, d)$ be a metric space. A \textbf{sequence} $\paren*{x_{n}}_{n = 1}^{\infty}$
-in $(X, d)$ is a function $f: \N \to X$, where $x_{n} = f(n)$ for each $n \in \N$.
+is a function $f: \N \to X$, where $x_{n} = f(n)$ for each $n \in \N$.
 \\[6mm]
-A sequence $\paren*{x_{n}}_{n = 1}^{\infty}$ in $(X, d)$ is said to be
-\textbf{convergent} if there exists $x \in X$ such that
+A sequence $\paren*{x_{n}}_{n = 1}^{\infty}$ is said to be \textbf{convergent} if there exists $x \in X$ such that
 \[
 \text{For any } \veps \in \R^{+}, \text{ there exists } N \in \N \text{ such that } n \geq N \implies d(x_{n}, x) < \veps.
 \]
@@ -23,8 +22,7 @@ If $\paren*{x_{n}}_{n = 1}^{\infty}$ is not convergent, it is said to be \textbf
 \bigskip
 
 \begin{example}
-    Let $\paren*{\R, \norm*{\cdot}}$ be given. Let $\paren*{x_{n}}_{n = 1}^{\infty}$
-    be a sequence in $\paren*{\R, \norm*{\cdot}}$ defined by
+    Let $\paren*{\R, \norm*{\cdot}}$ be given. Let $\paren*{x_{n}}_{n = 1}^{\infty}$ be a sequence defined by
     \[
     x_{n} = \frac{1}{n} \quad \text{for each } n \in \N.
     \]
@@ -35,7 +33,7 @@ If $\paren*{x_{n}}_{n = 1}^{\infty}$ is not convergent, it is said to be \textbf
     Therefore, $\paren*{x_{n}}_{n = 1}^{\infty}$ converges to $0$.
     \\[6mm]
     Let $\paren*{\R^{+}, \norm*{\cdot}}$ be a subspace of $\paren*{\R, \norm*{\cdot}}$.
-    Let $\paren*{x_{n}}_{n = 1}^{\infty}$ be a sequence in $\paren*{\R^{+}, \norm*{\cdot}}$ defined by
+    Let $\paren*{x_{n}}_{n = 1}^{\infty}$ be a sequence defined by
     \[
     x_{n} = \frac{1}{n} \quad \text{for each } n \in \N.
     \]
@@ -64,8 +62,102 @@ If $\paren*{x_{n}}_{n = 1}^{\infty}$ is not convergent, it is said to be \textbf
 \bigskip
 
 \begin{definition} \label{def:BoundedSequence}
-    Let $(X, d)$ be a metric space. A sequence $\paren*{x_{n}}_{n = 1}^{\infty}$ in $(X, d)$ is said to be
-    \textbf{Bounded} if $\set*{x_{n}}_{n = 1}^{\infty}$ is bounded in $(X, d)$. 
+    Let $(X, d)$ be a metric space. A sequence $\paren*{x_{n}}_{n = 1}^{\infty}$
+    is said to be \textbf{Bounded} if $\set*{x_{n}}_{n = 1}^{\infty}$ is bounded.
 \end{definition}
+
+\bigskip
+
+\begin{theorem} \label{thm:ConvergentSequenceIsBounded}
+    Let $(X, d)$ be a metric space. Let $\paren*{x_{n}}_{n = 1}^{\infty}$ be a convergent sequence. Then we have
+    \begin{enumerate}[label=\textbf{(\Alph*)}]
+        \item $\paren*{x_{n}}_{n = 1}^{\infty}$ is bounded.
+        \item The limit of $\paren*{x_{n}}_{n = 1}^{\infty}$ is unique.
+    \end{enumerate}
+\end{theorem}
+
+\begin{proof}
+    Let $x$ be the limit of $\paren*{x_{n}}_{n = 1}^{\infty}$.
+    \begin{enumerate}[label=\textbf{(\Alph*)}]
+        \item Let $\veps = 1$. Then there exists $N \in \N$ such that
+        \[
+        n \geq N \implies d(x_{n}, x) < 1.
+        \]
+        Let $S$ be a set defined by
+        \[
+        S \coloneqq \setbuilder*{d(x_{n}, x)}{1 \leq n \leq N} \subseteq [0, \infty).
+        \]
+        Let $f: J_{N} \to S$ be a function defined by
+        \[
+        f(k) = d(x_{k}, x) \quad \text{for all } k \in J_{N}.
+        \]
+        Then $f$ is surjective. By \Cref{lem:SurjectionFromJnImpliesFinite}, $S$ is finite. Then, by
+        \Cref{thm:FiniteOrderedSetHasExtremum}, $S$ has a greatest element, say $M = \max S$. Then we have
+        \[
+        d(x_{n}, x) < M + 1 \quad \text{for all } n \in \N.
+        \]
+        Therefore, $\paren*{x_{n}}_{n = 1}^{\infty}$ is bounded.
+        \item Let $y$ be the limit of $\paren*{x_{n}}_{n = 1}^{\infty}$. Assume that $x \neq y$.
+        Then we have $r \coloneqq d(x, y) > 0$. Let $\veps = \dfrac{r}{2}$. Then we have
+        \begin{itemize}
+            \item There exists $N_{x} \in \N$ such that $n \geq N_{x} \implies d(x_{n}, x) < \dfrac{r}{2}$.
+            \item There exists $N_{y} \in \N$ such that $n \geq N_{y} \implies d(x_{n}, y) < \dfrac{r}{2}$.
+        \end{itemize}
+        Thus we have
+        \[
+        n \geq \max\set*{N_{x}, N_{y}} \implies d(x, y) \leq d(x, x_{n}) + d(x_{n}, y) < r,
+        \]
+        which is a contradiction. Therefore, we have $x = y$.
+    \end{enumerate}
+\end{proof}
+
+\bigskip
+
+\begin{theorem} \label{thm:Neighborhood}
+    Let $(X, d)$ be a metric space. Then the following statements hold:
+    \begin{enumerate}[label=\textbf{(\Alph*)}]
+        \item A sequence $\paren*{x_{n}}_{n = 1}^{\infty}$ converges to $x \in X$ if and only if
+        \[
+        \text{For any } \veps \in \R^{+}, N_{\veps}(x) \text{ contains all but
+        finitely many terms of } \paren*{x_{n}}_{n = 1}^{\infty}.
+        \]
+        \item Let $E \subseteq X$ be given. If $x$ is a limit point of $E$, then there exists
+        a sequence $\paren*{x_{n}}_{n = 1}^{\infty}$ in $(X, d)$ such that
+        \[
+        \lim_{n \to \infty} x_{n} = x.
+        \]
+    \end{enumerate}
+\end{theorem}
+
+\begin{proof}
+    \begin{enumerate}[label=\textbf{(\Alph*)}]
+        \item \textbf{($\implies$)} Let $\paren*{x_{n}}_{n = 1}^{\infty}$ converge to $x \in X$. Then, for each
+        $\veps \in \R^{+}$, there exists $M_{\veps} \in \N$ such that
+        \[
+        n \geq M_{\veps} \implies d(x_{n}, x) < \veps,
+        \]
+        which implies that
+        \[
+        \set*{x_{n}}_{n = M_{\veps}}^{\infty} \subseteq N_{\veps}(x).
+        \]
+        \\[6mm]
+        \textbf{($\impliedby$)} Let $\paren*{x_{n}}_{n = 1}^{\infty}$ be a sequence in $(X, d)$ such that
+        \[
+        \text{For any } \veps \in \R^{+}, N_{\veps}(x) \text{ contains all but
+        finitely many terms of } \paren*{x_{n}}_{n = 1}^{\infty}.
+        \]
+        \item Let $E \subseteq X$ be given. Assume that $x$ is a limit point of $E$. Then for any $\veps \in
+        \R^{+}$, we have $(N_{\veps}(x) - \set*{x}) \cap E \neq \emptyset$. Thus we can choose a sequence
+        $\paren*{y_{n}}_{n = 1}^{\infty}$ in $(X, d)$ such that
+        \[
+        y_{n} \in (N_{\frac{1}{n}}(x) \setminus \set*{x}) \cap E.
+        \]
+        Then we have
+        \[
+        d(y_{n}, x) < \frac{1}{n} \quad \text{for each } n \in \N,
+        \]
+        which implies that $\lim_{n \to \infty} y_{n} = x$.
+    \end{enumerate}
+\end{proof}
 
 \end{section}

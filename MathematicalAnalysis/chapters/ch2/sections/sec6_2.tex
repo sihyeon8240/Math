@@ -47,7 +47,7 @@
     \[
     X = \paren*{\bigcap_{\alpha \in A} K_{\alpha}}^{c} = \bigcup_{\alpha \in A} \paren*{K_{\alpha}}^{c}.
     \]
-    Since each $K_{\alpha}$ is compact, $K_{\alpha}$ is closed by \Cref{thm:CompactSetsAreClosed}.
+    Since each $K_{\alpha}$ is compact, $K_{\alpha}$ is closed by \Cref{thm:CompactSetIsClosed}.
     Then, by \Cref{cor:ClosedSetComplementIsOpenSet}, we have
     \[
     \text{Each } \paren*{K_{\alpha}}^{c} \text{ is open} \implies
@@ -148,7 +148,7 @@
 
 \bigskip
 
-\begin{theorem} \label{thm:KCellsAreCompact}
+\begin{theorem} \label{thm:KCellIsCompact}
     Let $\paren*{\R^{k}, \norm*{\cdot}}$ be given for some $k \in \N$. Then any $k$-cell is compact.
 \end{theorem}
 
@@ -158,7 +158,7 @@
     I_{1} = \prod_{j = 1}^{k} \bracket*{a_{1, j}, b_{1, j}} \subseteq \R^{k},
     \]
     where $- \infty < a_{1, j} \leq b_{1, j} < + \infty$ for all $j = 1, 2, \dots, k$.
-    Let $\set*{I_{1, j, m}}$ be an interval in $\R$ defined by
+    Let $I_{1, j, m}$ be an interval in $\R$ defined by
     \[
     I_{1, j, m} \coloneqq \begin{dcases}
         \bracket*{a_{1, j}, \frac{a_{1, j} + b_{1, j}}{2}} & \text{if } m = 1 \\

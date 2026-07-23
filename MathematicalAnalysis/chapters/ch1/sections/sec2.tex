@@ -1,123 +1,223 @@
 \begin{section}{Ordered Sets}
 
-A set $S$ is called an \textbf{ordered set} if it is equipped with a relation $<$
-such that for any $x, y, z \in S$, we have the following properties:
+A set $S$ is called an \textbf{ordered set} if $S$ is equipped with a relation $<$
+such that for any $x, y, z \in S$, the following properties hold:
 \begin{enumerate}[label=\textbf{(\Alph*)}]
-    \item $x < y$ and $y < z$ implies $x < z$.
-    \item Only one of the relations $x < y$, $x = y$, or $x > y$ holds.
+    \item $x < y, y < z \implies x < z$
+    \item Only one of the relations $x < y$, $x = y$, or $x > y$ holds
 \end{enumerate}
-$x > y$ means $y < x$, $x \leq y$ means ($x < y$ or $x = y$) and $x \geq y$ means $y \leq x$.
+the relation $<$ is called a \textbf{(strict) total order} on $S$.
+\\[6mm]
+On an ordered set, we define the following relations:
+\begin{itemize}
+    \item $x > y \iff y < x$
+    \item $x \geq y \iff x > y \text{ or }x = y$
+    \item $x \leq y \iff y \geq x$
+\end{itemize}
 
 \bigskip
 
-\begin{remark}
-    In an ordered set $S$, the relation $<$ is called an \textbf{order} (or a \textbf{total order}) on $S$.
-    If a relation $<$ on $T$ satisfies \textbf{(A)} only, then the relation $<$ is called a
-    \textbf{partial order} on $T$ and the set $T$ is called \textbf{partially ordered}.
-\end{remark}
+\begin{example}
+    $\N, \Z, \Q$ are ordered sets with the following relations:
+    \begin{itemize}
+        \item $\forall n, m \in \N, m < n \iff n - m \in \N$
+        \item $\forall n, m \in \Z, m < n \iff n - m \in \Z^{+}$
+        \item $\forall p, q \in \Q, q < p \iff p - q \in \Q^{+}$
+    \end{itemize}
+\end{example}
 
 \bigskip
 
 \begin{definition} \label{def:Boundedness}
     Let $S$ be an ordered set and $E \subseteq S$.
     \begin{itemize}
-        \item $E$ is \textbf{bounded above} if there exists some $M \in S$
-        such that $x \leq M$ for all $x \in E$. Such an $M$ is called an \textbf{upper bound} of $E$.
-        \item $E$ is \textbf{bounded below} if there exists some $m \in S$
-        such that $m \leq x$ for all $x \in E$. Such an $m$ is called a \textbf{lower bound} of $E$.
+        \item $E$ is said to be \textbf{bounded above} if
+        \[
+        \exists M \in S \text{ such that } \forall  x \in E, x \leq M
+        \]
+        Such an $M$ is called an \textbf{upper bound} of $E$.
+        \item $E$ is said to be \textbf{bounded below} if
+        \[
+        \exists m \in S \text{ such that } \forall  x \in E, m \leq x
+        \]
+        Such an $m$ is called a \textbf{lower bound} of $E$.
     \end{itemize}
 \end{definition}
 
 \bigskip
 
 \begin{theorem} \label{thm:BoundedSubsetOfZinZHasExtremum}
-    Any nonempty subset of $\Z$ which is bounded below in $\Z$ has a unique least element,
-    and any nonempty subset of $\Z$ which is bounded above in $\Z$ has a unique greatest element.
+    Let $E \subseteq \Z$ be nonempty.
+    \begin{enumerate}[label=\textbf{(\Alph*)}]
+        \item $E$ is bounded below $\implies E$ has a least element.
+        \item $E$ is bounded above $\implies E$ has a greatest element.
+    \end{enumerate}
 \end{theorem}
 
 \begin{proof}
-    Let $E$ be a nonempty subset of $\Z$ which is bounded below in $\Z$.
-    Then there exists a lower bound $m \in \Z$ of $E$. Let $F$ be defined as follows:
-    \[
-    F \coloneqq \setbuilder*{x - m + 1}{x \in E} \subseteq \N.
-    \]
-    By \Cref{thm:WellOrderingProperty}, $F$ has a least element $n$. Then we have
-    \[
-    n \leq x - m + 1 \text{ for all } x \in E \implies n + m - 1 \leq x \text{ for all } x \in E.
-    \]
-    Since $n \in F$, there exists a unique $x_{0} \in E$ such that $n = x_{0} - m + 1$,
-    so $x_{0} = n + m - 1$ is the unique least element of $E$.
-    \\[6mm]
-    Let $S$ be a nonempty subset of $\Z$ which is bounded above in $\Z$.
-    Then there exists an upper bound $M \in \Z$ of $S$. Let $T$ be defined as follows:
-    \[
-    T \coloneqq \setbuilder*{-x + M + 1}{x \in S} \subseteq \N.
-    \]
-    By \Cref{thm:WellOrderingProperty}, $T$ has a least element $n$. Then we have
-    \[
-    n \leq -x + M + 1 \text{ for all } x \in S \implies M - n + 1 \geq x \text{ for all } x \in S.
-    \]
-    Since $n \in T$, there exists a unique $x_{0} \in S$ such that $n = -x_{0} + M + 1$,
-    so $x_{0} = M - n + 1$ is the unique greatest element of $S$.
+    \begin{enumerate}[label=\textbf{(\Alph*)}]
+        \item Let $E$ be bounded below. Then,
+        \[
+        \begin{array}{c}
+            E \text{ is bounded below} \\
+            \Downarrow \\
+            \exists m \in \Z \text{ such that } \forall x \in E, m \leq x
+        \end{array}
+        \]
+        Let
+        \[
+        F \coloneqq \setbuilder*{x - m + 1}{x \in E} \subseteq \N
+        \]
+        Then
+        \[
+        \begin{array}{c}
+            E \neq \emptyset \\
+            \Downarrow \\
+            F \neq \emptyset
+        \end{array}
+        \]
+        By \Cref{thm:WellOrderingProperty}, $F$ has a least element, say $n$. Then
+        \[
+        \begin{array}{c}
+            \forall x \in E, n \leq x - m + 1 \\
+            \Downarrow \\
+            \forall x \in E, n + m - 1 \leq x
+        \end{array}
+        \]
+        Since $n = \min F$,
+        \[
+        \begin{array}{c}
+            n \in F \\
+            \Downarrow \\
+            \exists x_{0} \in E \text{ such that } n = x_{0} - m + 1 \\
+            \Downarrow \\
+            x_{0} = n + m - 1 = \min E
+        \end{array}
+        \]
+        \item Let $E$ be bounded above. Then,
+        \[
+        \begin{array}{c}
+            E \text{ is bounded above} \\
+            \Downarrow \\
+            \exists M \in \Z \text{ such that } \forall x \in E, x \leq M
+        \end{array}
+        \]
+        Let
+        \[
+        F \coloneqq \setbuilder*{-x + M + 1}{x \in E} \subseteq \N
+        \]
+        Then
+        \[
+        \begin{array}{c}
+            E \neq \emptyset \\
+            \Downarrow \\
+            F \neq \emptyset
+        \end{array}
+        \]
+        By \Cref{thm:WellOrderingProperty}, $F$ has a least element, say $n$. Then
+        \[
+        \begin{array}{c}
+            \forall x \in E, n \leq - x + M + 1 \\
+            \Downarrow \\
+            \forall x \in E, x \leq M - n + 1 \\
+        \end{array}
+        \]
+        Since $n = \min F$,
+        \[
+        \begin{array}{c}
+            n \in F \\
+            \Downarrow \\
+            \exists x_{0} \in E \text{ such that } n = -x_{0} + M + 1 \\
+            \Downarrow \\
+            x_{0} = M - n + 1 = \max E
+        \end{array}
+        \]
+    \end{enumerate}
 \end{proof}
 
 \bigskip
 
 \begin{definition} \label{def:SupremumInfimum}
-    Let $S$ be an ordered set. Assume that $E \subseteq S$ is bounded above. If there exists an $\alpha \in S$ such that
+    Let $S$ be an ordered set, and let $E \subseteq S$ be bounded above.
+    An element $\alpha \in S$ is called the \textbf{supremum} (or \emph{least upper bound}) of $E$ if
     \begin{itemize}
-        \item $\alpha$ is an upper bound of $E$.
-        \item If $\beta < \alpha$, then $\beta$ is not an upper bound of $E$.
+        \item $\alpha$ is an upper bound of $E$
+        \item $\forall \beta \in S, \beta < \alpha \implies \beta$ is not an upper bound of $E$
     \end{itemize}
-    then $\alpha$ is called the \textbf{supremum} (or \emph{least upper bound}) of $E$, denoted by
+    The supremum of $E$ is denoted by
     \[
-    \alpha = \sup E.
+    \alpha = \sup E
     \]
-    Similarly, Assume that $F \subseteq S$ is bounded below. If there exists an $\gamma \in F$ such that
+    Similarly, let $E \subseteq S$ be bounded below.
+    An element $\alpha \in S$ is called the \textbf{infimum} (or \emph{greatest lower bound}) of $E$ if
     \begin{itemize}
-        \item $\gamma$ is a lower bound of $F$.
-        \item If $\beta > \gamma$, then $\beta$ is not a lower bound of $F$.
+        \item $\alpha$ is a lower bound of $E$
+        \item $\forall \beta \in S, \beta > \alpha \implies \beta$ is not a lower bound of $E$
     \end{itemize}
-    then $\gamma$ is called the \textbf{infimum} (or \emph{greatest lower bound}) of $F$, denoted by
+    The infimum of $E$ is denoted by
     \[
-    \gamma = \inf F.
+    \alpha = \inf E
     \]
 \end{definition}
 
 \bigskip
 
 \begin{example}
-    Let $S \subseteq \Q^{+}$ be defined as
+    Let
     \[
-    S \coloneqq \setbuilder*{p \in \Q^{+}}{p^{2} < 2}.
+    S \coloneqq \setbuilder*{p \in \Q^{+}}{p^{2} < 2}
     \]
-    For any $p \in S$, let
+    Let $p \in S$ be given, and let
     \[
-    q \coloneqq p - \dfrac{p^{2} - 2}{p + 2} = \dfrac{2p + 2}{p + 2} > p.
+    q \coloneqq p - \dfrac{p^{2} - 2}{p + 2} = \dfrac{2p + 2}{p + 2} > p
     \]
-    Then we have $q \in \Q^{+}$ and
+    Then
     \[
-    q^{2} - 2 = \dfrac{2(p^{2} - 2)}{(p + 2)^{2}} < 0 \implies q \in S.
+    \begin{array}{c}
+        q^{2} - 2 = \dfrac{2(p^{2} - 2)}{(p + 2)^{2}} < 0 \\
+        \Downarrow \\
+        q \in S
+    \end{array}
     \]
-    This implies that any $p \in S$ is not an upper bound of $S$.
+    This implies that $p \in S$ is not an upper bound of $S$.
     \\[6mm]
-    For any $p \in \Q^{+}$ with $p^{2} > 2$, $p$ is an upper bound of $S$. Let 
+    Let $p \in \Q^{+} \setminus S$ be given. Then
     \[
-    q \coloneqq p - \dfrac{p^{2} - 2}{p + 2} = \dfrac{2p + 2}{p + 2} < p.
+    \begin{array}{c}
+        p^{2} \geq 2 \\
+        \Downarrow \\
+        p^{2} > 2 \\
+        (\because \nexists p \in \Q^{+} \text{ such that } p^{2} = 2) \\
+        \Downarrow \\
+        p \text{ is an upper bound of } S \\
+        (\because \forall x \in S, x^{2} < 2 < p^{2} \implies x < p)
+    \end{array}
     \]
-    Then we have $q \in \Q^{+}$ and
+    Let 
     \[
-    q^{2} - 2 = \dfrac{2(p^{2} - 2)}{(p + 2)^{2}} > 0 \implies q \text{ is a lower bound of } S.
+    q \coloneqq p - \dfrac{p^{2} - 2}{p + 2} = \dfrac{2p + 2}{p + 2} < p
     \]
-    This implies that such $p$ is not the least upper bound of $S$.
-    Since there exists no $p \in \Q^{+}$ such that $p^{2} = 2$, $S$ has no least upper bound in $\Q^{+}$.
+    Then
+    \[
+    \begin{array}{c}
+        q^{2} - 2 = \dfrac{2(p^{2} - 2)}{(p + 2)^{2}} > 0 \\
+        \Downarrow \\
+        q \text{ is a upper bound of } S \\
+        (\because \forall x \in S, x^{2} < 2 < q^{2} \implies x < q)
+    \end{array}
+    \]
+    This implies that $p$ is not the least upper bound of $S$.
+    \\[6mm]
+    Therefore, $S$ has no least upper bound in $\Q^{+}$.
 \end{example}
 
 \bigskip
 
 \begin{definition} \label{def:LeastUpperBoundProperty}
-    An ordered set $S$ is said to have the \textbf{least upper bound property}
-    if any nonempty subset of $S$ which is bounded above has a least upper bound in $S$.
+    An ordered set $S$ is said to have the \textbf{least upper bound property} if
+    \[
+    \forall E \subseteq S, E \text{ is bounded above} \implies E \text{ has a least upper bound in } S.
+    \]
 \end{definition}
 
 \bigskip

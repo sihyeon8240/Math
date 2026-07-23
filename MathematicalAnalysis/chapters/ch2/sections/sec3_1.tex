@@ -37,7 +37,7 @@ Especially, if $X = \emptyset$, we define $\abs*{X} = 0$. $X$ is said to be \tex
         \end{itemize}
         Thus $P(n + 1)$ is true whenever $P(n)$ is true.
     \end{itemize}
-    By the principle of mathematical induction, $P(n)$ is true for all $n \in \N$.
+    By the \emph{principle of mathematical induction}, $P(n)$ is true for all $n \in \N$.
 \end{proof}
 
 \bigskip
@@ -100,11 +100,11 @@ Especially, if $X = \emptyset$, we define $\abs*{X} = 0$. $X$ is said to be \tex
 \bigskip
 
 \begin{theorem} \label{thm:FiniteOrderedSetHasExtremum}
-    Let $X$ be a finite ordered set. Then $X$ has both a least element and a greatest element.
+    Let $X$ be a finite nonempty ordered set. Then $X$ has both a least element and a greatest element.
 \end{theorem}
 
 \begin{proof}
-    Since $X$ is finite, there exists a bijection $f: J_{n} \to X$ for some $n \in \N$. The elements
+    Since $X$ is finite and nonempty, there exists a bijection $f: J_{n} \to X$ for some $n \in \N$. The elements
     of $X$ can be listed as $X = \set*{a_{1}, a_{2}, \dots, a_{n}}$, where $a_{k} = f(k)$ for each $k = 1, 2, \dots, n$.
     \\[6mm]
     First, we will show that $X$ has a least element. Let $P(n)$ be the statement that
@@ -127,7 +127,7 @@ Especially, if $X = \emptyset$, we define $\abs*{X} = 0$. $X$ is said to be \tex
         \end{itemize}
         Thus $P(n + 1)$ is true whenever $P(n)$ is true.
     \end{itemize}
-    By the principle of mathematical induction,
+    By the \emph{principle of mathematical induction},
     $P(n)$ is true for all $n \in \N$.
     \\[6mm]
     Next, we will show that $X$ has a greatest element. Let $Q(n)$ be the statement that
@@ -150,7 +150,7 @@ Especially, if $X = \emptyset$, we define $\abs*{X} = 0$. $X$ is said to be \tex
         \end{itemize}
         Thus $Q(n + 1)$ is true whenever $Q(n)$ is true.
     \end{itemize}
-    By the principle of mathematical induction,
+    By the \emph{principle of mathematical induction},
     $Q(n)$ is true for all $n \in \N$.
 \end{proof}
 
@@ -206,7 +206,7 @@ Especially, if $X = \emptyset$, we define $\abs*{X} = 0$. $X$ is said to be \tex
             \end{itemize}
             Therefore, $P(m + 1)$ is true whenever $P(m)$ is true.
         \end{itemize}
-        By the principle of mathematical induction,
+        By the \emph{principle of mathematical induction},
         $P(m)$ is true for all $m \in \N$.
         \item Let $m \in \N$ be fixed.
         Let $Q(n)$ be the statement that if there exists a surjective function
