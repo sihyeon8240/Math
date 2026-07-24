@@ -1,195 +1,186 @@
 \bigskip
 
-\begin{theorem} \label{thm:ArbitraryUnionOfOpenSetsIsOpen}
-    Let $(X, d)$ be a metric space. Let $E_{y} \subseteq X$ be an open set for each $y \in Y$. Then we have
-    \[
-    \bigcup_{y \in Y} E_{y} \text{ is open}
-    \]
-    whether $Y$ is finite, countable, or uncountable. This theorem states that an arbitrary union of open sets is open.
+\begin{theorem} \label{thm:InfiniteSubsetOfCompactSetHasLimitPoint}
+    Let $(X, d)$ be a metric space and $E \subseteq X$. If $E$ is compact,
+    then any infinite subset of $E$ has a limit point in $E$.
 \end{theorem}
 
 \begin{proof}
-    Let $p \in \displaystyle \bigcup_{y \in Y} E_{y}$ be given. Then there exists some $y_{0} \in Y$
-    such that $p \in E_{y_{0}}$. Since $E_{y_{0}}$ is open, there exists some $r \in \R^{+}$
-    such that $N_{r}(p) \subseteq E_{y_{0}}$. Then we have
+    Let $E$ be compact. Let $F \subseteq E$ be an infinite subset of $E$. Assume that $F$ has
+    no limit point in $E$. Then, for each $p \in E$, there exists $r_{p} \in \R^{+}$ such that
     \[
-    N_{r}(p) \subseteq E_{y_{0}} \subseteq \bigcup_{y \in Y} E_{y},
+    \widetilde{N}_{r_{p}}(p) \cap F = \emptyset \implies N_{r_{p}}(p) \cap F \subseteq \set*{p}.
     \]
-    which implies that $p$ is an interior point of $\displaystyle \bigcup_{y \in Y} E_{y}$.
-    Since $p$ is arbitrary, $\displaystyle \bigcup_{y \in Y} E_{y}$ is open.
+    Let $\set*{G_{\alpha}}_{\alpha \in E}$ be a collection of open sets defined by
+    \[
+    G_{\alpha} = N_{r_{\alpha}}(\alpha) \quad \text{for each } \alpha \in E.
+    \]
+    Since $\alpha \in G_{\alpha}$ for each $\alpha \in E$, we have
+    \[
+    E \subseteq \bigcup_{\alpha \in E} G_{\alpha} \implies \set*{G_{\alpha}}_{\alpha \in E} \text{ is an open cover of } E.
+    \]
+    Since $E$ is compact, there exists a finite subcover $\set*{G_{\alpha}}_{\alpha \in S}$ of $E$. Then we have
+    \[
+    E \subseteq \bigcup_{\alpha \in S} G_{\alpha} \implies F \subseteq E \subseteq \bigcup_{\alpha \in S} G_{\alpha}.
+    \]
+    Since $F \subseteq \displaystyle \bigcup_{\alpha \in S} G_{\alpha}$, we have
+    \[
+    F = F \cap \bigcup_{\alpha \in S} G_{\alpha} = \bigcup_{\alpha \in S} \paren*{F \cap G_{\alpha}}
+    \subseteq \bigcup_{\alpha \in S} \set*{\alpha} = S,
+    \]
+    which is a contradiction by \Cref{thm:SubsetOfFiniteSetIsFinite}.
+    Therefore, any infinite subset of $E$ has a limit point in $E$.
 \end{proof}
 
 \bigskip
 
-\begin{corollary} \label{cor:ArbitraryIntersectionOfClosedSetsIsClosed}
-    Let $(X, d)$ be a metric space. Let $E_{y} \subseteq X$ be a closed set for each $y \in Y$. Then we have
+\begin{theorem} \label{thm:FiniteCompactIntersectionProperty}
+    Let $(X, d)$ be a metric space and let $\set*{K_{\alpha}}_{\alpha \in A}$ be a collection of compact sets. Then we have
     \[
-    \bigcap_{y \in Y} E_{y} \text{ is closed}
-    \]
-    whether $Y$ is finite, countable, or uncountable. This corollary states
-    that an arbitrary intersection of closed sets is closed.
-\end{corollary}
-
-\begin{proof}
-    By \Cref{cor:ClosedSetComplementIsOpenSet}, $(E_{y})^{c}$ is open for each $y \in Y$.
-    Then, by \Cref{thm:ArbitraryUnionOfOpenSetsIsOpen}, we have
-    \[
-    \bigcup_{y \in Y} (E_{y})^{c} \text{ is open.}
-    \]
-    By \Cref{thm:OpenSetComplementIsClosedSet}, we have
-    \[
-    \bigcap_{y \in Y} E_{y} = \paren*{\bigcup_{y \in Y} (E_{y})^{c}}^{c} \text{ is closed.}
-    \]
-\end{proof}
-
-\bigskip
-
-\begin{theorem} \label{thm:FiniteIntersectionOfOpenSetsIsOpen}
-    Let $(X, d)$ be a metric space. Let $E_{1}, E_{2}, \dots, E_{n} \subseteq X$
-    be open sets for some $n \in \N$. Then we have
-    \[
-    \bigcap_{k = 1}^{n} E_{k} \text{ is open.}
-    \]
-    This theorem states that a finite intersection of open sets is open.
-\end{theorem}
-
-\begin{proof}
-    Let $p \in \displaystyle \bigcap_{k = 1}^{n} E_{k}$ be given. Then we have $p \in E_{j}$ for all $j = 1, 2, \dots, n$.
-    Since $E_{j}$ is open, there exists some $r_{j} \in \R^{+}$ such that $N_{r_{j}}(p) \subseteq E_{j}$ for each $j = 
-    1, 2, \dots, n$. Let $R$ be a set defined by
-    \[
-    R \coloneqq \setbuilder*{r_{j}}{j = 1, 2, \dots, n} \subseteq \R^{+}.
-    \]
-    Let $f: J_{n} \to R$ be a function defined by
-    \[
-    f(j) = r_{j}.
-    \]
-    Then $f$ is surjective. By \Cref{lem:SubsetOfJnIsFinite,thm:SurjectionFromFiniteSetImpliesFinite}, $R$ is finite.
-    Then, by \Cref{thm:FiniteOrderedSetHasExtremum}, $R$ has a minimum element, say $r = \min R > 0$. Then we have
-    \[
-    N_{r}(p) \subseteq N_{r_{j}}(p) \subseteq E_{j} \text{ for all } j = 1, 2, \dots, n
-    \implies N_{r}(p) \subseteq \bigcap_{k = 1}^{n} E_{k},
-    \]
-    which implies that $p$ is an interior point of $\displaystyle \bigcap_{k = 1}^{n} E_{k}$.
-    Since $p$ is arbitrary, $\displaystyle \bigcap_{k = 1}^{n} E_{k}$ is open.
-\end{proof}
-
-\bigskip
-
-\begin{corollary} \label{cor:FiniteUnionOfClosedSetsIsClosed}
-    Let $(X, d)$ be a metric space. Let $E_{1}, E_{2}, \dots, E_{n} \subseteq X$
-    be closed sets for some $n \in \N$. Then we have
-    \[
-    \bigcup_{k = 1}^{n} E_{k} \text{ is closed.}
-    \]
-    This corollary states that a finite union of closed sets is closed.
-\end{corollary}
-
-\begin{proof}
-    By \Cref{cor:ClosedSetComplementIsOpenSet}, $(E_{k})^{c}$ is open for each $k = 1, 2, \dots, n$.
-    Then, by \Cref{thm:FiniteIntersectionOfOpenSetsIsOpen}, we have
-    \[
-    \bigcap_{k = 1}^{n} (E_{k})^{c} \text{ is open.}
-    \]
-    By \Cref{thm:OpenSetComplementIsClosedSet}, we have
-    \[
-    \bigcup_{k = 1}^{n} E_{k} = \paren*{\bigcap_{k = 1}^{n} (E_{k})^{c}}^{c} \text{ is closed.}
-    \]
-\end{proof}
-
-\bigskip
-
-\begin{definition} \label{def:Closure}
-    Let $(X, d)$ be a metric space and $E \subseteq X$. Let $E'$ be the set of all limit points of $E$.    
-    The \textbf{closure} of $E$, which is denoted by $\overline{E}$, is defined by
-    \[
-    \overline{E} \coloneqq E \cup E'.
-    \]
-\end{definition}
-
-\bigskip
-
-\begin{theorem} \label{thm:PropertiesOfClosure}
-    Let $(X, d)$ be a metric space and $E \subseteq X$. Then we have the following properties:
-    \begin{enumerate}[label=\textbf{(\Alph*)}]
-        \item $\overline{E}$ is closed.
-        \item $E = \overline{E} \iff E$ is closed.
-        \item For any closed subset $F \subseteq X$ such that $E \subseteq F$, we have $\overline{E} \subseteq F$.
-    \end{enumerate}
-    \textbf{(C)} states that the closure of $E$ is the smallest closed set containing $E$.
-\end{theorem}
-
-\begin{proof}
-    \begin{enumerate}[label=\textbf{(\Alph*)}]
-        \item We will show that $\paren*{\overline{E}}^{c}$ is open. Let $p \in \paren*{\overline{E}}^{c}$ be given.
-        Since $p \notin E$ and $p \notin E'$, there exists some $r \in \R^{+}$ such that
-        \[
-        E \cap \widetilde{N}_{r}(p) = \emptyset \implies E \cap N_{r}(p) = \emptyset \implies N_{r}(p) \subseteq E^{c}.
-        \]
-        By \Cref{thm:NeighborhoodIsOpen}, $N_{r}(p)$ is open. Then, for any $q \in N_{r}(p)$,
-        there exists $\veps \in \R^{+}$ such that
-        \begin{align*}
-            N_{\veps}(q) \subseteq N_{r}(p) \subseteq E^{c}
-            \implies &E \cap N_{\veps}(q) = \emptyset \\
-            \implies &E \cap \paren*{\widetilde{N}_{\veps}(q) \cup \set*{q}} = \emptyset \\ 
-            \implies &\paren*{E \cap \widetilde{N}_{\veps}(q)} \cup \paren*{E \cap \set*{q}} = \emptyset \\
-            \implies &E \cap \widetilde{N}_{\veps}(q) = \emptyset \\
-            \implies &q \notin E'.
-        \end{align*}
-        Since $q$ is arbitrary, we have
-        \[
-        N_{r}(p) \subseteq \paren*{E'}^{c} \implies N_{r}(p) \subseteq
-        \paren*{\overline{E}}^{c} = E^{c} \cap \paren*{E'}^{c},
-        \]
-        which implies that $p$ is an interior point of $\paren*{\overline{E}}^{c}$. Since $p$ is arbitrary, $\paren*{
-        \overline{E}}^{c}$ is open, which implies that $\overline{E}$ is closed by \Cref{cor:ClosedSetComplementIsOpenSet}.
-        \item $E$ is closed $\iff E' \subseteq E \iff E \cup E' = E \iff \overline{E} = E$.
-        \item Let $F \subseteq X$ be a closed set such that $E \subseteq F$. Let $p \in E'$ be given.
-        Then, for any $r \in \R^{+}$, we have
-        \[
-        E \cap \widetilde{N}_{r}(p) \neq \emptyset \implies F \cap \widetilde{N}_{r}(p) \neq \emptyset,
-        \]
-        which implies that $p \in F' \subseteq F$. Therefore, we have $E' \subseteq F$.
-        Since $E \subseteq F$, we have $\overline{E} = E \cup E' \subseteq F$.
-    \end{enumerate}
-\end{proof}
-
-\bigskip
-
-\begin{theorem} \label{thm:SupremumInClosure}
-    Let $\paren*{\R, \norm*{\cdot}}$ be given. Let $E \subseteq \R$ be nonempty and bounded above. Then we have
-    \[
-    \sup E \in \overline{E},
-    \]
-    which implies that
-    \[
-    E \text{ is closed} \implies \sup E \in E.
+    \bigcap_{\alpha \in B} K_{\alpha} \neq \emptyset \quad \text{for all finite subset }
+    B \subseteq A \implies \bigcap_{\alpha \in A} K_{\alpha} \neq \emptyset.
     \]
 \end{theorem}
 
 \begin{proof}
-    By the \emph{least upper bound property},
-    there exists $\alpha = \sup E \in \R$. Assume that $\alpha \in E$. Then we have
+    Assume that $\displaystyle \bigcap_{\alpha \in A} K_{\alpha} = \emptyset$. Then we have
     \[
-    E \subseteq \overline{E} \implies \alpha \in \overline{E}.
+    X = \paren*{\bigcap_{\alpha \in A} K_{\alpha}}^{c} = \bigcup_{\alpha \in A} \paren*{K_{\alpha}}^{c}.
     \]
-    Otherwise, for any $x \in \R^{+}$, $\alpha - x$ is not an upper bound of $E$.
-    Thus there exists some $p \in E$ such that
+    Since each $K_{\alpha}$ is compact, $K_{\alpha}$ is closed by \Cref{thm:CompactSetIsClosed}.
+    Then, by \Cref{cor:ClosedSetComplementIsOpenSet}, we have
     \[
-    \alpha - x < p < \alpha \implies p \in \widetilde{N}_{x}(\alpha) \cap E,
+    \text{Each } \paren*{K_{\alpha}}^{c} \text{ is open} \implies
+    \set*{\paren*{K_{\alpha}}^{c}}_{\alpha \in A} \text{ is an open cover of } X.
     \]
-    which implies that $\alpha \in E'$. Therefore, we have
+    Since $K_{\alpha} \subseteq X \subseteq \displaystyle \bigcup_{\beta \in A} \paren*{K_{\beta}}^{c}$, we have
     \[
-    E' \subseteq \overline{E} \implies \alpha \in \overline{E}.
+    \set*{\paren*{K_{\beta}}^{c}}_{\beta \in A} \text{ is an open cover of } K_{\alpha}.
+    \]
+    Since $K_{\alpha}$ is compact, there exists a finite subcover
+    $\set*{\paren*{K_{\beta}}^{c}}_{\beta \in B_{\alpha}}$ of $K_{\alpha}$. Then we have
+    \begin{align*}
+        K_{\alpha} \subseteq \bigcup_{\beta \in B_{\alpha}} \paren*{K_{\beta}}^{c}
+        &= \paren*{\bigcap_{\beta \in B_{\alpha}} K_{\beta}}^{c} \\
+        &\implies K_{\alpha} \cap \paren*{\bigcap_{\beta \in B_{\alpha}} K_{\beta}} = \emptyset \\
+        &\implies \bigcap_{\beta \in B_{\alpha} \cup \set*{\alpha}} K_{\beta} = \emptyset.
+    \end{align*}
+    Since $\set*{\alpha}$ and $B_{\alpha}$ are finite, $B_{\alpha} \cup \set*{\alpha}$ is also finite
+    by \Cref{thm:FiniteUnionOfFiniteSetsIsFinite}, which contradicts the assumption. Therefore, we have
+    \[
+    \bigcap_{\alpha \in A} K_{\alpha} \neq \emptyset.
     \]
 \end{proof}
 
+\bigskip
+
+\begin{lemma} \label{lem:NestedIntervals}
+    Let $\paren*{a_{n}}_{n = 1}^{\infty}$ and $\paren*{b_{n}}_{n = 1}^{\infty}$ be sequences in $\R$,
+    and let $\set*{I_{n}}_{n = 1}^{\infty}$ be a sequence of intervals in $\R$ such that
+    \begin{itemize}
+        \item $I_{n} = [a_{n}, b_{n}]$ for all $n \in \N$
+        \item $I_{n + 1} \subseteq I_{n} \iff a_{n} \leq a_{n + 1} \leq b_{n + 1} \leq b_{n}$ for all $n \in \N$
+    \end{itemize}
+    where $a_{n} \leq b_{n}$ for all $n \in \N$. Then we have
+    \[
+    \bigcap_{n = 1}^{\infty} I_{n} \neq \emptyset.
+    \]
+\end{lemma}
+
+\begin{proof}
+    Let $E$ be a set defined by
+    \[
+    E \coloneqq \setbuilder{a_{n}}{n \in \N}.
+    \]
+    Since $E$ is bounded above by $b_{1}$, there exists $\alpha = \sup E$. Then we have
+    \[
+    a_{m} \leq \alpha \quad \text{for all } m \in \N.
+    \]
+    For any $m \in \N$, we have $b_{m}$ is an upper bound of $E$ since
+    \begin{itemize}
+        \item $a_{n} \leq a_{m} \leq b_{m}$ for all $n \in \N$ such that $n \leq m$.
+        \item $a_{n} \leq b_{n} \leq b_{m}$ for all $n \in \N$ such that $n > m$.
+    \end{itemize}
+    Therefore, we have
+    \[
+    a_{m} \leq \alpha \leq b_{m} \implies \alpha \in I_{m} \text{ for all } m \in \N.
+    \]
+\end{proof}
 
 \bigskip
 
-\begin{theorem} \label{thm:IsolatedPoints}
-    Let $(X, d)$ be a metric space and $E \subseteq X$. Then we have
+\begin{theorem} \label{thm:NestedKCells}
+    Let $k \in \N$ be given. Let $\set*{a_{n, j}}_{n = 1}^{\infty}$ and $\set*{b_{n, j}}_{n = 1}^{\infty}$ be sequences
+    in $\R$ for all $j = 1, 2, \dots, k$, and let $\set*{I_{n}}_{n = 1}^{\infty}$ be a sequence of $k$-cells in $\R^{k}$
+    such that
+    \begin{itemize}
+        \item $I_{n} = \setbuilder*{\bm{x} \in \R^{k}}{a_{n, j} \leq x_{j} \leq b_{n, j}
+        \text{ for all } j = 1, 2, \dots, k}$ for all $n \in \N$
+        \item $I_{n + 1} \subseteq I_{n} \iff a_{n, j} \leq a_{n + 1, j} \leq b_{n + 1, j} \leq b_{n, j}$
+        for all $j = 1, 2, \dots, k$ and $n \in \N$
+    \end{itemize}
+    where $a_{n, j} \leq b_{n, j}$ for all $j = 1, 2, \dots, k$ and $n \in \N$. Then we have
     \[
-    E \setminus E' = \setbuilder*{p \in X}{p \text{ is an isolated point of } E}.
+    \bigcap_{n = 1}^{\infty} I_{n} \neq \emptyset.
     \]
 \end{theorem}
+
+\begin{proof}
+    Let $\set*{I_{n, j}}_{n = 1}^{\infty}$ be a sequence of intervals in $\R$ defined by
+    \[
+    I_{n, j} = [a_{n, j}, b_{n, j}] \quad \text{for all } j = 1, 2, \dots, k \text{ and } n \in \N.
+    \]
+    Then we have $I_{n + 1, j} \subseteq I_{n, j}$ for all $j = 1, 2, \dots, k$
+    and $n \in \N$. By \Cref{lem:NestedIntervals}, we have
+    \[
+    \bigcap_{n = 1}^{\infty} I_{n, j} \neq \emptyset \quad \text{for all } j = 1, 2, \dots, k.
+    \]
+    Let $\alpha_{j} \in \displaystyle \bigcap_{n = 1}^{\infty} I_{n, j}$ be given for all $j = 1, 2, \dots, k$. Then we have
+    \[
+    \alpha_{j} \in I_{n, j} \implies a_{n, j} \leq \alpha_{j} \leq b_{n, j} \quad \text{for all }
+    j = 1, 2, \dots, k \text{ and } n \in \N.
+    \]
+    Let $\bm{\alpha} = (\alpha_{1}, \alpha_{2}, \dots, \alpha_{k}) \in \R^{k}$. Then we have
+    \[
+    \bm{\alpha} \in I_{n} \quad \text{for all } n \in \N \implies \bm{\alpha} \in \bigcap_{n = 1}^{\infty} I_{n}.
+    \]
+\end{proof}
+
+\bigskip
+
+\begin{theorem} \label{thm:KCellIsCompact}
+    Let $\paren*{\R^{k}, \norm*{\cdot}}$ be given for some $k \in \N$. Then any $k$-cell is compact.
+\end{theorem}
+
+\begin{proof}
+    Let $I$ be a $k$-cell in $\R^{k}$, and let $I_{1} \coloneqq I$. Then we have
+    \[
+    I_{1} = \prod_{j = 1}^{k} \bracket*{a_{1, j}, b_{1, j}} \subseteq \R^{k},
+    \]
+    where $- \infty < a_{1, j} \leq b_{1, j} < + \infty$ for all $j = 1, 2, \dots, k$.
+    Let $I_{1, j, m}$ be an interval in $\R$ defined by
+    \[
+    I_{1, j, m} \coloneqq \begin{dcases}
+        \bracket*{a_{1, j}, \frac{a_{1, j} + b_{1, j}}{2}} & \text{if } m = 1 \\
+        \bracket*{\frac{a_{1, j} + b_{1, j}}{2}, b_{1, j}} & \text{if } m = 2
+    \end{dcases} \quad \text{for all } j = 1, 2, \dots, k.
+    \]
+    Let $S_{k}$ be a set defined by
+    \[
+    S_{k} \coloneqq \set*{1, 2}^{k} = \setbuilder*{\bm{m} \in \R^{k}}{m_{j} \in \set*{1, 2}
+    \text{ for all } j = 1, 2, \dots, k}.
+    \]
+    By \Cref{thm:ProductOfFiniteSetsIsFinite}, $S_{k}$ is finite. We have
+    \[
+    I_{1} = \bigcup_{\bm{m} \in S_{k}} \paren*{\prod_{j = 1}^{k} I_{1, j, m_{j}}}.
+    \]
+    Let $\set*{G_{\alpha}}_{\alpha \in A}$ be an open cover of $I_{1}$. Assume that $I_{1}$ has no finite subcover.
+    Then, for each $\bm{m} \in S_{k}$, we have
+    \[
+    \prod_{j = 1}^{k} I_{1, j, m_{j}} \subseteq I_{1} \subseteq \bigcup_{\alpha \in A} G_{\alpha},
+    \]
+    which implies that $\set*{G_{\alpha}}_{\alpha \in A}$ is an open cover of $\displaystyle
+    \prod_{j = 1}^{k} I_{1, j, m_{j}}$. Assume that for each $\bm{m} \in S_{k}$, we have
+    \[
+    \prod_{j = 1}^{k} I_{1, j, m_{j}} \text{ has a finite subcover } \set*{G_{\alpha}}_{\alpha \in A_{\bm{m}}}.
+    \]

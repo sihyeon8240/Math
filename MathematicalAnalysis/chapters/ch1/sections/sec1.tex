@@ -1,50 +1,75 @@
-\begin{section}{The Natural, Integer, and Rational Number Systems}
+\begin{remark}
+    Throughout this textbook, \textbf{logical formulas} are interpreted according to the following conventions:
+    \begin{itemize}
+        \item \textbf{Parentheses} have the highest precedence. For example,
+        \[
+        (P \lor Q) \land R
+        \]
+        is evaluated by first computing $P \lor Q$
+        \item The \textbf{logical connectives} are interpreted in the order
+        \[
+        \neg \; > \; \land \; > \; \lor \; > \; \implies \; > \; \iff
+        \]
+        Hence
+        \[
+        \neg P \land Q \lor R \implies S \iff T
+        \]
+        is understood as
+        \[
+        ((((\neg P) \land Q) \lor R) \implies S) \iff T
+        \]
+        \item A \textbf{quantifier} binds the entire formula that follows it
+        unless parentheses indicate a smaller scope. Thus
+        \[
+        \forall x, P(x) \land Q(x) \implies R(x)
+        \]
+        means
+        \[
+        \forall x\, ((P(x)\land Q(x))\implies R(x))
+        \]
+        whereas
+        \[
+        (\forall x P(x)) \land (\forall x Q(x))
+        \]
+        is different from
+        \[
+        \forall x (P(x) \land Q(x))
+        \]
+    \end{itemize}
+\end{remark}
 
-We denote the set $\set*{1, 2, 3, \dots}$ of natural numbers by $\N$.
-The set $\N$ is defined by the following axioms:
+\begin{section}{The Natural Number Systems}
+
+The set $\set*{1, 2, 3, \dots}$ of natural numbers is denoted by $\N$, and is defined by the following axioms:
 \begin{itemize}
     \item $1 \in \N$
-    \item $n \in \N \implies s(n) \in \N$
-    \item $\nexists n \in \N$ such that $s(n) = 1$
-    \item $m, n \in \N, s(m) = s(n) \implies m = n$
+    \item $\forall n \in \N, s(n) \in \N$
+    \item $\nexists n \in \N, s(n) = 1$
+    \item $\forall m, n \in \N, s(m) = s(n) \implies m = n$
     \item If $S \subseteq \N$ satisfies
     \begin{itemize}
         \item $1 \in S$
-        \item $n \in S \implies s(n) \in S$
+        \item $\forall n \in S, s(n) \in S$
     \end{itemize}
     then $S = \N$
 \end{itemize}
-$s(n) \coloneqq n + 1$ is called the \textbf{successor} of $n$.
+where $s(n)$ is called the \textbf{successor} of $n$.
 These axioms are called the \textbf{Peano axioms} (or \emph{Peano Postulates}).
-\\[6mm]
-We define the set $\Z$ of integers and the set $\Q$ of rational numbers as follows:
-\begin{itemize}
-    \item $\Z \coloneqq \setbuilder*{m - n}{m, n \in \N}$
-    \item $\Q \coloneqq \setbuilder*{\dfrac{m}{n}}{m \in \Z, \; n \in \N}$
-\end{itemize}
-Also, we denote the set of positive numbers or negative numbers as follows:
-\begin{itemize}
-    \item $\Z^{+} \coloneqq \setbuilder*{n}{n \in \N}$, $\Z^{-} \coloneqq \setbuilder*{-n}{n \in \N}$
-    \item $\Q^{+} \coloneqq \setbuilder*{\dfrac{m}{n}}{m \in \N, \; n \in \N}$,
-    $\Q^{-} \coloneqq \setbuilder*{\dfrac{m}{n}}{m \in \Z^{-}, \; n \in \N}$
-\end{itemize}
 
 \bigskip
 
 \begin{remark}
     The \textbf{Peano axioms} do not guarantee the \emph{existence} of $\N$, which is guaranteed by the
-    \textbf{axiom of infinity} in the \textbf{ZFC axioms}.
-    \\[6mm]
-    In this textbook, the \textbf{ZFC axioms} will not be discussed, so we will just assume that $\N$ exists.
-    Also, we will reject the \textbf{axiom of choice} and provide constructive proofs as far as possible.
+    \textbf{axiom of infinity} in the \textbf{ZFC axioms}. In this textbook, the \textbf{ZFC axioms}
+    is not discussed, so we will just assume that $\N$ exists.
 \end{remark}
 
 \bigskip
 
-\begin{remark}
+\begin{definition} \label{def:MathematicalInduction}
     Let $P(n)$ be a statement about $n \in \N$, and let
     \[
-    S \coloneqq \setbuilder*{n \in \N}{P(n) \text{ is true}}
+    S \coloneqq \setbuilder*{n \in \N}{P(n) \text{ is true}} \subseteq \N
     \]
     Assume that $P(n)$ satisfies
     \begin{itemize}
@@ -65,16 +90,50 @@ Also, we denote the set of positive numbers or negative numbers as follows:
     \end{array}
     \]
     This method of proof is called the \textbf{principle of mathematical induction}.
+\end{definition}
+
+\bigskip
+
+\begin{definition} \label{def:OperationsOnN}
+    For all $n, m \in \N$, we define the \textbf{addition} operator $+$ on $\N$ by
+    \begin{itemize}
+        \item $n + 1 \coloneqq s(n)$
+        \item $n + s(m) \coloneqq s(n + m)$
+    \end{itemize}
+    For all $n, m \in \N$, we define the \textbf{multiplication} operator $\cdot$ on $\N$ by
+    \begin{itemize}
+        \item $n \cdot 1 \coloneqq n$
+        \item $n \cdot s(m) \coloneqq n \cdot m + n$
+    \end{itemize}
+\end{definition}
+
+\bigskip
+
+\begin{remark}
+    Strictly speaking, \Cref{def:OperationsOnN} requires the \textbf{recursion theorem} to be strictly defined.
+    In this textbook, the \textbf{recursion theorem} is not discussed, so we will just assume that the operators
+    on $\N$ are well-defined.
+    \\[6mm]
+    Also, we will not discuss the properties of the operators on $\N$, such as
+    \begin{itemize}
+        \item $n + m = m + n$
+        \item $(n + m) + k = n + (m + k)$
+        \item $n \cdot m = m \cdot n$
+        \item $(n \cdot m) \cdot k = n \cdot (m \cdot k)$
+        \item $n \cdot (m + k) = n \cdot m + n \cdot k$
+    \end{itemize}
+    for all $n, m, k \in \N$. For these proofs rely on the recursive definitions.
 \end{remark}
 
 \bigskip
 
 \begin{theorem} \label{thm:WellOrderingProperty}
-    Any nonempty subset of $\N$ has a least element. This theorem is called the \textbf{well-ordering property} of $\N$.
+    Let $S \subseteq \N$ be nonempty. Then $S$ has a least element.
+    This theorem is called the \textbf{well-ordering property} of $\N$.
 \end{theorem}
 
 \begin{proof}
-    Let $S \subseteq \N$ be nonempty. Assume that $S$ has no least element. Let
+    Assume that $S$ has no least element. Let
     \begin{itemize}
         \item $T \coloneqq \N \setminus S$
         \item $L \coloneqq \setbuilder*{n \in \N}{\set*{1, 2, \dots, n} \subseteq T}$

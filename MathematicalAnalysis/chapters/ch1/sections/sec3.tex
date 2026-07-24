@@ -1,40 +1,256 @@
-\begin{section}{Fields and Ordered Fields}
+\begin{section}{Ordered Sets}
 
-A set $F$ is called a \textbf{field} if it is equipped with two operations,
-\emph{addition} and \emph{multiplication}, and satisfies the following axioms:
+A set $S$ is called an \textbf{ordered set} if $S$ is equipped with a relation $<$
+such that for any $x, y, z \in S$, the following properties hold:
 \begin{enumerate}[label=\textbf{(\Alph*)}]
-    \item Axioms for addition
-    \begin{itemize}
-        \item $x + y \in F$ for all $x, y \in F$.
-        \item $x + y = y + x$ for all $x, y \in F$.
-        \item $(x + y) + z = x + (y + z)$ for all $x, y, z \in F$.
-        \item There exists an element $0 \in F$ such that $x + 0 = x$ for all $x \in F$.
-        \item For each $x \in F$, there exists an element $-x \in F$ such that $x + (-x) = 0$.
-    \end{itemize}
-    \item Axioms for multiplication
-    \begin{itemize}
-        \item $x \cdot y \in F$ for all $x, y \in F$.
-        \item $x \cdot y = y \cdot x$ for all $x, y \in F$.
-        \item $(x \cdot y) \cdot z = x \cdot (y \cdot z)$ for all $x, y, z \in F$.
-        \item There exists an element $1 \in F$ with $1 \neq 0$ such that $x \cdot 1 = x$ for all $x \in F$.
-        \item For each $x \in F$ with $x \neq 0$, there exists an element $x^{-1} \in F$ such that $x \cdot x^{-1} = 1$.
-    \end{itemize}
-    \item The distributive law
-    \begin{itemize}
-        \item $x \cdot (y + z) = x \cdot y + x \cdot z$ for all $x, y, z \in F$.
-    \end{itemize}
+    \item $x < y, y < z \implies x < z$
+    \item Only one of the relations $x < y$, $x = y$, or $x > y$ holds
 \end{enumerate}
-
-A set $F$ is called an \textbf{ordered field} if it is both an ordered set and a field, and satisfies the following axioms:
+the relation $<$ is called a \textbf{(strict) total order} on $S$.
+\\[6mm]
+On an ordered set, we define the following relations:
 \begin{itemize}
-    \item If $x, y, z \in F$ and $x < y$, then $x + z < y + z$.
-    \item If $x, y \in F$ and $x > 0$ and $y > 0$, then $x \cdot y > 0$.
+    \item $x > y \iff y < x$
+    \item $x \geq y \iff \paren*{x > y \text{ or }x = y}$
+    \item $x \leq y \iff y \geq x$
 \end{itemize}
 
 \bigskip
 
 \begin{example}
-    $(\Q, +, \cdot)$ is an ordered field, while $(\Z, +, \cdot)$ is not an ordered field since $2^{-1} \notin \Z$.
+    $\N, \Z, \Q$ are ordered sets with the following relations:
+    \begin{itemize}
+        \item $\forall n, m \in \N, m < n \iff \exists k \in \N \text{ such that } n = m + k$
+        \item $\forall n, m \in \Z, m < n \iff \exists k \in \Z^{+} \text{ such that } n = m + k$
+        \item $\forall p, q \in \Q, q < p \iff \exists r \in \Q^{+} \text{ such that } p = q + r$
+    \end{itemize}
 \end{example}
+
+\bigskip
+
+\begin{definition} \label{def:Boundedness}
+    Let $S$ be an ordered set and $E \subseteq S$.
+    \begin{itemize}
+        \item $E$ is said to be \textbf{bounded above} if
+        \[
+        \exists M \in S \text{ such that } \forall  x \in E, x \leq M
+        \]
+        Such an $M$ is called an \textbf{upper bound} of $E$.
+        \item $E$ is said to be \textbf{bounded below} if
+        \[
+        \exists m \in S \text{ such that } \forall  x \in E, m \leq x
+        \]
+        Such an $m$ is called a \textbf{lower bound} of $E$.
+    \end{itemize}
+\end{definition}
+
+\bigskip
+
+\begin{theorem} \label{thm:BoundedSubsetOfZinZHasExtremum}
+    Let $E \subseteq \Z$ be nonempty.
+    \begin{enumerate}[label=\textbf{(\Alph*)}]
+        \item $E$ is bounded below $\implies E$ has a least element.
+        \item $E$ is bounded above $\implies E$ has a greatest element.
+    \end{enumerate}
+\end{theorem}
+
+\begin{proof}
+    \begin{enumerate}[label=\textbf{(\Alph*)}]
+        \item Let $E$ be bounded below. Then,
+        \[
+        \begin{array}{c}
+            E \text{ is bounded below} \\
+            \Downarrow \\
+            \exists m \in \Z \text{ such that } \forall x \in E, m \leq x
+        \end{array}
+        \]
+        Let
+        \[
+        F \coloneqq \setbuilder*{x - m + 1}{x \in E} \subseteq \N
+        \]
+        Then
+        \[
+        \begin{array}{c}
+            E \neq \emptyset \\
+            \Downarrow \\
+            F \neq \emptyset
+        \end{array}
+        \]
+        By \Cref{thm:WellOrderingProperty}, $F$ has a least element, say $n$. Then
+        \[
+        \begin{array}{c}
+            \forall x \in E, n \leq x - m + 1 \\
+            \Downarrow \\
+            \forall x \in E, n + m - 1 \leq x
+        \end{array}
+        \]
+        Since $n = \min F$,
+        \[
+        \begin{array}{c}
+            n \in F \\
+            \Downarrow \\
+            \exists x_{0} \in E \text{ such that } n = x_{0} - m + 1 \\
+            \Downarrow \\
+            x_{0} = n + m - 1 = \min E
+        \end{array}
+        \]
+        \item Let $E$ be bounded above. Then,
+        \[
+        \begin{array}{c}
+            E \text{ is bounded above} \\
+            \Downarrow \\
+            \exists M \in \Z \text{ such that } \forall x \in E, x \leq M
+        \end{array}
+        \]
+        Let
+        \[
+        F \coloneqq \setbuilder*{-x + M + 1}{x \in E} \subseteq \N
+        \]
+        Then
+        \[
+        \begin{array}{c}
+            E \neq \emptyset \\
+            \Downarrow \\
+            F \neq \emptyset
+        \end{array}
+        \]
+        By \Cref{thm:WellOrderingProperty}, $F$ has a least element, say $n$. Then
+        \[
+        \begin{array}{c}
+            \forall x \in E, n \leq - x + M + 1 \\
+            \Downarrow \\
+            \forall x \in E, x \leq M - n + 1 \\
+        \end{array}
+        \]
+        Since $n = \min F$,
+        \[
+        \begin{array}{c}
+            n \in F \\
+            \Downarrow \\
+            \exists x_{0} \in E \text{ such that } n = -x_{0} + M + 1 \\
+            \Downarrow \\
+            x_{0} = M - n + 1 = \max E
+        \end{array}
+        \]
+    \end{enumerate}
+\end{proof}
+
+\bigskip
+
+\begin{definition} \label{def:SupremumInfimum}
+    Let $S$ be an ordered set, and let $E \subseteq S$ be bounded above.
+    An element $\alpha \in S$ is called the \textbf{supremum} (or \emph{least upper bound}) of $E$ if
+    \begin{itemize}
+        \item $\alpha$ is an upper bound of $E$
+        \item $\forall \beta \in S, \beta < \alpha \implies \beta$ is not an upper bound of $E$
+    \end{itemize}
+    The supremum of $E$ is denoted by
+    \[
+    \alpha = \sup E
+    \]
+    Similarly, let $E \subseteq S$ be bounded below.
+    An element $\alpha \in S$ is called the \textbf{infimum} (or \emph{greatest lower bound}) of $E$ if
+    \begin{itemize}
+        \item $\alpha$ is a lower bound of $E$
+        \item $\forall \beta \in S, \beta > \alpha \implies \beta$ is not a lower bound of $E$
+    \end{itemize}
+    The infimum of $E$ is denoted by
+    \[
+    \alpha = \inf E
+    \]
+\end{definition}
+
+\bigskip
+
+\begin{example}
+    Let
+    \[
+    S \coloneqq \setbuilder*{p \in \Q^{+}}{p^{2} < 2}
+    \]
+    Let $p \in S$ be given, and let
+    \[
+    q \coloneqq p - \dfrac{p^{2} - 2}{p + 2} = \dfrac{2p + 2}{p + 2} > p
+    \]
+    Then
+    \[
+    \begin{array}{c}
+        q^{2} - 2 = \dfrac{2(p^{2} - 2)}{(p + 2)^{2}} < 0 \\[4mm]
+        \Downarrow \\[2mm]
+        q \in S
+    \end{array}
+    \]
+    This implies that $p \in S$ is not an upper bound of $S$.
+    \\[6mm]
+    Let $p \in \Q^{+} \setminus S$ be given. Then
+    \[
+    \begin{array}{c}
+        p^{2} \geq 2 \\[2mm]
+        \Downarrow
+        \rlap{\quad\footnotesize($\because \nexists p \in \Q^{+}, p^{2} = 2$)} \\[2mm]
+        p^{2} > 2 \\[2mm]
+        \Downarrow
+        \rlap{\quad\footnotesize($\because \forall x \in S, x^{2} < 2 < p^{2} \implies x < p$)} \\[2mm]
+        p \text{ is an upper bound of } S
+    \end{array}
+    \]
+    Let 
+    \[
+    q \coloneqq p - \dfrac{p^{2} - 2}{p + 2} = \dfrac{2p + 2}{p + 2} < p
+    \]
+    Then
+    \[
+    \begin{array}{c}
+        q^{2} - 2 = \dfrac{2(p^{2} - 2)}{(p + 2)^{2}} > 0 \\[4mm]
+        \Downarrow
+        \rlap{\quad\footnotesize($\because \forall x \in S, x^{2} < 2 < q^{2} \implies x < q$)} \\[2mm]
+        q \text{ is an upper bound of } S
+    \end{array}
+    \]
+    This implies that $p$ is not the least upper bound of $S$. To sum up, $S$ has no least upper bound in $\Q^{+}$.
+\end{example}
+
+\bigskip
+
+\begin{definition} \label{def:LeastUpperBoundProperty}
+    An ordered set $S$ is said to have the \textbf{least upper bound property} if
+    \begin{align*}
+        \forall E \subseteq S, \; &E \text{ is nonempty and bounded above} \\
+        \implies &E \text{ has a least upper bound in } S.
+    \end{align*}
+\end{definition}
+
+\bigskip
+
+\begin{theorem} \label{thm:GreatestLowerBoundProperty}
+    Let $S$ be an ordered set with the least upper bound property. Then
+    \begin{align*}
+        \forall E \subseteq S, \; &E \text{ is nonempty and bounded below} \\
+        \implies &E \text{ has a greatest lower bound in } S.
+    \end{align*}
+\end{theorem}
+
+\begin{proof}
+    Let $E$ be a nonempty subset of $S$ which is bounded below. Let $L$ be defined as follows:
+    \[
+    L \coloneqq \setbuilder*{\lambda}{\lambda \text{ is a lower bound of } E}.
+    \]
+    Then, $L$ is nonempty and bounded above. By the least upper bound property,
+    there exists $\alpha = \sup L \in S$. We will show that $\alpha = \inf E$.
+    \\[6mm]
+    Assume that $\alpha \notin L$. Then we have the following:
+    \begin{itemize}
+        \item $\alpha$ is not a lower bound of $E \implies$ There exists $\beta \in E$ such that $\beta < \alpha$.
+        \item $\alpha = \sup L \implies \beta$ is not an upper bound of $L \implies$
+        There exists $\gamma \in L$ such that $\beta < \gamma \leq \alpha$.
+        \item $\gamma \in L \implies \gamma$ is a lower bound of $E \implies \gamma \leq \beta$.
+    \end{itemize}
+    This is a contradiction. Therefore, we have $\alpha \in L$, i.e., $\alpha$ is a lower bound of $E$.
+    Since $\alpha$ is an upper bound of $L$, the following holds:
+    \[
+    \text{For any } \delta > \alpha, \text{ we have } \delta \notin L
+    \implies \delta \text{ is not a lower bound of } E.
+    \]
+    Therefore, we can conclude that $\alpha = \inf E$. 
+\end{proof}
 
 \end{section}

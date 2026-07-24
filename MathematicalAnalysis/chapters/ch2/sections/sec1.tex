@@ -1,92 +1,177 @@
-\begin{section}{Relations}
+\begin{section}{Functions} \label{sec:Functions}
 
-A \textbf{relation} $\sim$ on a set $S$ defines a subset $R$ of $S \times S$, and vice versa.
+A \emph{function} (or a \emph{mapping}) is defined with 3 components.
 \begin{itemize}
-    \item $R \coloneqq \setbuilder*{(x, y) \in S \times S}{x \sim y}$.
-    \item $x \sim y \iff (x, y) \in R$.
+    \item A \textbf{domain} $X$.
+    \item A \textbf{codomain} $Y$.
+    \item A \textbf{rule} $f$ which associates each element $x \in X$ to a \emph{unique} element $y \in Y$.
 \end{itemize}
+$f$ is said to be a \emph{function} of $X$ into $Y$, which is denoted by $f: X \to Y$.
+    For each $x \in X$, the \emph{unique} element $y \in Y$ associated with $x$ is denoted by $f(x)$.
 
 \bigskip
 
-\begin{definition} \label{def:EquivalenceRelation}
-    A relation $\sim$ on a set $S$ is called an \textbf{equivalence relation} if it satisfies the following properties:
+\begin{remark}
+    Let $f: X \to Y$ be a function. For any subset $E \subseteq X$, we define the \textbf{image} of $E$ under $f$ as
+    \[
+    f(E) \coloneqq \setbuilder*{f(x)}{x \in E} \subseteq Y.
+    \]
+    Especially, if $E = X$, then $f(X) \subseteq Y$ is called the \textbf{range} of $f$.
+\end{remark}
+
+\bigskip
+
+\begin{remark}
+    Let $f: X \to Y$ be a function. For any subset $E \subseteq Y$, we define the \textbf{inverse image} of $E$ under $f$ as
+    \[
+    f^{-1}(E) \coloneqq \setbuilder*{x \in X}{f(x) \in E} \subseteq X.
+    \]
+\end{remark}
+
+\bigskip
+
+\begin{definition} \label{def:InjectiveSurjectiveBijective}
+    Let $f: X \to Y$ be a function. We define the properties of $f$ as follows:
     \begin{itemize}
-        \item Reflexivity: $x \sim x$ for all $x \in S$.
-        \item Symmetry: If $x \sim y$, then $y \sim x$ for all $x, y \in S$.
-        \item Transitivity: If $x \sim y$ and $y \sim z$, then $x \sim z$ for all $x, y, z \in S$.
+        \item $f$ is \textbf{injective} (or \emph{one-to-one}) if for any $x_1, x_2 \in X$, we have
+        \[
+        f(x_1) = f(x_2) \implies x_1 = x_2.
+        \]
+        \item $f$ is \textbf{surjective} (or \emph{onto}) if $f(X) = Y$.
+        \item $f$ is \textbf{bijective} (or a \emph{one-to-one correspondence}) if it is both injective and surjective.
     \end{itemize}
 \end{definition}
 
 \bigskip
 
-\begin{definition} \label{def:Partition}
-    A \textbf{partition} of a set $S$ is a collection $\set*{A_{\alpha}}_{\alpha \in I}$ of nonempty subsets of $S$ such that
-    \begin{itemize}
-        \item $A_{\alpha} \cap A_{\beta} = \emptyset$ for all $\alpha, \beta \in I$ with $\alpha \neq \beta$.
-        \item $\displaystyle \bigcup_{\alpha \in I} A_{\alpha} = S$.
-    \end{itemize}
+\begin{definition} \label{def:InverseFunction}
+    Let $f: X \to Y$ be a bijective function. Then, for any $y \in Y$, there exists a
+    \emph{unique} $x \in X$ such that $f(x) = y$. Therefore, we can define a function
+    \[
+    f^{-1}: Y \to X \quad \text{such that} \quad f^{-1}(y) = x.
+    \]
+    Such a function $f^{-1}$ is called the \textbf{inverse function} of $f$.
 \end{definition}
 
 \bigskip
 
-\begin{definition} \label{def:EquivalenceClass}
-    Let $\sim$ be an equivalence relation on a set $S$. For each $x \in S$,
-    the \textbf{equivalence class} of $x$ is defined as
-    \[
-    [x] \coloneqq \setbuilder*{y \in S}{y \sim x}.
-    \]
-    We denote the set of all equivalence classes of $S$ by $S / \sim \; \coloneqq \setbuilder*{[x]}{x \in S}$.
-\end{definition}
-
-\bigskip
-
-\begin{theorem} \label{thm:EquivalenceClassesFormAPartition}
-    Let $\sim$ be an equivalence relation on a set $S$. For any $x, y \in S$, we have either
-    \[
-    [x] = [y] \quad \text{or} \quad [x] \cap [y] = \emptyset.
-    \]
-    Therefore, $S / \sim$ is a partition of $S$.
+\begin{theorem} \label{thm:InverseFunctionIsBijective}
+    Let $f: X \to Y$ be a bijective function. Then the inverse function $f^{-1}: Y \to X$ is bijective.
 \end{theorem}
 
 \begin{proof}
-    Assume that $[x] \cap [y] \neq \emptyset$. There exists some $z \in S$
-    such that $z \in [x]$ and $z \in [y]$. Then we have
+    Let $y_1, y_2 \in Y$ be given. Assume that $f^{-1}(y_1) = f^{-1}(y_2) = x$. Then, by \Cref{def:InverseFunction},
+    we have
     \[
-    z \sim x \text{ and } z \sim y \implies x \sim z \text{ and } z \sim y \implies x \sim y
+    f(x) = y_1 \text{ and } f(x) = y_2 \implies y_1 = y_2
     \]
-    by the symmetry and transitivity of $\sim$. Therefore, for any $w \in [x]$, we have 
-    \[
-    w \sim x \text{ and } x \sim y, \implies w \sim y \implies w \in [y].
-    \]
-    This shows that $[x] \subseteq [y]$. Similarly, we can show that $[y] \subseteq [x]$.
-    Therefore, we have $[x] = [y]$ whenever $[x] \cap [y] \neq \emptyset$.
+    since $f$ is a function. Therefore, we have that $f^{-1}$ is injective.
+    By the definition of image, we have that $f^{-1}(Y) = X$, which implies that $f^{-1}$ is surjective.
 \end{proof}
 
 \bigskip
 
-\begin{theorem} \label{thm:PartitionDefinesEquivalenceRelation}
-    Let $\set*{A_{\alpha}}_{\alpha \in I}$ be a partition of a set $S$. Let $\sim$ be a relation on $S$ defined by
-    \[
-    x \sim y \iff x, y \in A_{\alpha} \text{ for some } \alpha \in I.
-    \]
-    Then, we have that $\sim$ is an equivalence relation on $S$,
-    and the equivalence classes of $\sim$ are precisely the sets $A_{\alpha}$.
+\begin{definition} \label{def:RestrictionFunction}
+    Let $f: X \to Y$ be a function. Let $E \subseteq X$ and $F \subseteq Y$ be given with $f(E) \subseteq F$.
+    We define the restriction functions as follows:
+    \begin{itemize}
+        \item The \textbf{restriction} of $f$ to $E$ is defined by
+        \[
+        f|_{E}: E \to Y \quad \text{such that} \quad f|_{E}(x) = f(x) \quad \text{for all } x \in E.
+        \]
+        \item The \textbf{Corestriction} of $f$ to $F$ is defined by
+        \[
+        f|^{F}: X \to F \quad \text{such that} \quad f|^{F}(x) = f(x) \quad \text{for all } x \in X.
+        \]
+        \item The \textbf{Bi-restriction} of $f$ to $E$ and $F$ is defined by
+        \[
+        f|_{E}^{F}: E \to F \quad \text{such that} \quad f|_{E}^{F}(x) = f(x) \quad \text{for all } x \in E.
+        \]
+    \end{itemize}
+    We will simply call all of them as just \emph{restriction}, if there is no ambiguity.
+\end{definition}
+
+\bigskip
+
+\begin{theorem} \label{thm:PropertiesOfRestrictionFunctions}
+    Let $f: X \to Y$ be a function. Let $E \subseteq X$ and $F \subseteq Y$ be given with $f(E) \subseteq F$.
+    Then we have the following properties:
+    \begin{enumerate}[label=\textbf{(\Alph*)}]
+        \item If $f$ is injective, then $f|_{E}^{F}$ is also injective.
+        \item If $f(E) = F$, then $f|_{E}^{F}$ is surjective.
+        \item If $f$ is injective and $f(E) = F$, then $f|_{E}^{F}$ is bijective.
+    \end{enumerate}
 \end{theorem}
 
 \begin{proof}
-    We need to show that $\sim$ is reflexive, symmetric, and transitive.
-    \begin{itemize}
-        \item Reflexivity: For any $x \in S$, there exists $\alpha \in I$ such that $x \in A_{\alpha}$.
-        \item Symmetry: If $x \sim y$, then there exists $\alpha \in I$ such that $y, x \in A_{\alpha}$.
-        \item Transitivity: If $x \sim y$ and $y \sim z$, then there exist $\alpha, \beta \in I$ such that
+    \textbf{(C)} follows from \textbf{(A)} and \textbf{(B)}. Let $x_1, x_2 \in E$.
+    \begin{enumerate}[label=\textbf{(\Alph*)}]
+        \item Assume that $f$ is injective. Then we have
         \[
-        x, y \in A_{\alpha} \text{ and } y, z \in A_{\beta}.
+        f|_{E}^{F}(x_1) = f|_{E}^{F}(x_2) \implies f(x_1) = f(x_2) \implies x_1 = x_2.
         \]
-        Since $y \in A_{\alpha} \cap A_{\beta}$ and the sets $\set*{A_{\alpha}}_{\alpha \in I}$ are disjoint,
-        we have $\alpha = \beta$, which implies that $x, z \in A_{\alpha}$.
+        \item Assume that $f(E) = F$. Then, for any $y \in F$, there exists $x \in E$ such that
+        $f(x) = f|_{E}^{F}(x) = y$. Therefore, we have $f|_{E}^{F}(E) = F$.
+    \end{enumerate}
+\end{proof}
+
+\bigskip
+
+\begin{definition} \label{def:CompositionFunction}
+    Let $X, Y, Z$ be sets and $f: X \to Y$, $g: Y \to Z$ be functions. We define the
+    \textbf{composition} of $f$ and $g$ as the function $g \circ f: X \to Z$ defined by
+    \[
+    (g \circ f)(x) = g(f(x)) \quad \text{for all } x \in X.
+    \]
+\end{definition}
+
+\bigskip
+
+\begin{theorem} \label{thm:PropertiesOfCompositionFunctions}
+    Let $X, Y, Z$ be sets and $f: X \to Y$, $g: Y \to Z$ be functions. Then we have the following properties:
+    \begin{enumerate}[label=\textbf{(\Alph*)}]
+        \item If $f$ and $g$ are injective, then $g \circ f$ is also injective.
+        \item If $f$ and $g$ are surjective, then $g \circ f$ is also surjective.
+        \item If $f$ and $g$ are bijective, then $g \circ f$ is also bijective.
+    \end{enumerate}
+\end{theorem}
+
+\begin{proof}
+    \textbf{(C)} follows from \textbf{(A)} and \textbf{(B)}. Let $x_1, x_2 \in X$ be given.
+    \begin{enumerate}[label=\textbf{(\Alph*)}]
+        \item Assume that $f$ and $g$ are injective. Then we have
+        \begin{align*}
+        (g \circ f)(x_1) = (g \circ f)(x_2) &\implies g(f(x_1)) = g(f(x_2)) \\
+        \implies f(x_1) = f(x_2) &\implies x_1 = x_2.
+        \end{align*}
+        \item Assume that $f$ and $g$ are surjective. Then, for any $z \in Z$, there exists $y \in Y$ such that
+        $g(y) = z$. Since $f$ is surjective, there exists $x \in X$ such that $f(x) = y$. Therefore, we have
+        $(g \circ f)(x) = g(f(x)) = g(y) = z$.
+    \end{enumerate}
+\end{proof}
+
+\begin{theorem} \label{thm:BijectionEquivalenceRelation}
+    Let $S$ be a set of sets. For \Cref{sec:FiniteSets,sec:CountableUncountableSets},
+    we consider the relation $\hyperref[thm:BijectionEquivalenceRelation]{\sim}$ defined on $S$ by
+    \[
+    X \hyperref[thm:BijectionEquivalenceRelation]{\sim} Y \iff \text{There exists a bijection } f: X \to Y.
+    \]
+    The relation $\hyperref[thm:BijectionEquivalenceRelation]{\sim}$ is an equivalence relation on $S$.
+\end{theorem}
+
+\begin{proof}
+    Let $X, Y, Z \in S$ be given.
+    \begin{itemize}
+        \item \textbf{Reflexivity:} The identity function $id_{X}: X \to X$, defined by $id_{X}(x) = x$ for all $x \in X$,
+        is bijective. Therefore, we have $X \hyperref[thm:BijectionEquivalenceRelation]{\sim} X$.
+        \item \textbf{Symmetry:} Assume that $X \hyperref[thm:BijectionEquivalenceRelation]{\sim} Y$. Then there exists
+        a bijection $f: X \to Y$. By \Cref{thm:InverseFunctionIsBijective}, the inverse function
+        $f^{-1}: Y \to X$ is also bijective. Therefore, we have $Y \hyperref[thm:BijectionEquivalenceRelation]{\sim} X$.
+        \item \textbf{Transitivity:} Assume that $X \hyperref[thm:BijectionEquivalenceRelation]{\sim} Y$
+        and $Y \hyperref[thm:BijectionEquivalenceRelation]{\sim} Z$. Then there exist bijections
+        $f: X \to Y$ and $g: Y \to Z$. By \Cref{thm:PropertiesOfCompositionFunctions}, the composition
+        $g \circ f: X \to Z$ is also bijective. Therefore, we have $X \hyperref[thm:BijectionEquivalenceRelation]{\sim} Z$.
     \end{itemize}
-    Therefore, $\sim$ is an equivalence relation on $S$.
-    The equivalence class of any $x \in S$ is precisely the set $A_{\alpha}$ containing $x$.
 \end{proof}
 
 \end{section}

@@ -1,237 +1,226 @@
-                Then $g_{n+1}$ is bijective. Let $K_{n + 1}$ be a set defined by
-                \[
-                K_{n + 1} \coloneqq (g_{n + 1} \circ f_{n+1})^{-1}(\set*{n + 1}) \subseteq J_{m}.
-                \]
-                Let $f_{n}: J_{m} \to J_{n}$ be a function defined by
-                \[
-                f_{n}(y) = \begin{cases}
-                    (g_{n+1} \circ f_{n+1})(y), & \text{if } y \in J_{m} \setminus K_{n + 1} \\
-                    n, & \text{if } y \in K_{n + 1}
-                \end{cases}
-                \]
-                Then $f_{n}$ is surjective by \Cref{thm:PropertiesOfCompositionFunctions}.
-                By the inductive hypothesis, we have $m - 1 \geq n$, which implies that $m \geq n + 1$.
-            \end{itemize}
-            Thus $Q(n + 1)$ is true whenever $Q(n)$ is true.
-        \end{itemize}
-        By the \emph{principle of mathematical induction},
-        $Q(n)$ is true for all $n \in \N$.
-    \end{enumerate}
-\end{proof}
-
 \bigskip
 
-\begin{lemma} \label{lem:PropertiesOfJmJnConverse}
-    Let $J_{m}, J_{n}$ be given for some $m, n \in \N$. Then we have the following properties:
-    \begin{enumerate}[label=\textbf{(\Alph*)}]
-        \item If $m \leq n$, then there exists an injection $f: J_{m} \to J_{n}$.
-        \item If $m \geq n$, then there exists a surjection $f: J_{m} \to J_{n}$.
-        \item If $m = n$, then there exists a bijection $f: J_{m} \to J_{n}$.
-    \end{enumerate}
-    This lemma is the converse of \Cref{lem:PropertiesOfJmJn}.
-\end{lemma}
+\begin{corollary} \label{cor:FiniteUnionOfCountableSetsIsCountable}
+    Let $X_{1}, X_{2}, \dots, X_{n}$ be countable sets for some $n \in \N$. Then $\displaystyle
+    \bigcup_{i = 1}^{n} X_{i}$ is countable, i.e., any finite union of countable sets is countable.
+\end{corollary}
 
 \begin{proof}
-    We will prove this lemma by explicitly constructing the functions.
-    \begin{enumerate}[label=\textbf{(\Alph*)}]
-        \item If $m \leq n$, let $f: J_{m} \to J_{n}$ be a function defined by
-        \[
-        f(i) = i \quad \text{for all } i \in J_{m}.
-        \]
-        Then $f$ is an injection.
-        \item If $m \geq n$, let $f: J_{m} \to J_{n}$ be a function defined by
-        \[
-        f(i) = \begin{dcases}
-            i, & \text{if } i \leq n \\
-            n, & \text{if } i > n
-        \end{dcases}
-        \]
-        Then $f$ is a surjection.
-        \item If $m = n$, let $f: J_{m} \to J_{n}$ be a function defined by
-        \[
-        f(i) = i \quad \text{for all } i \in J_{m}.
-        \]
-        Then $f$ is a bijection.
-    \end{enumerate}
+    Let $X_{n + 1}, X_{n + 2}, \dots$ be countable sets. Then, by \Cref{thm:CountableUnionOfCountableSetsIsCountable},
+    $\displaystyle \bigcup_{n = 1}^{\infty} X_{n}$ is countable. Assume that $\displaystyle \bigcup_{i = 1}^{n} X_{i}$
+    is finite. Then $\displaystyle X_{1} \subseteq \bigcup_{i = 1}^{n} X_{i}$ is finite by
+    \Cref{thm:SubsetOfFiniteSetIsFinite}, which contradicts \Cref{thm:CountableSetIsInfinite}. Thus
+    $\displaystyle \bigcup_{i = 1}^{n} X_{i}$ is infinite. Since $\displaystyle \bigcup_{i = 1}^{n} X_{i}
+    \subseteq \bigcup_{n = 1}^{\infty} X_{n}$, by \Cref{thm:InfiniteSubsetOfCountableSetIsCountable},
+    $\displaystyle \bigcup_{i = 1}^{n} X_{i}$ is countable. 
 \end{proof}
 
 \bigskip
 
-\begin{theorem} \label{thm:PropertiesOfCardinality}
-    Let $X, Y$ be finite sets. Then we have the following properties:
-    \begin{enumerate}[label=\textbf{(\Alph*)}]
-        \item If there exists an injection $f: X \to Y$, then we have $\abs*{X} \leq \abs*{Y}$.
-        \item If there exists a surjection $f: X \to Y$, then we have $\abs*{X} \geq \abs*{Y}$.
-        \item If there exists a bijection $f: X \to Y$, then we have $\abs*{X} = \abs*{Y}$.
-    \end{enumerate}
-    Moreover, the converses of \textbf{(A)}, \textbf{(B)}, and \textbf{(C)} are also true.
-    \\[6mm]
-    The contraposition of \textbf{(A)} is called the \textbf{pigeonhole principle}, which states that
-    if $\abs*{X} > \abs*{Y}$, then there exists no injection $f: X \to Y$.
+\begin{theorem} \label{thm:CountableUnionOfFiniteSetsIsCountable}
+    Let $X$ be a countable set. If $Y_x$ is finite for each $x \in X$, then the union
+    \[
+    Y = \bigcup_{x \in X} Y_x
+    \]
+    is countable, i.e., any countable union of finite sets is countable.
 \end{theorem}
 
 \begin{proof}
-    Let $\abs*{X} = m$ and $\abs*{Y} = n$ for some $m, n \in \N$. Then there exist bijections
-    $f_{X}: J_{m} \to X$ and $f_{Y}: J_{n} \to Y$.
-    By \Cref{thm:InverseFunctionIsBijective,thm:PropertiesOfCompositionFunctions}, the composition
-    \[
-    F \equiv (f_{Y})^{-1} \circ f \circ f_{X}: J_{m} \to J_{n}
-    \]
-    is injective, surjective, or bijective if $f$ is injective, surjective, or bijective, respectively.
-    Then, by \Cref{lem:PropertiesOfJmJn}, we have the desired results:
-    \begin{enumerate}[label=\textbf{(\Alph*)}]
-        \item If $f$ is injective, then $F$ is injective, which implies that $m \leq n$.
-        \item If $f$ is surjective, then $F$ is surjective, which implies that $m \geq n$.
-        \item If $f$ is bijective, then $F$ is bijective, which implies that $m = n$.
-    \end{enumerate}
-    Also, by \Cref{thm:InverseFunctionIsBijective,thm:PropertiesOfCompositionFunctions}, the composition
-    \[
-    f \equiv f_{Y} \circ G \circ (f_{X})^{-1}: X \to Y
-    \]
-    is injective, surjective, or bijective if $G: J_{m} \to J_{n}$ is injective, surjective, or bijective, respectively.
-    Then, by \Cref{lem:PropertiesOfJmJnConverse}, we have the desired converses:
-    \begin{enumerate}[label=\textbf{(\Alph*)}]
-        \item If $m \leq n$, then there exists an injective function $G: J_{m} \to J_{n}$,
-        which implies that there exists an injective function $f: X \to Y$.
-        \item If $m \geq n$, then there exists a surjective function $G: J_{m} \to J_{n}$,
-        which implies that there exists a surjective function $f: X \to Y$.
-        \item If $m = n$, then there exists a bijective function $G: J_{m} \to J_{n}$,
-        which implies that there exists a bijective function $f: X \to Y$.
-    \end{enumerate}
+    There exists a bijection $f: \N \to X$. Also, for each $x \in X$, there exists a bijection
+    $g_{x}: J_{n_{x}} \to Y_x$ for some $n_{x} \in \N$. Let $h: \N \to Y$ be a function defined by
+    \begin{itemize}
+        \item $h(j) = g_{f(1)}(j)$ for $j = 1, 2, \cdots, n_{f(1)}$.
+        \item $h\displaystyle \paren*{\sum_{i = 1}^{k - 1} n_{f(i)} + m} =
+        g_{f(k)}(m)$ for each $k \in \N$ with $k \geq 2$, and $m = 1, 2, \cdots, n_{f(k)}$.
+    \end{itemize}
+    Then $h$ is surjective. Therefore, by \Cref{thm:SurjectionFromN}, $Y$ is countable.
 \end{proof}
 
 \bigskip
 
-\begin{lemma} \label{lem:UnionOfTwoDisjointFiniteSetsIsFinite}
-    Let $X, Y$ be finite sets with $X \cap Y = \emptyset$. Then the union $X \cup Y$ is finite.
+\begin{lemma} \label{lem:NxNIsCountable}
+    $\N \times \N$ is countable.
 \end{lemma}
 
 \begin{proof}
-    Let $m = \abs*{X}$ and $n = \abs*{Y}$. There exist bijections $f: J_{m} \to X$ and $g: J_{n} \to Y$.
-    Let $h: J_{m + n} \to X \cup Y$ be a function defined by
+    We will prove this lemma by explicitly constructing a bijection from $\N \times \N \to \N$.
+    Let $f: \N \times \N \to \N$ be a function defined by
     \[
-    h(i) = \begin{cases}
-        f(i), & \text{if } i \leq m \\
-        g(i - m), & \text{if } m < i \leq m + n
-    \end{cases}
+    f(m, n) = \frac{(m + n - 1)(m + n - 2)}{2} + m
     \]
-    Then $h$ is bijective, which implies that $X \cup Y$ is finite.
+    for each $(m, n) \in \N \times \N$. We will show that $f$ is bijective.
+    \begin{itemize}
+        \item \textbf{Injectivity:} Assume that $(m_{1}, n_{1}) \neq (m_{2}, n_{2})$. If $m_{1} + n_{1} = m_{2} + n_{2}$,
+        then $m_{1} \neq m_{2}$, so $f(m_{1}, n_{1}) \neq f(m_{2}, n_{2})$. Otherwise, $m_{1} + n_{1} \neq m_{2} + n_{2}$.
+        \\[6mm]
+        Without loss of generality, assume $m_{1} + n_{1} < m_{2} + n_{2}$. Then, since
+        $m_{1} + n_{1} + 1 \leq m_{2} + n_{2}$, we have
+        \begin{align*}
+            f(m_{1}, n_{1}) &= \dfrac{(m_{1} + n_{1} - 1)(m_{1} + n_{1} - 2)}{2} + m_{1} \\
+            &\leq \dfrac{(m_{1} + n_{1} - 1)(m_{1} + n_{1} - 2)}{2} + (m_{1} + n_{1} - 1) \\
+            &= \dfrac{(m_{1} + n_{1})(m_{1} + n_{1} - 1)}{2} \\
+            &\leq \dfrac{(m_{2} + n_{2} - 1)(m_{2} + n_{2} - 2)}{2} \\
+            &< \dfrac{(m_{2} + n_{2} - 1)(m_{2} + n_{2} - 2)}{2} + m_{2} = f(m_{2}, n_{2}),
+        \end{align*}
+        Thus $f(m_{1}, n_{1}) \neq f(m_{2}, n_{2})$, so $f$ is injective.
+        \item \textbf{Surjectivity:} Let $k \in \N$ be given. Let $t_{k}, s_{k}$ be defined as in the proof of
+        \Cref{thm:CountableUnionOfCountableSetsIsCountable}. Then we have $f(s_{k}, t_{k} - s_{k} + 1) = k$.
+        Thus $f$ is surjective.
+    \end{itemize}
 \end{proof}
 
 \bigskip
 
-\begin{theorem} \label{thm:UnionOfTwoFiniteSetsIsFinite}
-    Let $X, Y$ be finite sets. Then the union $X \cup Y$ is finite.
+\begin{theorem} \label{thm:ProductOfTwoCountableSetsIsCountable}
+    Let $X$ and $Y$ be countable sets. Then the cartesian product $X \times Y$ is countable.
 \end{theorem}
 
 \begin{proof}
-    Let $A, B, C$ be sets defined by
-    \begin{itemize}
-        \item $A = X \setminus Y \subseteq X$.
-        \item $B = Y \setminus X \subseteq Y$.
-        \item $C = X \cap Y \subseteq X$.
-    \end{itemize}
-    Then $A, B, C$ are finite by \Cref{thm:SubsetOfFiniteSetIsFinite} and are disjoint each other. We have the followings:
-    \begin{itemize}
-        \item $X = (X \setminus Y) \cup (X \cap Y) = A \cup C$.
-        \item $Y = (Y \setminus X) \cup (X \cap Y) = B \cup C$.
-        \item $X \cup Y = ((X \setminus Y) \cup (Y \setminus X)) \cup (X \cap Y) = (A \cup B) \cup C$.
-    \end{itemize}
-    By \Cref{lem:UnionOfTwoDisjointFiniteSetsIsFinite}, $X \cup Y$ is finite.
+    There exist bijections $f: \N \to X$ and $g: \N \to Y$. Let $h: \N \times \N \to X \times Y$ be a function defined by
+    \[
+    h(m, n) = (f(m), g(n)) \text{ for all } (m, n) \in \N \times \N.
+    \]
+    Then $h$ is bijective. By \Cref{lem:NxNIsCountable}, $X \times Y$ is countable.
 \end{proof}
 
 \bigskip
 
-\begin{theorem} \label{thm:FiniteUnionOfFiniteSetsIsFinite}
-    Let $X_{1}, X_{2}, \dots, X_{n}$ be finite sets for some $n \in \N$. Then the union
-    $\displaystyle \bigcup_{k = 1}^{n} X_{k}$ is finite, i.e., any finite union of finite sets is finite.
+\begin{theorem} \label{thm:ProductOfFiniteCountableSetsIsCountable}
+    Let $X_{1}, X_{2}, \dots, X_{n}$ be countable sets for some $n \in \N$. Then $\displaystyle
+    \prod_{i = 1}^{n} X_{i}$ is countable, i.e., any finite product of countable sets is countable.
 \end{theorem}
 
 \begin{proof}
     Let $P(n)$ be the statement that
     \[
-    X_{1}, X_{2}, \dots, X_{n} \text{ are finite sets} \implies \bigcup_{k = 1}^{n} X_{k} \text{ is finite}.
+    X_{1}, X_{2}, \dots, X_{n} \text{ are countable sets } \implies
+    \displaystyle \prod_{i = 1}^{n} X_{i} \text{ is countable}.
     \]
     \begin{itemize}
-        \item \textbf{Base case:} Let $X_{1}$ be a finite set. Then
-        $\displaystyle \bigcup_{k = 1}^{1} X_{k}= X_{1}$ is finite. Thus $P(1)$ is true.
+        \item \textbf{Base case:} Let $X_{1}$ be a countable set. Then $\displaystyle \prod_{i = 1}^{1} X_{i} = X_{1}$
+        is countable. Thus $P(1)$ is true.
         \item \textbf{Inductive step:} Assume that $P(n)$ is true for some $n \in \N$.
         
-        Let $X_{1}, X_{2}, \dots, X_{n + 1}$ be finite sets. Then we have
+        Let $X_{1}, X_{2}, \dots, X_{n + 1}$ be countable sets. Then we have
         \[
-        \bigcup_{k = 1}^{n + 1} X_{k} = \paren*{\bigcup_{k = 1}^{n} X_{k}} \cup X_{n + 1}.
+        \prod_{i = 1}^{n + 1} X_{i} = \paren*{\prod_{i = 1}^{n} X_{i}} \times X_{n + 1}
         \]
-        By the inductive hypothesis, $\displaystyle \bigcup_{k = 1}^{n} X_{k}$ is finite. Then, by
-        \Cref{thm:UnionOfTwoFiniteSetsIsFinite}, $\displaystyle \bigcup_{k = 1}^{n + 1} X_{k}$ is finite.
-        Thus $P(n + 1)$ is true whenever $P(n)$ is true.
+        By the inductive hypothesis, $\displaystyle \prod_{i = 1}^{n} X_{i}$ is countable. Then, by
+        \Cref{thm:ProductOfTwoCountableSetsIsCountable}, $\displaystyle \prod_{i = 1}^{n + 1} X_{i}$ is countable.
+        Thus $P(n + 1)$ is true when $P(n)$ is true.
     \end{itemize}
-    By the \emph{principle of mathematical induction}, $P(n)$ is true for all $n \in \N$.
+    By the \emph{principle of mathematical induction},
+    $P(n)$ is true for all $n \in \N$.
 \end{proof}
 
 \bigskip
 
-\begin{lemma} \label{lem:ProductOfTwoFiniteSetsIsFinite}
-    Let $X, Y$ be finite sets. Then the cartesian product $X \times Y$ is finite.
+\begin{theorem} \label{thm:QIsCountable}
+    $\Q$ is countable.
+\end{theorem}
+
+\begin{proof}
+    Any $q \in \Q$ can be expressed as $q = \dfrac{m}{n}$ for some $m \in \Z$ and $n \in \N$.
+    Let $f: \Z \times \N \to \Q$ be a function defined by
+    \[
+    f(m, n) = \dfrac{m}{n} \text{ for all } (m, n) \in \Z \times \N.
+    \]
+    Then $f$ is surjective. By \Cref{thm:ZIsCountable,thm:ProductOfTwoCountableSetsIsCountable}, $\Z \times \N$
+    is countable. Then there exists a bijection $g: \N \to \Z \times \N$.
+    \\[6mm]
+    By \Cref{thm:PropertiesOfCompositionFunctions}, $f \circ g: \N \to \Q$ is surjective. Since $\N \subseteq \Q$,
+    by \Cref{lem:NIsInfinite,thm:SubsetOfFiniteSetIsFinite}, $\Q$ is infinite. Therefore,
+    by \Cref{thm:SurjectionFromN}, $\Q$ is countable.
+\end{proof}
+
+\bigskip
+
+\begin{lemma} \label{lem:InfiniteProductOfFiniteSetsIsUncountable}
+    $X \coloneqq \displaystyle \prod_{n = 1}^{\infty} \set*{0, 1}$ is uncountable.
 \end{lemma}
 
 \begin{proof}
-    Let $m = \abs*{X}$ and $n = \abs*{Y}$. There exist bijections $f: J_{m} \to X$ and $g: J_{n} \to Y$.
-    Let $h: J_{mn} \to X \times Y$ be a function defined by
+    For each $n \in \N$, let $e_{n} \in X$ be a sequence defined by
     \[
-    h(i) = \paren*{f\paren*{\ceil*{\dfrac{i}{n}}}, g\paren*{i - n\paren*{\ceil*{\dfrac{i}{n}} - 1}}}
-    \text{ for all } i \in J_{mn}.
+    e_{nm} = \begin{dcases}
+        1 & \text{if } m = n \\
+        0 & \text{Otherwise}
+    \end{dcases}
     \]
-    Then $h$ is bijective, which implies that $X \times Y$ is finite.
-\end{proof}
-
-\bigskip
-
-\begin{theorem} \label{thm:ProductOfFiniteSetsIsFinite}
-    Let $X_{1}, X_{2}, \dots, X_{n}$ be finite sets for some $n \in \N$. Then the cartesian product
-    $\displaystyle \prod_{k = 1}^{n} X_{k}$ is finite.
-\end{theorem}
-
-\begin{proof}
-    Let $P(n)$ be the statement that
+    Let $f: \N \to X$ be a function defined by
     \[
-    X_{1}, X_{2}, \dots, X_{n} \text{ are finite sets} \implies \prod_{k = 1}^{n} X_{k} \text{ is finite}.
+    f(n) = e_{n} \text{ for all } n \in \N.
     \]
-    \begin{itemize}
-        \item \textbf{Base case:} Let $X_{1}$ be a finite set. Then,
-        $\displaystyle \prod_{k = 1}^{1} X_{k}= X_{1}$ is finite. Thus $P(1)$ is true.
-        \item \textbf{Inductive step:} Assume that $P(n)$ is true for some $n \in \N$.
-        
-        Let $X_{1}, X_{2}, \dots, X_{n + 1}$ be finite sets. Then we have
-        \[
-        \prod_{k = 1}^{n + 1} X_{k} = \paren*{\prod_{k = 1}^{n} X_{k}} \times X_{n + 1}.
-        \]
-        By the inductive hypothesis, $\displaystyle \prod_{k = 1}^{n} X_{k}$ is finite. Then, by
-        \Cref{lem:ProductOfTwoFiniteSetsIsFinite}, $\displaystyle \prod_{k = 1}^{n + 1} X_{k}$ is finite.
-        Thus $P(n + 1)$ is true whenever $P(n)$ is true.
-    \end{itemize}
-    By the \emph{principle of mathematical induction}, $P(n)$ is true for all $n \in \N$.
-\end{proof}
-
-\bigskip
-
-\begin{theorem} \label{thm:CantorsTheorem}
-    Let $X$ be a nonempty set. Then there exists no surjection $f: X \to \mathcal{P}(X)$, where
-    \[
-    \mathcal{P}(X) \coloneqq \setbuilder*{E}{E \subseteq X}
-    \]
-    is called the \textbf{power set} of $X$. This theorem is called \textbf{Cantor's theorem}.
-\end{theorem}
-
-\begin{proof}
-    Let $S$ be a set defined by
-    \[
-    S \coloneqq \setbuilder*{x \in X}{x \notin f(x)}.
-    \]
-    Since $S \subseteq X$, we have that $S \in \mathcal{P}(X)$. Assume that there exists a surjection
-    $f: X \to \mathcal{P}(X)$. Then there exists $x \in X$ such that $f(x) = S$.
+    Then $f$ is injective. By \Cref{lem:NIsInfinite,thm:InjectionFromInfiniteSetImpliesInfinite}, $X$ is infinite.
     \\[6mm]
-    If $x \in S$, then we have $x \notin f(x) = S$, which is a contradiction. If $x \notin S$, then we have
-    $x \in f(x) = S$, which is also a contradiction. Therefore, there exists no surjection $f: X \to \mathcal{P}(X)$.
+    Assume that $X$ is countable. Then, there exists a bijection $g: \N \to X$.
+    Let $X = \set*{g(1), g(2), g(3), \dots}$, where
+    \begin{itemize}
+        \item $g(1) = (a_{11}, a_{12}, a_{13}, \dots)$.
+        \item $g(2) = (a_{21}, a_{22}, a_{23}, \dots)$.
+        \item[] $\vdots$
+    \end{itemize}
+    Let $x = (b_{1}, b_{2}, b_{3}, \dots) \in X$ be a sequence defined by
+    \[
+    b_{n} = 1 - a_{nn} \text{ for all } n \in \N.
+    \]
+    Then, $x \neq g(n)$ for all $n \in \N$, which contradicts the assumption that $g$ is surjective.
+    Therefore, $X$ is uncountable.
+\end{proof}
+
+\bigskip
+
+\begin{theorem} \label{thm:RIsUncountable}
+    $\R$ is uncountable.
+\end{theorem}
+
+\begin{proof}
+    Since $\N \subseteq \R$, by \Cref{lem:NIsInfinite,thm:SubsetOfFiniteSetIsFinite}, $\R$ is infinite.
+    Let $f: \N \to [0, 1)$ be a function defined by
+    \[
+    f(n) = \dfrac{1}{n + 1} \text{ for all } n \in \N.
+    \]
+    Then $f$ is injective. By \Cref{lem:NIsInfinite,thm:InjectionFromInfiniteSetImpliesInfinite},
+    $[0, 1)$ is infinite. We will prove that $[0, 1) \subseteq \R$ is uncountable,
+    which implies that $\R$ is uncountable by \Cref{thm:InfiniteSubsetOfCountableSetIsCountable}.
+    \\[6mm]
+    Let $g: [0, 1) \to \displaystyle \prod_{n = 1}^{\infty} \set*{0, 1}$ be a function defined by
+    \[
+    g(x) = \paren*{a_{n}^{x}}_{n = 1}^{\infty} \text{ for all } x \in [0, 1)
+    \]
+    where $\paren*{a_{n}^{x}}_{n = 1}^{\infty}$ is the \emph{greedy base $2$ expansion} of $x$.
+    Let $Y$ be a set defined by
+    \[
+    Y \coloneqq g([0, 1)) \subseteq \displaystyle \prod_{n = 1}^{\infty} \set*{0, 1}.
+    \]
+    Then, by \Cref{thm:SameGreedyBaseExpansionImpliesEquality,thm:PropertiesOfRestrictionFunctions},
+    $g|^{Y}$ is bijective.
+    \\[6mm]
+    Assume that $[0, 1)$ is countable. Then there exists a bijection $h: \N \to [0, 1)$. By
+    \Cref{thm:PropertiesOfCompositionFunctions}, $g|^{Y} \circ h: \N \to Y$ is bijective, so $Y$ is countable.
+    Let $Z \coloneqq \displaystyle \prod_{n = 1}^{\infty} \set*{0, 1} \setminus Y$. By
+    \Cref{thm:NoRealNumberMatchingGreedyBaseExpansion,thm:NoRealNumberMatchingGreedyBaseExpansionConverse}, we have
+    \[
+    Z = \setbuilder*{\paren*{a_{n}}_{n = 1}^{\infty} \in \displaystyle \prod_{n = 1}^{\infty} \set*{0, 1}}{a_{n} = 1
+    \text{ for all } n \geq N \text{ for some } N \in \N}.
+    \]
+    Let $Z_{N}$ be a set defined by
+    \[
+    Z_{N} \coloneqq \setbuilder*{\paren*{a_{n}}_{n = 1}^{\infty} \in \displaystyle \prod_{n = 1}^{\infty}
+    \set*{0, 1}}{a_{n} = 1 \text{ for all } n \geq N} \text{ for each } N \in \N.
+    \]
+    Let $F_{N}: \displaystyle \prod_{n = 1}^{N - 1} \set*{0, 1} \to Z_{N}$ be a function defined by
+    \[
+    F_{N}\paren*{\paren*{a_{n}}_{n = 1}^{N - 1}} = \paren*{a_{n}}_{n = 1}^{N - 1} \cup \paren*{1}_{n = N}^{\infty}
+    \text{ for all } \paren*{a_{n}}_{n = 1}^{N - 1} \in \displaystyle \prod_{n = 1}^{N - 1} \set*{0, 1}.
+    \]
+    Then $F_{N}$ is surjective. By \Cref{thm:ProductOfFiniteSetsIsFinite,thm:SurjectionFromFiniteSetImpliesFinite},
+    $Z_{N}$ is finite. Then, by \Cref{thm:CountableUnionOfFiniteSetsIsCountable},
+    $Z = \displaystyle \bigcup_{N = 1}^{\infty} Z_{N}$ is countable.
+    \\[6mm]
+    By \Cref{cor:FiniteUnionOfCountableSetsIsCountable}, $\displaystyle \prod_{n = 1}^{\infty} \set*{0, 1} = Y \cup Z$
+    is countable. \Cref{lem:InfiniteProductOfFiniteSetsIsUncountable} shows that this is a contradiction.
+    Therefore, $[0, 1)$ is uncountable.
 \end{proof}
 
 \end{section}

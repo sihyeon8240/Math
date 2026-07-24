@@ -1,254 +1,187 @@
-\begin{section}{Ordered Sets}
+\begin{section}{Relations}
 
-A set $S$ is called an \textbf{ordered set} if $S$ is equipped with a relation $<$
-such that for any $x, y, z \in S$, the following properties hold:
-\begin{enumerate}[label=\textbf{(\Alph*)}]
-    \item $x < y, y < z \implies x < z$
-    \item Only one of the relations $x < y$, $x = y$, or $x > y$ holds
-\end{enumerate}
-the relation $<$ is called a \textbf{(strict) total order} on $S$.
-\\[6mm]
-On an ordered set, we define the following relations:
+Let $S$ be a set. A \textbf{relation} $\sim$ on $S$ is a subset of $S \times S$.
+Equivalently, a subset $R$ of $S \times S$ is a relation on $S$.
 \begin{itemize}
-    \item $x > y \iff y < x$
-    \item $x \geq y \iff x > y \text{ or }x = y$
-    \item $x \leq y \iff y \geq x$
+    \item $R = \setbuilder*{(x, y) \in S \times S}{x \sim y}$
+    \item $x \sim y \iff (x, y) \in R$
 \end{itemize}
 
 \bigskip
 
-\begin{example}
-    $\N, \Z, \Q$ are ordered sets with the following relations:
+\begin{definition} \label{def:EquivalenceRelation}
+    Let $S$ be a set. A relation $\sim$ on $S$ is called an \textbf{equivalence relation} if it satisfies the following properties:
     \begin{itemize}
-        \item $\forall n, m \in \N, m < n \iff n - m \in \N$
-        \item $\forall n, m \in \Z, m < n \iff n - m \in \Z^{+}$
-        \item $\forall p, q \in \Q, q < p \iff p - q \in \Q^{+}$
-    \end{itemize}
-\end{example}
-
-\bigskip
-
-\begin{definition} \label{def:Boundedness}
-    Let $S$ be an ordered set and $E \subseteq S$.
-    \begin{itemize}
-        \item $E$ is said to be \textbf{bounded above} if
-        \[
-        \exists M \in S \text{ such that } \forall  x \in E, x \leq M
-        \]
-        Such an $M$ is called an \textbf{upper bound} of $E$.
-        \item $E$ is said to be \textbf{bounded below} if
-        \[
-        \exists m \in S \text{ such that } \forall  x \in E, m \leq x
-        \]
-        Such an $m$ is called a \textbf{lower bound} of $E$.
+        \item \textbf{Reflexivity}: $\forall x \in S, x \sim x$
+        \item \textbf{Symmetry}: $\forall x, y \in S, x \sim y \implies y \sim x$
+        \item \textbf{Transitivity}: $\forall x, y, z \in S, \paren*{x \sim y \land y \sim z} \implies x \sim z$
     \end{itemize}
 \end{definition}
 
 \bigskip
 
-\begin{theorem} \label{thm:BoundedSubsetOfZinZHasExtremum}
-    Let $E \subseteq \Z$ be nonempty.
-    \begin{enumerate}[label=\textbf{(\Alph*)}]
-        \item $E$ is bounded below $\implies E$ has a least element.
-        \item $E$ is bounded above $\implies E$ has a greatest element.
-    \end{enumerate}
+\begin{definition} \label{def:Partition}
+    Let $S$ be a set. A collection $\set*{A_{\alpha}}_{\alpha \in I}$ of sets is called a \textbf{partition} of $S$ if
+    \begin{itemize}
+        \item $\forall \alpha \in I, \paren*{A_{\alpha} \neq \emptyset \land A_{\alpha} \subseteq S}$
+        \item $\forall \alpha, \beta \in I, \paren*{\alpha \neq \beta \implies A_{\alpha} \cap A_{\beta} = \emptyset}$
+        \item $\displaystyle \bigcup_{\alpha \in I} A_{\alpha} = S$
+    \end{itemize}
+\end{definition}
+
+\bigskip
+
+\begin{definition} \label{def:EquivalenceClass}
+    Let $S$ be a set, and let $\sim$ be an equivalence relation on $S$. For each $x \in S$,
+    the \textbf{equivalence class} of $x$ is defined by
+    \[
+    [x] \coloneqq \setbuilder*{y \in S}{y \sim x}
+    \]
+    We denote the set of all equivalence classes of $S$ by
+    \[
+    S / \sim \; \coloneqq \setbuilder*{[x]}{x \in S}
+    \]
+\end{definition}
+
+\bigskip
+
+\begin{theorem} \label{thm:EquivalenceClassesFormAPartition}
+    Let $S$ be a set, and let $\sim$ be an equivalence relation on $S$. Then
+    \[
+    \forall x, y \in S, [x] \cap [y] \neq \emptyset \implies [x] = [y]
+    \]
 \end{theorem}
 
 \begin{proof}
-    \begin{enumerate}[label=\textbf{(\Alph*)}]
-        \item Let $E$ be bounded below. Then,
-        \[
-        \begin{array}{c}
-            E \text{ is bounded below} \\
-            \Downarrow \\
-            \exists m \in \Z \text{ such that } \forall x \in E, m \leq x
-        \end{array}
-        \]
-        Let
-        \[
-        F \coloneqq \setbuilder*{x - m + 1}{x \in E} \subseteq \N
-        \]
-        Then
-        \[
-        \begin{array}{c}
-            E \neq \emptyset \\
-            \Downarrow \\
-            F \neq \emptyset
-        \end{array}
-        \]
-        By \Cref{thm:WellOrderingProperty}, $F$ has a least element, say $n$. Then
-        \[
-        \begin{array}{c}
-            \forall x \in E, n \leq x - m + 1 \\
-            \Downarrow \\
-            \forall x \in E, n + m - 1 \leq x
-        \end{array}
-        \]
-        Since $n = \min F$,
-        \[
-        \begin{array}{c}
-            n \in F \\
-            \Downarrow \\
-            \exists x_{0} \in E \text{ such that } n = x_{0} - m + 1 \\
-            \Downarrow \\
-            x_{0} = n + m - 1 = \min E
-        \end{array}
-        \]
-        \item Let $E$ be bounded above. Then,
-        \[
-        \begin{array}{c}
-            E \text{ is bounded above} \\
-            \Downarrow \\
-            \exists M \in \Z \text{ such that } \forall x \in E, x \leq M
-        \end{array}
-        \]
-        Let
-        \[
-        F \coloneqq \setbuilder*{-x + M + 1}{x \in E} \subseteq \N
-        \]
-        Then
-        \[
-        \begin{array}{c}
-            E \neq \emptyset \\
-            \Downarrow \\
-            F \neq \emptyset
-        \end{array}
-        \]
-        By \Cref{thm:WellOrderingProperty}, $F$ has a least element, say $n$. Then
-        \[
-        \begin{array}{c}
-            \forall x \in E, n \leq - x + M + 1 \\
-            \Downarrow \\
-            \forall x \in E, x \leq M - n + 1 \\
-        \end{array}
-        \]
-        Since $n = \min F$,
-        \[
-        \begin{array}{c}
-            n \in F \\
-            \Downarrow \\
-            \exists x_{0} \in E \text{ such that } n = -x_{0} + M + 1 \\
-            \Downarrow \\
-            x_{0} = M - n + 1 = \max E
-        \end{array}
-        \]
-    \end{enumerate}
+    Assume that $[x] \cap [y] \neq \emptyset$. Then
+    \[
+    \begin{array}{c}
+        \exists z \in S, z \in [x] \cap [y] \\
+        \Downarrow \\
+        z \in [x] \land z \in [y] \\
+        \Downarrow \\
+        z \sim x \land z \sim y \\
+        \Downarrow \\
+        x \sim z \land z \sim y \\
+        \Downarrow \\
+        x \sim y
+    \end{array}
+    \]
+    Therefore, for any $w \in [x]$,
+    \[
+    \begin{array}{c}
+        w \sim x \land x \sim y \\
+        \Downarrow \\
+        w \sim y \\
+        \Downarrow \\
+        w \in [y]
+    \end{array}
+    \]
+    Therefore,
+    \[
+    [x] \subseteq [y]
+    \]
+    Similarly,
+    \[
+    [y] \subseteq [x]
+    \]
 \end{proof}
 
 \bigskip
 
-\begin{definition} \label{def:SupremumInfimum}
-    Let $S$ be an ordered set, and let $E \subseteq S$ be bounded above.
-    An element $\alpha \in S$ is called the \textbf{supremum} (or \emph{least upper bound}) of $E$ if
-    \begin{itemize}
-        \item $\alpha$ is an upper bound of $E$
-        \item $\forall \beta \in S, \beta < \alpha \implies \beta$ is not an upper bound of $E$
-    \end{itemize}
-    The supremum of $E$ is denoted by
+\begin{theorem} \label{thm:PartitionDefinesEquivalenceRelation}
+    Let $S$ be a set, and let $\set*{A_{\alpha}}_{\alpha \in I}$ be a partition of $S$. Let
     \[
-    \alpha = \sup E
+    x \sim y \iff \exists \alpha \in I, \paren*{x \in A_{\alpha} \land y \in A_{\alpha}}
     \]
-    Similarly, let $E \subseteq S$ be bounded below.
-    An element $\alpha \in S$ is called the \textbf{infimum} (or \emph{greatest lower bound}) of $E$ if
-    \begin{itemize}
-        \item $\alpha$ is a lower bound of $E$
-        \item $\forall \beta \in S, \beta > \alpha \implies \beta$ is not a lower bound of $E$
-    \end{itemize}
-    The infimum of $E$ is denoted by
-    \[
-    \alpha = \inf E
-    \]
-\end{definition}
-
-\bigskip
-
-\begin{example}
-    Let
-    \[
-    S \coloneqq \setbuilder*{p \in \Q^{+}}{p^{2} < 2}
-    \]
-    Let $p \in S$ be given, and let
-    \[
-    q \coloneqq p - \dfrac{p^{2} - 2}{p + 2} = \dfrac{2p + 2}{p + 2} > p
-    \]
-    Then
-    \[
-    \begin{array}{c}
-        q^{2} - 2 = \dfrac{2(p^{2} - 2)}{(p + 2)^{2}} < 0 \\
-        \Downarrow \\
-        q \in S
-    \end{array}
-    \]
-    This implies that $p \in S$ is not an upper bound of $S$.
-    \\[6mm]
-    Let $p \in \Q^{+} \setminus S$ be given. Then
-    \[
-    \begin{array}{c}
-        p^{2} \geq 2 \\
-        \Downarrow \\
-        p^{2} > 2 \\
-        (\because \nexists p \in \Q^{+} \text{ such that } p^{2} = 2) \\
-        \Downarrow \\
-        p \text{ is an upper bound of } S \\
-        (\because \forall x \in S, x^{2} < 2 < p^{2} \implies x < p)
-    \end{array}
-    \]
-    Let 
-    \[
-    q \coloneqq p - \dfrac{p^{2} - 2}{p + 2} = \dfrac{2p + 2}{p + 2} < p
-    \]
-    Then
-    \[
-    \begin{array}{c}
-        q^{2} - 2 = \dfrac{2(p^{2} - 2)}{(p + 2)^{2}} > 0 \\
-        \Downarrow \\
-        q \text{ is a upper bound of } S \\
-        (\because \forall x \in S, x^{2} < 2 < q^{2} \implies x < q)
-    \end{array}
-    \]
-    This implies that $p$ is not the least upper bound of $S$.
-    \\[6mm]
-    Therefore, $S$ has no least upper bound in $\Q^{+}$.
-\end{example}
-
-\bigskip
-
-\begin{definition} \label{def:LeastUpperBoundProperty}
-    An ordered set $S$ is said to have the \textbf{least upper bound property} if
-    \[
-    \forall E \subseteq S, E \text{ is bounded above} \implies E \text{ has a least upper bound in } S.
-    \]
-\end{definition}
-
-\bigskip
-
-\begin{theorem} \label{thm:GreatestLowerBoundProperty}
-    Let $S$ be an ordered set with the least upper bound property. Then, any nonempty subset of $S$
-    which is bounded below has a greatest lower bound in $S$.
+    for all $x, y \in S$.Then
+    \begin{enumerate}[label=\textbf{(\Alph*)}]
+        \item $\sim$ is an equivalence relation on $S$
+        \item $\set*{A_{\alpha}}_{\alpha \in I} = S / \sim$
+    \end{enumerate}
 \end{theorem}
 
 \begin{proof}
-    Let $E$ be a nonempty subset of $S$ which is bounded below. Let $L$ be defined as follows:
-    \[
-    L \coloneqq \setbuilder*{\lambda}{\lambda \text{ is a lower bound of } E}.
-    \]
-    Then, $L$ is nonempty and bounded above. By the least upper bound property,
-    there exists $\alpha = \sup L \in S$. We will show that $\alpha = \inf E$.
-    \\[6mm]
-    Assume that $\alpha \notin L$. Then we have the following:
-    \begin{itemize}
-        \item $\alpha$ is not a lower bound of $E \implies$ There exists $\beta \in E$ such that $\beta < \alpha$.
-        \item $\alpha = \sup L \implies \beta$ is not an upper bound of $L \implies$
-        There exists $\gamma \in L$ such that $\beta < \gamma \leq \alpha$.
-        \item $\gamma \in L \implies \gamma$ is a lower bound of $E \implies \gamma \leq \beta$.
-    \end{itemize}
-    This is a contradiction. Therefore, we have $\alpha \in L$, i.e., $\alpha$ is a lower bound of $E$.
-    Since $\alpha$ is an upper bound of $L$, the following holds:
-    \[
-    \text{For any } \delta > \alpha, \text{ we have } \delta \notin L
-    \implies \delta \text{ is not a lower bound of } E.
-    \]
-    Therefore, we can conclude that $\alpha = \inf E$. 
+    \begin{enumerate}[label=\textbf{(\Alph*)}]
+        \item Let $x, y, z \in S$.
+        \begin{itemize}
+            \item \textbf{Reflexivity}: For any $x$,
+            \[
+            \begin{array}{c}
+            x \in S \\
+            \Downarrow \\
+            x \in \displaystyle \bigcup_{\alpha \in I} A_{\alpha} \\
+            \Downarrow \\
+            \exists \alpha \in I, x \in A_{\alpha} \\
+            \Downarrow \\
+            x \sim x
+            \end{array}
+            \]
+            \item \textbf{Symmetry}: If $x \sim y$, then
+            \[
+            \begin{array}{c}
+            \exists \alpha \in I, \paren*{x \in A_{\alpha} \land y \in A_{\alpha}} \\
+            \Downarrow \\
+            y \in A_{\alpha} \land x \in A_{\alpha} \\
+            \Downarrow \\
+            y \sim x
+            \end{array}
+            \]
+            \item \textbf{Transitivity}: If $x \sim y \land y \sim z$, then
+            \[
+            \begin{array}{c}
+            \exists \alpha \in I, \paren*{x \in A_{\alpha} \land y \in A_{\alpha}} \\
+            \exists \beta \in I, \paren*{y \in A_{\beta} \land z \in A_{\beta}} \\
+            \Downarrow \\
+            y \in A_{\alpha} \land y \in A_{\beta} \\
+            \Downarrow \\
+            A_{\alpha} \cap A_{\beta} \neq \emptyset \\
+            \Downarrow \\
+            \alpha = \beta \\
+            \Downarrow \\
+            x \in A_{\alpha} \land z \in A_{\alpha} \\
+            \Downarrow \\
+            x \sim z
+            \end{array}
+            \]
+        \end{itemize}
+        \item Let $x \in S$. Then
+        \[
+        \begin{array}{c}
+            x \in S \\
+            \Downarrow \\
+            x \in \displaystyle \bigcup_{\alpha \in I} A_{\alpha} \\
+            \Downarrow \\
+            \exists \alpha \in I, x \in A_{\alpha} \\
+            \Downarrow \\
+            x \in [x] \\
+            \Downarrow \\
+            \exists \alpha \in I, A_{\alpha} = [x]
+        \end{array}
+        \]
+        Therefore,
+        \[
+        \set*{A_{\alpha}}_{\alpha \in I} \subseteq S / \sim
+        \]
+        Let $[x] \in S / \sim$. Then
+        \[
+        \begin{array}{c}
+            x \in S \\
+            \Downarrow \\
+            x \in \displaystyle \bigcup_{\alpha \in I} A_{\alpha} \\
+            \Downarrow \\
+            \exists \alpha \in I, x \in A_{\alpha} \\
+            \Downarrow \\
+            A_{\alpha} \cap [x] \neq \emptyset \\
+            \Downarrow \\
+            A_{\alpha} = [x]
+        \end{array}
+        \]
+        Therefore,
+        \[
+        S / \sim \subseteq \set*{A_{\alpha}}_{\alpha \in I}
+        \]
+    \end{enumerate}
 \end{proof}
 
 \end{section}

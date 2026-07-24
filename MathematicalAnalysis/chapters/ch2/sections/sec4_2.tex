@@ -1,226 +1,195 @@
 \bigskip
 
-\begin{corollary} \label{cor:FiniteUnionOfCountableSetsIsCountable}
-    Let $X_{1}, X_{2}, \dots, X_{n}$ be countable sets for some $n \in \N$. Then $\displaystyle
-    \bigcup_{i = 1}^{n} X_{i}$ is countable, i.e., any finite union of countable sets is countable.
+\begin{theorem} \label{thm:ArbitraryUnionOfOpenSetsIsOpen}
+    Let $(X, d)$ be a metric space. Let $E_{y} \subseteq X$ be an open set for each $y \in Y$. Then we have
+    \[
+    \bigcup_{y \in Y} E_{y} \text{ is open}
+    \]
+    whether $Y$ is finite, countable, or uncountable. This theorem states that an arbitrary union of open sets is open.
+\end{theorem}
+
+\begin{proof}
+    Let $p \in \displaystyle \bigcup_{y \in Y} E_{y}$ be given. Then there exists some $y_{0} \in Y$
+    such that $p \in E_{y_{0}}$. Since $E_{y_{0}}$ is open, there exists some $r \in \R^{+}$
+    such that $N_{r}(p) \subseteq E_{y_{0}}$. Then we have
+    \[
+    N_{r}(p) \subseteq E_{y_{0}} \subseteq \bigcup_{y \in Y} E_{y},
+    \]
+    which implies that $p$ is an interior point of $\displaystyle \bigcup_{y \in Y} E_{y}$.
+    Since $p$ is arbitrary, $\displaystyle \bigcup_{y \in Y} E_{y}$ is open.
+\end{proof}
+
+\bigskip
+
+\begin{corollary} \label{cor:ArbitraryIntersectionOfClosedSetsIsClosed}
+    Let $(X, d)$ be a metric space. Let $E_{y} \subseteq X$ be a closed set for each $y \in Y$. Then we have
+    \[
+    \bigcap_{y \in Y} E_{y} \text{ is closed}
+    \]
+    whether $Y$ is finite, countable, or uncountable. This corollary states
+    that an arbitrary intersection of closed sets is closed.
 \end{corollary}
 
 \begin{proof}
-    Let $X_{n + 1}, X_{n + 2}, \dots$ be countable sets. Then, by \Cref{thm:CountableUnionOfCountableSetsIsCountable},
-    $\displaystyle \bigcup_{n = 1}^{\infty} X_{n}$ is countable. Assume that $\displaystyle \bigcup_{i = 1}^{n} X_{i}$
-    is finite. Then $\displaystyle X_{1} \subseteq \bigcup_{i = 1}^{n} X_{i}$ is finite by
-    \Cref{thm:SubsetOfFiniteSetIsFinite}, which contradicts \Cref{thm:CountableSetIsInfinite}. Thus
-    $\displaystyle \bigcup_{i = 1}^{n} X_{i}$ is infinite. Since $\displaystyle \bigcup_{i = 1}^{n} X_{i}
-    \subseteq \bigcup_{n = 1}^{\infty} X_{n}$, by \Cref{thm:InfiniteSubsetOfCountableSetIsCountable},
-    $\displaystyle \bigcup_{i = 1}^{n} X_{i}$ is countable. 
+    By \Cref{cor:ClosedSetComplementIsOpenSet}, $(E_{y})^{c}$ is open for each $y \in Y$.
+    Then, by \Cref{thm:ArbitraryUnionOfOpenSetsIsOpen}, we have
+    \[
+    \bigcup_{y \in Y} (E_{y})^{c} \text{ is open.}
+    \]
+    By \Cref{thm:OpenSetComplementIsClosedSet}, we have
+    \[
+    \bigcap_{y \in Y} E_{y} = \paren*{\bigcup_{y \in Y} (E_{y})^{c}}^{c} \text{ is closed.}
+    \]
 \end{proof}
 
 \bigskip
 
-\begin{theorem} \label{thm:CountableUnionOfFiniteSetsIsCountable}
-    Let $X$ be a countable set. If $Y_x$ is finite for each $x \in X$, then the union
+\begin{theorem} \label{thm:FiniteIntersectionOfOpenSetsIsOpen}
+    Let $(X, d)$ be a metric space. Let $E_{1}, E_{2}, \dots, E_{n} \subseteq X$
+    be open sets for some $n \in \N$. Then we have
     \[
-    Y = \bigcup_{x \in X} Y_x
+    \bigcap_{k = 1}^{n} E_{k} \text{ is open.}
     \]
-    is countable, i.e., any countable union of finite sets is countable.
+    This theorem states that a finite intersection of open sets is open.
 \end{theorem}
 
 \begin{proof}
-    There exists a bijection $f: \N \to X$. Also, for each $x \in X$, there exists a bijection
-    $g_{x}: J_{n_{x}} \to Y_x$ for some $n_{x} \in \N$. Let $h: \N \to Y$ be a function defined by
-    \begin{itemize}
-        \item $h(j) = g_{f(1)}(j)$ for $j = 1, 2, \cdots, n_{f(1)}$.
-        \item $h\displaystyle \paren*{\sum_{i = 1}^{k - 1} n_{f(i)} + m} =
-        g_{f(k)}(m)$ for each $k \in \N$ with $k \geq 2$, and $m = 1, 2, \cdots, n_{f(k)}$.
-    \end{itemize}
-    Then $h$ is surjective. Therefore, by \Cref{thm:SurjectionFromN}, $Y$ is countable.
+    Let $p \in \displaystyle \bigcap_{k = 1}^{n} E_{k}$ be given. Then we have $p \in E_{j}$ for all $j = 1, 2, \dots, n$.
+    Since $E_{j}$ is open, there exists some $r_{j} \in \R^{+}$ such that $N_{r_{j}}(p) \subseteq E_{j}$ for each $j = 
+    1, 2, \dots, n$. Let $R$ be a set defined by
+    \[
+    R \coloneqq \setbuilder*{r_{j}}{j = 1, 2, \dots, n} \subseteq \R^{+}.
+    \]
+    Let $f: J_{n} \to R$ be a function defined by
+    \[
+    f(j) = r_{j}.
+    \]
+    Then $f$ is surjective. By \Cref{lem:SubsetOfJnIsFinite,thm:SurjectionFromFiniteSetImpliesFinite}, $R$ is finite.
+    Then, by \Cref{thm:FiniteOrderedSetHasExtremum}, $R$ has a minimum element, say $r = \min R > 0$. Then we have
+    \[
+    N_{r}(p) \subseteq N_{r_{j}}(p) \subseteq E_{j} \text{ for all } j = 1, 2, \dots, n
+    \implies N_{r}(p) \subseteq \bigcap_{k = 1}^{n} E_{k},
+    \]
+    which implies that $p$ is an interior point of $\displaystyle \bigcap_{k = 1}^{n} E_{k}$.
+    Since $p$ is arbitrary, $\displaystyle \bigcap_{k = 1}^{n} E_{k}$ is open.
 \end{proof}
 
 \bigskip
 
-\begin{lemma} \label{lem:NxNIsCountable}
-    $\N \times \N$ is countable.
-\end{lemma}
+\begin{corollary} \label{cor:FiniteUnionOfClosedSetsIsClosed}
+    Let $(X, d)$ be a metric space. Let $E_{1}, E_{2}, \dots, E_{n} \subseteq X$
+    be closed sets for some $n \in \N$. Then we have
+    \[
+    \bigcup_{k = 1}^{n} E_{k} \text{ is closed.}
+    \]
+    This corollary states that a finite union of closed sets is closed.
+\end{corollary}
 
 \begin{proof}
-    We will prove this lemma by explicitly constructing a bijection from $\N \times \N \to \N$.
-    Let $f: \N \times \N \to \N$ be a function defined by
+    By \Cref{cor:ClosedSetComplementIsOpenSet}, $(E_{k})^{c}$ is open for each $k = 1, 2, \dots, n$.
+    Then, by \Cref{thm:FiniteIntersectionOfOpenSetsIsOpen}, we have
     \[
-    f(m, n) = \frac{(m + n - 1)(m + n - 2)}{2} + m
+    \bigcap_{k = 1}^{n} (E_{k})^{c} \text{ is open.}
     \]
-    for each $(m, n) \in \N \times \N$. We will show that $f$ is bijective.
-    \begin{itemize}
-        \item \textbf{Injectivity:} Assume that $(m_{1}, n_{1}) \neq (m_{2}, n_{2})$. If $m_{1} + n_{1} = m_{2} + n_{2}$,
-        then $m_{1} \neq m_{2}$, so $f(m_{1}, n_{1}) \neq f(m_{2}, n_{2})$. Otherwise, $m_{1} + n_{1} \neq m_{2} + n_{2}$.
-        \\[6mm]
-        Without loss of generality, assume $m_{1} + n_{1} < m_{2} + n_{2}$. Then, since
-        $m_{1} + n_{1} + 1 \leq m_{2} + n_{2}$, we have
-        \begin{align*}
-            f(m_{1}, n_{1}) &= \dfrac{(m_{1} + n_{1} - 1)(m_{1} + n_{1} - 2)}{2} + m_{1} \\
-            &\leq \dfrac{(m_{1} + n_{1} - 1)(m_{1} + n_{1} - 2)}{2} + (m_{1} + n_{1} - 1) \\
-            &= \dfrac{(m_{1} + n_{1})(m_{1} + n_{1} - 1)}{2} \\
-            &\leq \dfrac{(m_{2} + n_{2} - 1)(m_{2} + n_{2} - 2)}{2} \\
-            &< \dfrac{(m_{2} + n_{2} - 1)(m_{2} + n_{2} - 2)}{2} + m_{2} = f(m_{2}, n_{2}),
-        \end{align*}
-        Thus $f(m_{1}, n_{1}) \neq f(m_{2}, n_{2})$, so $f$ is injective.
-        \item \textbf{Surjectivity:} Let $k \in \N$ be given. Let $t_{k}, s_{k}$ be defined as in the proof of
-        \Cref{thm:CountableUnionOfCountableSetsIsCountable}. Then we have $f(s_{k}, t_{k} - s_{k} + 1) = k$.
-        Thus $f$ is surjective.
-    \end{itemize}
+    By \Cref{thm:OpenSetComplementIsClosedSet}, we have
+    \[
+    \bigcup_{k = 1}^{n} E_{k} = \paren*{\bigcap_{k = 1}^{n} (E_{k})^{c}}^{c} \text{ is closed.}
+    \]
 \end{proof}
 
 \bigskip
 
-\begin{theorem} \label{thm:ProductOfTwoCountableSetsIsCountable}
-    Let $X$ and $Y$ be countable sets. Then the cartesian product $X \times Y$ is countable.
+\begin{definition} \label{def:Closure}
+    Let $(X, d)$ be a metric space and $E \subseteq X$. Let $E'$ be the set of all limit points of $E$.    
+    The \textbf{closure} of $E$, which is denoted by $\overline{E}$, is defined by
+    \[
+    \overline{E} \coloneqq E \cup E'.
+    \]
+\end{definition}
+
+\bigskip
+
+\begin{theorem} \label{thm:PropertiesOfClosure}
+    Let $(X, d)$ be a metric space and $E \subseteq X$. Then we have the following properties:
+    \begin{enumerate}[label=\textbf{(\Alph*)}]
+        \item $\overline{E}$ is closed.
+        \item $E = \overline{E} \iff E$ is closed.
+        \item For any closed subset $F \subseteq X$ such that $E \subseteq F$, we have $\overline{E} \subseteq F$.
+    \end{enumerate}
+    \textbf{(C)} states that the closure of $E$ is the smallest closed set containing $E$.
 \end{theorem}
 
 \begin{proof}
-    There exist bijections $f: \N \to X$ and $g: \N \to Y$. Let $h: \N \times \N \to X \times Y$ be a function defined by
-    \[
-    h(m, n) = (f(m), g(n)) \text{ for all } (m, n) \in \N \times \N.
-    \]
-    Then $h$ is bijective. By \Cref{lem:NxNIsCountable}, $X \times Y$ is countable.
-\end{proof}
-
-\bigskip
-
-\begin{theorem} \label{thm:ProductOfFiniteCountableSetsIsCountable}
-    Let $X_{1}, X_{2}, \dots, X_{n}$ be countable sets for some $n \in \N$. Then $\displaystyle
-    \prod_{i = 1}^{n} X_{i}$ is countable, i.e., any finite product of countable sets is countable.
-\end{theorem}
-
-\begin{proof}
-    Let $P(n)$ be the statement that
-    \[
-    X_{1}, X_{2}, \dots, X_{n} \text{ are countable sets } \implies
-    \displaystyle \prod_{i = 1}^{n} X_{i} \text{ is countable}.
-    \]
-    \begin{itemize}
-        \item \textbf{Base case:} Let $X_{1}$ be a countable set. Then $\displaystyle \prod_{i = 1}^{1} X_{i} = X_{1}$
-        is countable. Thus $P(1)$ is true.
-        \item \textbf{Inductive step:} Assume that $P(n)$ is true for some $n \in \N$.
-        
-        Let $X_{1}, X_{2}, \dots, X_{n + 1}$ be countable sets. Then we have
+    \begin{enumerate}[label=\textbf{(\Alph*)}]
+        \item We will show that $\paren*{\overline{E}}^{c}$ is open. Let $p \in \paren*{\overline{E}}^{c}$ be given.
+        Since $p \notin E$ and $p \notin E'$, there exists some $r \in \R^{+}$ such that
         \[
-        \prod_{i = 1}^{n + 1} X_{i} = \paren*{\prod_{i = 1}^{n} X_{i}} \times X_{n + 1}
+        E \cap \widetilde{N}_{r}(p) = \emptyset \implies E \cap N_{r}(p) = \emptyset \implies N_{r}(p) \subseteq E^{c}.
         \]
-        By the inductive hypothesis, $\displaystyle \prod_{i = 1}^{n} X_{i}$ is countable. Then, by
-        \Cref{thm:ProductOfTwoCountableSetsIsCountable}, $\displaystyle \prod_{i = 1}^{n + 1} X_{i}$ is countable.
-        Thus $P(n + 1)$ is true when $P(n)$ is true.
-    \end{itemize}
-    By the \emph{principle of mathematical induction},
-    $P(n)$ is true for all $n \in \N$.
+        By \Cref{thm:NeighborhoodIsOpen}, $N_{r}(p)$ is open. Then, for any $q \in N_{r}(p)$,
+        there exists $\veps \in \R^{+}$ such that
+        \begin{align*}
+            N_{\veps}(q) \subseteq N_{r}(p) \subseteq E^{c}
+            \implies &E \cap N_{\veps}(q) = \emptyset \\
+            \implies &E \cap \paren*{\widetilde{N}_{\veps}(q) \cup \set*{q}} = \emptyset \\ 
+            \implies &\paren*{E \cap \widetilde{N}_{\veps}(q)} \cup \paren*{E \cap \set*{q}} = \emptyset \\
+            \implies &E \cap \widetilde{N}_{\veps}(q) = \emptyset \\
+            \implies &q \notin E'.
+        \end{align*}
+        Since $q$ is arbitrary, we have
+        \[
+        N_{r}(p) \subseteq \paren*{E'}^{c} \implies N_{r}(p) \subseteq
+        \paren*{\overline{E}}^{c} = E^{c} \cap \paren*{E'}^{c},
+        \]
+        which implies that $p$ is an interior point of $\paren*{\overline{E}}^{c}$. Since $p$ is arbitrary, $\paren*{
+        \overline{E}}^{c}$ is open, which implies that $\overline{E}$ is closed by \Cref{cor:ClosedSetComplementIsOpenSet}.
+        \item $E$ is closed $\iff E' \subseteq E \iff E \cup E' = E \iff \overline{E} = E$.
+        \item Let $F \subseteq X$ be a closed set such that $E \subseteq F$. Let $p \in E'$ be given.
+        Then, for any $r \in \R^{+}$, we have
+        \[
+        E \cap \widetilde{N}_{r}(p) \neq \emptyset \implies F \cap \widetilde{N}_{r}(p) \neq \emptyset,
+        \]
+        which implies that $p \in F' \subseteq F$. Therefore, we have $E' \subseteq F$.
+        Since $E \subseteq F$, we have $\overline{E} = E \cup E' \subseteq F$.
+    \end{enumerate}
 \end{proof}
 
 \bigskip
 
-\begin{theorem} \label{thm:QIsCountable}
-    $\Q$ is countable.
+\begin{theorem} \label{thm:SupremumInClosure}
+    Let $\paren*{\R, \norm*{\cdot}}$ be given. Let $E \subseteq \R$ be nonempty and bounded above. Then we have
+    \[
+    \sup E \in \overline{E},
+    \]
+    which implies that
+    \[
+    E \text{ is closed} \implies \sup E \in E.
+    \]
 \end{theorem}
 
 \begin{proof}
-    Any $q \in \Q$ can be expressed as $q = \dfrac{m}{n}$ for some $m \in \Z$ and $n \in \N$.
-    Let $f: \Z \times \N \to \Q$ be a function defined by
+    By the \emph{least upper bound property},
+    there exists $\alpha = \sup E \in \R$. Assume that $\alpha \in E$. Then we have
     \[
-    f(m, n) = \dfrac{m}{n} \text{ for all } (m, n) \in \Z \times \N.
+    E \subseteq \overline{E} \implies \alpha \in \overline{E}.
     \]
-    Then $f$ is surjective. By \Cref{thm:ZIsCountable,thm:ProductOfTwoCountableSetsIsCountable}, $\Z \times \N$
-    is countable. Then there exists a bijection $g: \N \to \Z \times \N$.
-    \\[6mm]
-    By \Cref{thm:PropertiesOfCompositionFunctions}, $f \circ g: \N \to \Q$ is surjective. Since $\N \subseteq \Q$,
-    by \Cref{lem:NIsInfinite,thm:SubsetOfFiniteSetIsFinite}, $\Q$ is infinite. Therefore,
-    by \Cref{thm:SurjectionFromN}, $\Q$ is countable.
+    Otherwise, for any $x \in \R^{+}$, $\alpha - x$ is not an upper bound of $E$.
+    Thus there exists some $p \in E$ such that
+    \[
+    \alpha - x < p < \alpha \implies p \in \widetilde{N}_{x}(\alpha) \cap E,
+    \]
+    which implies that $\alpha \in E'$. Therefore, we have
+    \[
+    E' \subseteq \overline{E} \implies \alpha \in \overline{E}.
+    \]
 \end{proof}
+
 
 \bigskip
 
-\begin{lemma} \label{lem:InfiniteProductOfFiniteSetsIsUncountable}
-    $X \coloneqq \displaystyle \prod_{n = 1}^{\infty} \set*{0, 1}$ is uncountable.
-\end{lemma}
-
-\begin{proof}
-    For each $n \in \N$, let $e_{n} \in X$ be a sequence defined by
+\begin{theorem} \label{thm:IsolatedPoints}
+    Let $(X, d)$ be a metric space and $E \subseteq X$. Then we have
     \[
-    e_{nm} = \begin{dcases}
-        1 & \text{if } m = n \\
-        0 & \text{Otherwise}
-    \end{dcases}
+    E \setminus E' = \setbuilder*{p \in X}{p \text{ is an isolated point of } E}.
     \]
-    Let $f: \N \to X$ be a function defined by
-    \[
-    f(n) = e_{n} \text{ for all } n \in \N.
-    \]
-    Then $f$ is injective. By \Cref{lem:NIsInfinite,thm:InjectionFromInfiniteSetImpliesInfinite}, $X$ is infinite.
-    \\[6mm]
-    Assume that $X$ is countable. Then, there exists a bijection $g: \N \to X$.
-    Let $X = \set*{g(1), g(2), g(3), \dots}$, where
-    \begin{itemize}
-        \item $g(1) = (a_{11}, a_{12}, a_{13}, \dots)$.
-        \item $g(2) = (a_{21}, a_{22}, a_{23}, \dots)$.
-        \item[] $\vdots$
-    \end{itemize}
-    Let $x = (b_{1}, b_{2}, b_{3}, \dots) \in X$ be a sequence defined by
-    \[
-    b_{n} = 1 - a_{nn} \text{ for all } n \in \N.
-    \]
-    Then, $x \neq g(n)$ for all $n \in \N$, which contradicts the assumption that $g$ is surjective.
-    Therefore, $X$ is uncountable.
-\end{proof}
-
-\bigskip
-
-\begin{theorem} \label{thm:RIsUncountable}
-    $\R$ is uncountable.
 \end{theorem}
-
-\begin{proof}
-    Since $\N \subseteq \R$, by \Cref{lem:NIsInfinite,thm:SubsetOfFiniteSetIsFinite}, $\R$ is infinite.
-    Let $f: \N \to [0, 1)$ be a function defined by
-    \[
-    f(n) = \dfrac{1}{n + 1} \text{ for all } n \in \N.
-    \]
-    Then $f$ is injective. By \Cref{lem:NIsInfinite,thm:InjectionFromInfiniteSetImpliesInfinite},
-    $[0, 1)$ is infinite. We will prove that $[0, 1) \subseteq \R$ is uncountable,
-    which implies that $\R$ is uncountable by \Cref{thm:InfiniteSubsetOfCountableSetIsCountable}.
-    \\[6mm]
-    Let $g: [0, 1) \to \displaystyle \prod_{n = 1}^{\infty} \set*{0, 1}$ be a function defined by
-    \[
-    g(x) = \paren*{a_{n}^{x}}_{n = 1}^{\infty} \text{ for all } x \in [0, 1)
-    \]
-    where $\paren*{a_{n}^{x}}_{n = 1}^{\infty}$ is the \emph{greedy base $2$ expansion} of $x$.
-    Let $Y$ be a set defined by
-    \[
-    Y \coloneqq g([0, 1)) \subseteq \displaystyle \prod_{n = 1}^{\infty} \set*{0, 1}.
-    \]
-    Then, by \Cref{thm:SameGreedyBaseExpansionImpliesEquality,thm:PropertiesOfRestrictionFunctions},
-    $g|^{Y}$ is bijective.
-    \\[6mm]
-    Assume that $[0, 1)$ is countable. Then there exists a bijection $h: \N \to [0, 1)$. By
-    \Cref{thm:PropertiesOfCompositionFunctions}, $g|^{Y} \circ h: \N \to Y$ is bijective, so $Y$ is countable.
-    Let $Z \coloneqq \displaystyle \prod_{n = 1}^{\infty} \set*{0, 1} \setminus Y$. By
-    \Cref{thm:NoRealNumberMatchingGreedyBaseExpansion,thm:NoRealNumberMatchingGreedyBaseExpansionConverse}, we have
-    \[
-    Z = \setbuilder*{\paren*{a_{n}}_{n = 1}^{\infty} \in \displaystyle \prod_{n = 1}^{\infty} \set*{0, 1}}{a_{n} = 1
-    \text{ for all } n \geq N \text{ for some } N \in \N}.
-    \]
-    Let $Z_{N}$ be a set defined by
-    \[
-    Z_{N} \coloneqq \setbuilder*{\paren*{a_{n}}_{n = 1}^{\infty} \in \displaystyle \prod_{n = 1}^{\infty}
-    \set*{0, 1}}{a_{n} = 1 \text{ for all } n \geq N} \text{ for each } N \in \N.
-    \]
-    Let $F_{N}: \displaystyle \prod_{n = 1}^{N - 1} \set*{0, 1} \to Z_{N}$ be a function defined by
-    \[
-    F_{N}\paren*{\paren*{a_{n}}_{n = 1}^{N - 1}} = \paren*{a_{n}}_{n = 1}^{N - 1} \cup \paren*{1}_{n = N}^{\infty}
-    \text{ for all } \paren*{a_{n}}_{n = 1}^{N - 1} \in \displaystyle \prod_{n = 1}^{N - 1} \set*{0, 1}.
-    \]
-    Then $F_{N}$ is surjective. By \Cref{thm:ProductOfFiniteSetsIsFinite,thm:SurjectionFromFiniteSetImpliesFinite},
-    $Z_{N}$ is finite. Then, by \Cref{thm:CountableUnionOfFiniteSetsIsCountable},
-    $Z = \displaystyle \bigcup_{N = 1}^{\infty} Z_{N}$ is countable.
-    \\[6mm]
-    By \Cref{cor:FiniteUnionOfCountableSetsIsCountable}, $\displaystyle \prod_{n = 1}^{\infty} \set*{0, 1} = Y \cup Z$
-    is countable. \Cref{lem:InfiniteProductOfFiniteSetsIsUncountable} shows that this is a contradiction.
-    Therefore, $[0, 1)$ is uncountable.
-\end{proof}
-
-\end{section}

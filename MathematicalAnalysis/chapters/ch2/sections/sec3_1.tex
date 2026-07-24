@@ -1,242 +1,239 @@
-\begin{section}{Finite Sets} \label{sec:FiniteSets}
+\begin{section}{Countable and Uncountable Sets} \label{sec:CountableUncountableSets}
 
-Let $J_{n}$ be a set defined by
-\[
-J_{n} \coloneqq \set*{1, 2, \dots, n} \quad \text{for each } n \in \N.
-\]
-A set $X$ is said to be \textbf{finite} if $J_{n} \hyperref[thm:BijectionEquivalenceRelation]{\sim} X$ for some
-$n \in \N$. In this case, $n$ is called the \textbf{cardinality} of $X$, denoted by $\abs*{X}$.
-Especially, if $X = \emptyset$, we define $\abs*{X} = 0$. $X$ is said to be \textbf{infinite} if $X$ is not finite.
+A set $X$ is said to be \textbf{countable} if $\N \hyperref[thm:BijectionEquivalenceRelation]{\sim} X$.
+A set $X$ is said to be \textbf{uncountable} if it is neither finite nor countable.
+A set $X$ is said to be \textbf{at most countable} if $X$ is either finite or countable.
 
 \bigskip
 
-\begin{lemma} \label{lem:SubsetOfJnIsFinite}
-    Any subset of $J_{n}$ is finite for each $n \in \N$.
-\end{lemma}
-
-\begin{proof}
-    Let $P(n)$ be the statement that any subset of $J_{n}$ is finite.
-    \begin{itemize}
-        \item \textbf{Base case:} $J_{1} = \set*{1}$ has $\emptyset$ and $J_{1}$ as its only subsets. We have
-        $J_{1} \hyperref[thm:BijectionEquivalenceRelation]{\sim} J_{1}$ by $f \equiv id_{J_{1}}$, and $\emptyset$ is
-        finite by definition. Thus $P(1)$ is true.
-        \item \textbf{Inductive step:} Assume that $P(n)$ is true for some $n \in \N$.
-        Let $A \subseteq J_{n + 1}$ be given. We have two cases:
-        \begin{itemize}
-            \item If $n + 1 \notin A$, then $A \subseteq J_{n}$, which is finite by the inductive hypothesis.
-            \item If $n + 1 \in A$, then $A = B \cup \set*{n + 1}$ for some $B \subseteq J_{n}$.
-            By the inductive hypothesis, $B$ is finite, so there exists a bijection $f: J_{m} \to B$
-            for some $m \in \N$. Let $g: J_{m + 1} \to A$ be defined by
-            \[
-            g(k) = \begin{cases}
-                f(k) & \text{if } k \leq m \\
-                n + 1 & \text{if } k = m + 1
-            \end{cases}
-            \]
-            Then $g$ is bijective, which implies that $A$ is finite.
-        \end{itemize}
-        Thus $P(n + 1)$ is true whenever $P(n)$ is true.
-    \end{itemize}
-    By the \emph{principle of mathematical induction}, $P(n)$ is true for all $n \in \N$.
-\end{proof}
-
-\bigskip
-
-\begin{theorem} \label{thm:SubsetOfFiniteSetIsFinite}
-    Any subset of a finite set is finite.
+\begin{theorem} \label{thm:InfiniteSetMinusFiniteSetIsInfinite}
+    Let $X$ be an infinite set, and let $Y$ be a finite set. Then $X \setminus Y$ is infinite.
 \end{theorem}
 
 \begin{proof}
-    Let $X$ be a finite set and $Y \subseteq X$. Then there exists a bijection
-    $f: J_{n} \to X$ for some $n \in \N$. Let $Z$ be defined by
-    \[
-    Z \coloneqq f^{-1}(Y) \subseteq J_{n}.
-    \]
-    Since $Z \subseteq J_{n}$, $Z$ is finite by
-    \Cref{lem:SubsetOfJnIsFinite}, so there exists a bijection $g: J_{m} \to Z$ for some $m \in \N$.
-    \\[6mm]
-    By \Cref{thm:PropertiesOfRestrictionFunctions}, $f|_{Z}^{Y}$ is bijective. Then, by
-    \Cref{thm:PropertiesOfCompositionFunctions}, the composition $f|_{Z}^{Y} \circ g: J_{m} \to Y$
-    is also bijective. Therefore, $Y$ is finite.
+    Assume that $X \setminus Y$ is finite. Since $Y$ is finite, by \Cref{thm:UnionOfTwoFiniteSetsIsFinite},
+    $(X \setminus Y) \cup Y$ is finite. Then, by \Cref{thm:SubsetOfFiniteSetIsFinite},
+    $X \subseteq (X \setminus Y) \cup Y$ is finite, which contradicts the assumption.
+    Therefore, $X \setminus Y$ is infinite.
 \end{proof}
 
 \bigskip
 
-\begin{lemma} \label{lem:SurjectionFromJnImpliesFinite}
-    Let $J_{n}$ be given for some $n \in \N$. If there exists an surjection $f: J_{n} \to Y$, then $Y$ is finite.
-\end{lemma}
-
-\begin{proof}
-    Let $f: J_{n} \to Y$ be a surjective function. For any $y \in Y$, let $N_{y}$ be a set defined by
-    \[
-    N_{y} \coloneqq f^{-1}(\set*{y}) \subseteq J_{n}.
-    \]
-    Since $f$ is surjective, $N_{y}$ is nonempty. By \Cref{thm:WellOrderingProperty}, $N_{y}$ has a least element, say
-    $n_{y}$. Let $M_{Y}$ be a set defined by
-    \[
-    M_{Y} \coloneqq \setbuilder*{n_{y}}{y \in Y} \subseteq J_{n}.
-    \]
-    Let $g: M_{Y} \to Y$ be a function defined by
-    \[
-    g(n_{y}) = y \quad \text{for each } n_{y} \in M_{Y}.
-    \]
-    Then $g$ is bijective. By \Cref{lem:SubsetOfJnIsFinite}, $M_{Y}$ is finite, so there exists
-    a bijection $h: J_{m} \to M_{Y}$ for some $m \in \N$. Then, by \Cref{thm:PropertiesOfCompositionFunctions},
-    the composition $g \circ h: J_{m} \to Y$ is bijective. Therefore, $Y$ is finite.
-\end{proof}
-
-\bigskip
-
-\begin{theorem} \label{thm:SurjectionFromFiniteSetImpliesFinite}
-    Let $X$ be a finite set. If there exists an surjection $f: X \to Y$, then $Y$ is finite.
+\begin{theorem} \label{thm:InjectionFromInfiniteSetImpliesInfinite}
+    Let $X$ be an infinite set. If there exists a injection $f: X \to Y$, then $Y$ is infinite.
 \end{theorem}
 
 \begin{proof}
-    Let $f: X \to Y$ be a surjective function. Since $X$ is finite, there exists a bijection $g: J_{n} \to X$
-    for some $n \in \N$. Then, by \Cref{thm:PropertiesOfCompositionFunctions}, the composition $f \circ g: J_{n} \to Y$
-    is surjective. Therefore, by \Cref{lem:SurjectionFromJnImpliesFinite}, $Y$ is finite.
+    Assume that $Y$ is finite. Let $g: Y \to X$ be defined by
+    \[
+    g(y) = \begin{dcases}
+        f^{-1}(y), & \text{if } y \in f(X) \\
+        f^{-1}(y_{0}), & \text{Otherwise}
+    \end{dcases}
+    \]
+    where $y_{0} \in f(X)$ is fixed. Then $g$ is surjective. By \Cref{thm:SurjectionFromFiniteSetImpliesFinite},
+    $X$ is finite, which is a contradiction. Therefore, $Y$ is infinite.
 \end{proof}
 
 \bigskip
 
-\begin{theorem} \label{thm:FiniteOrderedSetHasExtremum}
-    Let $X$ be a finite nonempty ordered set. Then $X$ has both a least element and a greatest element.
-\end{theorem}
-
-\begin{proof}
-    Since $X$ is finite and nonempty, there exists a bijection $f: J_{n} \to X$ for some $n \in \N$. The elements
-    of $X$ can be listed as $X = \set*{a_{1}, a_{2}, \dots, a_{n}}$, where $a_{k} = f(k)$ for each $k = 1, 2, \dots, n$.
-    \\[6mm]
-    First, we will show that $X$ has a least element. Let $P(n)$ be the statement that
-    any finite ordered set of cardinality $n$ has a least element.
-    \begin{itemize}
-        \item \textbf{Base case:} $X = \set*{a_{1}}$ has a least element $a_{1}$. Thus $P(1)$ is true.
-        \item \textbf{Inductive step:} Assume that $P(n)$ is true for some $n \in \N$.
-        Let $X$ be a finite ordered set of cardinality $n + 1$ such that
-        \[
-        X = \set*{a_{1}, a_{2}, \dots, a_{n + 1}}.
-        \]
-        By the inductive hypothesis, a finite ordered subset $Y \subseteq X$ of cardinality $n$ such that 
-        \[
-        Y = \set*{a_{1}, a_{2}, \dots, a_{n}}
-        \]
-        has a least element, say $a_{k}$ for some $k = 1, 2, \dots, n$. We have two cases:
-        \begin{itemize}
-            \item If $a_{k} \leq a_{n + 1}$, then $a_{k}$ is the least element of $X$.
-            \item If $a_{n + 1} < a_{k}$, then $a_{n + 1}$ is the least element of $X$.
-        \end{itemize}
-        Thus $P(n + 1)$ is true whenever $P(n)$ is true.
-    \end{itemize}
-    By the \emph{principle of mathematical induction},
-    $P(n)$ is true for all $n \in \N$.
-    \\[6mm]
-    Next, we will show that $X$ has a greatest element. Let $Q(n)$ be the statement that
-    any finite ordered set of cardinality $n$ has a greatest element.
-    \begin{itemize}
-        \item \textbf{Base case:} $X = \set*{a_{1}}$ has a greatest element $a_{1}$. Thus $Q(1)$ is true.
-        \item \textbf{Inductive step:} Assume that $Q(n)$ is true for some $n \in \N$.
-        Let $X$ be a finite ordered set of cardinality $n + 1$ such that
-        \[
-        X = \set*{a_{1}, a_{2}, \dots, a_{n + 1}}.
-        \]
-        By the inductive hypothesis, a finite ordered subset $Y \subseteq X$ of cardinality $n$ such that
-        \[
-        Y = \set*{a_{1}, a_{2}, \dots, a_{n}}
-        \]
-        has a greatest element, say $a_{k}$ for some $k = 1, 2, \dots, n$. We have two cases:
-        \begin{itemize}
-            \item If $a_{k} \geq a_{n + 1}$, then $a_{k}$ is the greatest element of $X$.
-            \item If $a_{n + 1} > a_{k}$, then $a_{n + 1}$ is the greatest element of $X$.
-        \end{itemize}
-        Thus $Q(n + 1)$ is true whenever $Q(n)$ is true.
-    \end{itemize}
-    By the \emph{principle of mathematical induction},
-    $Q(n)$ is true for all $n \in \N$.
-\end{proof}
-
-\bigskip
-
-\begin{lemma} \label{lem:PropertiesOfJmJn}
-    Let $J_{m}, J_{n}$ be given for some $m, n \in \N$. Then we have the following properties:
-    \begin{enumerate}[label=\textbf{(\Alph*)}]
-        \item If there exists an injection $f: J_{m} \to J_{n}$, then we have $m \leq n$.
-        \item If there exists a surjection $f: J_{m} \to J_{n}$, then we have $m \geq n$.
-        \item If there exists a bijection $f: J_{m} \to J_{n}$, then we have $m = n$.
-    \end{enumerate}
-    This lemma guarantees the uniqueness of the cardinality. If $J_{m} \hyperref[thm:BijectionEquivalenceRelation]{\sim} X$
-    and $J_{n} \hyperref[thm:BijectionEquivalenceRelation]{\sim} X$, then we have
-    $J_{m} \hyperref[thm:BijectionEquivalenceRelation]{\sim} J_{n}$, which implies that $m = n$ by \textbf{(C)}.
+\begin{lemma} \label{lem:NIsInfinite}
+    $\N$ is infinite.
 \end{lemma}
 
 \begin{proof}
-    We will prove \textbf{(A)} by mathematical induction on $m$, \textbf{(B)} by mathematical induction on $n$,
-    and \textbf{(C)} follows from \textbf{(A)} and \textbf{(B)}.
-    \begin{enumerate}[label=\textbf{(\Alph*)}]
-        \item Let $n \in \N$ be fixed.
-        Let $P(m)$ be the statement that if there exists an injective function
-        $f_{m}: J_{m} \to J_{n}$, then we have $m \leq n$.
-        \begin{itemize} 
-            \item \textbf{Base case:} Let $m = 1$. Then $m \leq n$ holds. Thus $P(1)$ is true.
-            \item \textbf{Inductive step:} Assume that $P(m)$ is true for some $m \in \N$.
-            If $n = 1$, there does not exist an injective function $f_{m + 1}: J_{m + 1} \to J_{n}$
-            since $f_{m+1}(1) \neq f_{m+1}(m + 1)$, where $P(m + 1)$ is true.
-            \\[6mm]
-            Otherwise, assume that such a function $f_{m+1}$ exists. We have two cases:
+    Assume that $\N$ is finite. Then there exists a bijection $f: J_{n} \to \N$ for some $n \in \N$.
+    Then, by \Cref{thm:SubsetOfFiniteSetIsFinite}, $f(J_{n}) \subseteq \N$ is finite. By
+    \Cref{thm:FiniteOrderedSetHasExtremum}, $f(J_{n})$ has a greatest element, say $m$.
+    \\[6mm]
+    Then we have $m + 1 \in \N$ and $m < m + 1 \notin f(J_{n})$,
+    which contradicts the assumption that $f$ is surjective. Therefore, $\N$ is infinite.
+\end{proof}
+
+\bigskip
+
+\begin{theorem} \label{thm:CountableSetIsInfinite}
+    Any countable set is infinite.
+\end{theorem}
+
+\begin{proof}
+    Let $X$ be a countable set. Then there exists a bijection $f: \N \to X$. By
+    \Cref{thm:InjectionFromInfiniteSetImpliesInfinite,lem:NIsInfinite}, $X$ is infinite.
+\end{proof}
+
+\bigskip
+
+\begin{remark}
+    Let $X$ be a countable set. Then there exists a bijection $f: \N \to X$. The elements of $X$
+    can be listed as $X = \set*{x_1, x_2, x_3, \dots}$, where $x_n = f(n)$ for all $n \in \N$.
+    In other words, the elements of $X$ can be arranged in a sequence.
+\end{remark}
+
+\bigskip
+
+\begin{theorem} \label{thm:ZIsCountable}
+    $\Z$ is countable.
+\end{theorem}
+
+\begin{proof}
+    Let $f: \N \to \Z$ be a function defined by
+    \[
+    f(n) = \begin{dcases}
+        - \frac{n}{2}, & \text{if } n \text{ is even} \\
+        \frac{n - 1}{2}, & \text{if } n \text{ is odd}
+    \end{dcases}
+    \]
+    We will show that $f$ is bijective, which implies that $\Z$ is countable.
+    \begin{itemize}
+        \item \textbf{Injectivity:} Assume that $f(n_1) = f(n_2)$ for some $n_1, n_2 \in \N$. Since $f(n) \geq 0$
+        for odd $n$ and $f(n) < 0$ for even $n$, we have $n_1$ and $n_2$ are either both even or both odd.
             \begin{itemize}
-                \item If $f_{m+1}(m + 1) = n$, let $f_{m}$ be a function defined by
-                \[
-                f_{m} \equiv f_{m+1}|_{J_{m}}^{J_{n - 1}}: J_{m} \to J_{n - 1}.
-                \]
-                Then $f_{m}$ is injective by \Cref{thm:PropertiesOfRestrictionFunctions}.
-                By the inductive hypothesis, we have $m \leq n - 1$, which implies that $m + 1 \leq n$.
-                \item If $f_{m+1}(m + 1) = x \neq n$, let $g_{n}: J_{n} \to J_{n}$ be defined by
-                \[
-                g_{n}(y) = \begin{cases}
-                    x, & \text{if } y = n \\
-                    n, & \text{if } y = x \\
-                    y, & \text{otherwise}
-                \end{cases}
-                \]
-                Then $g_{n}$ is bijective. Let $f_{m}$ be a function defined by
-                \[
-                f_{m} \equiv (g_{n} \circ f_{m+1})|_{J_{m}}^{J_{n - 1}}: J_{m} \to J_{n - 1}.
-                \]
-                Then $f_{m}$ is injective by \Cref{thm:PropertiesOfCompositionFunctions,thm:PropertiesOfRestrictionFunctions}.
-                By the inductive hypothesis, we have $m \leq n - 1$, which implies that $m + 1 \leq n$.
+                \item If both $n_1$ and $n_2$ are even, then we have $- \dfrac{n_1}{2} = - \dfrac{n_2}{2}$,
+                which implies $n_1 = n_2$.
+                \item If both $n_1$ and $n_2$ are odd, then we have $\dfrac{n_1 - 1}{2} = \dfrac{n_2 - 1}{2}$,
+                which implies $n_1 = n_2$.
             \end{itemize}
-            Therefore, $P(m + 1)$ is true whenever $P(m)$ is true.
-        \end{itemize}
-        By the \emph{principle of mathematical induction},
-        $P(m)$ is true for all $m \in \N$.
-        \item Let $m \in \N$ be fixed.
-        Let $Q(n)$ be the statement that if there exists a surjective function
-        $f_{n}: J_{m} \to J_{n}$, then we have $m \geq n$.
-        \begin{itemize}
-            \item \textbf{Base case:} Let $n = 1$. Then $m \geq n$ holds. Thus $Q(1)$ is true.
-            \item \textbf{Inductive step:} Assume that $Q(n)$ is true for some $n \in \N$.
-            If $m = 1$, there does not exist a surjective function $f_{n + 1}: J_{m} \to J_{n + 1}$
-            since $f_{n+1}(1)$ is unique, where $Q(n + 1)$ is true.
-            \\[6mm]
-            Otherwise, assume that such a function $f_{n+1}$ exists. We have two cases:
+            Thus $f$ is injective.
+        \item \textbf{Surjectivity:} Let $k \in \Z$ be given. We need to find an $n \in \N$ such that $f(n) = k$.
             \begin{itemize}
-                \item If $f_{n+1}(m) = n + 1$, let $K_{n + 1}$ be a set defined by
-                \[
-                K_{n + 1} \coloneqq (f_{n + 1})^{-1}(\set*{n + 1}) \subseteq J_{m}.
-                \]
-                Let $f_{n}: J_{m} \to J_{n}$ be a function defined by
-                \[
-                f_{n}(y) = \begin{cases}
-                    f_{n+1}(y), & \text{if } y \in J_{m} \setminus K_{n + 1} \\
-                    n, & \text{if } y \in K_{n + 1}
-                \end{cases}
-                \]
-                Then $f_{n}$ is surjective. By the inductive hypothesis, we have $m - 1 \geq n$,
-                which implies that $m \geq n + 1$.
-                \item If $f_{n+1}(m) = x \neq n + 1$, let $g_{n+1}: J_{n + 1} \to J_{n + 1}$ be a function defined by
-                \[
-                g_{n+1}(y) = \begin{cases}
-                    x, & \text{if } y = n + 1 \\
-                    n + 1, & \text{if } y = x \\
-                    y, & \text{otherwise}
-                \end{cases}
-                \]
+                \item If $k \geq 0$, let $n = 2k + 1$. Then we have $f(n) = \dfrac{n - 1}{2} = \dfrac{2k}{2} = k$.
+                \item If $k < 0$, let $n = -2k$. Then we have $f(n) = - \dfrac{n}{2} = - \dfrac{-2k}{2} = k$.
+            \end{itemize}
+            Thus $f$ is surjective.
+    \end{itemize}
+\end{proof}
+
+\bigskip
+
+\begin{lemma} \label{lem:InfiniteSubsetOfNIsCountable}
+    Any infinite subset of $\N$ is countable.
+\end{lemma}
+
+\begin{proof}
+    Let $X \subseteq \N$ be an infinite subset. Let $\paren*{X_{n}}_{n = 1}^{\infty}$ be a sequence
+    and let $f: \N \to X$ be a function defined as follows:
+    \begin{itemize}
+        \item $X_{1} = X$, $f(1) = \min X_{1}$
+        \item $X_{2} = X_{1} \setminus \set*{f(1)}$, $f(2) = \min X_{2}$
+        \item[] $\vdots$
+        \item $X_{n + 1} = X_{n} \setminus \set*{f(n)}$, $f(n + 1) = \min X_{n + 1}$
+    \end{itemize}
+    for each $n \in \N$. By \Cref{thm:InfiniteSetMinusFiniteSetIsInfinite}, $X_{n}$ is infinite for each $n \in \N$,
+    so is nonempty. Then, by \Cref{thm:WellOrderingProperty}, $X_{n}$ has a least element, so $f$ is well-defined.
+    We will show that $f$ is bijective, which implies that $X$ is countable.
+    \begin{itemize}
+        \item \textbf{Injectivity:} Assume that $n_{1} \neq n_{2}$ for some $n_{1}, n_{2} \in \N$.
+        Without loss of generality, assume that $n_{1} < n_{2}$. Then we have
+        \[
+        f(n_{1}) \in X_{n_{1}} \text{ and } f(n_{2}) \in X_{n_{2}}.
+        \]
+        Since $X_{n_{2}} \subseteq X_{n_{1}} \setminus \set*{f(n_{1})}$,
+        we have $f(n_{2}) \neq f(n_{1})$. Thus $f$ is injective.
+        \item \textbf{Surjectivity:} Let $x \in X$ be given. Let $S$ be a set defined as
+        \[
+        S \coloneqq \setbuilder*{n \in X}{n < x}.
+        \]
+        If $S = \emptyset$, then $f(1) = x$. Otherwise, by \Cref{lem:SubsetOfJnIsFinite}, $S \subseteq J_{x - 1}$ is finite.
+        Let $k = |S|$, $S = \set*{s_{1}, s_{2}, \dots, s_{k}}$ with $s_{1} < s_{2} < \dots < s_{k}$. Then we have
+        \begin{itemize}
+            \item $\min X_{1} = \min S \implies X_{2} = X \setminus \set*{s_{1}}$.
+            \item $\min X_{2} = \min S \setminus \set*{s_{1}} \implies X_{3} = X \setminus \set*{s_{1}, s_{2}}$.
+            \item[] $\vdots$
+            \item $\min X_{k} = \min S \setminus \set*{s_{1}, s_{2}, \dots, s_{k - 1}} \implies X_{k + 1} = X \setminus S$.
+        \end{itemize}
+        Thus $f(k + 1) = \min X_{k + 1} = x$. Therefore, $f$ is surjective.
+    \end{itemize}
+\end{proof}
+
+\bigskip
+
+\begin{theorem} \label{thm:InfiniteSubsetOfCountableSetIsCountable}
+    Any infinite subset of a countable set is countable.
+\end{theorem}
+
+\begin{proof}
+    Let $X$ be a countable set and let $Y \subseteq X$ be an infinite subset. Since $X$ is countable, there exists
+    a bijection $f: \N \to X$. By \Cref{thm:PropertiesOfRestrictionFunctions}, $f|_{f^{-1}(Y)}^{Y}: f^{-1}(Y) \to Y$
+    is bijective. Then, by \Cref{thm:SurjectionFromFiniteSetImpliesFinite}, $f^{-1}(Y) \subseteq \N$ is infinite.
+    \\[6mm]
+    By \Cref{lem:InfiniteSubsetOfNIsCountable}, $f^{-1}(Y)$ is countable. Then there exists a bijection $g: \N \to f^{-1}(Y)$.
+    The composition $f|_{f^{-1}(Y)}^{Y} \circ g: \N \to Y$ is bijective, which implies that $Y$ is countable.
+\end{proof}
+
+\bigskip
+
+\begin{theorem} \label{thm:SurjectionFromN}
+    Let $X$ be infinite. If there exists a surjection $f: \N \to X$, then $X$ is countable.
+\end{theorem}
+
+\begin{proof}
+    For each $k \in X$, let $S_{k}$ be a set defined as
+    \[
+    S_{k} \coloneqq f^{-1}(\set*{k}).
+    \]
+    Since $f$ is surjective, $S_{k} \neq \emptyset$ and by \Cref{thm:WellOrderingProperty},
+    $S_{k}$ has a least element for all $k \in X$. Let $g: X \to \N$ be a function defined by
+    \[
+    g(k) = \min S_{k} \text{ for all } k \in X.
+    \]
+    Assume that $g(k_{1}) = g(k_{2})$ for some $k_{1}, k_{2} \in X$, i.e., $\min S_{k_{1}} = \min S_{k_{2}}$. Since
+    $S_{i} \cap S_{j} = \emptyset$ for all $i, j \in X$ with $i \neq j$, we have $S_{k_{1}} = S_{k_{2}} \implies
+    k_{1} = k_{2}$. Thus $g$ is injective.
+    \\[6mm]
+    Since $g$ is injective, by \Cref{thm:PropertiesOfRestrictionFunctions}, $g|^{g(X)}: X \to g(X)$ is bijective.
+    Since $X$ is infinite, $g(X) \subseteq \N$ is infinite by \Cref{thm:InjectionFromInfiniteSetImpliesInfinite}. Then, by
+    \Cref{lem:InfiniteSubsetOfNIsCountable}, $g(X)$ is countable, which implies that $X$ is countable.
+\end{proof}
+
+\bigskip
+
+\begin{theorem} \label{thm:CountableUnionOfCountableSetsIsCountable}
+    Let $\set*{X_{n}}_{n \in \N}$ be a sequence of countable sets. Then $\displaystyle
+    \bigcup_{n = 1}^{\infty} X_{n}$ is countable, i.e., any countable union of countable sets is countable.
+\end{theorem}
+
+\begin{proof}
+    There exists a bijection $f_{n}: \N \to X_{n}$ for each $n \in \N$. For each $n \in \N$, we define the followings:
+    \begin{itemize}
+        \item $t_{n} \coloneqq \min T_{n}, \text{ where } T_{n} \coloneqq \setbuilder*{k \in \N}{n \leq \dfrac{k(k + 1)}{2}}$.
+        \item $s_{n} \coloneqq n - \dfrac{t_{n}(t_{n} - 1)}{2} = n - \dfrac{t_{n}(t_{n} + 1)}{2} + t_{n} \in \N$.
+    \end{itemize}
+    Since $2n \in T_{n}$, $T_{n}$ is nonempty. Then, by \Cref{thm:WellOrderingProperty}, $T_{n}$ has a least element,
+    so $t_{n}$ is well-defined. Since $\dfrac{t_{n}(t_{n} - 1)}{2} < n \leq \dfrac{t_{n}(t_{n} + 1)}{2}$, we have
+    \[
+    t_{n} - s_{n} + 1 = \dfrac{t_{n}(t_{n} + 1)}{2} - n + 1 \geq 1,
+    \]
+    so $t_{n} - s_{n} + 1 \in \N$. Let $g: \N \to \displaystyle \bigcup_{n = 1}^{\infty} X_{n}$ be a function defined by
+    \[
+    g(k) = f_{s_{k}}(t_{k} - s_{k} + 1) \text{ for all } k \in \N.
+    \]
+    Let $x \in \displaystyle \bigcup_{n = 1}^{\infty} X_{n}$ be given. Then there exists some $m \in \N$ such that
+    $x \in X_{m}$. Since $f_{m}$ is surjective, there exists some $l \in \N$ such that $f_{m}(l) = x$. Let
+    \[
+    k \coloneqq \dfrac{(l + m - 1)(l + m - 2)}{2} + m \in \N.
+    \]
+    We will show that $l + m - 2 \notin T_{k}$ and $l + m - 1 \in T_{k}$, which implies that
+    \begin{itemize}
+        \item $t_{k} = \min T_{k} = l + m - 1$.
+        \item $s_{k} = k - \dfrac{t_{k}(t_{k} - 1)}{2} = m$.
+        \item $g(k) = f_{s_{k}}(t_{k} - s_{k} + 1) = f_{m}(l + m - 1 - m + 1) = f_{m}(l) = x$.
+    \end{itemize}
+    Consider the following inequalities when $z = l + m - 2$ and $z = l + m - 1$:
+    \begin{itemize}
+        \item Let $z = l + m - 2$. Then we have
+        \begin{align*}
+            k - \dfrac{z(z + 1)}{2} &= k - \dfrac{(l + m - 2)(l + m - 1)}{2} \\
+            &= \dfrac{(l + m - 1)(l + m - 2)}{2} + m - \dfrac{(l + m - 2)(l + m - 1)}{2} \\
+            &= m > 0.
+        \end{align*}
+        \item Let $z = l + m - 1$. Then we have
+        \begin{align*}
+            k - \dfrac{z(z + 1)}{2} &= k - \dfrac{(l + m - 1)(l + m)}{2} \\
+            &= \dfrac{(l + m - 1)(l + m - 2)}{2} + m - \dfrac{(l + m - 1)(l + m)}{2} \\
+            &= m - \dfrac{(l + m - 1)(l + m) - (l + m - 1)(l + m - 2)}{2} \\
+            &= m - (l + m - 1) = 1 - l \leq 0.
+        \end{align*}
+    \end{itemize}
+    Thus $g$ is surjective, which implies that $\displaystyle \bigcup_{n = 1}^{\infty} X_{n}$
+    is countable by \Cref{thm:SurjectionFromN}.
+\end{proof}

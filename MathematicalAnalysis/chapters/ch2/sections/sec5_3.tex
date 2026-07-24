@@ -1,187 +1,129 @@
-\begin{proof}
-    \textbf{($\subseteq$)} Let $p \in E \setminus E'$ be given.
-    Since $p \notin E'$, there exists some $r \in \R^{+}$ such that
+    Then we have
     \[
-    E \cap \widetilde{N}_{r}(p) = \emptyset \implies \paren*{E \cap N_{r}(p)} \setminus \set*{p} = \emptyset.
+    \prod_{j = 1}^{k} I_{1, j, m_{j}} \subseteq \bigcup_{\alpha \in A_{\bm{m}}} G_{\alpha}
+    \quad \text{for all } \bm{m} \in S_{k},
     \]
-    Since $p \in E$ and $p \in N_{r}(p)$, we have
+    where $\displaystyle \bigcup_{\alpha \in A_{\bm{m}}} G_{\alpha}$ is open by \Cref{thm:ArbitraryUnionOfOpenSetsIsOpen}.
+    Then we have
     \[
-    E \cap N_{r}(p) = \set*{p},
+    I_{1} \subseteq \bigcup_{\bm{m} \in S_{k}} \paren*{\bigcup_{\alpha \in A_{\bm{m}}} G_{\alpha}}
+    = \bigcup_{\alpha \in A} G_{\alpha},
     \]
-    which implies that $p$ is an isolated point of $E$.
-    \\[6mm]
-    \textbf{($\supseteq$)} Let $p$ be an isolated point of $E$. Then there exists some $r \in \R^{+}$ such that
+    where $A \coloneqq \displaystyle \bigcup_{\bm{m} \in S_{k}} A_{\bm{m}}$ is finite by
+    \Cref{thm:FiniteUnionOfFiniteSetsIsFinite}. Thus $I_{1}$ has a finite subcover, which is a contradiction.
+    Therefore, there exists $\bm{m_{1}} \in S_{k}$ such that
     \[
-    E \cap N_{r}(p) = \set*{p}.
+    \prod_{j = 1}^{k} I_{1, j, \paren*{m_{1}}_{j}} \text{ has no finite subcover}.
+    \]
+    Let $I_{2}$ be a $k$-cell in $\R^{k}$ defined by
+    \[
+    I_{2} \coloneqq \prod_{j = 1}^{k} \bracket{a_{2, j}, b_{2, j}} \subseteq \R^{k},
+    \]
+    where $a_{2, j}, b_{2, j} \in \R$ is defined by
+    \begin{itemize}
+        \item $a_{2, j} \coloneqq \begin{dcases}
+            a_{1, j} & \text{if } \paren*{m_{1}}_{j} = 1 \\
+            \frac{a_{1, j} + b_{1, j}}{2} & \text{if } \paren*{m_{1}}_{j} = 2
+        \end{dcases}$
+        \item $b_{2, j} \coloneqq \begin{dcases}
+            \frac{a_{1, j} + b_{1, j}}{2} & \text{if } \paren*{m_{1}}_{j} = 1 \\
+            b_{1, j} & \text{if } \paren*{m_{1}}_{j} = 2
+        \end{dcases}$
+    \end{itemize}
+    for all $j = 1, 2, \dots, k$. Then, for each $j = 1, 2, \dots, k$, we have
+    \[
+    \bracket{a_{2, j}, b_{2, j}} = I_{1, j, \paren*{m_{1}}_{j}} \subseteq \bracket{a_{1, j}, b_{1, j}},
+    \]
+    which implies that
+    \[
+    I_{2} = \prod_{j = 1}^{k} I_{1, j, \paren*{m_{1}}_{j}} \subseteq I_{1}.
+    \]
+    Let $I_{2, j, m}$ be an interval in $\R$ defined by
+    \[
+    I_{2, j, m} \coloneqq \begin{dcases}
+        \bracket*{a_{2, j}, \frac{a_{2, j} + b_{2, j}}{2}} & \text{if } m = 1 \\
+        \bracket*{\frac{a_{2, j} + b_{2, j}}{2}, b_{2, j}} & \text{if } m = 2
+    \end{dcases} \quad \text{for all } j = 1, 2, \dots, k.
     \]
     Then we have
+    \[
+    I_{2} = \bigcup_{\bm{m} \in S_{k}} \paren*{\prod_{j = 1}^{k} I_{2, j, m_{j}}}.
+    \]
+    We have shown that $\set*{G_{\alpha}}_{\alpha \in A}$ is an open cover of $I_{2}$, and $I_{2}$ has no finite subcover.
+    Then, for each $\bm{m} \in S_{k}$, we have
+    \[
+    \prod_{j = 1}^{k} I_{2, j, m_{j}} \subseteq I_{2} \subseteq \bigcup_{\alpha \in A} G_{\alpha},
+    \]
+    which implies that $\set*{G_{\alpha}}_{\alpha \in A}$ is an open cover of
+    $\displaystyle \prod_{j = 1}^{k} I_{2, j, m_{j}}$. Therefore, there exists $\bm{m_{2}} \in S_{k}$ such that
+    \[
+    \prod_{j = 1}^{k} I_{2, j, \paren*{m_{2}}_{j}} \text{ has no finite subcover}.
+    \]
+    By repeating this process, we can construct the following sequences:
     \begin{itemize}
-        \item $E \cap \widetilde{N}_{r}(p) = \emptyset \implies p \notin E'$.
-        \item $p \in E$.
+        \item The sequence $\paren*{\bm{m}_{n}}_{n = 1}^{\infty}$ in $S_{k}$.
+        \item The sequences $\paren*{a_{n, j}}_{n = 1}^{\infty}$ and
+        $\paren*{b_{n, j}}_{n = 1}^{\infty}$ in $\R$ for all $j = 1, 2, \dots, k$.
+        \item The sequence $\paren*{I_{n, j, m}}_{n = 1}^{\infty}$ of intervals in $\R$
+        for all $j = 1, 2, \dots, k$ and $m = 1, 2$.
+        \item The sequence $\paren*{I_{n}}_{n = 1}^{\infty}$ of $k$-cells in $\R^{k}$.
     \end{itemize}
-    Therefore, we have $p \in E \setminus E'$.
+    We have the following properties:
+    \begin{itemize}
+        \item $I_{n + 1} \subseteq I_{n}$ for all $n \in \N$.
+        \item $I_{n}$ has no finite subcover for all $n \in \N$.
+        \item $a_{n, j} \leq a_{n + 1, j} \leq b_{n + 1, j} \leq b_{n, j}$ for all $j = 1, 2, \dots, k$ and $n \in \N$.
+        \item $b_{n + 1, j} - a_{n + 1, j} = \dfrac{1}{2}(b_{n, j} - a_{n, j}) \implies b_{n, j} - a_{n, j} =
+        \dfrac{1}{2^{n - 1}}(b_{1, j} - a_{1, j})$ for all $j = 1, 2, \dots, k$ and $n \in \N$.
+    \end{itemize}
+    Let $\delta \coloneqq \displaystyle \sqrt{\sum_{j = 1}^{k} (b_{1, j} - a_{1, j})^{2}}$. Then we have
+    \[
+    \norm*{\bm{x} - \bm{y}} \leq \sqrt{\sum_{j = 1}^{k} (b_{n, j} - a_{n, j})^{2}} =
+    \frac{\delta}{2^{n - 1}} \quad \text{for all } \bm{x}, \bm{y} \in I_{n} \text{ and } n \in \N.
+    \]
+    By \Cref{thm:NestedKCells}, we have $\displaystyle \bigcap_{n = 1}^{\infty} I_{n} \neq \emptyset$.
+    Let $\bm{\beta} \in \displaystyle \bigcap_{n = 1}^{\infty} I_{n}$ be given. Then there exists $\alpha_{0} \in A$
+    such that $\bm{\beta} \in G_{\alpha_{0}}$. Since $G_{\alpha_{0}}$ is open, there exists $\veps \in \R^{+}$ such that
+    \[
+    B_{\veps}(\bm{\beta}) \subseteq G_{\alpha_{0}}.
+    \]
+    By \Cref{cor:ArchimedeanPropertyCorollary}, there exists $N \in \N$
+    such that $\dfrac{1}{2^{N}} < \dfrac{\veps}{2\delta}$. Since $\bm{\beta} \in I_{N}$, we have
+    \[
+    \norm*{\bm{\beta} - \bm{\gamma}} \leq \frac{\delta}{2^{N - 1}} < \veps \quad \text{for all } \bm{\gamma} \in I_{N},
+    \]
+    which implies that $I_{N} \subseteq B_{\veps}(\bm{\beta}) \subseteq G_{\alpha_{0}}$. Therefore, $I_{N}$ has a
+    finite subcover $\set*{G_{\alpha_{0}}}$, which is a contradiction. Thus $I$ has a finite subcover, and $I$ is compact.
 \end{proof}
 
 \bigskip
 
-\begin{definition} \label{def:Boundary}
-    Let $(X, d)$ be a metric space and $E \subseteq X$. The \textbf{boundary} of $E$,
-    which is denoted by $\partial E$, is defined by
-    \[
-    \partial E \coloneqq \overline{E} \cap \overline{E^{c}}.
-    \]
-\end{definition}
+\begin{corollary} \label{cor:ClosedIntervalInRIsCompact}
+    For any $- \infty < a \leq b < + \infty$, the closed interval $[a, b]$ is compact in $\paren*{\R, \norm*{\cdot}}$.
+\end{corollary}
 
 \bigskip
 
-\begin{lemma} \label{lem:DeletedNeighborhoodInRnIsNonEmpty}
-    Let $(\R^{n}, \norm*{\cdot})$ be given for some $n \in \N$. Then we have
+\begin{theorem} \label{thm:HeineBorelTheorem}
+    Let $\paren*{\R^{n}, \norm*{\cdot}}$ be given for some $n \in \N$ and $E \subseteq \R^{n}$.
+    Then we have
     \[
-    \widetilde{N}_r(\bm{p}) \neq \emptyset \quad \text{for all } \bm{p} \in \R^{n} \text{ and } r \in \R^{+}.
+    E \text{ is compact} \iff E \text{ is closed and bounded}.
     \]
-\end{lemma}
-
-\begin{proof}
-    Let $\bm{p} = (p_{1}, p_{2}, \dots, p_{n}) \in \R^{n}$ and $r \in \R^{+}$ be given. Then we have
-    \[
-    d\paren*{\bm{p} + \frac{r}{2} \bm{e_{1}}, \bm{p}} = \norm*{\paren*{\bm{p} + \frac{r}{2} \bm{e_{1}}}
-    - \bm{p}} = \norm*{\frac{r}{2} \bm{e_{1}}} = \frac{r}{2} \norm*{\bm{e_{1}}} = \frac{r}{2} < r.
-    \]
-    where $\bm{e_{1}} = (1, 0, 0, \dots, 0) \in \R^{n}$. Therefore, we have
-    \[
-    \bm{p} \neq \paren*{\bm{p} + \frac{r}{2} \bm{e_{1}}} \in \widetilde{N}_r(\bm{p}) \implies \widetilde{N}_r(\bm{p}) \neq \emptyset.
-    \]
-\end{proof}
-
-\bigskip
-
-\begin{theorem} \label{thm:PropertiesOfBoundaryInRn}
-    Let $(\R^{n}, \norm*{\cdot})$ be given for some $n \in \N$ and $E \subseteq \R^{n}$. Then we have
-    \[
-    \partial E = \paren*{E \setminus E'} \cup \paren*{E^{c} \setminus (E^{c})'} \cup \paren*{E' \cap (E^{c})'},
-    \]
-    which states that the boundary of $E$ consists the following three disjoint sets:
-    \begin{itemize}
-        \item The set of all isolated points of $E$.
-        \item The set of all isolated points of $E^{c}$.
-        \item The set of all limit points of both $E$ and $E^{c}$.
-    \end{itemize}
+    This theorem is called the \textbf{Heine-Borel Theorem}.
 \end{theorem}
 
 \begin{proof}
-    By the definition of the boundary, we have
-    \begin{align*}
-        \partial E &= \overline{E} \cap \overline{E^{c}} \\
-        &= \paren*{E \cup E'} \cap \paren*{E^{c} \cup (E^{c})'} \\
-        &= \paren*{E \cap E^{c}} \cup \paren*{E \cap (E^{c})'}
-        \cup \paren*{E' \cap E^{c}} \cup \paren*{E' \cap (E^{c})'}.
-    \end{align*}
-    Consider the following equivalences:
-    \begin{itemize}
-        \item $E = \paren*{E \setminus E'} \cup \paren*{E \cap E'}$.
-        \item $E^{c} = \paren*{E^{c} \setminus (E^{c})'} \cup \paren*{E^{c} \cap (E^{c})'}$.
-    \end{itemize}
-    Then we have the following equalities:
-    \begin{itemize}
-        \item $E \cap (E^{c})' = \paren*{\paren*{E \setminus E'} \cap (E^{c})'}
-        \cup \paren*{\paren*{E \cap E'} \cap (E^{c})'}$.
-        \item $E' \cap E^{c} = \paren*{E' \cap \paren*{E^{c} \setminus (E^{c})'}}
-        \cup \paren*{E' \cap \paren*{E^{c} \cap (E^{c})'}}$.
-    \end{itemize}
-    Consider the last two terms of the above equalities:
-    \begin{itemize}
-        \item $\paren*{\paren*{E \cap E'} \cap (E^{c})'} \subseteq E' \cap (E^{c})'$.
-        \item $\paren*{E' \cap \paren*{E^{c} \cap (E^{c})'}} \subseteq E' \cap (E^{c})'$.
-    \end{itemize}
-    Then we have
-    \begin{align*}
-        \partial E &= \emptyset \cup \paren*{\paren*{E \setminus E'} \cap (E^{c})'}
-        \cup \paren*{E' \cap \paren*{E^{c} \setminus (E^{c})'}} \cup \paren*{E' \cap (E^{c})'} \\
-        &= \paren*{\paren*{E \setminus E'} \cap (E^{c})'}
-        \cup \paren*{E' \cap \paren*{E^{c} \setminus (E^{c})'}} \cup \paren*{E' \cap (E^{c})'}
-    \end{align*}
-    For any $\bm{p} \in E \setminus E'$, there exists some $r \in \R^{+}$ such that
-    \[
-    E \cap \widetilde{N}_{r}(\bm{p}) = \emptyset \implies \widetilde{N}_{r}(\bm{p}) \subseteq E^{c}.
-    \]
-    By \Cref{lem:DeletedNeighborhoodInRnIsNonEmpty}, we have
-    \[
-    \widetilde{N}_{s}(\bm{p}) \cap \widetilde{N}_{r}(\bm{p}) = \widetilde{N}_{\min(s,r)}(\bm{p}) \neq \emptyset\quad \text{for all } s \in \R^{+}.
-    \]
-    Then, for any $s \in \R^{+}$, we have
-    \begin{align*}
-        \widetilde{N}_{s}(\bm{p}) \cap \widetilde{N}_{r}(\bm{p}) \neq \emptyset &\implies \widetilde{N}_{s}(\bm{p}) \cap
-        \paren*{\widetilde{N}_{r}(\bm{p}) \cap E^{c}} \neq \emptyset \\
-        &\implies \emptyset \neq \paren*{\widetilde{N}_{s}(\bm{p}) \cap E^{c}} \cap \widetilde{N}_{r}(\bm{p})
-        \subseteq \widetilde{N}_{s}(\bm{p}) \cap E^{c} \\
-        &\implies E^{c} \cap \widetilde{N}_{s}(\bm{p}) \neq \emptyset,
-    \end{align*}
-    which implies that $\bm{p} \in (E^{c})'$. Then we have
-    \[
-    E \setminus E' \subseteq (E^{c})' \implies \paren*{E \setminus E'} \cap (E^{c})' = E \setminus E'.
-    \]
-    Similarly, we can show that
-    \[
-    E^{c} \setminus (E^{c})' \subseteq E' \implies E' \cap \paren*{E^{c} \setminus (E^{c})'} = E^{c} \setminus (E^{c})'.
-    \]
-    Therefore, we have
-    \[
-    \partial E = \paren*{E \setminus E'} \cup \paren*{E^{c} \setminus (E^{c})'} \cup \paren*{E' \cap (E^{c})'}.
-    \]
-\end{proof}
-
-\bigskip
-
-\begin{remark}
-    Let $(X, d)$ be a metric space and $Y \subseteq X$. Then, $(Y, d|_{Y \times Y})$ is also a metric space, since
-    \[
-    d|_{Y \times Y}: Y \times Y \to \R
-    \]
-    satisfies the properties of a metric. We call $(Y, d|_{Y \times Y})$ a \textbf{subspace} of $(X, d)$. For the
-    sake of simplicity, we will denote $d|_{Y \times Y}$ by $d$ and write $(Y, d)$ instead of $(Y, d|_{Y \times Y})$.
-\end{remark}
-
-\bigskip
-
-\begin{definition} \label{def:OpenSetRelativeToSubspace}
-    Let $(X, d)$ be a metric space and $E \subseteq Y \subseteq X$. $E$ is called \textbf{open relative} to $Y$
-    if $E$ is open in the subspace $(Y, d)$. That is, for any $p \in E$, there exists some $r \in \R^{+}$ such that 
-    \[
-    Y \cap N_{r}(p) \subseteq E.
-    \]
-\end{definition}
-
-\bigskip
-
-\begin{theorem} \label{thm:OpenSetRelativeToSubspace}
-    Let $(X, d)$ be a metric space and $E \subseteq Y \subseteq X$. Then $E$ is open relative to $Y$
-    if and only if there exists an open set $V$ in $X$ such that $E = V \cap Y$.
-\end{theorem}
-
-\begin{proof}
-    \textbf{($\implies$)} Let $E$ be an open set relative to $Y$.
-    Then, for each $p \in E$, there exists some $r_{p} \in \R^{+}$ such that
-    \[
-    Y \cap N_{r_{p}}(p) \subseteq E.
-    \]
-    Let $V$ be a set defined by
-    \[
-    V \coloneqq \bigcup_{p \in E} N_{r_{p}}(p).
-    \]
-    By \Cref{thm:NeighborhoodIsOpen,thm:ArbitraryUnionOfOpenSetsIsOpen}, $V$ is open in $X$.
-    Since $p \in N_{r_{p}}(p) \subseteq V$ for each $p \in E$, we have
-    \begin{itemize}
-        \item $E \subseteq Y$ and $E \subseteq V \implies E \subseteq V \cap Y$.
-        \item $\displaystyle \bigcup_{p \in E} \paren*{Y \cap N_{r_{p}}(p)} \subseteq E \implies Y \cap
-        \bigcup_{p \in E} N_{r_{p}}(p) \subseteq E \implies Y \cap V \subseteq E$.
-    \end{itemize}
-    Therefore, we have $E = V \cap Y$.
+    \textbf{($\implies$)} Let $E$ be compact. $E$ is closed by \Cref{thm:CompactSetIsClosed}, and $E$ is
+    bounded by \Cref{thm:CompactSetIsBounded}.
     \\[6mm]
-    \textbf{($\impliedby$)} Let $V$ be an open set in $X$ such that $E = V \cap Y$.
-    Then, for each $p \in E \subseteq V$, there exists some $r_{p} \in \R^{+}$ such that
+    \textbf{($\impliedby$)} Let $E$ be closed and bounded. Then there exists some $\bm{p} \in \R^{n}$ and
+    $r \in \R^{+}$ such that $E \subseteq B_{r}(\bm{p})$. Let $I$ be a $n$-cell in $\R^{n}$ defined by
     \[
-    N_{r_{p}}(p) \subseteq V \implies Y \cap N_{r_{p}}(p) \subseteq V \cap Y = E.
+    I \coloneqq \prod_{j = 1}^{n} \bracket*{p_{j} - r, p_{j} + r} \subseteq \R^{n}.
     \]
+    Then we have $E \subseteq B_{r}(\bm{p}) \subseteq I$. By \Cref{thm:KCellIsCompact}, $I$ is compact.
+    Since $E$ is closed, by \Cref{thm:ClosedSubsetOfCompactSetIsCompact}, $E$ is compact.
 \end{proof}
 
 \end{section}

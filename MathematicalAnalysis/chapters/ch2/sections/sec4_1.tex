@@ -1,239 +1,193 @@
-\begin{section}{Countable and Uncountable Sets} \label{sec:CountableUncountableSets}
+\begin{section}{Metric Spaces}
 
-A set $X$ is said to be \textbf{countable} if $\N \hyperref[thm:BijectionEquivalenceRelation]{\sim} X$.
-A set $X$ is said to be \textbf{uncountable} if it is neither finite nor countable.
-A set $X$ is said to be \textbf{at most countable} if $X$ is either finite or countable.
-
-\bigskip
-
-\begin{theorem} \label{thm:InfiniteSetMinusFiniteSetIsInfinite}
-    Let $X$ be an infinite set, and let $Y$ be a finite set. Then $X \setminus Y$ is infinite.
-\end{theorem}
-
-\begin{proof}
-    Assume that $X \setminus Y$ is finite. Since $Y$ is finite, by \Cref{thm:UnionOfTwoFiniteSetsIsFinite},
-    $(X \setminus Y) \cup Y$ is finite. Then, by \Cref{thm:SubsetOfFiniteSetIsFinite},
-    $X \subseteq (X \setminus Y) \cup Y$ is finite, which contradicts the assumption.
-    Therefore, $X \setminus Y$ is infinite.
-\end{proof}
+Let $X$ be a set. A function $d: X \times X \to \R$ is called a \textbf{metric} on $X$ if for any $p, q \in X$, we have
+\begin{enumerate}[label=\textbf{(\Alph*)}]
+    \item $d(p, q) \geq 0$ and $d(p, q) = 0 \iff p = q$.
+    \item $d(p, q) = d(q, p)$.
+    \item $d(p, r) \leq d(p, q) + d(q, r)$ for any $r \in X$.
+\end{enumerate}
+\textbf{(C)} is called the \textbf{triangle inequality}. The pair $(X, d)$ is called a \textbf{metric space}.
 
 \bigskip
 
-\begin{theorem} \label{thm:InjectionFromInfiniteSetImpliesInfinite}
-    Let $X$ be an infinite set. If there exists a injection $f: X \to Y$, then $Y$ is infinite.
-\end{theorem}
-
-\begin{proof}
-    Assume that $Y$ is finite. Let $g: Y \to X$ be defined by
+\begin{theorem} \label{thm:StandardMetricOnRn}
+    For some $n \in \N$, let $d: \R^{n} \times \R^{n} \to \R$ be a function defined by
     \[
-    g(y) = \begin{dcases}
-        f^{-1}(y), & \text{if } y \in f(X) \\
-        f^{-1}(y_{0}), & \text{Otherwise}
-    \end{dcases}
+    d(\bm{x}, \bm{y}) = \norm*{\bm{x} - \bm{y}} = \sqrt{\sum_{k = 1}^{n} (x_{k} - y_{k})^{2}}
     \]
-    where $y_{0} \in f(X)$ is fixed. Then $g$ is surjective. By \Cref{thm:SurjectionFromFiniteSetImpliesFinite},
-    $X$ is finite, which is a contradiction. Therefore, $Y$ is infinite.
-\end{proof}
-
-\bigskip
-
-\begin{lemma} \label{lem:NIsInfinite}
-    $\N$ is infinite.
-\end{lemma}
-
-\begin{proof}
-    Assume that $\N$ is finite. Then there exists a bijection $f: J_{n} \to \N$ for some $n \in \N$.
-    Then, by \Cref{thm:SubsetOfFiniteSetIsFinite}, $f(J_{n}) \subseteq \N$ is finite. By
-    \Cref{thm:FiniteOrderedSetHasExtremum}, $f(J_{n})$ has a greatest element, say $m$.
-    \\[6mm]
-    Then we have $m + 1 \in \N$ and $m < m + 1 \notin f(J_{n})$,
-    which contradicts the assumption that $f$ is surjective. Therefore, $\N$ is infinite.
-\end{proof}
-
-\bigskip
-
-\begin{theorem} \label{thm:CountableSetIsInfinite}
-    Any countable set is infinite.
+    for all $\bm{x}, \bm{y} \in \R^{n}$. Then $d$ is a metric on $\R^{n}$.
+    Especially, $d$ is called the \textbf{standard metric} on $\R^{n}$.
 \end{theorem}
 
 \begin{proof}
-    Let $X$ be a countable set. Then there exists a bijection $f: \N \to X$. By
-    \Cref{thm:InjectionFromInfiniteSetImpliesInfinite,lem:NIsInfinite}, $X$ is infinite.
-\end{proof}
-
-\bigskip
-
-\begin{remark}
-    Let $X$ be a countable set. Then there exists a bijection $f: \N \to X$. The elements of $X$
-    can be listed as $X = \set*{x_1, x_2, x_3, \dots}$, where $x_n = f(n)$ for all $n \in \N$.
-    In other words, the elements of $X$ can be arranged in a sequence.
-\end{remark}
-
-\bigskip
-
-\begin{theorem} \label{thm:ZIsCountable}
-    $\Z$ is countable.
-\end{theorem}
-
-\begin{proof}
-    Let $f: \N \to \Z$ be a function defined by
-    \[
-    f(n) = \begin{dcases}
-        - \frac{n}{2}, & \text{if } n \text{ is even} \\
-        \frac{n - 1}{2}, & \text{if } n \text{ is odd}
-    \end{dcases}
-    \]
-    We will show that $f$ is bijective, which implies that $\Z$ is countable.
+    Let $\bm{x}, \bm{y}, \bm{z} \in \R^{n}$ be given.
     \begin{itemize}
-        \item \textbf{Injectivity:} Assume that $f(n_1) = f(n_2)$ for some $n_1, n_2 \in \N$. Since $f(n) \geq 0$
-        for odd $n$ and $f(n) < 0$ for even $n$, we have $n_1$ and $n_2$ are either both even or both odd.
-            \begin{itemize}
-                \item If both $n_1$ and $n_2$ are even, then we have $- \dfrac{n_1}{2} = - \dfrac{n_2}{2}$,
-                which implies $n_1 = n_2$.
-                \item If both $n_1$ and $n_2$ are odd, then we have $\dfrac{n_1 - 1}{2} = \dfrac{n_2 - 1}{2}$,
-                which implies $n_1 = n_2$.
-            \end{itemize}
-            Thus $f$ is injective.
-        \item \textbf{Surjectivity:} Let $k \in \Z$ be given. We need to find an $n \in \N$ such that $f(n) = k$.
-            \begin{itemize}
-                \item If $k \geq 0$, let $n = 2k + 1$. Then we have $f(n) = \dfrac{n - 1}{2} = \dfrac{2k}{2} = k$.
-                \item If $k < 0$, let $n = -2k$. Then we have $f(n) = - \dfrac{n}{2} = - \dfrac{-2k}{2} = k$.
-            \end{itemize}
-            Thus $f$ is surjective.
-    \end{itemize}
-\end{proof}
-
-\bigskip
-
-\begin{lemma} \label{lem:InfiniteSubsetOfNIsCountable}
-    Any infinite subset of $\N$ is countable.
-\end{lemma}
-
-\begin{proof}
-    Let $X \subseteq \N$ be an infinite subset. Let $\paren*{X_{n}}_{n = 1}^{\infty}$ be a sequence
-    and let $f: \N \to X$ be a function defined as follows:
-    \begin{itemize}
-        \item $X_{1} = X$, $f(1) = \min X_{1}$
-        \item $X_{2} = X_{1} \setminus \set*{f(1)}$, $f(2) = \min X_{2}$
-        \item[] $\vdots$
-        \item $X_{n + 1} = X_{n} \setminus \set*{f(n)}$, $f(n + 1) = \min X_{n + 1}$
-    \end{itemize}
-    for each $n \in \N$. By \Cref{thm:InfiniteSetMinusFiniteSetIsInfinite}, $X_{n}$ is infinite for each $n \in \N$,
-    so is nonempty. Then, by \Cref{thm:WellOrderingProperty}, $X_{n}$ has a least element, so $f$ is well-defined.
-    We will show that $f$ is bijective, which implies that $X$ is countable.
-    \begin{itemize}
-        \item \textbf{Injectivity:} Assume that $n_{1} \neq n_{2}$ for some $n_{1}, n_{2} \in \N$.
-        Without loss of generality, assume that $n_{1} < n_{2}$. Then we have
-        \[
-        f(n_{1}) \in X_{n_{1}} \text{ and } f(n_{2}) \in X_{n_{2}}.
-        \]
-        Since $X_{n_{2}} \subseteq X_{n_{1}} \setminus \set*{f(n_{1})}$,
-        we have $f(n_{2}) \neq f(n_{1})$. Thus $f$ is injective.
-        \item \textbf{Surjectivity:} Let $x \in X$ be given. Let $S$ be a set defined as
-        \[
-        S \coloneqq \setbuilder*{n \in X}{n < x}.
-        \]
-        If $S = \emptyset$, then $f(1) = x$. Otherwise, by \Cref{lem:SubsetOfJnIsFinite}, $S \subseteq J_{x - 1}$ is finite.
-        Let $k = |S|$, $S = \set*{s_{1}, s_{2}, \dots, s_{k}}$ with $s_{1} < s_{2} < \dots < s_{k}$. Then we have
-        \begin{itemize}
-            \item $\min X_{1} = \min S \implies X_{2} = X \setminus \set*{s_{1}}$.
-            \item $\min X_{2} = \min S \setminus \set*{s_{1}} \implies X_{3} = X \setminus \set*{s_{1}, s_{2}}$.
-            \item[] $\vdots$
-            \item $\min X_{k} = \min S \setminus \set*{s_{1}, s_{2}, \dots, s_{k - 1}} \implies X_{k + 1} = X \setminus S$.
-        \end{itemize}
-        Thus $f(k + 1) = \min X_{k + 1} = x$. Therefore, $f$ is surjective.
-    \end{itemize}
-\end{proof}
-
-\bigskip
-
-\begin{theorem} \label{thm:InfiniteSubsetOfCountableSetIsCountable}
-    Any infinite subset of a countable set is countable.
-\end{theorem}
-
-\begin{proof}
-    Let $X$ be a countable set and let $Y \subseteq X$ be an infinite subset. Since $X$ is countable, there exists
-    a bijection $f: \N \to X$. By \Cref{thm:PropertiesOfRestrictionFunctions}, $f|_{f^{-1}(Y)}^{Y}: f^{-1}(Y) \to Y$
-    is bijective. Then, by \Cref{thm:SurjectionFromFiniteSetImpliesFinite}, $f^{-1}(Y) \subseteq \N$ is infinite.
-    \\[6mm]
-    By \Cref{lem:InfiniteSubsetOfNIsCountable}, $f^{-1}(Y)$ is countable. Then there exists a bijection $g: \N \to f^{-1}(Y)$.
-    The composition $f|_{f^{-1}(Y)}^{Y} \circ g: \N \to Y$ is bijective, which implies that $Y$ is countable.
-\end{proof}
-
-\bigskip
-
-\begin{theorem} \label{thm:SurjectionFromN}
-    Let $X$ be infinite. If there exists a surjection $f: \N \to X$, then $X$ is countable.
-\end{theorem}
-
-\begin{proof}
-    For each $k \in X$, let $S_{k}$ be a set defined as
-    \[
-    S_{k} \coloneqq f^{-1}(\set*{k}).
-    \]
-    Since $f$ is surjective, $S_{k} \neq \emptyset$ and by \Cref{thm:WellOrderingProperty},
-    $S_{k}$ has a least element for all $k \in X$. Let $g: X \to \N$ be a function defined by
-    \[
-    g(k) = \min S_{k} \text{ for all } k \in X.
-    \]
-    Assume that $g(k_{1}) = g(k_{2})$ for some $k_{1}, k_{2} \in X$, i.e., $\min S_{k_{1}} = \min S_{k_{2}}$. Since
-    $S_{i} \cap S_{j} = \emptyset$ for all $i, j \in X$ with $i \neq j$, we have $S_{k_{1}} = S_{k_{2}} \implies
-    k_{1} = k_{2}$. Thus $g$ is injective.
-    \\[6mm]
-    Since $g$ is injective, by \Cref{thm:PropertiesOfRestrictionFunctions}, $g|^{g(X)}: X \to g(X)$ is bijective.
-    Since $X$ is infinite, $g(X) \subseteq \N$ is infinite by \Cref{thm:InjectionFromInfiniteSetImpliesInfinite}. Then, by
-    \Cref{lem:InfiniteSubsetOfNIsCountable}, $g(X)$ is countable, which implies that $X$ is countable.
-\end{proof}
-
-\bigskip
-
-\begin{theorem} \label{thm:CountableUnionOfCountableSetsIsCountable}
-    Let $\set*{X_{n}}_{n \in \N}$ be a sequence of countable sets. Then $\displaystyle
-    \bigcup_{n = 1}^{\infty} X_{n}$ is countable, i.e., any countable union of countable sets is countable.
-\end{theorem}
-
-\begin{proof}
-    There exists a bijection $f_{n}: \N \to X_{n}$ for each $n \in \N$. For each $n \in \N$, we define the followings:
-    \begin{itemize}
-        \item $t_{n} \coloneqq \min T_{n}, \text{ where } T_{n} \coloneqq \setbuilder*{k \in \N}{n \leq \dfrac{k(k + 1)}{2}}$.
-        \item $s_{n} \coloneqq n - \dfrac{t_{n}(t_{n} - 1)}{2} = n - \dfrac{t_{n}(t_{n} + 1)}{2} + t_{n} \in \N$.
-    \end{itemize}
-    Since $2n \in T_{n}$, $T_{n}$ is nonempty. Then, by \Cref{thm:WellOrderingProperty}, $T_{n}$ has a least element,
-    so $t_{n}$ is well-defined. Since $\dfrac{t_{n}(t_{n} - 1)}{2} < n \leq \dfrac{t_{n}(t_{n} + 1)}{2}$, we have
-    \[
-    t_{n} - s_{n} + 1 = \dfrac{t_{n}(t_{n} + 1)}{2} - n + 1 \geq 1,
-    \]
-    so $t_{n} - s_{n} + 1 \in \N$. Let $g: \N \to \displaystyle \bigcup_{n = 1}^{\infty} X_{n}$ be a function defined by
-    \[
-    g(k) = f_{s_{k}}(t_{k} - s_{k} + 1) \text{ for all } k \in \N.
-    \]
-    Let $x \in \displaystyle \bigcup_{n = 1}^{\infty} X_{n}$ be given. Then there exists some $m \in \N$ such that
-    $x \in X_{m}$. Since $f_{m}$ is surjective, there exists some $l \in \N$ such that $f_{m}(l) = x$. Let
-    \[
-    k \coloneqq \dfrac{(l + m - 1)(l + m - 2)}{2} + m \in \N.
-    \]
-    We will show that $l + m - 2 \notin T_{k}$ and $l + m - 1 \in T_{k}$, which implies that
-    \begin{itemize}
-        \item $t_{k} = \min T_{k} = l + m - 1$.
-        \item $s_{k} = k - \dfrac{t_{k}(t_{k} - 1)}{2} = m$.
-        \item $g(k) = f_{s_{k}}(t_{k} - s_{k} + 1) = f_{m}(l + m - 1 - m + 1) = f_{m}(l) = x$.
-    \end{itemize}
-    Consider the following inequalities when $z = l + m - 2$ and $z = l + m - 1$:
-    \begin{itemize}
-        \item Let $z = l + m - 2$. Then we have
+        \item $d(\bm{x}, \bm{y}) \geq 0$ is trivial. Also, we have
         \begin{align*}
-            k - \dfrac{z(z + 1)}{2} &= k - \dfrac{(l + m - 2)(l + m - 1)}{2} \\
-            &= \dfrac{(l + m - 1)(l + m - 2)}{2} + m - \dfrac{(l + m - 2)(l + m - 1)}{2} \\
-            &= m > 0.
+            d(\bm{x}, \bm{y}) = 0 &\iff \norm*{\bm{x} - \bm{y}} = 0 \\
+            &\iff x_{k} = y_{k} \text{ for all } k = 1, 2, \dots, n \\
+            &\iff \bm{x} = \bm{y}.
         \end{align*}
-        \item Let $z = l + m - 1$. Then we have
+        \item $d(\bm{x}, \bm{y}) = d(\bm{y}, \bm{x})$ is trivial.
+        \item By \Cref{thm:PropertiesOfInnerProductNormDistance}, we have
         \begin{align*}
-            k - \dfrac{z(z + 1)}{2} &= k - \dfrac{(l + m - 1)(l + m)}{2} \\
-            &= \dfrac{(l + m - 1)(l + m - 2)}{2} + m - \dfrac{(l + m - 1)(l + m)}{2} \\
-            &= m - \dfrac{(l + m - 1)(l + m) - (l + m - 1)(l + m - 2)}{2} \\
-            &= m - (l + m - 1) = 1 - l \leq 0.
+            d(\bm{x}, \bm{z}) &= \norm*{\bm{x} - \bm{z}} =
+            \norm*{(\bm{x} - \bm{y}) + (\bm{y} - \bm{z})} \\
+            &\leq \norm*{\bm{x} - \bm{y}} + \norm*{\bm{y} - \bm{z}}
+            = d(\bm{x},\bm{y}) + d(\bm{y},\bm{z})
         \end{align*}
     \end{itemize}
-    Thus $g$ is surjective, which implies that $\displaystyle \bigcup_{n = 1}^{\infty} X_{n}$
-    is countable by \Cref{thm:SurjectionFromN}.
+    Therefore, $d$ is a metric on $\R^{n}$.
 \end{proof}
+
+\bigskip
+
+\begin{definition} \label{def:KCell}
+    Let $k \in \N$ be given. A set $E \subseteq \R^{k}$ defined by
+    \[
+    E \coloneqq \setbuilder*{\bm{x} = (x_{1}, x_{2}, \dots, x_{k})
+    \in \R^{k}}{a_{j} \leq x_{j} \leq b_{j} \text{ for all } j = 1, 2, \dots, k}
+    \]
+    is called an \textbf{$k$-cell}, where $- \infty < a_{j} \leq b_{j} < + \infty$ for all $j = 1, 2, \dots, k$.
+\end{definition}
+
+\bigskip
+
+\begin{definition} \label{def:NeighborhoodOpenBall}
+    Let $(X, d)$ be a metric space. For any $p \in X$ and $r \in \R^{+}$,
+    we define the \textbf{neighborhood} of $p$ with radius $r$ as
+    \[
+    N_{r}(p) \coloneqq \setbuilder*{q \in X}{d(p, q) < r}.
+    \]
+    Also, we define the \textbf{deleted neighborhood} of $p$ with radius $r$ as
+    \[
+    \widetilde{N}_{r}(p) \coloneqq N_{r}(p) \setminus \set*{p} = \setbuilder*{q \in X}{0 < d(p, q) < r}.
+    \]
+    Especially, if $X = \R^{n}$ and $d$ is the standard metric on $\R^{n}$ for some $n \in \N$,
+    then $N_{r}(p)$ is called the \textbf{open ball} of radius $r$ centered at $p$, which is denoted by $B_{r}(p)$.
+\end{definition}
+
+\bigskip
+
+\begin{definition} \label{def:LimitIsolatedInteriorPoints}
+    Let $(X, d)$ be a metric space and $E \subseteq X$. Let $p \in X$ be given.
+    \begin{itemize}
+        \item $p$ is called an \textbf{limit point} of $E$
+        if for any $r \in \R^{+}$, we have $E \cap \widetilde{N}_{r}(p) \neq \emptyset$.
+        \item $p$ is called a \textbf{isolated point} of $E$
+        if there exists some $r \in \R^{+}$ such that $N_{r}(p) \cap E = \set*{p}$.
+        \item $p$ is called an \textbf{interior point} of $E$
+        if there exists some $r \in \R^{+}$ such that $N_{r}(p) \subseteq E$.
+    \end{itemize}
+\end{definition}
+
+\bigskip
+
+\begin{definition} \label{def:OpenClosedSets}
+    Let $(X, d)$ be a metric space and $E \subseteq X$.
+    \begin{itemize}
+        \item $E$ is said to be \textbf{open} if any point of $E$ is an interior point of $E$.
+        \item $E$ is said to be \textbf{closed} if any limit point of $E$ belongs to $E$.
+    \end{itemize}
+\end{definition}
+
+\bigskip
+
+\begin{definition} \label{def:BoundedPerfectDenseSets}
+    Let $(X, d)$ be a metric space and $E \subseteq X$.
+    \begin{itemize}
+        \item $E$ is said to be \textbf{bounded} if there exists some $p \in X$ and
+        $r \in \R^{+}$ such that $E \subseteq N_{r}(p)$.
+        \item $E$ is said to be \textbf{perfect} if any point of $E$ is a limit point of $E$.
+        \item $E$ is said to be \textbf{dense} if any point of $X$ is either a limit point of $E$ or a point of $E$.
+    \end{itemize}
+\end{definition}
+
+\bigskip
+
+\begin{theorem} \label{thm:NeighborhoodIsOpen}
+    Let $(X, d)$ be a metric space. For any $p \in X$ and $r \in \R^{+}$, the neighborhood $N_{r}(p)$ is open.
+\end{theorem}
+
+\begin{proof}
+    Let $q \in N_{r}(p)$ be given. Then we have $d(p, q) < r \implies \veps \coloneqq r - d(p, q) > 0$.
+    Let $s \in N_{\veps}(q)$ be given. Then we have
+    \[
+    d(q, s) < \veps \implies d(p, s) \leq d(p, q) + d(q, s) < d(p, q) + \veps = r.
+    \]
+    Thus $s \in N_{r}(p)$, which implies that $N_{\veps}(q) \subseteq N_{r}(p)$. Since $q$ is arbtrary, $N_{r}(p)$ is open.
+\end{proof}
+
+\bigskip
+
+\begin{theorem} \label{thm:LimitPointNeighborhoodContainsInfiniteElements}
+    Let $(X, d)$ be a metric space and $E \subseteq X$. Let $p$ be a limit point of $E$.
+    Then $E \cap N_{r}(p)$ is infinite for all $r \in \R^{+}$.
+\end{theorem}
+
+\begin{proof}
+    Assume that there exists some $r \in \R^{+}$ such that $E \cap N_{r}(p)$ is finite. Let $S$ be a set defined by
+    \[
+    S \coloneqq (E \cap N_{r}(p)) \setminus \set*{p} = E \cap \widetilde{N}_{r}(p).
+    \]
+    Since $p$ is a limit point of $E$, we have $S \neq \emptyset$. Since $E \cap N_{r}(p)$ is finite,
+    
+    $S \subseteq E \cap N_{r}(p)$ is also finite by \Cref{thm:SubsetOfFiniteSetIsFinite}. Let $T$ be a set defined by
+    \[
+    T \coloneqq \setbuilder*{d(p, q)}{q \in S} \neq \emptyset.
+    \]
+    Since $p \notin S$, we have $0 \notin T$. Let $f: S \to T$ be a function defined by
+    \[
+    f(q) = d(p, q).
+    \]
+    Then $f$ is surjective. By \Cref{thm:SurjectionFromFiniteSetImpliesFinite}, $T$ is finite. Then, by
+    \Cref{thm:FiniteOrderedSetHasExtremum}, $T$ has a minimum element, say $\veps = \min T > 0$. Then we have
+    \begin{itemize}
+        \item $N_{\veps}(p) \subset N_{r}(p)$.
+        \item $E \cap \widetilde{N}_{\veps}(p) = \emptyset$.
+    \end{itemize}
+    This contradicts the assumption that $p$ is a limit point of $E$. Therefore, $E \cap N_{r}(p)$ is infinite.
+\end{proof}
+
+\bigskip
+
+\begin{theorem} \label{thm:OpenSetComplementIsClosedSet}
+    Let $(X, d)$ be a metric space and $E \subseteq X$. Then we have
+    \[
+    E \text{ is open} \iff E^{c} \text{ is closed.}
+    \]
+\end{theorem}
+
+\begin{proof}
+    \textbf{($\implies$)} Assume that $E$ is open. Let $p$ be a limit point of $E^{c}$.
+    Then, for any $r \in \R^{+}$, we have
+    \[
+    E^{c} \cap \widetilde{N}_{r}(p) \neq \emptyset.
+    \]
+    If $p \in E$, then there exists some $\veps \in \R^{+}$ such that $N_{\veps}(p) \subseteq E$. Then we have
+    \[
+    E^{c} \cap \widetilde{N}_{\veps}(p) = \emptyset,
+    \]
+    which is a contradiction. Therefore, we have $p \in E^{c}$, which implies that $E^{c}$ is closed.
+    \\[6mm]
+    \textbf{($\impliedby$)} Assume that $E^{c}$ is closed. Let $p$ be a point of $E$.
+    If $p$ is not an interior point of $E$, then for any $r \in \R^{+}$, we have
+    \[
+    E^{c} \cap N_{r}(p) \neq \emptyset.
+    \]
+    Since $p \in E \implies p \notin E^{c}$, we have
+    \[
+    E^{c} \cap \widetilde{N}_{r}(p) \neq \emptyset,
+    \]
+    which implies that $p$ is a limit point of $E^{c}$. Since $E^{c}$ is closed, we have $p \in E^{c}$,
+    which is a contradiction. Therefore, $p$ is an interior point of $E$. Since $p$ is arbitrary, $E$ is open.
+\end{proof}
+
+\bigskip
+
+\begin{corollary} \label{cor:ClosedSetComplementIsOpenSet}
+    Let $(X, d)$ be a metric space and $E \subseteq X$. Then we have
+    \[
+    E \text{ is closed} \iff E^{c} \text{ is open.}
+    \]
+\end{corollary}
