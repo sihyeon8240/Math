@@ -3,8 +3,8 @@
 Let $(X, d)$ be a metric space and $E \subseteq X$. $E$ is called \textbf{connected}
 if there exists no pair of sets $A, B \subseteq X$ such that
 \begin{itemize}
-    \item $\emptyset \neq A \subseteq E$ and $\emptyset \neq B \subseteq E$.
-    \item $\overline{A} \cap B = A \cap \overline{B} = \emptyset$.
+    \item $\vnot \neq A \subseteq E$ and $\vnot \neq B \subseteq E$.
+    \item $\overline{A} \cap B = A \cap \overline{B} = \vnot$.
     \item $E = A \cup B$.
 \end{itemize}
 Such pair of sets $A$ and $B$ is called \textbf{separated}.
@@ -31,8 +31,8 @@ If $E$ is not connected, then $E$ is called \textbf{disconnected}.
     \end{itemize}
     Then we have
     \begin{itemize}
-        \item $A \neq \emptyset$ and $B \neq \emptyset$ since $a \in A$ and $b \in B$.
-        \item $\overline{A} \cap B = A \cap \overline{B} = \emptyset$.
+        \item $A \neq \vnot$ and $B \neq \vnot$ since $a \in A$ and $b \in B$.
+        \item $\overline{A} \cap B = A \cap \overline{B} = \vnot$.
         \item $E = A \cup B$ since $x \notin E$.
     \end{itemize}
     Thus $A$ and $B$ are separated, which is a contradiction. Therefore, we have
@@ -46,8 +46,8 @@ If $E$ is not connected, then $E$ is called \textbf{disconnected}.
     \]
     Assume that $E$ is disconnected. Then there exist separated sets $A, B \subseteq \R$ such that
     \begin{itemize}
-        \item $\emptyset \neq A \subseteq E$ and $\emptyset \neq B \subseteq E$.
-        \item $\overline{A} \cap B = A \cap \overline{B} = \emptyset$.
+        \item $\vnot \neq A \subseteq E$ and $\vnot \neq B \subseteq E$.
+        \item $\overline{A} \cap B = A \cap \overline{B} = \vnot$.
         \item $E = A \cup B$.
     \end{itemize}
     Let $a \in A$ and $b \in B$ be given. Without loss of generality, assume that $a < b$. Let
@@ -56,7 +56,7 @@ If $E$ is not connected, then $E$ is called \textbf{disconnected}.
     \]
     where we have
     \begin{itemize}
-        \item $a \in A \implies A \cap [a, b] \neq \emptyset$.
+        \item $a \in A \implies A \cap [a, b] \neq \vnot$.
         \item $A \cap [a, b]$ is bounded above by $b$.
     \end{itemize}
     Then the \emph{existence} of $\alpha$ is guaranteed by the \emph{least upper bound property}.
@@ -89,7 +89,7 @@ If $E$ is not connected, then $E$ is called \textbf{disconnected}.
     \]
     Then there exists $r \in \paren*{0, b - \alpha}$ such that
     \[
-    \widetilde{N}_{r}(\alpha) \cap B = \emptyset \implies \beta \coloneqq \alpha + r \notin B.
+    \widetilde{N}_{r}(\alpha) \cap B = \vnot \implies \beta \coloneqq \alpha + r \notin B.
     \]
     Then we have
     \begin{itemize}

@@ -73,7 +73,7 @@ Let $X$ be a set. A function $d: X \times X \to \R$ is called a \textbf{metric} 
     Let $(X, d)$ be a metric space and $E \subseteq X$. Let $p \in X$ be given.
     \begin{itemize}
         \item $p$ is called an \textbf{limit point} of $E$
-        if for any $r \in \R^{+}$, we have $E \cap \widetilde{N}_{r}(p) \neq \emptyset$.
+        if for any $r \in \R^{+}$, we have $E \cap \widetilde{N}_{r}(p) \neq \vnot$.
         \item $p$ is called a \textbf{isolated point} of $E$
         if there exists some $r \in \R^{+}$ such that $N_{r}(p) \cap E = \set*{p}$.
         \item $p$ is called an \textbf{interior point} of $E$
@@ -130,11 +130,11 @@ Let $X$ be a set. A function $d: X \times X \to \R$ is called a \textbf{metric} 
     \[
     S \coloneqq (E \cap N_{r}(p)) \setminus \set*{p} = E \cap \widetilde{N}_{r}(p).
     \]
-    Since $p$ is a limit point of $E$, we have $S \neq \emptyset$. Since $E \cap N_{r}(p)$ is finite,
+    Since $p$ is a limit point of $E$, we have $S \neq \vnot$. Since $E \cap N_{r}(p)$ is finite,
     
     $S \subseteq E \cap N_{r}(p)$ is also finite by \Cref{thm:SubsetOfFiniteSetIsFinite}. Let $T$ be a set defined by
     \[
-    T \coloneqq \setbuilder*{d(p, q)}{q \in S} \neq \emptyset.
+    T \coloneqq \setbuilder*{d(p, q)}{q \in S} \neq \vnot.
     \]
     Since $p \notin S$, we have $0 \notin T$. Let $f: S \to T$ be a function defined by
     \[
@@ -144,7 +144,7 @@ Let $X$ be a set. A function $d: X \times X \to \R$ is called a \textbf{metric} 
     \Cref{thm:FiniteOrderedSetHasExtremum}, $T$ has a minimum element, say $\veps = \min T > 0$. Then we have
     \begin{itemize}
         \item $N_{\veps}(p) \subset N_{r}(p)$.
-        \item $E \cap \widetilde{N}_{\veps}(p) = \emptyset$.
+        \item $E \cap \widetilde{N}_{\veps}(p) = \vnot$.
     \end{itemize}
     This contradicts the assumption that $p$ is a limit point of $E$. Therefore, $E \cap N_{r}(p)$ is infinite.
 \end{proof}
@@ -162,22 +162,22 @@ Let $X$ be a set. A function $d: X \times X \to \R$ is called a \textbf{metric} 
     \textbf{($\implies$)} Assume that $E$ is open. Let $p$ be a limit point of $E^{c}$.
     Then, for any $r \in \R^{+}$, we have
     \[
-    E^{c} \cap \widetilde{N}_{r}(p) \neq \emptyset.
+    E^{c} \cap \widetilde{N}_{r}(p) \neq \vnot.
     \]
     If $p \in E$, then there exists some $\veps \in \R^{+}$ such that $N_{\veps}(p) \subseteq E$. Then we have
     \[
-    E^{c} \cap \widetilde{N}_{\veps}(p) = \emptyset,
+    E^{c} \cap \widetilde{N}_{\veps}(p) = \vnot,
     \]
     which is a contradiction. Therefore, we have $p \in E^{c}$, which implies that $E^{c}$ is closed.
     \\[6mm]
     \textbf{($\impliedby$)} Assume that $E^{c}$ is closed. Let $p$ be a point of $E$.
     If $p$ is not an interior point of $E$, then for any $r \in \R^{+}$, we have
     \[
-    E^{c} \cap N_{r}(p) \neq \emptyset.
+    E^{c} \cap N_{r}(p) \neq \vnot.
     \]
     Since $p \in E \implies p \notin E^{c}$, we have
     \[
-    E^{c} \cap \widetilde{N}_{r}(p) \neq \emptyset,
+    E^{c} \cap \widetilde{N}_{r}(p) \neq \vnot,
     \]
     which implies that $p$ is a limit point of $E^{c}$. Since $E^{c}$ is closed, we have $p \in E^{c}$,
     which is a contradiction. Therefore, $p$ is an interior point of $E$. Since $p$ is arbitrary, $E$ is open.

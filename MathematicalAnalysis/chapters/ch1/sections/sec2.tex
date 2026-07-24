@@ -23,8 +23,8 @@ Equivalently, a subset $R$ of $S \times S$ is a relation on $S$.
 \begin{definition} \label{def:Partition}
     Let $S$ be a set. A collection $\set*{A_{\alpha}}_{\alpha \in I}$ of sets is called a \textbf{partition} of $S$ if
     \begin{itemize}
-        \item $\forall \alpha \in I, \paren*{A_{\alpha} \neq \emptyset \land A_{\alpha} \subseteq S}$
-        \item $\forall \alpha, \beta \in I, \paren*{\alpha \neq \beta \implies A_{\alpha} \cap A_{\beta} = \emptyset}$
+        \item $\forall \alpha \in I, \paren*{A_{\alpha} \neq \vnot \land A_{\alpha} \subseteq S}$
+        \item $\forall \alpha, \beta \in I, \paren*{\alpha \neq \beta \implies A_{\alpha} \cap A_{\beta} = \vnot}$
         \item $\displaystyle \bigcup_{\alpha \in I} A_{\alpha} = S$
     \end{itemize}
 \end{definition}
@@ -48,12 +48,12 @@ Equivalently, a subset $R$ of $S \times S$ is a relation on $S$.
 \begin{theorem} \label{thm:EquivalenceClassesFormAPartition}
     Let $S$ be a set, and let $\sim$ be an equivalence relation on $S$. Then
     \[
-    \forall x, y \in S, [x] \cap [y] \neq \emptyset \implies [x] = [y]
+    \forall x, y \in S, [x] \cap [y] \neq \vnot \implies [x] = [y]
     \]
 \end{theorem}
 
 \begin{proof}
-    Assume that $[x] \cap [y] \neq \emptyset$. Then
+    Assume that $[x] \cap [y] \neq \vnot$. Then
     \[
     \begin{array}{c}
         \exists z \in S, z \in [x] \cap [y] \\
@@ -135,7 +135,7 @@ Equivalently, a subset $R$ of $S \times S$ is a relation on $S$.
             \Downarrow \\
             y \in A_{\alpha} \land y \in A_{\beta} \\
             \Downarrow \\
-            A_{\alpha} \cap A_{\beta} \neq \emptyset \\
+            A_{\alpha} \cap A_{\beta} \neq \vnot \\
             \Downarrow \\
             \alpha = \beta \\
             \Downarrow \\
@@ -172,7 +172,7 @@ Equivalently, a subset $R$ of $S \times S$ is a relation on $S$.
             \Downarrow \\
             \exists \alpha \in I, x \in A_{\alpha} \\
             \Downarrow \\
-            A_{\alpha} \cap [x] \neq \emptyset \\
+            A_{\alpha} \cap [x] \neq \vnot \\
             \Downarrow \\
             A_{\alpha} = [x]
         \end{array}

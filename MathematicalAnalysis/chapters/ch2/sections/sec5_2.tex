@@ -9,7 +9,7 @@
     Let $E$ be compact. Let $F \subseteq E$ be an infinite subset of $E$. Assume that $F$ has
     no limit point in $E$. Then, for each $p \in E$, there exists $r_{p} \in \R^{+}$ such that
     \[
-    \widetilde{N}_{r_{p}}(p) \cap F = \emptyset \implies N_{r_{p}}(p) \cap F \subseteq \set*{p}.
+    \widetilde{N}_{r_{p}}(p) \cap F = \vnot \implies N_{r_{p}}(p) \cap F \subseteq \set*{p}.
     \]
     Let $\set*{G_{\alpha}}_{\alpha \in E}$ be a collection of open sets defined by
     \[
@@ -37,13 +37,13 @@
 \begin{theorem} \label{thm:FiniteCompactIntersectionProperty}
     Let $(X, d)$ be a metric space and let $\set*{K_{\alpha}}_{\alpha \in A}$ be a collection of compact sets. Then we have
     \[
-    \bigcap_{\alpha \in B} K_{\alpha} \neq \emptyset \quad \text{for all finite subset }
-    B \subseteq A \implies \bigcap_{\alpha \in A} K_{\alpha} \neq \emptyset.
+    \bigcap_{\alpha \in B} K_{\alpha} \neq \vnot \quad \text{for all finite subset }
+    B \subseteq A \implies \bigcap_{\alpha \in A} K_{\alpha} \neq \vnot.
     \]
 \end{theorem}
 
 \begin{proof}
-    Assume that $\displaystyle \bigcap_{\alpha \in A} K_{\alpha} = \emptyset$. Then we have
+    Assume that $\displaystyle \bigcap_{\alpha \in A} K_{\alpha} = \vnot$. Then we have
     \[
     X = \paren*{\bigcap_{\alpha \in A} K_{\alpha}}^{c} = \bigcup_{\alpha \in A} \paren*{K_{\alpha}}^{c}.
     \]
@@ -62,13 +62,13 @@
     \begin{align*}
         K_{\alpha} \subseteq \bigcup_{\beta \in B_{\alpha}} \paren*{K_{\beta}}^{c}
         &= \paren*{\bigcap_{\beta \in B_{\alpha}} K_{\beta}}^{c} \\
-        &\implies K_{\alpha} \cap \paren*{\bigcap_{\beta \in B_{\alpha}} K_{\beta}} = \emptyset \\
-        &\implies \bigcap_{\beta \in B_{\alpha} \cup \set*{\alpha}} K_{\beta} = \emptyset.
+        &\implies K_{\alpha} \cap \paren*{\bigcap_{\beta \in B_{\alpha}} K_{\beta}} = \vnot \\
+        &\implies \bigcap_{\beta \in B_{\alpha} \cup \set*{\alpha}} K_{\beta} = \vnot.
     \end{align*}
     Since $\set*{\alpha}$ and $B_{\alpha}$ are finite, $B_{\alpha} \cup \set*{\alpha}$ is also finite
     by \Cref{thm:FiniteUnionOfFiniteSetsIsFinite}, which contradicts the assumption. Therefore, we have
     \[
-    \bigcap_{\alpha \in A} K_{\alpha} \neq \emptyset.
+    \bigcap_{\alpha \in A} K_{\alpha} \neq \vnot.
     \]
 \end{proof}
 
@@ -83,7 +83,7 @@
     \end{itemize}
     where $a_{n} \leq b_{n}$ for all $n \in \N$. Then we have
     \[
-    \bigcap_{n = 1}^{\infty} I_{n} \neq \emptyset.
+    \bigcap_{n = 1}^{\infty} I_{n} \neq \vnot.
     \]
 \end{lemma}
 
@@ -121,7 +121,7 @@
     \end{itemize}
     where $a_{n, j} \leq b_{n, j}$ for all $j = 1, 2, \dots, k$ and $n \in \N$. Then we have
     \[
-    \bigcap_{n = 1}^{\infty} I_{n} \neq \emptyset.
+    \bigcap_{n = 1}^{\infty} I_{n} \neq \vnot.
     \]
 \end{theorem}
 
@@ -133,7 +133,7 @@
     Then we have $I_{n + 1, j} \subseteq I_{n, j}$ for all $j = 1, 2, \dots, k$
     and $n \in \N$. By \Cref{lem:NestedIntervals}, we have
     \[
-    \bigcap_{n = 1}^{\infty} I_{n, j} \neq \emptyset \quad \text{for all } j = 1, 2, \dots, k.
+    \bigcap_{n = 1}^{\infty} I_{n, j} \neq \vnot \quad \text{for all } j = 1, 2, \dots, k.
     \]
     Let $\alpha_{j} \in \displaystyle \bigcap_{n = 1}^{\infty} I_{n, j}$ be given for all $j = 1, 2, \dots, k$. Then we have
     \[

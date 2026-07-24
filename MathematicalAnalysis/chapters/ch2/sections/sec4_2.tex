@@ -124,16 +124,16 @@
         \item We will show that $\paren*{\overline{E}}^{c}$ is open. Let $p \in \paren*{\overline{E}}^{c}$ be given.
         Since $p \notin E$ and $p \notin E'$, there exists some $r \in \R^{+}$ such that
         \[
-        E \cap \widetilde{N}_{r}(p) = \emptyset \implies E \cap N_{r}(p) = \emptyset \implies N_{r}(p) \subseteq E^{c}.
+        E \cap \widetilde{N}_{r}(p) = \vnot \implies E \cap N_{r}(p) = \vnot \implies N_{r}(p) \subseteq E^{c}.
         \]
         By \Cref{thm:NeighborhoodIsOpen}, $N_{r}(p)$ is open. Then, for any $q \in N_{r}(p)$,
         there exists $\veps \in \R^{+}$ such that
         \begin{align*}
             N_{\veps}(q) \subseteq N_{r}(p) \subseteq E^{c}
-            \implies &E \cap N_{\veps}(q) = \emptyset \\
-            \implies &E \cap \paren*{\widetilde{N}_{\veps}(q) \cup \set*{q}} = \emptyset \\ 
-            \implies &\paren*{E \cap \widetilde{N}_{\veps}(q)} \cup \paren*{E \cap \set*{q}} = \emptyset \\
-            \implies &E \cap \widetilde{N}_{\veps}(q) = \emptyset \\
+            \implies &E \cap N_{\veps}(q) = \vnot \\
+            \implies &E \cap \paren*{\widetilde{N}_{\veps}(q) \cup \set*{q}} = \vnot \\ 
+            \implies &\paren*{E \cap \widetilde{N}_{\veps}(q)} \cup \paren*{E \cap \set*{q}} = \vnot \\
+            \implies &E \cap \widetilde{N}_{\veps}(q) = \vnot \\
             \implies &q \notin E'.
         \end{align*}
         Since $q$ is arbitrary, we have
@@ -147,7 +147,7 @@
         \item Let $F \subseteq X$ be a closed set such that $E \subseteq F$. Let $p \in E'$ be given.
         Then, for any $r \in \R^{+}$, we have
         \[
-        E \cap \widetilde{N}_{r}(p) \neq \emptyset \implies F \cap \widetilde{N}_{r}(p) \neq \emptyset,
+        E \cap \widetilde{N}_{r}(p) \neq \vnot \implies F \cap \widetilde{N}_{r}(p) \neq \vnot,
         \]
         which implies that $p \in F' \subseteq F$. Therefore, we have $E' \subseteq F$.
         Since $E \subseteq F$, we have $\overline{E} = E \cup E' \subseteq F$.

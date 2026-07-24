@@ -6,7 +6,7 @@ J_{n} \coloneqq \set*{1, 2, \dots, n} \quad \text{for each } n \in \N.
 \]
 A set $X$ is said to be \textbf{finite} if $J_{n} \hyperref[thm:BijectionEquivalenceRelation]{\sim} X$ for some
 $n \in \N$. In this case, $n$ is called the \textbf{cardinality} of $X$, denoted by $\abs*{X}$.
-Especially, if $X = \emptyset$, we define $\abs*{X} = 0$. $X$ is said to be \textbf{infinite} if $X$ is not finite.
+Especially, if $X = \vnot$, we define $\abs*{X} = 0$. $X$ is said to be \textbf{infinite} if $X$ is not finite.
 
 \bigskip
 
@@ -17,8 +17,8 @@ Especially, if $X = \emptyset$, we define $\abs*{X} = 0$. $X$ is said to be \tex
 \begin{proof}
     Let $P(n)$ be the statement that any subset of $J_{n}$ is finite.
     \begin{itemize}
-        \item \textbf{Base case:} $J_{1} = \set*{1}$ has $\emptyset$ and $J_{1}$ as its only subsets. We have
-        $J_{1} \hyperref[thm:BijectionEquivalenceRelation]{\sim} J_{1}$ by $f \equiv id_{J_{1}}$, and $\emptyset$ is
+        \item \textbf{Base case:} $J_{1} = \set*{1}$ has $\vnot$ and $J_{1}$ as its only subsets. We have
+        $J_{1} \hyperref[thm:BijectionEquivalenceRelation]{\sim} J_{1}$ by $f \equiv id_{J_{1}}$, and $\vnot$ is
         finite by definition. Thus $P(1)$ is true.
         \item \textbf{Inductive step:} Assume that $P(n)$ is true for some $n \in \N$.
         Let $A \subseteq J_{n + 1}$ be given. We have two cases:

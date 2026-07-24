@@ -133,7 +133,7 @@ A set $X$ is said to be \textbf{at most countable} if $X$ is either finite or co
         \[
         S \coloneqq \setbuilder*{n \in X}{n < x}.
         \]
-        If $S = \emptyset$, then $f(1) = x$. Otherwise, by \Cref{lem:SubsetOfJnIsFinite}, $S \subseteq J_{x - 1}$ is finite.
+        If $S = \vnot$, then $f(1) = x$. Otherwise, by \Cref{lem:SubsetOfJnIsFinite}, $S \subseteq J_{x - 1}$ is finite.
         Let $k = |S|$, $S = \set*{s_{1}, s_{2}, \dots, s_{k}}$ with $s_{1} < s_{2} < \dots < s_{k}$. Then we have
         \begin{itemize}
             \item $\min X_{1} = \min S \implies X_{2} = X \setminus \set*{s_{1}}$.
@@ -171,13 +171,13 @@ A set $X$ is said to be \textbf{at most countable} if $X$ is either finite or co
     \[
     S_{k} \coloneqq f^{-1}(\set*{k}).
     \]
-    Since $f$ is surjective, $S_{k} \neq \emptyset$ and by \Cref{thm:WellOrderingProperty},
+    Since $f$ is surjective, $S_{k} \neq \vnot$ and by \Cref{thm:WellOrderingProperty},
     $S_{k}$ has a least element for all $k \in X$. Let $g: X \to \N$ be a function defined by
     \[
     g(k) = \min S_{k} \text{ for all } k \in X.
     \]
     Assume that $g(k_{1}) = g(k_{2})$ for some $k_{1}, k_{2} \in X$, i.e., $\min S_{k_{1}} = \min S_{k_{2}}$. Since
-    $S_{i} \cap S_{j} = \emptyset$ for all $i, j \in X$ with $i \neq j$, we have $S_{k_{1}} = S_{k_{2}} \implies
+    $S_{i} \cap S_{j} = \vnot$ for all $i, j \in X$ with $i \neq j$, we have $S_{k_{1}} = S_{k_{2}} \implies
     k_{1} = k_{2}$. Thus $g$ is injective.
     \\[6mm]
     Since $g$ is injective, by \Cref{thm:PropertiesOfRestrictionFunctions}, $g|^{g(X)}: X \to g(X)$ is bijective.

@@ -2,7 +2,7 @@
     \textbf{($\subseteq$)} Let $p \in E \setminus E'$ be given.
     Since $p \notin E'$, there exists some $r \in \R^{+}$ such that
     \[
-    E \cap \widetilde{N}_{r}(p) = \emptyset \implies \paren*{E \cap N_{r}(p)} \setminus \set*{p} = \emptyset.
+    E \cap \widetilde{N}_{r}(p) = \vnot \implies \paren*{E \cap N_{r}(p)} \setminus \set*{p} = \vnot.
     \]
     Since $p \in E$ and $p \in N_{r}(p)$, we have
     \[
@@ -16,7 +16,7 @@
     \]
     Then we have
     \begin{itemize}
-        \item $E \cap \widetilde{N}_{r}(p) = \emptyset \implies p \notin E'$.
+        \item $E \cap \widetilde{N}_{r}(p) = \vnot \implies p \notin E'$.
         \item $p \in E$.
     \end{itemize}
     Therefore, we have $p \in E \setminus E'$.
@@ -37,7 +37,7 @@
 \begin{lemma} \label{lem:DeletedNeighborhoodInRnIsNonEmpty}
     Let $(\R^{n}, \norm*{\cdot})$ be given for some $n \in \N$. Then we have
     \[
-    \widetilde{N}_r(\bm{p}) \neq \emptyset \quad \text{for all } \bm{p} \in \R^{n} \text{ and } r \in \R^{+}.
+    \widetilde{N}_r(\bm{p}) \neq \vnot \quad \text{for all } \bm{p} \in \R^{n} \text{ and } r \in \R^{+}.
     \]
 \end{lemma}
 
@@ -49,7 +49,7 @@
     \]
     where $\bm{e_{1}} = (1, 0, 0, \dots, 0) \in \R^{n}$. Therefore, we have
     \[
-    \bm{p} \neq \paren*{\bm{p} + \frac{r}{2} \bm{e_{1}}} \in \widetilde{N}_r(\bm{p}) \implies \widetilde{N}_r(\bm{p}) \neq \emptyset.
+    \bm{p} \neq \paren*{\bm{p} + \frac{r}{2} \bm{e_{1}}} \in \widetilde{N}_r(\bm{p}) \implies \widetilde{N}_r(\bm{p}) \neq \vnot.
     \]
 \end{proof}
 
@@ -95,26 +95,26 @@
     \end{itemize}
     Then we have
     \begin{align*}
-        \partial E &= \emptyset \cup \paren*{\paren*{E \setminus E'} \cap (E^{c})'}
+        \partial E &= \vnot \cup \paren*{\paren*{E \setminus E'} \cap (E^{c})'}
         \cup \paren*{E' \cap \paren*{E^{c} \setminus (E^{c})'}} \cup \paren*{E' \cap (E^{c})'} \\
         &= \paren*{\paren*{E \setminus E'} \cap (E^{c})'}
         \cup \paren*{E' \cap \paren*{E^{c} \setminus (E^{c})'}} \cup \paren*{E' \cap (E^{c})'}
     \end{align*}
     For any $\bm{p} \in E \setminus E'$, there exists some $r \in \R^{+}$ such that
     \[
-    E \cap \widetilde{N}_{r}(\bm{p}) = \emptyset \implies \widetilde{N}_{r}(\bm{p}) \subseteq E^{c}.
+    E \cap \widetilde{N}_{r}(\bm{p}) = \vnot \implies \widetilde{N}_{r}(\bm{p}) \subseteq E^{c}.
     \]
     By \Cref{lem:DeletedNeighborhoodInRnIsNonEmpty}, we have
     \[
-    \widetilde{N}_{s}(\bm{p}) \cap \widetilde{N}_{r}(\bm{p}) = \widetilde{N}_{\min(s,r)}(\bm{p}) \neq \emptyset\quad \text{for all } s \in \R^{+}.
+    \widetilde{N}_{s}(\bm{p}) \cap \widetilde{N}_{r}(\bm{p}) = \widetilde{N}_{\min(s,r)}(\bm{p}) \neq \vnot\quad \text{for all } s \in \R^{+}.
     \]
     Then, for any $s \in \R^{+}$, we have
     \begin{align*}
-        \widetilde{N}_{s}(\bm{p}) \cap \widetilde{N}_{r}(\bm{p}) \neq \emptyset &\implies \widetilde{N}_{s}(\bm{p}) \cap
-        \paren*{\widetilde{N}_{r}(\bm{p}) \cap E^{c}} \neq \emptyset \\
-        &\implies \emptyset \neq \paren*{\widetilde{N}_{s}(\bm{p}) \cap E^{c}} \cap \widetilde{N}_{r}(\bm{p})
+        \widetilde{N}_{s}(\bm{p}) \cap \widetilde{N}_{r}(\bm{p}) \neq \vnot &\implies \widetilde{N}_{s}(\bm{p}) \cap
+        \paren*{\widetilde{N}_{r}(\bm{p}) \cap E^{c}} \neq \vnot \\
+        &\implies \vnot \neq \paren*{\widetilde{N}_{s}(\bm{p}) \cap E^{c}} \cap \widetilde{N}_{r}(\bm{p})
         \subseteq \widetilde{N}_{s}(\bm{p}) \cap E^{c} \\
-        &\implies E^{c} \cap \widetilde{N}_{s}(\bm{p}) \neq \emptyset,
+        &\implies E^{c} \cap \widetilde{N}_{s}(\bm{p}) \neq \vnot,
     \end{align*}
     which implies that $\bm{p} \in (E^{c})'$. Then we have
     \[
