@@ -1,0 +1,12 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{textbook-draft}[2026/08/02 Draft annotations]
+
+% xcolor is normally loaded by textbook-core
+% Requiring it here also makes this module safe to load independently
+\RequirePackage{xcolor}
+
+% Draft annotations stay visible in public PDFs until resolved
+% CI reports their locations as warnings; see docs/writing-guide.md
+\newcommand{\todo}[1]{\textcolor{red}{\textbf{TODO:} #1}}
+\newcommand{\verify}[1]{\textcolor{orange}{\textbf{VERIFY:} #1}}
+\newcommand{\sourcecheck}[1]{\textcolor{magenta}{\textbf{SOURCECHECK:} #1}}

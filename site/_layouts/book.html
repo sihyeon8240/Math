@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    {% assign book = site.data.books | where: "slug", page.slug | first %}
+    <title>{{ book.title }} · Open Mathematics Textbooks</title>
+    <link rel="stylesheet" href="{{ '/assets/common.css' | relative_url }}">
+    <link rel="stylesheet" href="{{ '/assets/site.css' | relative_url }}">
+  </head>
+  <body>
+    <div class="page-shell">
+      <nav class="site-nav" aria-label="Textbook navigation">
+        <a class="site-nav__brand" href="{{ "/" | relative_url }}" aria-label="Open Mathematics Textbooks home">
+          <span class="site-nav__brand-mark" aria-hidden="true">∑</span>
+          <span>Open Mathematics Textbooks</span>
+        </a>
+      </nav>
+
+      <main>
+        <header class="hero">
+          <div>
+            <p class="eyebrow">Open textbook collection</p>
+            <h1>{{ book.title }}</h1>
+            <p class="status status--{{ book.status }}">{{ book.status_label }}</p>
+          </div>
+          <div class="hero__mark" aria-hidden="true">π</div>
+        </header>
+
+        <div class="content-grid">
+          <article class="book-intro card">
+            {{ content }}
+          </article>
+
+          <aside class="resource-card card" aria-labelledby="project-resources-title">
+            <h2 id="project-resources-title">Project resources</h2>
+            <ul class="resource-list">
+              <li><code>make book BOOK={{ book.slug }}</code></li>
+              <li>
+                <a href="{{ site.github.repository_url }}/tree/main/books/{{ book.slug }}">
+                  Source directory ↗
+                </a>
+              </li>
+
+              <li>
+                <a href="{{ site.github.repository_url }}/issues/new/choose">
+                  Report an error ↗
+                </a>
+              </li>
+
+            </ul>
+          </aside>
+        </div>
+
+        {% assign pdf_path = '/pdf/' | append: book.slug | append: '.pdf' %}
+        {% assign pdf_url = pdf_path | relative_url %}
+        <section class="book-pdf card" aria-labelledby="book-pdf-title">
+          <div class="book-pdf__header">
+            <div>
+              <p class="eyebrow">Development snapshot</p>
+              <h2 id="book-pdf-title">Latest development PDF</h2>
+              <p class="book-pdf__description">
+                Preview the latest development snapshot of {{ book.title }} here,
+                or open the complete PDF in a separate tab.
+              </p>
+
+            </div>
+            <p class="book-pdf__actions">
+              <a
+                class="button button--primary"
+                href="{{ pdf_url }}"
+                target="_blank"
+                rel="noopener"
+              >
+                Read snapshot ↗
+              </a>
+
+              <a class="button" href="{{ pdf_url }}" download>Download snapshot ↓</a>
+            </p>
+          </div>
+
+          <div class="book-pdf__frame">
+            <object
+              class="book-pdf__viewer"
+              data="{{ pdf_url }}"
+              type="application/pdf"
+              aria-label="{{ book.title }} PDF preview"
+              tabindex="0"
+            >
+
+              <p>
+                Your browser does not support embedded PDF previews.
+                <a href="{{ pdf_url }}">Open the PDF directly.</a>
+              </p>
+
+            </object>
+          </div>
+        </section>
+      </main>
+
+      <footer class="site-footer">
+        Openly maintained mathematics textbooks for teaching, study, and contribution.
+      </footer>
+    </div>
+  </body>
+</html>

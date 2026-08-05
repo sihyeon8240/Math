@@ -1,0 +1,200 @@
+\section{Finite Sets}
+
+Recall the relation $\sim$ defined in \Cref{an:thm:bijection-equivalence-relation}.
+A set $X$ is said to be \textbf{finite} if
+\[
+\exists n \in \N_{0}, \N^{n} \sim X
+\]
+In this case, $n$ is called the \textbf{cardinality} of $X$, which is denoted by
+\[
+\abs*{X} = n
+\]
+A set $X$ is said to be
+\begin{itemize}
+    \item \textbf{infinite} if it is not finite
+    \item \textbf{countable} if $\N \sim X$
+    \item \textbf{at most countable} if it is either finite or countable
+    \item \textbf{uncountable} if it is neither finite nor countable
+\end{itemize}
+
+\bigskip
+
+\begin{remark}
+    In this textbook, we will use the following notations:
+    \begin{itemize}
+        \item $X$ is finite $\iff \abs*{X} < \aleph_{0}$
+        \item $X$ is infinite $\iff \abs*{X} \geq \aleph_{0}$
+        \item $X$ is countable $\iff \abs*{X} = \aleph_{0}$
+        \item $X$ is at most countable $\iff \abs*{X} \leq \aleph_{0}$
+        \item $X$ is uncountable $\iff \abs*{X} > \aleph_{0}$
+    \end{itemize}
+    The order symbols above are not \textbf{total orders}; they are just convenient notations.
+\end{remark}
+
+\bigskip
+
+\begin{lemma} \label{an:lem:subset-of-Nn-is-finite}
+    \[
+    \forall n \in \N_{0}, \forall A \subseteq \N^{n}, \abs*{A} < \aleph_{0}
+    \]
+\end{lemma}
+
+\begin{proof}
+    Define
+    \[
+    P(n): \forall A \subseteq \N^{n}, \abs*{A} < \aleph_{0}
+    \]
+    We will show that $P(n)$ is true for all $n \in \N_{0}$.
+    \begin{itemize}
+        \item \textbf{Base case:} Define $f: \N^{0} \xrightarrow{\sim} \vnot$ as
+        \[
+        \forall k \in \N^{0}, f(k) = k
+        \]
+        Then
+        \[
+        \abs*{\vnot} = 0 < \aleph_{0}
+        \]
+        Therefore, $P(0)$ is true.
+        \item \textbf{Inductive step:} Let $P(n)$ be true for $n \in \N_{0}$. Let $A \subseteq \N^{n + 1}$ be given.
+        \begin{itemize}
+            \item If $n + 1 \notin A$, then
+            \[
+            \begin{array}{c}
+                A \subseteq \N^{n} \\
+                \Downarrow \\
+                \abs*{A} < \aleph_{0} \\
+            \end{array}
+            \]
+            \item If $n + 1 \in A$, define
+            \[
+            B \coloneqq A \setminus \set*{n + 1} \subseteq \N^{n}
+            \]
+            Since $B \subseteq \N^{n}$,
+            \[
+            \begin{array}{c}
+                B \subseteq \N^{n} \\
+                \Downarrow \\
+                \abs*{B} < \aleph_{0} \\
+                \Downarrow \\
+                \exists m \in \N_{0}, \exists f: \N^{m} \xrightarrow{\sim} B
+            \end{array}
+            \]
+            Define $g: \N^{m + 1} \xrightarrow{\sim} A$ as
+            \[
+            \forall k \in \N^{m + 1}, g(k) = \begin{dcases}
+                f(k) & \text{if } k \leq m \\
+                n + 1 & \text{if } k = m + 1
+            \end{dcases}
+            \]
+            Then
+            \[
+            \abs*{A} = m + 1 < \aleph_{0}
+            \]
+        \end{itemize}
+        Therefore, $P(n + 1)$ is true.
+    \end{itemize}
+    By the \emph{principle of mathematical induction}, $P(n)$ is true for all $n \in \N_{0}$.
+\end{proof}
+
+\bigskip
+
+\begin{theorem} \label{an:thm:subset-of-finite-set-is-finite}
+    \[
+    \forall X, \forall Y \subseteq X, \abs*{X} < \aleph_{0} \implies \abs*{Y} < \aleph_{0}
+    \]
+\end{theorem}
+
+\begin{proof}
+    Let $X$ be finite. Then
+    \[
+    \begin{array}{c}
+        \abs*{X} < \aleph_{0} \\
+        \Downarrow \\
+        \exists n \in \N_{0}, \exists f: \N^{n} \xrightarrow{\sim} X
+    \end{array}
+    \]
+    Define
+    \[
+    Z \coloneqq f^{-1}(Y) \subseteq \N^{n}
+    \]
+    for $Y \subseteq X$. By \Cref{an:lem:subset-of-Nn-is-finite},
+    \[
+    \begin{array}{c}
+        Z \subseteq \N^{n} \\
+        \Downarrow \\
+        \abs*{Z} < \aleph_{0} \\
+        \Downarrow \\
+        \exists m \in \N_{0}, \exists g: \N^{m} \xrightarrow{\sim} Z
+    \end{array}
+    \]
+    By \Cref{an:thm:properties-of-restriction-functions,an:thm:properties-of-composition-functions},
+    \[
+    \begin{array}{c}
+        f(Z) = Y \\
+        \Downarrow \\
+        \exists f|_{Z}^{Y}: Z \xrightarrow{\sim} Y \\
+        \Downarrow \\
+        \exists f|_{Z}^{Y} \circ g: \N^{m} \xrightarrow{\sim} Y \\
+        \Downarrow \\
+        \abs*{Y} < \aleph_{0}
+    \end{array}
+    \]
+\end{proof}
+
+\bigskip
+
+\begin{lemma} \label{an:lem:surjection-from-Nn-implies-finite}
+    \[
+    \forall Y, \paren*{\exists n \in \N_{0}, \exists f: \N^{n} \twoheadrightarrow Y} \implies \abs*{Y} < \aleph_{0}
+    \]
+\end{lemma}
+
+\begin{proof}
+    Assume that
+    \[
+    \exists n \in \N_{0}, \exists f: \N^{n} \twoheadrightarrow Y
+    \]
+    Define
+    \[
+    N_{y} \coloneqq f^{-1}(\set*{y}) \subseteq \N^{n}
+    \]
+    for each $y \in Y$. By \Cref{an:thm:well-ordering-property},
+    \[
+    \begin{array}{c}
+        f \text{ is surjective} \\
+        \Downarrow \\
+        \forall y \in Y, N_{y} \neq \vnot \\
+        \Downarrow \\
+        \exists n_{y} \in N_{y}, \forall x \in N_{y}, n_{y} \leq x
+    \end{array}
+    \]
+    Define
+    \[
+    M_{Y} \coloneqq \setbuilder*{n_{y}}{y \in Y} \subseteq \N^{n}
+    \]
+    Define $g: M_{Y} \xrightarrow{\sim} Y$ as
+    \[
+    \forall n_{y} \in M_{Y}, g(n_{y}) = y
+    \]
+    By \Cref{an:lem:subset-of-Nn-is-finite,an:thm:properties-of-composition-functions},
+    \[
+    \begin{array}{c}
+        \abs*{M_{Y}} < \aleph_{0} \\
+        \Downarrow \\
+        \exists m \in \N_{0}, \exists h: \N^{m} \xrightarrow{\sim} M_{Y} \\
+        \Downarrow \\
+        \exists g \circ h: \N^{m} \xrightarrow{\sim} Y \\
+        \Downarrow \\
+        \abs*{Y} < \aleph_{0}
+    \end{array}
+    \]
+\end{proof}
+
+\bigskip
+
+\begin{theorem} \label{an:thm:surjection-from-finite-set-implies-finite}
+    \[
+    \forall X \forall Y, \paren*{\abs*{X} < \aleph_{0} \land
+    \exists f: X \twoheadrightarrow Y} \implies \abs*{Y} < \aleph_{0}
+    \]
+\end{theorem}

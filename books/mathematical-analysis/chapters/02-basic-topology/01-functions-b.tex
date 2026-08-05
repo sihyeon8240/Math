@@ -1,0 +1,121 @@
+\begin{proof}
+    Let $x_{1}, x_{2} \in E$ be given.
+    \begin{enumerate}[label=\textbf{(\Alph*)}]
+        \item If $f$ is injective, then
+        \[
+        \begin{array}{c}
+            f|_{E}^{F}(x_{1}) = f|_{E}^{F}(x_{2}) \\
+            \Downarrow \\
+            f(x_{1}) = f(x_{2}) \\
+            \Downarrow \\
+            x_{1} = x_{2}
+        \end{array}
+        \]
+        \item If $f(E) = F$, then
+        \[
+        \begin{array}{c}
+            \forall y \in F, \exists x \in E, f(x) = y \\
+            \Downarrow \\
+            \forall y \in F, \exists x \in E, f|_{E}^{F}(x) = y
+        \end{array}
+        \]
+        \item follows from \textbf{(A)} and \textbf{(B)}
+    \end{enumerate}
+\end{proof}
+
+\bigskip
+
+\begin{definition} \label{an:def:composition-function}
+    Let $f: X \to Y$ and $g: Y \to Z$ be given. The \textbf{composition} $g \circ f: X \to Z$ of $g$ with $f$ is defined as
+    \[
+    \forall x \in X, (g \circ f)(x) = g(f(x))
+    \]
+\end{definition}
+
+\bigskip
+
+\begin{theorem} \label{an:thm:properties-of-composition-functions}
+    Let $f: X \to Y$ and $g: Y \to Z$ be given. Then the following properties hold:
+    \begin{enumerate}[label=\textbf{(\Alph*)}]
+        \item $f$ and $g$ are injective $\implies g \circ f$ is injective
+        \item $f$ and $g$ are surjective $\implies g \circ f$ is surjective
+        \item $f$ and $g$ are bijective $\implies g \circ f$ is bijective
+    \end{enumerate}
+\end{theorem}
+
+\begin{proof}
+    Let $x_{1}, x_{2} \in X$ be given.
+    \begin{enumerate}[label=\textbf{(\Alph*)}]
+        \item If $f$ and $g$ are injective, then
+        \[
+        \begin{array}{c}
+            (g \circ f)(x_{1}) = (g \circ f)(x_{2}) \\
+            \Downarrow \\
+            g(f(x_{1})) = g(f(x_{2})) \\
+            \Downarrow \\
+            f(x_{1}) = f(x_{2}) \\
+            \Downarrow \\
+            x_{1} = x_{2}
+        \end{array}
+        \]
+        \item If $f$ and $g$ are surjective, then
+        \[
+        \forall z \in Z, \exists y \in Y, g(y) = z
+        \]
+        Also,
+        \[
+        \forall y \in Y, \exists x \in X, f(x) = y
+        \]
+        Therefore,
+        \[
+        \forall z \in Z, \exists x \in X, (g \circ f)(x) = z
+        \]
+        \item follows from \textbf{(A)} and \textbf{(B)}
+    \end{enumerate}
+\end{proof}
+
+\begin{theorem} \label{an:thm:bijection-equivalence-relation}
+    Let $S$ be a set of sets. Define
+    \[
+    \forall X, Y \in S, X \sim Y \iff \exists f: X \xrightarrow{\sim} Y
+    \]
+    Then $\sim$ is an equivalence relation on $S$.
+\end{theorem}
+
+\begin{proof}
+    Let $X, Y, Z \in S$ be given.
+    \begin{itemize}
+        \item \textbf{Reflexivity:}
+        \[
+        \begin{array}{c}
+            \forall X \in S, \exists f: X \xrightarrow{\sim} X, f(x) = x \\
+            \Downarrow \\
+            \forall X \in S, X \sim X
+        \end{array}
+        \]
+        \item \textbf{Symmetry:} If $X \sim Y$, by \Cref{an:thm:inverse-function-is-bijective},
+        \[
+        \begin{array}{c}
+            \exists f: X \xrightarrow{\sim} Y \\
+            \Downarrow \\
+            \exists f^{-1}: Y \xrightarrow{\sim} X
+        \end{array}
+        \]
+        Therefore,
+        \[
+        \forall X, Y \in S, X \sim Y \implies Y \sim X
+        \]
+        \item \textbf{Transitivity:} If $X \sim Y$ and $Y \sim Z$, by \Cref{an:thm:inverse-function-is-bijective},
+        \[
+        \begin{array}{c}
+            \exists f: X \xrightarrow{\sim} Y \land \exists g: Y \xrightarrow{\sim} Z \\
+            \Downarrow \\
+            \exists g \circ f: X \xrightarrow{\sim} Z
+        \end{array}
+        \]
+        Therefore,
+        \[
+        \forall X, Y, Z \in S, X \sim Y \land Y \sim Z \implies X \sim Z
+        \]
+    \end{itemize}
+\end{proof}

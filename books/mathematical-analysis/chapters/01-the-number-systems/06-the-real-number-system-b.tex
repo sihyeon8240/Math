@@ -1,0 +1,186 @@
+\begin{proof}
+    Define
+    \[
+    \veps \coloneqq y - x > 0
+    \]
+    By \Cref{an:thm:archimedean-property},
+    \[
+    \exists n \in \N, \frac{1}{n} < \veps
+    \]
+    Define
+    \[
+    S \coloneqq \setbuilder*{k \in \Z}{\frac{k}{n} \leq x} \subseteq \Z
+    \]
+    Then
+    \[
+    \begin{array}{c}
+        \floor{x} \leq x < \floor{x} + 1 \\
+        \Downarrow \\
+        n\floor{x} \leq nx < n\floor{x} + n \\
+        \Downarrow \\
+        n\floor{x} \in S \\
+        \Downarrow \\
+        S \neq \vnot
+    \end{array}
+    \]
+    $S$ is bounded above by $nx$. By \Cref{an:thm:bounded-subset-of-Z-in-R-has-extremum},
+    \[
+    \exists m \in \Z, m = \max S
+    \]
+    Since $m = \max S$,
+    \[
+    \begin{array}{c}
+        m \in S \\
+        \Downarrow \\
+        \frac{m}{n} \leq x \\
+        \Downarrow \\
+        \frac{m + 1}{n} \leq x + \frac{1}{n}
+    \end{array}
+    \]
+    Also,
+    \[
+    \begin{array}{c}
+        m + 1 \notin S \\
+        \Downarrow \\
+        \frac{m + 1}{n} > x
+    \end{array}
+    \]
+    To sum up,
+    \[
+    x < \frac{m + 1}{n} \leq x + \frac{1}{n} < x + \veps = x + (y - x) = y
+    \]
+    Therefore, we can take $p = \frac{m + 1}{n} \in \Q$ to complete the proof.
+\end{proof}
+
+\bigskip
+
+\begin{theorem} \label{an:thm:existence-of-nth-roots}
+    \[
+    \forall x \in \R^{+}, \forall n \in \N, \exists! y \in \R^{+}, y^{n} = x
+    \]
+    Such $y$ is denoted by
+    \begin{itemize}
+        \item $y = \sqrt[n]{x}$
+        \item $y = x^{\frac{1}{n}}$
+    \end{itemize}
+\end{theorem}
+
+\begin{proof}
+    Define
+    \[
+    E \coloneqq \setbuilder*{t \in \R^{+}}{t^{n} < x}
+    \]
+    If $x \geq 1$, then
+    \[
+    \begin{array}{c}
+        \forall m \in \N, 2^{-m} < 1 \leq x \\
+        \Downarrow \\
+        2^{-1} \in E \\
+        \Downarrow \\
+        E \neq \vnot
+    \end{array}
+    \]
+    Otherwise,
+    \[
+    \begin{array}{c}
+        x < 1 \\
+        \Downarrow \\
+        \forall m \in \N, x^{2m} < x \\
+        \Downarrow \\
+        x^{2} \in E \\
+        \Downarrow \\
+        E \neq \vnot
+    \end{array}
+    \]
+    $E$ is bounded above by $\max\set*{x, 1}$. By the \emph{least upper bound property},
+    \[
+    \exists \alpha \in \R^{+}, \alpha = \sup E
+    \]
+    We will show that $\alpha^{n} = x$. Let $0 < a < b < \infty$ be given. Then
+    \[
+    b^{n} - a^{n} = (b - a)\sum_{k = 0}^{n - 1} b^{n - 1 - k} a^{k} < (b - a)nb^{n - 1}
+    \]
+    Assume that $\alpha^{n} < x$. By \Cref{an:thm:Q-is-dense-in-R},
+    \[
+    \exists h \in \R^{+}, h < \min\set*{1, \frac{x - \alpha^{n}}{n(\alpha + 1)^{n - 1}}}
+    \]
+    Put $a = \alpha$ and $b = \alpha + h$. Then
+    \[
+    \begin{array}{c}
+        (\alpha + h)^{n} - \alpha^{n} < hn(\alpha + h)^{n - 1} < hn(\alpha + 1)^{n - 1} \\
+        \Downarrow \\
+        (\alpha + h)^{n} < \alpha^{n} + hn(\alpha + 1)^{n - 1} < \alpha^{n} + (x - \alpha^{n}) = x
+    \end{array}
+    \]
+    Since $\alpha = \sup E$,
+    \[
+    \begin{array}{c}
+        (\alpha + h)^{n} < x \\
+        \Downarrow \\
+        \alpha + h \in E \\
+        \Downarrow \\
+        \bot
+    \end{array}
+    \]
+    Assume that $\alpha^{n} > x$. By \Cref{an:thm:Q-is-dense-in-R},
+    \[
+    \exists h \in \R^{+}, h < \min\set*{\alpha, \frac{\alpha^{n} - x}{n\alpha^{n - 1}}}
+    \]
+    Put $a = \alpha - h$ and $b = \alpha$. Then
+    \[
+    \begin{array}{c}
+        \alpha^{n} - (\alpha - h)^{n} < hn\alpha^{n - 1} \\
+        \Downarrow \\
+        (\alpha - h)^{n} > \alpha^{n} - hn\alpha^{n - 1} > \alpha^{n} - (\alpha^{n} - x) = x
+    \end{array}
+    \]
+    Since $\alpha = \sup E$,
+    \[
+    \begin{array}{c}
+        (\alpha - h)^{n} > x \\
+        \Downarrow \\
+        \forall t \in E, t^{n} < x < (\alpha - h)^{n} \\
+        \Downarrow \\
+        \forall t \in E, t < \alpha - h \\
+        \Downarrow \\
+        \alpha - h \text{ is an upper bound of } E \\
+        \Downarrow \\
+        \bot
+    \end{array}
+    \]
+    Therefore,
+    \[
+    \alpha^{n} = x
+    \]
+    This guarantees the \emph{existence} of $y$. Let $0 < \alpha < \beta < \infty$ be given. Then
+    \[
+    \begin{array}{c}
+        \beta^{n} - \alpha^{n} = (\beta - \alpha)\sum_{k = 0}^{n - 1} \beta^{n - 1 - k} \alpha^{k} > 0 \\
+        \Downarrow \\
+        \beta^{n} > \alpha^{n}
+    \end{array}
+    \]
+    This guarantees the \emph{uniqueness} of $y$.
+\end{proof}
+
+\bigskip
+
+\begin{definition} \label{an:def:greedy-base-expansion-of-real-numbers}
+    Let $y \in [0, 1)$ and $b \in \N_{2}$ be given. A sequence $\paren*{a_{n}}_{n = 1}^{\infty}$
+    is called a \textbf{greedy base $b$ expansion} of $y$ if
+    \[
+    \forall n \in \N, 0 \leq y - \sum_{k = 1}^{n} \frac{a_{k}}{b^{k}} < \frac{1}{b^{n}}
+    \]
+    where
+    \[
+    \forall k \in \N, a_{k} \in S_{b} \coloneqq \set*{0, 1, 2, \dots, b - 1}
+    \]
+    In particular, if $b = 10$, such a sequence is called a \textbf{greedy decimal expansion} of $y$.
+\end{definition}
+
+\bigskip
+
+\begin{theorem} \label{an:thm:existence-and-uniqueness-of-greedy-base-expansion}
+    Let $y \in [0, 1)$ and $b \in \N_{2}$ be given.
+    Then the greedy base $b$ expansion of $y$ exists and is unique.
+\end{theorem}

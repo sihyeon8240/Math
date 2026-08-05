@@ -1,0 +1,221 @@
+\begin{proof}
+    Assume that
+    \[
+    \abs*{X} < \aleph_{0} \land \exists f: X \twoheadrightarrow Y
+    \]
+    By
+    \Cref{an:thm:properties-of-composition-functions,an:lem:surjection-from-Nn-implies-finite},
+    \[
+    \begin{array}{c}
+        \abs*{X} < \aleph_{0} \\
+        \Downarrow \\
+        \exists n \in \N_{0}, \exists g: \N^{n} \xrightarrow{\sim} X \\
+        \Downarrow \\
+        \exists f \circ g: \N^{n} \twoheadrightarrow Y \\
+        \Downarrow \\
+        \abs*{Y} < \aleph_{0}
+    \end{array}
+    \]
+\end{proof}
+
+\bigskip
+
+\begin{theorem} \label{an:thm:finite-ordered-set-has-extremum}
+    Let $X$ satisfy
+    \begin{itemize}
+        \item $0 < \abs*{X} < \aleph_{0}$
+        \item $X$ is ordered
+    \end{itemize}
+    Then
+    \begin{itemize}
+        \item $\exists m \in X, \forall x \in X, m \leq x$
+        \item $\exists M \in X, \forall x \in X, x \leq M$
+    \end{itemize}
+\end{theorem}
+
+\begin{proof}
+    Since $0 < \abs*{X} < \aleph_{0}$,
+    \[
+    \begin{array}{c}
+        0 < \abs*{X} < \aleph_{0} \\
+        \Downarrow \\
+        \exists n \in \N, \exists f: \N^{n} \xrightarrow{\sim} X
+    \end{array}
+    \]
+    The elements of $X$ can be listed as
+    \[
+    X = \set*{a_{1}, a_{2}, \dots, a_{n}}
+    \]
+    where
+    \[
+    \forall k \in \N, a_{k} = f(k)
+    \]
+    Define $P(n):$ If
+    \begin{itemize}
+        \item $\abs*{X} = n$
+        \item $X$ is ordered
+    \end{itemize}
+    then
+    \begin{itemize}
+        \item $\exists m \in X, \forall x \in X, m \leq x$
+        \item $\exists M \in X, \forall x \in X, x \leq M$
+    \end{itemize}
+    We will show that $P(n)$ is true for all $n \in \N$.
+    \begin{itemize}
+        \item \textbf{Base case:} Let $X = \set*{a_{1}}$ be given.
+        \begin{itemize}
+            \item $\forall x \in X, a_{1} \leq x$
+            \item $\forall x \in X, x \leq a_{1}$
+        \end{itemize}
+        Therefore, $P(1)$ is true.
+        \item \textbf{Inductive step:} Let $P(n)$ be true for $n \in \N$. Let
+        \begin{itemize}
+            \item $X = \set*{a_{1}, a_{2}, \dots, a_{n + 1}}$
+            \item $Y = \set*{a_{1}, a_{2}, \dots, a_{n}} \subseteq X$
+        \end{itemize}
+        be given. Then
+        \begin{itemize}
+            \item $\exists k \in \N^{n}, \forall y \in Y, a_{k} \leq y$
+            \item $\exists K \in \N^{n}, \forall y \in Y, y \leq a_{K}$
+        \end{itemize}
+        Also,
+        \begin{itemize}
+            \item $\forall x \in X, \min\set*{{a_{k}, a_{n + 1}}} \leq x$
+            \item $\forall x \in X, x \leq \max\set*{{a_{K}, a_{n + 1}}}$
+        \end{itemize}
+        Therefore, $P(n + 1)$ is true.
+    \end{itemize}
+    By the \emph{principle of mathematical induction}, $P(n)$ is true for all $n \in \N$.
+\end{proof}
+
+\bigskip
+
+\begin{lemma} \label{an:lem:properties-of-Nm-Nn}
+    Let $n, m \in \N_{0}$ be given. Then
+    \begin{enumerate}[label=\textbf{(\Alph*)}]
+        \item $\paren*{\exists f: \N^{n} \hookrightarrow \N^{m}} \implies n \leq m$
+        \item $\paren*{\exists f: \N^{n} \twoheadrightarrow \N^{m}} \implies n \geq m$
+        \item $\paren*{\exists f: \N^{n} \xrightarrow{\sim} \N^{m}} \implies n = m$
+    \end{enumerate}
+    \textbf{(C)} guarantees the uniqueness of the cardinality.
+    \[
+    \begin{array}{c}
+        n = \abs*{X} \land m = \abs*{X} \\
+        \Downarrow \\
+        \N^{n} \sim X \land \N^{m} \sim X \\
+        \Downarrow \\
+        \N^{n} \sim \N^{m} \\
+        \Downarrow \\
+        n = m
+    \end{array}
+    \]
+\end{lemma}
+
+\begin{proof}
+    \begin{enumerate}[label=\textbf{(\Alph*)}]
+        \item Define
+        \[
+        P(n): \forall m \in \N_{0}, \paren*{\exists f_{n}: \N^{n} \hookrightarrow \N^{m}} \implies n \leq m
+        \]
+        We will show that $P(n)$ is true for all $n \in \N_{0}$.
+        \begin{itemize}
+            \item \textbf{Base case:}
+            \[
+            \begin{array}{c}
+                \forall m \in \N_{0}, 0 \leq m \\
+                \Downarrow \\
+                P(0) \text{ is true}
+            \end{array}
+            \]
+            \item \textbf{Inductive step:} Let $P(n)$ be true for $n \in \N_{0}$. If $m = 0$, then
+            \[
+            \nexists f_{n + 1}: \N^{n + 1} \hookrightarrow \N^{0}
+            \]
+            Otherwise, let $f_{n + 1}: \N^{n + 1} \hookrightarrow \N^{m}$ be given with
+            \[
+            f_{n + 1}(n + 1) = x \in \N^{m}
+            \]
+            Define $g_{m}: \N^{m} \xrightarrow{\sim} \N^{m}$ as
+            \[
+            \forall y \in \N^{m}, g_{m}(y) = \begin{dcases}
+                x, & \text{if } y = m \\
+                m, & \text{if } y = x \\
+                y, & \text{otherwise}
+            \end{dcases}
+            \]
+            Define $f_{n}: \N^{n} \to \N^{m - 1}$ as
+            \[
+            f_{n} \equiv (g_{m} \circ f_{n + 1})|_{\N^{n}}^{\N^{m - 1}}
+            \]
+            By \Cref{an:thm:properties-of-composition-functions,an:thm:properties-of-restriction-functions},
+            \[
+            \begin{array}{c}
+                f_{n} \text{ is injective} \\
+                \Downarrow \\
+                n \leq m - 1 \\
+                \Downarrow \\
+                n + 1 \leq m \\
+                \Downarrow \\
+                P(n + 1) \text{ is true}
+            \end{array}
+            \]
+        \end{itemize}
+        By the \emph{principle of mathematical induction}, $P(n)$ is true for all $n \in \N_{0}$.
+        \item Define
+        \[
+        Q(m): \forall n \in \N_{0}, \paren*{\exists f_{m}: \N^{n} \twoheadrightarrow \N^{m}} \implies n \geq m
+        \]
+        We will show that $Q(m)$ is true for all $m \in \N_{0}$.
+        \begin{itemize}
+            \item \textbf{Base case:}
+            \[
+            \begin{array}{c}
+                \forall n \in \N_{0}, n \geq 0 \\
+                \Downarrow \\
+                Q(0) \text{ is true}
+            \end{array}
+            \]
+            \item \textbf{Inductive step:} Let $Q(m)$ be true for $m \in \N_{0}$. If $n = 0$, then
+            \[
+            \nexists f_{m + 1}: \N^{0} \twoheadrightarrow \N^{m + 1}
+            \]
+            Otherwise, let $f_{m + 1}: \N^{n} \twoheadrightarrow \N^{m + 1}$ be given with
+            \[
+            f_{m + 1}(n) = x \in \N^{m + 1}
+            \]
+            Define $g_{m + 1}: \N^{m + 1} \xrightarrow{\sim} \N^{m + 1}$ as
+            \[
+            \forall y \in \N^{m + 1}, g_{m + 1}(y) = \begin{dcases}
+                x, & \text{if } y = m + 1 \\
+                m + 1, & \text{if } y = x \\
+                y, & \text{otherwise}
+            \end{dcases}
+            \]
+            Define
+            \[
+            K_{m + 1} \coloneqq (g_{m + 1} \circ f_{m + 1})^{-1}(\set*{m + 1}) \subseteq \N^{n}
+            \]
+            Define $f_{m}: \N^{n - 1} \to \N^{m}$ as
+            \[
+            \forall y \in \N^{n - 1}, f_{m}(y) = \begin{dcases}
+                (g_{m + 1} \circ f_{m + 1})(y), & \text{if } y \in \N^{n - 1} \setminus K_{m + 1} \\
+                m, & \text{if } y \in K_{m + 1}
+            \end{dcases}
+            \]
+            By \Cref{an:thm:properties-of-composition-functions},
+            \[
+            \begin{array}{c}
+                f_{m} \text{ is surjective} \\
+                \Downarrow \\
+                n - 1 \geq m \\
+                \Downarrow \\
+                n \geq m + 1 \\
+                \Downarrow \\
+                Q(m + 1) \text{ is true}
+            \end{array}
+            \]
+        \end{itemize}
+        By the \emph{principle of mathematical induction}, $Q(m)$ is true for all $m \in \N_{0}$.
+        \item follows from \textbf{(A)} and \textbf{(B)}.
+    \end{enumerate}
+\end{proof}

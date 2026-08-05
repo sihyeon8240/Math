@@ -1,0 +1,141 @@
+\bigskip
+
+\begin{lemma} \label{an:lem:product-of-two-finite-sets-is-finite}
+    \[
+    \forall X \forall Y, \abs*{X} < \aleph_{0} \land \abs*{Y} < \aleph_{0} \implies \abs*{X \times Y} < \aleph_{0}
+    \]
+\end{lemma}
+
+\begin{proof}
+    Assume that
+    \[
+    \abs*{X} < \aleph_{0} \land \abs*{Y} < \aleph_{0}
+    \]
+    Then
+    \begin{itemize}
+        \item $\exists n \in \N_{0}, \exists f: \N^{n} \xrightarrow{\sim} X$
+        \item $\exists m \in \N_{0}, \exists g: \N^{m} \xrightarrow{\sim} Y$
+    \end{itemize}
+    Define
+    \[
+    i = (a - 1)m + b \in \N^{nm}
+    \]
+    for each $a \in \N^{n}$ and $b \in \N^{m}$. Define $h: \N^{nm} \xrightarrow{\sim} X \times Y$ as
+    \[
+    \forall i \in \N^{nm}, h(i) = \paren*{f(a), g(b)}
+    \]
+    Then
+    \[
+    \abs*{X \times Y} = nm < \aleph_{0}
+    \]
+\end{proof}
+
+\bigskip
+
+\begin{theorem} \label{an:thm:product-of-finite-sets-is-finite}
+    \[
+    \forall n \in \N, \paren*{\forall k \in \N^{n}, \abs*{X_{k}} < \aleph_{0}}
+    \implies \abs*{\prod_{k = 1}^{n} X_{k}} < \aleph_{0}
+    \]
+\end{theorem}
+
+\begin{proof}
+    Define
+    \[
+    P(n): \paren*{\forall k \in \N^{n}, \abs*{X_{k}} < \aleph_{0}} \implies \abs*{\prod_{k = 1}^{n} X_{k}} < \aleph_{0}
+    \]
+    We will show that $P(n)$ is true for all $n \in \N$.
+    \begin{itemize}
+        \item \textbf{Base case:} Let $\abs*{X_{1}} < \aleph_{0}$ be given. Then
+        \[
+        \begin{array}{c}
+            \abs*{X_{1}} < \aleph_{0} \\
+            \Downarrow \\
+            \abs*{\prod_{k = 1}^{1} X_{k}} < \aleph_{0} \\
+            \Downarrow \\
+            P(1) \text{ is true}
+        \end{array}
+        \]
+        \item \textbf{Inductive step:} Let $P(n)$ be true for $n \in \N$. Assume that
+        \[
+        \forall k \in \N^{n + 1}, \abs*{X_{k}} < \aleph_{0}
+        \]
+        By the inductive hypothesis,
+        \begin{itemize}
+            \item $\abs*{\prod_{k = 1}^{n} X_{k}} < \aleph_{0}$
+            \item $\abs*{X_{n + 1}} < \aleph_{0}$
+        \end{itemize}
+        By \Cref{an:lem:product-of-two-finite-sets-is-finite},
+        \[
+        \begin{array}{c}
+            \prod_{k = 1}^{n + 1} X_{k} = \paren*{\prod_{k = 1}^{n} X_{k}} \times X_{n + 1} \\
+            \Downarrow \\
+            \abs*{\prod_{k = 1}^{n + 1} X_{k}} < \aleph_{0} \\
+            \Downarrow \\
+            P(n + 1) \text{ is true}
+        \end{array}
+        \]
+    \end{itemize}
+    By the \emph{principle of mathematical induction}, $P(n)$ is true for all $n \in \N$.
+\end{proof}
+
+\bigskip
+
+\begin{theorem} \label{an:thm:cantors-theorem}
+    \[
+    \forall X, \nexists f: X \twoheadrightarrow \mathcal{P}(X)
+    \]
+    where
+    \[
+    \mathcal{P}(X) \coloneqq \setbuilder*{E}{E \subseteq X}
+    \]
+    is called the \textbf{power set} of $X$. This theorem is called \textbf{Cantor's theorem}.
+\end{theorem}
+
+\begin{proof}
+    Assume that
+    \[
+    \exists f: X \twoheadrightarrow \mathcal{P}(X)
+    \]
+    Define
+    \[
+    S \coloneqq \setbuilder*{x \in X}{x \notin f(x)} \subseteq X
+    \]
+    Then
+    \[
+    \begin{array}{c}
+        S \subseteq X \\
+        \Downarrow \\
+        S \in \mathcal{P}(X) \\
+        \Downarrow \\
+        \exists x \in X, f(x) = S
+    \end{array}
+    \]
+    There are two cases:
+    \begin{itemize}
+        \item If $x \in S$, then
+        \[
+        \begin{array}{c}
+            x \in S \\
+            \Downarrow \\
+            x \notin f(x) = S \\
+            \Downarrow \\
+            \bot
+        \end{array}
+        \]
+        \item If $x \notin S$, then
+        \[
+        \begin{array}{c}
+            x \notin S \\
+            \Downarrow \\
+            x \in f(x) = S \\
+            \Downarrow \\
+            \bot
+        \end{array}
+        \]
+    \end{itemize}
+    Therefore,
+    \[
+    \nexists f: X \twoheadrightarrow \mathcal{P}(X)
+    \]
+\end{proof}

@@ -1,0 +1,222 @@
+\section{The Integer and Rational Number Systems}
+
+Define a relation $\sim$ on $\N \times \N$ as
+\[
+(a, b) \sim (c, d) \iff a + d = b + c
+\]
+Let $(a, b), (c, d), (e, f) \in \N \times \N$ be given. By \Cref{an:thm:properties-of-operations-on-N},
+\begin{itemize}
+    \item \textbf{Reflexivity}: Since $a \in \N \land b \in \N$,
+    \[
+    \begin{array}{c}
+        a + b = b + a \\
+        \Downarrow \\
+        (a, b) \sim (a, b)
+    \end{array}
+    \]
+    \item \textbf{Symmetry}: If $(a, b) \sim (c, d)$, then
+    \[
+    \begin{array}{c}
+        a + d = b + c \\
+        \Downarrow \\
+        c + b = d + a \\
+        \Downarrow \\
+        (c, d) \sim (a, b)
+    \end{array}
+    \]
+    \item \textbf{Transitivity}: If $(a, b) \sim (c, d) \land (c, d) \sim (e, f)$, then
+    \[
+    \begin{array}{c}
+        a + d = b + c \land c + f = d + e \\
+        \Downarrow \\
+        a + d + f = b + c + f = b + d + e \\
+        \Downarrow \\
+        a + f = b + e \\
+        \Downarrow \\
+        (a, b) \sim (e, f)
+    \end{array}
+    \]
+\end{itemize}
+Therefore, $\sim$ is an equivalence relation on $\N \times \N$. The set of \textbf{integers} $\Z$ is defined as
+\[
+\Z \coloneqq (\N \times \N) / \sim
+\]
+
+\bigskip
+
+\begin{definition} \label{an:def:operations-on-Z}
+    Let $[(a, b)], [(c, d)] \in \Z$ be given.
+    \\[3mm]
+    The \textbf{addition} $+$ on $\Z$ is defined as
+    \[
+    [(a, b)] + [(c, d)] \coloneqq [(a + c, b + d)]
+    \]
+    The \textbf{multiplication} $\cdot$ on $\Z$ is defined as
+    \[
+    [(a, b)] \cdot [(c, d)] \coloneqq [(a \cdot c + b \cdot d, a \cdot d + b \cdot c)]
+    \]
+\end{definition}
+
+\bigskip
+
+\begin{remark}
+    The operations $+$ and $\cdot$ are \textbf{well-defined} on $\Z$; that is, they do not
+    depend on the \textbf{choice of representatives} of the equivalence classes. Indeed, if
+    \begin{itemize}
+        \item $(a, b) \sim (a', b')$
+        \item $(c, d) \sim (c', d')$
+    \end{itemize}
+    then one can verify that
+    \begin{itemize}
+        \item $(a + c, b + d) \sim (a' + c', b' + d')$
+        \item $(a \cdot c + b \cdot d, a \cdot d + b \cdot c) \sim (a' \cdot c' + b' \cdot d', a' \cdot d' + b' \cdot c')$
+    \end{itemize}
+    The same issue arises for \textbf{addition} and \textbf{multiplication} on $\Q$,
+    whose \textbf{well-definedness} could be verified in exactly the same manner.
+\end{remark}
+
+\bigskip
+
+\begin{theorem} \label{an:thm:properties-of-operations-on-Z}
+    Let $n, m, k \in \Z$ be given. Then the following properties hold:
+    \begin{itemize}
+        \item $n + m = m + n$
+        \item $(n + m) + k = n + (m + k)$
+        \item $n \cdot m = m \cdot n$
+        \item $(n \cdot m) \cdot k = n \cdot (m \cdot k)$
+        \item $n \cdot (m + k) = (n \cdot m) + (n \cdot k)$
+    \end{itemize}
+\end{theorem}
+
+\begin{proof}
+    The proof follows directly from \Cref{an:def:operations-on-Z,an:thm:properties-of-operations-on-N}.
+\end{proof}
+
+\bigskip
+
+Define
+\[
+\Z^{+} \coloneqq \setbuilder*{[(n + 1, 1)] \in \Z}{n \in \N} \subseteq \Z
+\]
+Define a relation $\sim$ on $\Z \times \Z^{+}$ as
+\[
+(a, b) \sim (c, d) \iff a \cdot d = b \cdot c
+\]
+Let $(a, b), (c, d), (e, f) \in \Z \times \Z^{+}$ be given. By \Cref{an:thm:properties-of-operations-on-Z},
+\begin{itemize}
+    \item \textbf{Reflexivity}: Since $a \in \Z \land b \in \Z^{+}$,
+    \[
+    \begin{array}{c}
+        a \cdot b = b \cdot a \\
+        \Downarrow \\
+        (a, b) \sim (a, b)
+    \end{array}
+    \]
+    \item \textbf{Symmetry}: If $(a, b) \sim (c, d)$, then
+    \[
+    \begin{array}{c}
+        a \cdot d = b \cdot c \\
+        \Downarrow \\
+        c \cdot b = d \cdot a \\
+        \Downarrow \\
+        (c, d) \sim (a, b)
+    \end{array}
+    \]
+    \item \textbf{Transitivity}: If $(a, b) \sim (c, d) \land (c, d) \sim (e, f)$, then
+    \[
+    \begin{array}{c}
+        a \cdot d = b \cdot c \land c \cdot f = d \cdot e \\
+        \Downarrow \\
+        a \cdot d \cdot f = b \cdot c \cdot f = b \cdot d \cdot e \\
+        \Downarrow \\
+        a \cdot f = b \cdot e \\
+        \Downarrow \\
+        (a, b) \sim (e, f)
+    \end{array}
+    \]
+\end{itemize}
+Therefore, $\sim$ is an equivalence relation on $\Z \times \Z^{+}$.
+The set of \textbf{rational numbers} $\Q$ is defined as
+\[
+\Q \coloneqq (\Z \times \Z^{+}) / \sim
+\]
+
+\bigskip
+
+\begin{definition} \label{an:def:operations-on-Q}
+    Let $[(a, b)], [(c, d)] \in \Q$ be given.
+    \\[3mm]
+    The \textbf{addition} $+$ on $\Q$ is defined as
+    \[
+    [(a, b)] + [(c, d)] \coloneqq [(ad + bc, bd)]
+    \]
+    The \textbf{multiplication} $\cdot$ on $\Q$ is defined as
+    \[
+    [(a, b)] \cdot [(c, d)] \coloneqq [(ac, bd)]
+    \]
+\end{definition}
+
+\bigskip
+
+\begin{theorem} \label{an:thm:properties-of-operations-on-Q}
+    Let $p, q, r \in \Q$ be given. Then the following properties hold:
+    \begin{itemize}
+        \item $p + q = q + p$
+        \item $(p + q) + r = p + (q + r)$
+        \item $p \cdot q = q \cdot p$
+        \item $(p \cdot q) \cdot r = p \cdot (q \cdot r)$
+        \item $p \cdot (q + r) = (p \cdot q) + (p \cdot r)$
+    \end{itemize}
+\end{theorem}
+
+\begin{proof}
+    The proof follows directly from \Cref{an:def:operations-on-Q,an:thm:properties-of-operations-on-Z}.
+\end{proof}
+
+\bigskip
+
+\begin{remark}
+Strictly speaking, the constructions of $\N$, $\Z$, and $\Q$ produce \textbf{different kind} of sets. For example,
+\begin{itemize}
+    \item $n \in \N$
+    \item $[(n + 1, 1)] \in \Z$
+    \item $[(n, [(2, 1)])] \in \Q$
+\end{itemize}
+are distinct objects in the underlying set-theoretic construction. Nevertheless, there are \textbf{canonical embeddings}
+\begin{itemize}
+    \item $\N \xrightarrow{\cong} \Z$ such that $n \mapsto [(n + 1, 1)]$
+    \item $\Z \xrightarrow{\cong} \Q$ such that $a \mapsto [(a, [(2, 1)])]$
+\end{itemize}
+which preserve the \textbf{algebraic operations}. We therefore identify
+each number system with its image in the next larger one and write
+\[
+\N \subseteq \Z \subseteq \Q
+\]
+This identification is justified by the fact that the embeddings are canonical,
+requiring \textbf{no arbitrary choices}. Throughout this textbook, inclusions such as
+\[
+\N \subseteq \Z \subseteq \Q \subseteq \R \subseteq \C
+\]
+should be understood as canonical identifications rather than
+literal inclusions arising directly from the set-theoretic constructions.
+\end{remark}
+
+\bigskip
+
+\begin{remark}
+    Define
+    \[
+    0 \coloneqq [(1, 1)] \in \Z
+    \]
+    In this textbook, we will use the following notations:
+    \begin{itemize}
+        \item $\N_{0} \coloneqq \N \cup \set*{0} \subseteq \Z$
+        \item $\N_{n} \coloneqq \setbuilder*{k \in \N}{k \geq n} =
+        \set*{n, n + 1, n + 2, \dots} \subseteq \N$ for each $n \in \N$
+        \item $\N^{0} \coloneqq \vnot$
+        \item $\N^{m} \coloneqq \setbuilder*{k \in \N}{k \leq m} =
+        \set*{1, 2, \dots, m} \subseteq \N$ for each $m \in \N$
+        \item $\N_{n}^{m} \coloneqq \setbuilder*{k \in \N_{n}}{k \leq m} =
+        \set*{n, n + 1, \dots, m} \subseteq \N_{0}$ for each $n, m \in \N_{0}$ with $n \leq m$
+    \end{itemize}
+\end{remark}

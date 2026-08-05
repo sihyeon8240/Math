@@ -1,0 +1,194 @@
+\begin{proof}
+    Define
+    \[
+    \begin{array}{c@{\qquad\quad}c@{\qquad\quad}c}
+        t_{1} \coloneqq by & T_{1} \coloneqq \setbuilder*{t \in S_{b}}{t \leq t_{1}} &
+        a_{1} \coloneqq \max T_{1} \\
+        t_{2} \coloneqq b^{2}y - ba_{1} & T_{2} \coloneqq \setbuilder*{t \in S_{b}}{t \leq t_{2}} &
+        a_{2} \coloneqq \max T_{2} \\
+        \vdots & \vdots & \vdots \\
+        t_{n} \coloneqq b^{n}y - \sum_{k = 1}^{n - 1} a_{k}b^{n - k} &
+        T_{n} \coloneqq \setbuilder*{t \in S_{b}}{t \leq t_{n}} & a_{n} \coloneqq \max T_{n}
+    \end{array}
+    \]
+    Let $m \in \N$ be given. If $0 \leq t_{m} < b$, then
+    \begin{itemize}
+        \item $0 \in T_{m}$
+        \item $T_{m}$ is bounded above by $b - 1$
+    \end{itemize}
+    By \Cref{an:thm:bounded-subset-of-Z-in-Z-has-extremum},
+    \[
+    \begin{array}{c}
+        \exists M \in S_{b}, M = \max T_{m} \\
+        \Downarrow \\
+        a_{m} = M \text{ is well-defined}
+    \end{array}
+    \]
+    Define $P(n):$
+    \begin{itemize}
+        \item $0 \leq t_{n} < b$
+        \item $\forall k \in \N^{n}, a_{k} = \max T_{k}$ is well-defined
+    \end{itemize}
+    We will show that $P(n)$ is true for all $n \in \N$.
+    \begin{itemize}
+        \item \textbf{Base case:} Since $0 \leq t_{1} = by < b$,
+        \begin{itemize}
+            \item $0 \in T_{1}$
+            \item $T_{1}$ is bounded above by $b - 1$
+        \end{itemize}
+        By \Cref{an:thm:bounded-subset-of-Z-in-Z-has-extremum},
+        \[
+        \begin{array}{c}
+            a_{1} = \max T_{1} \text{ is well-defined} \\
+            \Downarrow \\
+            P(1) \text{ is true}
+        \end{array}
+        \]
+        \item \textbf{Inductive step:} Let $P(n)$ be true for $n \in \N$. Then
+        \begin{align*}
+            t_{n + 1} &= b^{n + 1}y - \sum_{k = 1}^{n} a_{k}b^{n + 1 - k} \\
+            &= b\paren*{b^{n}y - \sum_{k = 1}^{n} a_{k}b^{n - k}} \\
+            &= b\paren*{b^{n}y - \sum_{k = 1}^{n - 1} a_{k}b^{n - k} - a_{n}} \\
+            &= b\paren*{t_{n} - a_{n}}
+        \end{align*}
+        By the inductive hypothesis,
+        \begin{itemize}
+            \item $0 \leq t_{n} < b$
+            \item $a_{n} = \max T_{n}$
+        \end{itemize}
+        Then
+        \[
+        \begin{array}{c}
+            a_{n} \leq t_{n} < a_{n} + 1 \\
+            \Downarrow \\
+            0 \leq t_{n} - a_{n} < 1 \\
+            \Downarrow \\
+            0 \leq t_{n + 1} = b(t_{n} - a_{n}) < b \\
+            \Downarrow \\
+            P(n + 1) \text{ is true}
+        \end{array}
+        \]
+    \end{itemize}
+    By the \emph{principle of mathematical induction}, $P(n)$ is true for all $n \in \N$. Then
+    \[
+    \begin{array}{c}
+        a_{n} \leq b^{n}y - \sum_{k = 1}^{n - 1} a_{k}b^{n - k} < a_{n} + 1 \\
+        \Downarrow \\
+        0 \leq b^{n}y - \sum_{k = 1}^{n} a_{k}b^{n - k} < 1 \\
+        \Downarrow \\
+        0 \leq y - \sum_{k = 1}^{n} \frac{a_{k}}{b^{k}} < \frac{1}{b^{n}}
+    \end{array}
+    \]
+    for all $n \in \N$. This guarantees the \emph{existence} of a \emph{greedy base $b$ expansion} of $y$.
+    Let two sequences $\paren*{a_{n}}_{n = 1}^{\infty}$ and $\paren*{c_{n}}_{n = 1}^{\infty}$ satisfy
+    \begin{itemize}
+        \item $\forall n \in \N, 0 \leq y - \sum_{k = 1}^{n} \frac{a_{k}}{b^{k}} < \frac{1}{b^{n}}$
+        \item $\forall n \in \N, 0 \leq y - \sum_{k = 1}^{n} \frac{c_{k}}{b^{k}} < \frac{1}{b^{n}}$
+    \end{itemize}
+    where
+    \[
+    \forall k \in \N, a_{k} \in S_{b} \land c_{k} \in S_{b}
+    \]
+    We will show that
+    \[
+    \forall n \in \N, a_{n} = c_{n}
+    \]
+    Define
+    \[
+    Q(n): \forall k \in \N^{n}, a_{k} = c_{k}
+    \]
+    We will show that $Q(n)$ is true for all $n \in \N$.
+    \begin{itemize}
+        \item \textbf{Base case:} By the assumption,
+        \[
+        \begin{array}{c@{\qquad\qquad\qquad}c}
+            0 \leq y - \frac{a_{1}}{b} < \frac{1}{b} & 0 \leq y - \frac{c_{1}}{b} < \frac{1}{b} \\
+            \Downarrow & \Downarrow \\
+            \frac{a_{1}}{b} \leq y < \frac{a_{1} + 1}{b} & \frac{c_{1}}{b} \leq y < \frac{c_{1} + 1}{b}
+        \end{array}
+        \]
+        By combining the two inequalities,
+        \[
+        \begin{array}{c@{\qquad\qquad\qquad}c}
+            \frac{a_{1}}{b} \leq y < \frac{c_{1} + 1}{b} & \frac{c_{1}}{b} \leq y < \frac{a_{1} + 1}{b} \\
+            \Downarrow & \Downarrow \\
+            a_{1} < c_{1} + 1 & c_{1} < a_{1} + 1 \\
+            \Downarrow & \Downarrow \\
+            a_{1} \leq c_{1} & c_{1} \leq a_{1}
+        \end{array}
+        \]
+        Therefore,
+        \[
+        \begin{array}{c}
+            a_{1} = c_{1} \\
+            \Downarrow \\
+            Q(1) \text{ is true}
+        \end{array}
+        \]
+        \item \textbf{Inductive step:} Let $Q(n)$ be true for $n \in \N$. Then
+        \[
+        \begin{array}{c@{\qquad\quad\qquad}c}
+            0 \leq y - \sum_{k = 1}^{n + 1} \frac{a_{k}}{b^{k}} < \frac{1}{b^{n + 1}} &
+            0 \leq y - \sum_{k = 1}^{n + 1} \frac{c_{k}}{b^{k}} < \frac{1}{b^{n + 1}} \\
+            \Downarrow & \Downarrow \\
+            \sum_{k = 1}^{n + 1} \frac{a_{k}}{b^{k}} \leq y <
+            \sum_{k = 1}^{n + 1} \frac{a_{k}}{b^{k}} + \frac{1}{b^{n + 1}} &
+            \sum_{k = 1}^{n + 1} \frac{c_{k}}{b^{k}} \leq y <
+            \sum_{k = 1}^{n + 1} \frac{c_{k}}{b^{k}} + \frac{1}{b^{n + 1}}
+        \end{array}
+        \]
+        By combining the two inequalities,
+        \[
+        \begin{array}{c@{\qquad\quad\qquad}c}
+            \sum_{k = 1}^{n + 1} \frac{a_{k}}{b^{k}} \leq y <
+            \sum_{k = 1}^{n + 1} \frac{c_{k}}{b^{k}} + \frac{1}{b^{n + 1}} &
+            \sum_{k = 1}^{n + 1} \frac{c_{k}}{b^{k}} \leq y <
+            \sum_{k = 1}^{n + 1} \frac{a_{k}}{b^{k}} + \frac{1}{b^{n + 1}} \\
+            \Downarrow & \Downarrow \\
+            \sum_{k = 1}^{n + 1} \frac{a_{k} - c_{k}}{b^{k}} < \frac{1}{b^{n + 1}} &
+            \sum_{k = 1}^{n + 1} \frac{c_{k} - a_{k}}{b^{k}} < \frac{1}{b^{n + 1}}
+        \end{array}
+        \]
+        By the inductive hypothesis,
+        \[
+        \forall k \in \N^{n}, a_{k} = c_{k}
+        \]
+        Then
+        \[
+        \begin{array}{c@{\qquad\qquad\qquad}c}
+            \frac{a_{n + 1} - c_{n + 1}}{b^{n + 1}} < \frac{1}{b^{n + 1}} &
+            \frac{c_{n + 1} - a_{n + 1}}{b^{n + 1}} < \frac{1}{b^{n + 1}} \\
+            \Downarrow & \Downarrow \\
+            a_{n + 1} - c_{n + 1} < 1 &
+            c_{n + 1} - a_{n + 1} < 1 \\
+            \Downarrow & \Downarrow \\
+            a_{n + 1} \leq c_{n + 1} &
+            c_{n + 1} \leq a_{n + 1}
+        \end{array}
+        \]
+        Therefore,
+        \[
+        \begin{array}{c}
+            a_{n + 1} = c_{n + 1} \\
+            \Downarrow \\
+            Q(n + 1) \text{ is true}
+        \end{array}
+        \]
+    \end{itemize}
+    By the \emph{principle of mathematical induction}, $Q(n)$ is true for all $n \in \N$.
+    This guarantees the \emph{uniqueness} of the \emph{greedy base $b$ expansion} of $y$.
+\end{proof}
+
+\bigskip
+
+\begin{theorem} \label{an:thm:same-greedy-base-expansion-implies-equality}
+    Let $b \in \N_{2}$ be given. Let
+    \begin{itemize}
+        \item $\paren*{a_{n}}_{n = 1}^{\infty}$ be the greedy base $b$ expansion of $a \in [0, 1)$
+        \item $\paren*{c_{n}}_{n = 1}^{\infty}$ be the greedy base $b$ expansion of $c \in [0, 1)$
+    \end{itemize}
+    Then
+    \[
+    (\forall n \in \N, a_{n} = c_{n}) \implies a = c
+    \]
+\end{theorem}

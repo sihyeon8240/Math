@@ -1,0 +1,176 @@
+\bigskip
+
+\begin{theorem} \label{an:thm:product-of-two-countable-sets-is-countable}
+    \[
+    \forall X \forall Y, \abs*{X} = \aleph_{0} \land \abs*{Y} = \aleph_{0} \implies \abs*{X \times Y} = \aleph_{0}
+    \]
+\end{theorem}
+
+\begin{proof}
+    Since $X$ and $Y$ are countable,
+    \begin{itemize}
+        \item $\exists f: \N \xrightarrow{\sim} X$
+        \item $\exists g: \N \xrightarrow{\sim} Y$
+    \end{itemize}
+    Define $h: \N \times \N \xrightarrow{\sim} X \times Y$ as
+    \[
+    \forall m, n \in \N, h(m, n) = (f(m), g(n))
+    \]
+    By \Cref{an:lem:N-times-N-is-countable},
+    \[
+    \abs*{X \times Y} = \aleph_{0}
+    \]
+\end{proof}
+
+\bigskip
+
+\begin{theorem} \label{an:thm:product-of-finite-countable-sets-is-countable}
+    \[
+    \forall n \in \N, \paren*{\forall k \in \N^{n}, \abs*{X_{k}} = \aleph_{0}}
+    \implies \abs*{\prod_{k = 1}^{n} X_{k}} = \aleph_{0}
+    \]
+\end{theorem}
+
+\begin{proof}
+    Define
+    \[
+    P(n): \paren*{\forall k \in \N^{n}, \abs*{X_{k}} = \aleph_{0}} \implies \abs*{\prod_{k = 1}^{n} X_{k}} = \aleph_{0}
+    \]
+    We will show that $P(n)$ is true for all $n \in \N$.
+    \begin{itemize}
+        \item \textbf{Base case:} Let $\abs*{X_{1}} = \aleph_{0}$ be given. Then
+        \[
+        \begin{array}{c}
+            \abs*{X_{1}} = \aleph_{0} \\
+            \Downarrow \\
+            \abs*{\prod_{k = 1}^{1} X_{k}} = \aleph_{0} \\
+            \Downarrow \\
+            P(1) \text{ is true}
+        \end{array}
+        \]
+        \item \textbf{Inductive step:} Let $P(n)$ be true for $n \in \N$. Assume that
+        \[
+        \forall k \in \N^{n + 1}, \abs*{X_{k}} = \aleph_{0}
+        \]
+        By the inductive hypothesis,
+        \begin{itemize}
+            \item $\abs*{\prod_{k = 1}^{n} X_{k}} = \aleph_{0}$
+            \item $\abs*{X_{n + 1}} = \aleph_{0}$
+        \end{itemize}
+        By \Cref{an:thm:product-of-two-countable-sets-is-countable},
+        \[
+        \begin{array}{c}
+            \prod_{k = 1}^{n + 1} X_{k} = \paren*{\prod_{k = 1}^{n} X_{k}} \times X_{n + 1} \\
+            \Downarrow \\
+            \abs*{\prod_{k = 1}^{n + 1} X_{k}} = \aleph_{0} \\
+            \Downarrow \\
+            P(n + 1) \text{ is true}
+        \end{array}
+        \]
+    \end{itemize}
+    By the \emph{principle of mathematical induction}, $P(n)$ is true for all $n \in \N$.
+\end{proof}
+
+\bigskip
+
+\begin{theorem} \label{an:thm:Q-is-countable}
+    \[
+    \abs*{\Q} = \aleph_{0}
+    \]
+\end{theorem}
+
+\begin{proof}
+    Let $q \in \Q$ be given. Then
+    \[
+    \exists m \in \Z, \exists n \in \N, q = \frac{m}{n}
+    \]
+    Define $f: \Z \times \N \twoheadrightarrow \Q$ as
+    \[
+    \forall m \in \Z \forall n \in \N, f(m, n) = \frac{m}{n}
+    \]
+    By \Cref{an:thm:Z-is-countable,an:thm:product-of-two-countable-sets-is-countable},
+    \[
+    \begin{array}{c}
+        \abs*{\Z \times \N} = \aleph_{0} \\
+        \Downarrow \\
+        \exists g: \N \xrightarrow{\sim} \Z \times \N
+    \end{array}
+    \]
+    By \Cref{an:lem:N-is-infinite,an:thm:subset-of-finite-set-is-finite},
+    \[
+    \begin{array}{c}
+        \N \subseteq \Q \\
+        \Downarrow \\
+        \abs*{\Q} \geq \aleph_{0}
+    \end{array}
+    \]
+    By \Cref{an:thm:properties-of-composition-functions,an:thm:surjection-from-N},
+    \[
+    \begin{array}{c}
+        \exists f \circ g: \N \twoheadrightarrow \Q \\
+        \Downarrow \\
+        \abs*{\Q} = \aleph_{0}
+    \end{array}
+    \]
+\end{proof}
+
+\bigskip
+
+\begin{lemma} \label{an:lem:infinite-product-of-finite-sets-is-uncountable}
+    \[
+    \abs*{\prod_{n = 1}^{\infty} \set*{0, 1}} > \aleph_{0}
+    \]
+\end{lemma}
+
+\begin{proof}
+    Define $\paren*{e_{n}}_{n = 1}^{\infty}$ in $\prod_{n = 1}^{\infty} \set*{0, 1}$ as
+    \[
+    \forall m \in \N, e_{nm} = \begin{dcases}
+        1 & \text{if } m = n \\
+        0 & \text{otherwise}
+    \end{dcases}
+    \]
+    for each $n \in \N$. Define $f: \N \hookrightarrow \prod_{n = 1}^{\infty} \set*{0, 1}$ as
+    \[
+    \forall n \in \N, f(n) = e_{n}
+    \]
+    By \Cref{an:lem:N-is-infinite,an:thm:injection-from-infinite-set-implies-infinite},
+    \[
+    \abs*{\prod_{n = 1}^{\infty} \set*{0, 1}} \geq \aleph_{0}
+    \]
+    If $\prod_{n = 1}^{\infty} \set*{0, 1}$ is countable, then
+    \[
+    \exists g: \N \xrightarrow{\sim} \prod_{n = 1}^{\infty} \set*{0, 1}
+    \]
+    Let
+    \begin{itemize}
+        \item $\prod_{n = 1}^{\infty} \set*{0, 1} = \set*{a_{1}, a_{2}, a_{3}, \dots}$
+        \item $a_{1} = (a_{11}, a_{12}, a_{13}, \dots)$
+        \item $a_{2} = (a_{21}, a_{22}, a_{23}, \dots)$
+        \item[] $\vdots$
+    \end{itemize}
+    be given, where
+    \[
+    \forall n \in \N, a_{n} = g(n)
+    \]
+    Define $b = (b_{1}, b_{2}, b_{3}, \dots) \in \prod_{n = 1}^{\infty} \set*{0, 1}$ as
+    \[
+    \forall n \in \N, b_{n} = 1 - a_{nn}
+    \]
+    Then
+    \[
+    \begin{array}{c}
+        \forall n \in \N, b \neq a_{n} \\
+        \Downarrow \\
+        b \notin \set*{a_{1}, a_{2}, a_{3}, \dots} = \prod_{n = 1}^{\infty} \set*{0, 1} \\
+        \Downarrow \\
+        g \text{ is not surjective} \\
+        \Downarrow \\
+        \bot
+    \end{array}
+    \]
+    Therefore,
+    \[
+    \abs*{\prod_{n = 1}^{\infty} \set*{0, 1}} > \aleph_{0}
+    \]
+\end{proof}

@@ -1,0 +1,19 @@
+name: Typo or editorial issue
+description: Report spelling, grammar, notation, or formatting
+title: "[Typo] "
+labels: [typo]
+body:
+  - type: dropdown
+    id: book
+    attributes:
+      label: Textbook
+      options: [Elementary Number Theory, Linear Algebra, Mathematical Analysis]
+    validations: {required: true}
+  - type: input
+    id: location
+    attributes: {label: Location, description: Chapter, section, page, or source path.}
+    validations: {required: true}
+  - type: textarea
+    id: correction
+    attributes: {label: Current text and suggested correction}
+    validations: {required: true}

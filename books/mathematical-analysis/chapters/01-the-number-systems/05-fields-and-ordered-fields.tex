@@ -1,0 +1,52 @@
+\section{Fields and Ordered Fields}
+
+A set $F$ is called a \textbf{field} if it is equipped with two binary operations
+\begin{itemize}
+    \item \textbf{addition} $+$
+    \item \textbf{multiplication} $\cdot$
+\end{itemize}
+and satisfies the following axioms:
+\begin{enumerate}[label=\textbf{(\Alph*)}]
+    \item Axioms for \textbf{addition}
+    \begin{itemize}
+        \item $\forall x, y \in F, x + y \in F$
+        \item $\forall x, y \in F, x + y = y + x$
+        \item $\forall x, y, z \in F, (x + y) + z = x + (y + z)$
+        \item $\exists 0 \in F, \forall x \in F, x + 0 = x$
+        \item $\forall x \in F, \exists -x \in F, x + (-x) = 0$
+    \end{itemize}
+    \item Axioms for \textbf{multiplication}
+    \begin{itemize}
+        \item $\forall x, y \in F, x \cdot y \in F$
+        \item $\forall x, y \in F, x \cdot y = y \cdot x$
+        \item $\forall x, y, z \in F, (x \cdot y) \cdot z = x \cdot (y \cdot z)$
+        \item $\exists 1 \in F, 1 \neq 0 \land (\forall x \in F, x \cdot 1 = x)$
+        \item $\forall x \in F, x \neq 0 \implies \exists x^{-1} \in F, x \cdot x^{-1} = 1$
+    \end{itemize}
+    \item The \textbf{distributive law}
+    \begin{itemize}
+        \item $\forall x, y, z \in F, x \cdot (y + z) = x \cdot y + x \cdot z$
+    \end{itemize}
+\end{enumerate}
+
+\bigskip
+
+A set $F$ is called an \textbf{ordered field} if
+\begin{itemize}
+    \item $F$ is a field
+    \item $F$ is an ordered set
+\end{itemize}
+and satisfies the following axioms:
+\begin{itemize}
+    \item $\forall x, y, z \in F, x < y \implies x + z < y + z$
+    \item $\forall x, y \in F, x > 0 \land y > 0 \implies x \cdot y > 0$
+\end{itemize}
+
+\bigskip
+
+\begin{example}
+    $(\Q, +, \cdot)$ is an ordered field, while $(\Z, +, \cdot)$ is not an ordered field since
+    \[
+    \nexists 2^{-1} \in \Z, 2 \cdot 2^{-1} = 1
+    \]
+\end{example}

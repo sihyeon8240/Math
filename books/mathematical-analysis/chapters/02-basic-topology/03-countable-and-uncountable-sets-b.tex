@@ -1,0 +1,222 @@
+\bigskip
+
+\begin{lemma} \label{an:lem:infinite-subset-of-N-is-countable}
+    \[
+    \forall X \subseteq \N, \abs*{X} \geq \aleph_{0} \implies \abs*{X} = \aleph_{0}
+    \]
+\end{lemma}
+
+\begin{proof}
+    Assume that
+    \begin{itemize}
+        \item $X \subseteq \N$
+        \item $\abs*{X} \geq \aleph_{0}$
+    \end{itemize}
+    Define $\paren*{X_{n}}_{n = 1}^{\infty}$ and $f: \N \to X$ as
+    \[
+    \begin{array}{c@{\qquad\qquad\qquad}c}
+        X_{1} = X \subseteq \N & f(1) = \min X_{1} \\
+        X_{2} = X_{1} \setminus \set*{f(1)} \subseteq \N & f(2) = \min X_{2} \\
+        \vdots & \vdots \\
+        X_{n + 1} = X_{n} \setminus \set*{f(n)} \subseteq \N & f(n + 1) = \min X_{n + 1}
+    \end{array}
+    \]
+    for each $n \in \N$. By \Cref{an:thm:well-ordering-property,an:thm:infinite-set-minus-finite-set-is-infinite},
+    \[
+    \begin{array}{c}
+        \forall n \in \N, \abs*{X_{n}} \geq \aleph_{0} \\
+        \Downarrow \\
+        \forall n \in \N, X_{n} \neq \vnot \\
+        \Downarrow \\
+        \forall n \in \N, \exists f(n) = \min X_{n} \in X_{n} \\
+        \Downarrow \\
+        f \text{ is well-defined}
+    \end{array}
+    \]
+    We will show that
+    \[
+    \begin{array}{c}
+        f \text{ is bijective} \\
+        \Downarrow \\
+        \abs*{X} = \aleph_{0}
+    \end{array}
+    \]
+    \begin{itemize}
+        \item \textbf{Injectivity:} Let $n_{1} \neq n_{2}$ (\emph{WLOG}
+        $n_{1} < n_{2}$) be given for $n_{1}, n_{2} \in \N$.
+        \begin{itemize}
+            \item $f(n_{1}) = \min X_{n_{1}} \in X_{n_{1}}$
+            \item $f(n_{2}) = \min X_{n_{2}} \in X_{n_{2}}$
+        \end{itemize}
+        Then
+        \[
+        \begin{array}{c}
+            X_{n_{2}} \subseteq X_{n_{1}} \setminus \set*{f(n_{1})} \\
+            \Downarrow \\
+            f(n_{2}) \neq f(n_{1}) \\
+            \Downarrow \\
+            f \text{ is injective}
+        \end{array}
+        \]
+        \item \textbf{Surjectivity:} Let $x \in X$ be given. Define
+        \[
+        S \coloneqq \setbuilder*{n \in X}{n < x}
+        \]
+        By \Cref{an:lem:subset-of-Nn-is-finite},
+        \[
+        \begin{array}{c}
+            S \subseteq \N^{x - 1} \\
+            \Downarrow \\
+            \abs*{S} < \aleph_{0} \\
+            \Downarrow \\
+            \exists k \in \N_{0}, \abs*{S} = k
+        \end{array}
+        \]
+        If $k = 0$, then
+        \begin{itemize}
+            \item $S = \vnot$
+            \item $x = \min X_{1} = f(1)$
+        \end{itemize}
+        Otherwise,
+        \begin{itemize}
+            \item $S = \set*{s_{1}, s_{2}, \dots, s_{k}}$
+            \item $s_{1} < s_{2} < \dots < s_{k}$
+        \end{itemize}
+        Then
+        \[
+        \begin{array}{c@{\qquad\qquad\qquad}c}
+            \min X_{1} = \min S & X_{2} = X \setminus \set*{s_{1}} \\
+            \min X_{2} = \min S \setminus \set*{s_{1}} & X_{3} = X \setminus \set*{s_{1}, s_{2}} \\
+            \vdots & \vdots \\
+            \min X_{k} = \min S \setminus \set*{s_{1}, s_{2}, \dots, s_{k - 1}} & X_{k + 1} = X \setminus S
+        \end{array}
+        \]
+        Therefore,
+        \[
+        \begin{array}{c}
+            f(k + 1) = \min X_{k + 1} = x \\
+            \Downarrow \\
+            f \text{ is surjective} \\
+        \end{array}
+        \]
+    \end{itemize}
+\end{proof}
+
+\bigskip
+
+\begin{theorem} \label{an:thm:infinite-subset-of-countable-set-is-countable}
+    \[
+    \forall X, \forall Y \subseteq X, \abs*{X} = \aleph_{0} \land \abs*{Y} \geq \aleph_{0} \implies \abs*{Y} = \aleph_{0}
+    \]
+\end{theorem}
+
+\begin{proof}
+    Assume that
+    \begin{itemize}
+        \item $Y \subseteq X$
+        \item $\abs*{X} = \aleph_{0}$
+        \item $\abs*{Y} \geq \aleph_{0}$
+    \end{itemize}
+    By \Cref{an:thm:properties-of-restriction-functions},
+    \[
+    \begin{array}{c}
+        \exists f: \N \xrightarrow{\sim} X \\
+        \Downarrow \\
+        \exists f|_{f^{-1}(Y)}^{Y}: f^{-1}(Y) \xrightarrow{\sim} Y \\
+    \end{array}
+    \]
+    By \Cref{an:thm:surjection-from-finite-set-implies-finite}, if $f^{-1}(Y)$ is finite, then
+    \[
+    \begin{array}{c}
+        \abs*{f^{-1}(Y)} < \aleph_{0} \\
+        \Downarrow \\
+        \abs*{Y} < \aleph_{0} \\
+        \Downarrow \\
+        \bot
+    \end{array}
+    \]
+    Therefore,
+    \[
+    \abs*{f^{-1}(Y)} \geq \aleph_{0}
+    \]
+    By \Cref{an:lem:infinite-subset-of-N-is-countable},
+    \[
+    \begin{array}{c}
+        \abs*{f^{-1}(Y)} \subseteq \N \\
+        \Downarrow \\
+        \abs*{f^{-1}(Y)} = \aleph_{0} \\
+        \Downarrow \\
+        \exists g: \N \xrightarrow{\sim} f^{-1}(Y) \\
+        \Downarrow \\
+        \exists f|_{f^{-1}(Y)}^{Y} \circ g: \N \xrightarrow{\sim} Y \\
+        \Downarrow \\
+        \abs*{Y} = \aleph_{0}
+    \end{array}
+    \]
+\end{proof}
+
+\bigskip
+
+\begin{theorem} \label{an:thm:surjection-from-N}
+    \[
+    \forall X, \abs*{X} \geq \aleph_{0} \land \paren*{\exists f: \N \twoheadrightarrow X} \implies \abs*{X} = \aleph_{0}
+    \]
+\end{theorem}
+
+\begin{proof}
+    Assume that
+    \begin{itemize}
+        \item $\abs*{X} \geq \aleph_{0}$
+        \item $\exists f: \N \twoheadrightarrow X$
+    \end{itemize}
+    Define
+    \[
+    S_{k} \coloneqq f^{-1}(\set*{k})
+    \]
+    for each $k \in X$. By \Cref{an:thm:well-ordering-property},
+    \[
+    \begin{array}{c}
+        f \text{ is surjective} \\
+        \Downarrow \\
+        \forall k \in X, S_{k} \neq \vnot \\
+        \Downarrow \\
+        \forall k \in X, \exists m \in S_{k}, m = \min S_{k} \\
+    \end{array}
+    \]
+    Define $g: X \to \N$ as
+    \[
+    \forall k \in X, g(k) = \min S_{k}
+    \]
+    Let $k_{1}, k_{2} \in X$ be given. Then
+    \[
+    \begin{array}{c}
+        \forall i,j \in X, i \neq j \implies S_{i} \cap S_{j} = \vnot \\
+        \Downarrow \\
+        g(k_{1}) = g(k_{2}) \implies \min S_{k_{1}} = \min S_{k_{2}} \implies k_{1} = k_{2} \\
+        \Downarrow \\
+        g \text{ is injective}
+    \end{array}
+    \]
+    By \Cref{an:thm:properties-of-restriction-functions},
+    \[
+    \exists g|^{g(X)}: X \xrightarrow{\sim} g(X)
+    \]
+    By \Cref{an:thm:injection-from-infinite-set-implies-infinite},
+    \[
+    \begin{array}{c}
+        \abs*{X} \geq \aleph_{0} \\
+        \Downarrow \\
+        \abs*{g(X)} \geq \aleph_{0} \\
+    \end{array}
+    \]
+    By \Cref{an:lem:infinite-subset-of-N-is-countable},
+    \[
+    \begin{array}{c}
+        g(X) \subseteq \N \\
+        \Downarrow \\
+        \abs*{g(X)} = \aleph_{0} \\
+        \Downarrow \\
+        \abs*{X} = \aleph_{0}
+    \end{array}
+    \]
+\end{proof}

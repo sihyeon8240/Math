@@ -1,0 +1,177 @@
+\section{Functions} \label{an:sec:functions}
+
+A \textbf{function} (or \emph{mapping}) is defined with the following three components:
+\begin{itemize}
+    \item A \textbf{domain} $X$
+    \item A \textbf{codomain} $Y$
+    \item A \textbf{rule} $f$ which assigns a \emph{unique} element $y \in Y$ to each $x \in X$
+\end{itemize}
+$f$ is said to be a function from $X$ to $Y$, which is denoted by
+\[
+f: X \to Y
+\]
+For each $x \in X$, the \emph{unique} element $y \in Y$ assigned to $x$ is denoted by
+\[
+y = f(x)
+\]
+
+\bigskip
+
+\begin{definition} \label{an:def:image}
+    Let $f: X \to Y$ be given. For every $E \subseteq X$, the \textbf{image} of $E$ under $f$ is defined as
+    \[
+    f(E) \coloneqq \setbuilder*{f(x)}{x \in E} \subseteq Y
+    \]
+    In particular, if $E = X$, then $f(X) \subseteq Y$ is called the \textbf{range} of $f$.
+\end{definition}
+
+\bigskip
+
+\begin{definition} \label{an:def:inverse-image}
+    Let $f: X \to Y$ be given. For every $E \subseteq Y$, the \textbf{inverse image} of $E$ under $f$ is defined as
+    \[
+    f^{-1}(E) \coloneqq \setbuilder*{x \in X}{f(x) \in E} \subseteq X
+    \]
+\end{definition}
+
+\bigskip
+
+\begin{definition} \label{an:def:injective-surjective-bijective}
+    Let $f: X \to Y$ be given.
+    \begin{itemize}
+        \item $f$ is \textbf{injective} (or \emph{one-to-one}) if
+        \[
+        \forall x_{1}, x_{2} \in X, f(x_{1}) = f(x_{2}) \implies x_1 = x_2
+        \]
+        \item $f$ is \textbf{surjective} (or \emph{onto}) if
+        \[
+        \forall y \in Y, \exists x \in X, f(x) = y
+        \]
+        or equivalently,
+        \[
+        f(X) = Y
+        \]
+        \item $f$ is \textbf{bijective} if it is both injective and surjective
+    \end{itemize}
+\end{definition}
+
+\bigskip
+
+\begin{remark}
+    The following notations are used to denote the properties of functions:
+    \begin{itemize}
+        \item $f: X \hookrightarrow Y$ denotes that $f$ is injective
+        \item $f: X \twoheadrightarrow Y$ denotes that $f$ is surjective
+        \item $f: X \xrightarrow{\sim} Y$ or $f: X \xrightarrow{\cong} Y$ denotes that $f$ is bijective
+    \end{itemize}
+\end{remark}
+
+\bigskip
+
+\begin{definition} \label{an:def:inverse-function}
+    Let $f: X \xrightarrow{\sim} Y$ be given. The \textbf{inverse function} $f^{-1}: Y \to X$ of $f$ is defined as
+    \[
+    \forall x \in X, f^{-1}(f(x)) = x
+    \]
+    If
+    \begin{itemize}
+        \item $f^{-1}(y) = x_{1}$
+        \item $f^{-1}(y) = x_{2}$
+    \end{itemize}
+    then
+    \begin{itemize}
+        \item $f(x_{1}) = y$
+        \item $f(x_{2}) = y$
+    \end{itemize}
+    Since $f$ is injective,
+    \[
+    \begin{array}{c}
+        f(x_{1}) = f(x_{2}) \\
+        \Downarrow \\
+        x_{1} = x_{2} \\
+    \end{array}
+    \]
+    Since $f$ is surjective,
+    \[
+    \forall y \in Y, \exists x \in X, f(x) = y
+    \]
+    Therefore, $f^{-1}$ is well-defined.
+\end{definition}
+
+\bigskip
+
+\begin{theorem} \label{an:thm:inverse-function-is-bijective}
+    Let $f: X \xrightarrow{\sim} Y$ be given. Then $f^{-1}: Y \to X$ is bijective.
+\end{theorem}
+
+\begin{proof}
+    Let $x \in X$ and $y_{1}, y_{2} \in Y$ be given.
+    \begin{itemize}
+        \item \textbf{Injectivity:} If
+        \[
+        f^{-1}(y_{1}) = f^{-1}(y_{2}) = x
+        \]
+        then, by \Cref{an:def:inverse-function},
+        \begin{itemize}
+            \item $f(x) = y_{1}$
+            \item $f(x) = y_{2}$
+        \end{itemize}
+        Since $f$ is a function,
+        \[
+        y_{1} = y_{2}
+        \]
+        \item \textbf{Surjectivity:} Since $f$ is a function,
+        \[
+        \begin{array}{c}
+            \forall x \in X, \exists y \in Y, f(x) = y \\
+            \Downarrow \\
+            f^{-1}(y) = x \\
+            \Downarrow \\
+            \forall x \in X, \exists y \in Y, f^{-1}(y) = x
+        \end{array}
+        \]
+    \end{itemize}
+\end{proof}
+
+\bigskip
+
+\begin{definition} \label{an:def:restriction-function}
+    Let $E \subseteq X$, $F \subseteq Y$, and $f: X \to Y$ be given.
+    The following \textbf{restriction functions} are defined as
+    \begin{itemize}
+        \item The \textbf{restriction} $f|_{E}: E \to Y$ of $f$ to $E$ is defined as
+        \[
+        \forall x \in E, f|_{E}(x) = f(x)
+        \]
+        \item The \textbf{corestriction} $f|^{F}: X \to F$ of $f$ to $F$ is defined as
+        \[
+        \forall x \in X, f|^{F}(x) = f(x)
+        \]
+        for $f(X) \subseteq F$
+        \item The \textbf{bi-restriction} $f|_{E}^{F}: E \to F$ of $f$ to $E$ and $F$ is defined as
+        \[
+        \forall x \in E, f|_{E}^{F}(x) = f(x)
+        \]
+        for $f(E) \subseteq F$
+    \end{itemize}
+\end{definition}
+
+\bigskip
+
+\begin{theorem} \label{an:thm:properties-of-restriction-functions}
+    Let $f: X \to Y$ be given. Let $E \subseteq X$ and $F \subseteq Y$ be such that
+    \[
+    f(E) \subseteq F
+    \]
+    Then the following properties hold:
+    \begin{enumerate}[label=\textbf{(\Alph*)}]
+        \item $f$ is injective $\implies f|_{E}^{F}$ is injective
+        \item $f(E) = F \implies f|_{E}^{F}$ is surjective
+        \item If
+        \begin{itemize}
+            \item $f$ is injective
+            \item $f(E) = F$
+        \end{itemize}
+        then $f|_{E}^{F}$ is bijective
+    \end{enumerate}
+\end{theorem}

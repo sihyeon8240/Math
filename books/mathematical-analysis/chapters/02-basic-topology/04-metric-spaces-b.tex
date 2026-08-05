@@ -1,0 +1,195 @@
+\bigskip
+
+\begin{theorem} \label{an:thm:arbitrary-union-of-open-sets-is-open}
+    Let $(X, d)$ be a metric space. Let $E_{y} \subseteq X$ be an open set for each $y \in Y$. Then we have
+    \[
+    \bigcup_{y \in Y} E_{y} \text{ is open}
+    \]
+    whether $Y$ is finite, countable, or uncountable. This theorem states that an arbitrary union of open sets is open.
+\end{theorem}
+
+\begin{proof}
+    Let $p \in \bigcup_{y \in Y} E_{y}$ be given. Then there exists some $y_{0} \in Y$
+    such that $p \in E_{y_{0}}$. Since $E_{y_{0}}$ is open, there exists some $r \in \R^{+}$
+    such that $N_{r}(p) \subseteq E_{y_{0}}$. Then we have
+    \[
+    N_{r}(p) \subseteq E_{y_{0}} \subseteq \bigcup_{y \in Y} E_{y},
+    \]
+    which implies that $p$ is an interior point of $\bigcup_{y \in Y} E_{y}$.
+    Since $p$ is arbitrary, $\bigcup_{y \in Y} E_{y}$ is open.
+\end{proof}
+
+\bigskip
+
+\begin{corollary} \label{an:cor:arbitrary-intersection-of-closed-sets-is-closed}
+    Let $(X, d)$ be a metric space. Let $E_{y} \subseteq X$ be a closed set for each $y \in Y$. Then we have
+    \[
+    \bigcap_{y \in Y} E_{y} \text{ is closed}
+    \]
+    whether $Y$ is finite, countable, or uncountable. This corollary states
+    that an arbitrary intersection of closed sets is closed.
+\end{corollary}
+
+\begin{proof}
+    By \Cref{an:cor:closed-set-complement-is-open-set}, $(E_{y})^{c}$ is open for each $y \in Y$.
+    Then, by \Cref{an:thm:arbitrary-union-of-open-sets-is-open}, we have
+    \[
+    \bigcup_{y \in Y} (E_{y})^{c} \text{ is open.}
+    \]
+    By \Cref{an:thm:open-set-complement-is-closed-set}, we have
+    \[
+    \bigcap_{y \in Y} E_{y} = \paren*{\bigcup_{y \in Y} (E_{y})^{c}}^{c} \text{ is closed.}
+    \]
+\end{proof}
+
+\bigskip
+
+\begin{theorem} \label{an:thm:finite-intersection-of-open-sets-is-open}
+    Let $(X, d)$ be a metric space. Let $E_{1}, E_{2}, \dots, E_{n} \subseteq X$
+    be open sets for $n \in \N$. Then we have
+    \[
+    \bigcap_{k = 1}^{n} E_{k} \text{ is open.}
+    \]
+    This theorem states that a finite intersection of open sets is open.
+\end{theorem}
+
+\begin{proof}
+    Let $p \in \bigcap_{k = 1}^{n} E_{k}$ be given. Then we have $p \in E_{j}$ for all $j = 1, 2, \dots, n$.
+    Since $E_{j}$ is open, there exists some $r_{j} \in \R^{+}$ such that $N_{r_{j}}(p) \subseteq E_{j}$ for each $j =
+    1, 2, \dots, n$. Let $R$ be a set defined as
+    \[
+    R \coloneqq \setbuilder*{r_{j}}{j = 1, 2, \dots, n} \subseteq \R^{+}.
+    \]
+    Let $f: \N^{n} \to R$ be a function defined as
+    \[
+    f(j) = r_{j}.
+    \]
+    Then $f$ is surjective. By \Cref{an:lem:subset-of-Nn-is-finite,an:thm:surjection-from-finite-set-implies-finite}, $R$ is finite.
+    Then, by \Cref{an:thm:finite-ordered-set-has-extremum}, $R$ has a minimum element, say $r = \min R > 0$. Then we have
+    \[
+    N_{r}(p) \subseteq N_{r_{j}}(p) \subseteq E_{j} \text{ for all } j = 1, 2, \dots, n
+    \implies N_{r}(p) \subseteq \bigcap_{k = 1}^{n} E_{k},
+    \]
+    which implies that $p$ is an interior point of $\bigcap_{k = 1}^{n} E_{k}$.
+    Since $p$ is arbitrary, $\bigcap_{k = 1}^{n} E_{k}$ is open.
+\end{proof}
+
+\bigskip
+
+\begin{corollary} \label{an:cor:finite-union-of-closed-sets-is-closed}
+    Let $(X, d)$ be a metric space. Let $E_{1}, E_{2}, \dots, E_{n} \subseteq X$
+    be closed sets for $n \in \N$. Then we have
+    \[
+    \bigcup_{k = 1}^{n} E_{k} \text{ is closed.}
+    \]
+    This corollary states that a finite union of closed sets is closed.
+\end{corollary}
+
+\begin{proof}
+    By \Cref{an:cor:closed-set-complement-is-open-set}, $(E_{k})^{c}$ is open for each $k = 1, 2, \dots, n$.
+    Then, by \Cref{an:thm:finite-intersection-of-open-sets-is-open}, we have
+    \[
+    \bigcap_{k = 1}^{n} (E_{k})^{c} \text{ is open.}
+    \]
+    By \Cref{an:thm:open-set-complement-is-closed-set}, we have
+    \[
+    \bigcup_{k = 1}^{n} E_{k} = \paren*{\bigcap_{k = 1}^{n} (E_{k})^{c}}^{c} \text{ is closed.}
+    \]
+\end{proof}
+
+\bigskip
+
+\begin{definition} \label{an:def:closure}
+    Let $(X, d)$ be a metric space and $E \subseteq X$. Let $E'$ be the set of all limit points of $E$.
+    The \textbf{closure} of $E$, which is denoted by $\overline{E}$, is defined as
+    \[
+    \overline{E} \coloneqq E \cup E'.
+    \]
+\end{definition}
+
+\bigskip
+
+\begin{theorem} \label{an:thm:properties-of-closure}
+    Let $(X, d)$ be a metric space and $E \subseteq X$. Then we have the following properties:
+    \begin{enumerate}[label=\textbf{(\Alph*)}]
+        \item $\overline{E}$ is closed.
+        \item $E = \overline{E} \iff E$ is closed.
+        \item For every closed subset $F \subseteq X$ such that $E \subseteq F$, we have $\overline{E} \subseteq F$.
+    \end{enumerate}
+    \textbf{(C)} states that the closure of $E$ is the smallest closed set containing $E$.
+\end{theorem}
+
+\begin{proof}
+    \begin{enumerate}[label=\textbf{(\Alph*)}]
+        \item We will show that $\paren*{\overline{E}}^{c}$ is open. Let $p \in \paren*{\overline{E}}^{c}$ be given.
+        Since $p \notin E$ and $p \notin E'$, there exists some $r \in \R^{+}$ such that
+        \[
+        E \cap \widetilde{N}_{r}(p) = \vnot \implies E \cap N_{r}(p) = \vnot \implies N_{r}(p) \subseteq E^{c}.
+        \]
+        By \Cref{an:thm:neighborhood-is-open}, $N_{r}(p)$ is open. Then, for every $q \in N_{r}(p)$,
+        there exists $\veps \in \R^{+}$ such that
+        \begin{align*}
+            N_{\veps}(q) \subseteq N_{r}(p) \subseteq E^{c}
+            \implies &E \cap N_{\veps}(q) = \vnot \\
+            \implies &E \cap \paren*{\widetilde{N}_{\veps}(q) \cup \set*{q}} = \vnot \\
+            \implies &\paren*{E \cap \widetilde{N}_{\veps}(q)} \cup \paren*{E \cap \set*{q}} = \vnot \\
+            \implies &E \cap \widetilde{N}_{\veps}(q) = \vnot \\
+            \implies &q \notin E'.
+        \end{align*}
+        Since $q$ is arbitrary, we have
+        \[
+        N_{r}(p) \subseteq \paren*{E'}^{c} \implies N_{r}(p) \subseteq
+        \paren*{\overline{E}}^{c} = E^{c} \cap \paren*{E'}^{c},
+        \]
+        which implies that $p$ is an interior point of $\paren*{\overline{E}}^{c}$. Since $p$ is arbitrary, $\paren*{
+        \overline{E}}^{c}$ is open, which implies that $\overline{E}$ is closed by \Cref{an:cor:closed-set-complement-is-open-set}.
+        \item $E$ is closed $\iff E' \subseteq E \iff E \cup E' = E \iff \overline{E} = E$.
+        \item Let $F \subseteq X$ be a closed set such that $E \subseteq F$. Let $p \in E'$ be given.
+        Then, for every $r \in \R^{+}$, we have
+        \[
+        E \cap \widetilde{N}_{r}(p) \neq \vnot \implies F \cap \widetilde{N}_{r}(p) \neq \vnot,
+        \]
+        which implies that $p \in F' \subseteq F$. Therefore, we have $E' \subseteq F$.
+        Since $E \subseteq F$, we have $\overline{E} = E \cup E' \subseteq F$.
+    \end{enumerate}
+\end{proof}
+
+\bigskip
+
+\begin{theorem} \label{an:thm:supremum-in-closure}
+    Let $\paren*{\R, \norm*{\cdot}}$ be given. Let $E \subseteq \R$ be nonempty and bounded above. Then we have
+    \[
+    \sup E \in \overline{E},
+    \]
+    which implies that
+    \[
+    E \text{ is closed} \implies \sup E \in E.
+    \]
+\end{theorem}
+
+\begin{proof}
+    By the \emph{least upper bound property},
+    there exists $\alpha = \sup E \in \R$. Assume that $\alpha \in E$. Then we have
+    \[
+    E \subseteq \overline{E} \implies \alpha \in \overline{E}.
+    \]
+    Otherwise, for every $x \in \R^{+}$, $\alpha - x$ is not an upper bound of $E$.
+    Thus there exists some $p \in E$ such that
+    \[
+    \alpha - x < p < \alpha \implies p \in \widetilde{N}_{x}(\alpha) \cap E,
+    \]
+    which implies that $\alpha \in E'$. Therefore, we have
+    \[
+    E' \subseteq \overline{E} \implies \alpha \in \overline{E}.
+    \]
+\end{proof}
+
+
+\bigskip
+
+\begin{theorem} \label{an:thm:isolated-points}
+    Let $(X, d)$ be a metric space and $E \subseteq X$. Then we have
+    \[
+    E \setminus E' = \setbuilder*{p \in X}{p \text{ is an isolated point of } E}.
+    \]
+\end{theorem}

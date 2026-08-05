@@ -1,0 +1,210 @@
+\begin{proof}
+    By \Cref{an:cor:archimedean-property-corollary}, if $a \neq c$ (\emph{WLOG} $a < c$), then
+    \[
+    \exists n \in \N, \frac{1}{b^{n}} < c - a
+    \]
+    By \Cref{an:def:greedy-base-expansion-of-real-numbers},
+    \[
+    \begin{array}{c@{\qquad\qquad\qquad}c}
+        0 \leq a - \sum_{k = 1}^{n} \frac{a_{k}}{b^{k}} < \frac{1}{b^{n}} &
+        0 \leq c - \sum_{k = 1}^{n} \frac{c_{k}}{b^{k}} < \frac{1}{b^{n}} \\
+        \Downarrow & \Downarrow \\
+        \sum_{k = 1}^{n} \frac{a_{k}}{b^{k}} + \frac{1}{b^{n}} \leq a + \frac{1}{b^{n}} &
+        c < \sum_{k = 1}^{n} \frac{c_{k}}{b^{k}} + \frac{1}{b^{n}} \\
+    \end{array}
+    \]
+    By the assumption,
+    \[
+    \begin{array}{c}
+        \forall n \in \N, a_{n} = c_{n} \\
+        \Downarrow \\
+        \sum_{k = 1}^{n} \frac{a_{k}}{b^{k}} = \sum_{k = 1}^{n} \frac{c_{k}}{b^{k}} \\
+        \Downarrow \\
+        \sum_{k = 1}^{n} \frac{a_{k}}{b^{k}} + \frac{1}{b^{n}} \leq a + \frac{1}{b^{n}}
+        < c < \sum_{k = 1}^{n} \frac{c_{k}}{b^{k}} + \frac{1}{b^{n}} \\
+        \Downarrow \\
+        \bot
+    \end{array}
+    \]
+    Therefore,
+    \[
+    a = c
+    \]
+\end{proof}
+
+\bigskip
+
+\begin{theorem} \label{an:thm:no-real-number-matching-greedy-base-expansion}
+    Let $b \in \N_{2}$ be given. Let $\paren*{a_{n}}_{n = 1}^{\infty}$ be such that
+    \[
+    \forall k \in \N, a_{k} \in S_{b}
+    \]
+    If
+    \[
+    \nexists y \in [0, 1), \paren*{a_{n}}_{n = 1}^{\infty} \text{ is the greedy base $b$ expansion of $y$}
+    \]
+    then
+    \[
+    \exists N \in \N, \forall n \in \N_{N}, a_{n} = b - 1
+    \]
+\end{theorem}
+
+\begin{proof}
+    We will prove the contrapositive: If
+    \[
+    \forall N \in \N, \exists n \in \N_{N}, a_{n} \neq b - 1
+    \]
+    then
+    \[
+    \exists y \in [0, 1), \paren*{a_{n}}_{n = 1}^{\infty} \text{ is the \emph{greedy base $b$ expansion} of $y$}
+    \]
+    Assume that
+    \[
+    \forall N \in \N, \exists n \in \N_{N}, a_{n} \neq b - 1
+    \]
+    Define
+    \[
+    x_{n} \coloneqq \sum_{k = 1}^{n} \frac{a_{k}}{b^{k}}
+    \]
+    for each $n \in \N$. Then
+    \[
+    \begin{array}{c}
+        \forall k \in \N, a_{k} \in S_{b} \\
+        \Downarrow \\
+        x_{n} = \sum_{k = 1}^{n} \frac{a_{k}}{b^{k}} \leq \sum_{k = 1}^{n} \frac{b - 1}{b^{k}} = 1 - \frac{1}{b^{n}} < 1
+    \end{array}
+    \]
+    for all $n \in \N$. Therefore, $\set*{x_{n}}_{n = 1}^{\infty}$ is bounded above by $1$.
+    By the \emph{least upper bound property},
+    \[
+    \exists y \in \R, y = \sup \set*{x_{n}}_{n = 1}^{\infty}
+    \]
+    First, we will show that $y \in [0, 1)$. By the assumption,
+    \[
+    \exists m \in \N, a_{m} \neq b - 1
+    \]
+    Then
+    \[
+    \begin{array}{c}
+        x_{n} = x_{m} + \sum_{k = m + 1}^{n} \frac{a_{k}}{b^{k}} \leq x_{m} + \sum_{k = m + 1}^{n} \frac{b - 1}{b^{k}} \\
+        \Downarrow \\
+        x_{n} \leq x_{m} + \frac{1}{b^{m}} - \frac{1}{b^{n}} < x_{m} + \frac{1}{b^{m}}
+    \end{array}
+    \]
+    for all $n > m$. Since $a_{m} \leq b - 2$,
+    \begin{align*}
+        x_{m} + \frac{1}{b^{m}} &= \sum_{k = 1}^{m - 1} \frac{a_{k}}{b^{k}} + \frac{a_{m} + 1}{b^{m}} \\
+        &\leq \sum_{k = 1}^{m - 1} \frac{a_{k}}{b^{k}} + \frac{b - 1}{b^{m}} \\
+        &\leq \sum_{k = 1}^{m} \frac{b - 1}{b^{k}} = 1 - \frac{1}{b^{m}}
+    \end{align*}
+    To sum up,
+    \begin{itemize}
+        \item $\forall n \in \N, n \leq m \implies x_{n} \leq x_{m}$
+        \item $\forall n \in \N, n > m \implies x_{n} < x_{m} + \frac{1}{b^{m}} \leq 1 - \frac{1}{b^{m}}$
+    \end{itemize}
+    Therefore, $1 - \frac{1}{b^{m}}$ is an upper bound of $\set*{x_{n}}_{n = 1}^{\infty}$. Since $0 \leq x_{1} \leq y$,
+    \[
+    \begin{array}{c}
+        y = \sup \set*{x_{n}}_{n = 1}^{\infty} \\
+        \Downarrow \\
+        y \leq 1 - \frac{1}{b^{m}} < 1 \\
+        \Downarrow \\
+        y \in [0, 1)
+    \end{array}
+    \]
+    Next, we will show that $\paren*{a_{n}}_{n = 1}^{\infty}$ is the \emph{greedy base $b$ expansion} of $y$.
+    Let $n \in \N$ be fixed. By the assumption,
+    \[
+    \exists m \in \N_{n + 1}, a_{m} \leq b - 2
+    \]
+    Then
+    \[
+    \begin{array}{c}
+        x_{m} = x_{n} + \sum_{k = n + 1}^{m} \frac{a_{k}}{b^{k}} < x_{n} + \sum_{k = n + 1}^{m} \frac{b - 1}{b^{k}} \\
+        \Downarrow \\
+        x_{m} < x_{n} + \frac{1}{b^{n}} - \frac{1}{b^{m}} \\
+        \Downarrow \\
+        x_{m} + \frac{1}{b^{m}} < x_{n} + \frac{1}{b^{n}}
+    \end{array}
+    \]
+    By the same argument as above, $x_{m} + \frac{1}{b^{m}}$ is an upper bound of $\set*{x_{n}}_{n = 1}^{\infty}$. Then
+    \[
+    \begin{array}{c}
+        y = \sup \set*{x_{n}}_{n = 1}^{\infty} \\
+        \Downarrow \\
+        y \leq x_{m} + \frac{1}{b^{m}} < x_{n} + \frac{1}{b^{n}} \\
+        \Downarrow \\
+        0 \leq y - x_{n} < \frac{1}{b^{n}}
+    \end{array}
+    \]
+    Since $n$ was arbitrary, $\paren*{a_{n}}_{n = 1}^{\infty}$ is the \emph{greedy base $b$ expansion} of $y$.
+\end{proof}
+
+\bigskip
+
+\begin{theorem} \label{an:thm:no-real-number-matching-greedy-base-expansion-converse}
+    Let $b \in \N_{2}$ be given. Let $\paren*{a_{n}}_{n = 1}^{\infty}$ be such that
+    \[
+    \forall k \in \N, a_{k} \in S_{b}
+    \]
+    If
+    \[
+    \exists N \in \N, \forall n \in \N_{N}, a_{n} = b - 1
+    \]
+    then
+    \[
+    \nexists y \in [0, 1), \paren*{a_{n}}_{n = 1}^{\infty} \text{ is the greedy base $b$ expansion of $y$}
+    \]
+    This theorem is the \textbf{converse} of \Cref{an:thm:no-real-number-matching-greedy-base-expansion}.
+\end{theorem}
+
+\begin{proof}
+    Assume that
+    \[
+    \exists N \in \N, \forall n \in \N_{N}, a_{n} = b - 1
+    \]
+    If
+    \[
+    \exists y \in [0, 1), \paren*{a_{n}}_{n = 1}^{\infty} \text{ is the \emph{greedy base $b$ expansion} of $y$}
+    \]
+    then
+    \[
+    0 \leq y - \sum_{k = 1}^{n} \frac{a_{k}}{b^{k}} < \frac{1}{b^{n}}
+    \]
+    for all $n \in \N$. Define
+    \[
+    x_{n} \coloneqq \sum_{k = 1}^{n} \frac{a_{k}}{b^{k}}
+    \]
+    for each $n \in \N$. Then
+    \[
+    \begin{array}{c}
+        x_{n} = x_{N} + \sum_{k = N + 1}^{n} \frac{b - 1}{b^{k}} = x_{N} + \frac{1}{b^{N}} - \frac{1}{b^{n}} \\
+        \Downarrow \\
+        y - x_{n} = y - x_{N} - \frac{1}{b^{N}} + \frac{1}{b^{n}} \geq 0 \\
+        \Downarrow \\
+        \frac{1}{b^{n}} \geq x_{N} + \frac{1}{b^{N}} - y
+    \end{array}
+    \]
+    for all $n > N$. Since $N \in \N$,
+    \[
+    \begin{array}{c}
+        0 \leq y - x_{N} < \frac{1}{b^{N}} \\
+        \Downarrow \\
+        x_{N} + \frac{1}{b^{N}} - y > 0
+    \end{array}
+    \]
+    By \Cref{an:cor:archimedean-property-corollary},
+    \[
+    \begin{array}{c}
+        \exists m \in \N, \frac{1}{b^{m}} < x_{N} + \frac{1}{b^{N}} - y \\
+        \Downarrow \\
+        \forall n \in \N, n > \max{\set*{m, N}} \implies \frac{1}{b^{n}} < x_{N} + \frac{1}{b^{N}} - y \\
+        \Downarrow \\
+        \bot
+    \end{array}
+    \]
+    Therefore,
+    \[
+    \nexists y \in [0, 1), \paren*{a_{n}}_{n = 1}^{\infty} \text{ is the \emph{greedy base $b$ expansion} of $y$}
+    \]
+\end{proof}

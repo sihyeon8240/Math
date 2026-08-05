@@ -1,0 +1,149 @@
+---
+layout: null
+permalink: /
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta
+      name="description"
+      content="Open, work-in-progress LaTeX textbooks for undergraduate mathematics."
+    >
+
+    <title>Open Mathematics Textbooks</title>
+    <link rel="stylesheet" href="{{ '/assets/common.css' | relative_url }}">
+    <link rel="stylesheet" href="{{ '/assets/index.css' | relative_url }}">
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="site-header">
+        <a
+          class="brand"
+          href="{{ '/' | relative_url }}"
+          aria-label="Open Mathematics Textbooks home"
+        >
+
+          <span class="brand__mark" aria-hidden="true">∑</span>
+          <span>Open Mathematics Textbooks</span>
+        </a>
+      </header>
+
+      <main>
+        <section class="hero" aria-labelledby="hero-title">
+          <div class="hero__content">
+            <p class="eyebrow">Open · Reusable · Collaborative</p>
+            <h1 id="hero-title">Mathematics, openly written.</h1>
+            <p class="hero__lead">
+              Open, work-in-progress LaTeX textbooks for undergraduate mathematics—built for reading,
+              teaching, adapting, and improving together.
+            </p>
+            <div class="hero__actions">
+              <a class="button button--primary" href="#textbooks">
+                Browse textbooks <span aria-hidden="true">↓</span>
+              </a>
+
+            </div>
+          </div>
+
+          <div class="formula-card" aria-hidden="true">
+            <div class="formula-card__inner">
+              <span class="formula-card__symbol">π</span>
+              <span class="formula-card__formula">e<sup>iπ</sup> + 1 = 0</span>
+            </div>
+          </div>
+        </section>
+
+        <section class="section" id="textbooks" aria-labelledby="textbooks-title">
+          <div class="section-heading">
+            <h2 id="textbooks-title">Textbooks</h2>
+            <p>Read the latest development snapshot online or download a copy for offline study.</p>
+          </div>
+
+          <div class="book-grid">
+            {% for book in site.data.books %}
+              <article class="book-card">
+                <p class="status status--{{ book.status | default: 'draft' }}">
+                  {{ book.status_label | default: book.status | default: 'Work in progress' }}
+                </p>
+                <h3>{{ book.title }}</h3>
+                <p class="book-card__description">
+                  {{ book.description }}
+                </p>
+                {% assign pdf_path = '/pdf/' | append: book.slug | append: '.pdf' %}
+                {% assign book_page_path = '/books/' | append: book.slug | append: '.html' %}
+                <div class="book-card__footer">
+                  <a
+                    class="book-card__action book-card__action--primary"
+                    href="{{ pdf_path | relative_url }}"
+                    target="_blank"
+                    rel="noopener"
+                  >
+
+                    <span>Read development PDF</span>
+                    <span aria-hidden="true">↗</span>
+                  </a>
+                  <a
+                    class="book-card__action book-card__action--secondary"
+                    href="{{ book_page_path | relative_url }}"
+                    aria-label="View details for {{ book.title }}"
+                  >
+
+                    <span>Book details</span>
+                    <span class="book-card__action-arrow" aria-hidden="true">→</span>
+                  </a>
+                </div>
+              </article>
+            {% endfor %}
+          </div>
+        </section>
+
+        <section class="section project-panel" aria-labelledby="project-title">
+          <div class="project-intro">
+            <p class="eyebrow">Built in the open</p>
+            <h2 id="project-title">Help improve the books.</h2>
+            <p>
+              The source, release history, issue tracker, and licensing information are all public.
+              Corrections and contributions are welcome.
+            </p>
+          </div>
+
+          <nav class="link-grid" aria-label="Project links">
+            <a class="project-link" href="{{ site.github.repository_url }}">
+              <span>GitHub source ↗</span>
+              <span>Browse LaTeX and project files</span>
+            </a>
+            <a class="project-link" href="{{ site.github.repository_url }}/releases/latest">
+              <span>Latest official release ↗</span>
+              <span>Download the newest versioned release</span>
+            </a>
+            <a class="project-link" href="{{ site.github.repository_url }}/issues/new/choose">
+              <span>Report an error ↗</span>
+              <span>Typos, math errors, and ideas</span>
+            </a>
+            <a
+              class="project-link"
+              href="{{ site.github.repository_url }}/blob/main/LICENSE-CONTENT"
+            >
+
+              <span>Content license ↗</span>
+              <span>Learn how materials may be reused</span>
+            </a>
+          </nav>
+        </section>
+      </main>
+
+      <footer class="site-footer">
+        <p>Open Mathematics Textbooks</p>
+        <p>
+          This site is open source.
+          <a href="{{ site.github.repository_url }}/edit/main/site/index.html">
+            Improve this page.
+          </a>
+        </p>
+
+      </footer>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,218 @@
+\bigskip
+
+\begin{theorem} \label{an:thm:countable-union-of-finite-sets-is-countable}
+    \[
+    \paren*{\forall n \in \N, 0 < \abs*{X_{n}} < \aleph_{0}} \implies \abs*{\bigcup_{n = 1}^{\infty} X_{n}} = \aleph_{0}
+    \]
+\end{theorem}
+
+\begin{proof}
+    Assume that
+    \[
+    \begin{array}{c}
+        \forall n \in \N, 0 < \abs*{X_{n}} < \aleph_{0} \\
+        \Downarrow \\
+        \forall n \in \N, \exists m_{n} \in \N, \exists g_{n}: \N^{m_{n}} \xrightarrow{\sim} X_{n}
+    \end{array}
+    \]
+    Define $h: \N \twoheadrightarrow \bigcup_{n = 1}^{\infty} X_{n}$ as
+    \begin{itemize}
+        \item $\forall m \in \N_{m_{1}}, h(m) = g_{1}(m)$
+        \item $\forall n \in \N_{2}, \forall m \in \N_{m_{n}}, h\paren*{\sum_{k = 1}^{n - 1} m_{i} + m} = g_{n}(m)$
+    \end{itemize}
+    By \Cref{an:thm:surjection-from-N},
+    \[
+    \abs*{\bigcup_{n = 1}^{\infty} X_{n}} = \aleph_{0}
+    \]
+\end{proof}
+
+\bigskip
+
+\begin{theorem} \label{an:thm:countable-union-of-countable-sets-is-countable}
+    \[
+    \paren*{\forall n \in \N, \abs*{X_{n}} = \aleph_{0}} \implies \abs*{\bigcup_{n = 1}^{\infty} X_{n}} = \aleph_{0}
+    \]
+\end{theorem}
+
+\begin{proof}
+    Define
+    \[
+    T_{n} \coloneqq \setbuilder*{k \in \N}{n \leq \frac{k(k + 1)}{2}}
+    \]
+    for each $n \in \N$. By \Cref{an:thm:well-ordering-property},
+    \[
+    \begin{array}{c}
+        2n \in T_{n} \\
+        \Downarrow \\
+        T_{n} \neq \vnot \\
+        \Downarrow \\
+        \exists t_{n} \in T_{n}, t_{n} = \min T_{n}
+    \end{array}
+    \]
+    for all $n \in \N$. Define
+    \[
+    s_{n} \coloneqq n - \frac{t_{n}(t_{n} - 1)}{2} = n - \frac{t_{n}(t_{n} + 1)}{2} + t_{n} \in \N
+    \]
+    for each $n \in \N$. Then
+    \[
+    \begin{array}{c}
+        \frac{t_{n}(t_{n} - 1)}{2} < n \leq \frac{t_{n}(t_{n} + 1)}{2} \\
+        \Downarrow \\
+        t_{n} - s_{n} + 1 = \frac{t_{n}(t_{n} + 1)}{2} - n + 1 \geq 1 \\
+        \Downarrow \\
+        t_{n} - s_{n} + 1 \in \N
+    \end{array}
+    \]
+    for all $n \in \N$. Assume that
+    \[
+    \begin{array}{c}
+        \forall n \in \N, \abs*{X_{n}} = \aleph_{0} \\
+        \Downarrow \\
+        \forall n \in \N, \exists f_{n}: \N \xrightarrow{\sim} X_{n}
+    \end{array}
+    \]
+    Define $g: \N \to \bigcup_{n = 1}^{\infty} X_{n}$ as
+    \[
+    \forall n \in \N, g(n) = f_{s_{n}}(t_{n} - s_{n} + 1)
+    \]
+    Let $x \in \bigcup_{n = 1}^{\infty} X_{n}$ be given. Then
+    \[
+    \begin{array}{c}
+        \exists m \in \N, x \in X_{m} \\
+        \Downarrow \\
+        \exists l \in \N, f_{m}(l) = x \\
+    \end{array}
+    \]
+    Define
+    \[
+    k \coloneqq \frac{(l + m - 1)(l + m - 2)}{2} + m \in \N
+    \]
+    We will show that
+    \[
+    \begin{array}{c}
+        l + m - 2 \notin T_{k} \land l + m - 1 \in T_{k} \\
+        \Downarrow \\
+        t_{k} = \min T_{k} = l + m - 1 \\
+        \Downarrow \\
+        s_{k} = k - \frac{t_{k}(t_{k} - 1)}{2} = m \\
+        \Downarrow \\
+        g(k) = f_{s_{k}}(t_{k} - s_{k} + 1) = f_{m}(l + m - 1 - m + 1) = f_{m}(l) = x
+    \end{array}
+    \]
+    Consider the following inequalities:
+    \begin{itemize}
+        \item Let $z = l + m - 2$ be given. Then
+        \begin{align*}
+            k - \frac{z(z + 1)}{2} &= k - \frac{(l + m - 2)(l + m - 1)}{2} \\
+            &= \frac{(l + m - 1)(l + m - 2)}{2} + m - \frac{(l + m - 2)(l + m - 1)}{2} \\
+            &= m > 0
+        \end{align*}
+        Therefore,
+        \[
+        z = l + m - 2 \notin T_{k}
+        \]
+        \item Let $z = l + m - 1$ be given. Then
+        \begin{align*}
+            k - \frac{z(z + 1)}{2} &= k - \frac{(l + m - 1)(l + m)}{2} \\
+            &= \frac{(l + m - 1)(l + m - 2)}{2} + m - \frac{(l + m - 1)(l + m)}{2} \\
+            &= m - \frac{(l + m - 1)(l + m) - (l + m - 1)(l + m - 2)}{2} \\
+            &= m - (l + m - 1) = 1 - l \leq 0
+        \end{align*}
+        Therefore,
+        \[
+        z = l + m - 1 \in T_{k}
+        \]
+    \end{itemize}
+    By \Cref{an:thm:surjection-from-N},
+    \[
+    \begin{array}{c}
+        g \text{ is surjective} \\
+        \Downarrow \\
+        \abs*{\bigcup_{n = 1}^{\infty} X_{n}} = \aleph_{0}
+    \end{array}
+    \]
+\end{proof}
+
+\bigskip
+
+\begin{corollary} \label{an:cor:finite-union-of-countable-sets-is-countable}
+    \[
+    \forall n \in \N, \paren*{\forall k \in \N^{n}, \abs*{X_{k}} = \aleph_{0}}
+    \implies \abs*{\bigcup_{k = 1}^{n} X_{k}} = \aleph_{0}
+    \]
+\end{corollary}
+
+\begin{proof}
+    Assume that
+    \[
+    \paren*{\forall k \in \N^{n}, \abs*{X_{k}} = \aleph_{0}}
+    \]
+    for $n \in \N$. Define
+    \[
+    X_{k} \coloneqq X_{n}
+    \]
+    for all $k \in \N_{n + 1}$. By \Cref{an:thm:countable-union-of-countable-sets-is-countable},
+    \[
+    \begin{array}{c}
+        \forall n \in \N, \abs*{X_{n}} = \aleph_{0} \\
+        \Downarrow \\
+        \abs*{\bigcup_{n = 1}^{\infty} X_{n}} = \aleph_{0}
+    \end{array}
+    \]
+    Therefore,
+    \[
+    \begin{array}{c}
+        \bigcup_{k = 1}^{n} X_{k} = \bigcup_{n = 1}^{\infty} X_{n} \\
+        \Downarrow \\
+        \abs*{\bigcup_{k = 1}^{n} X_{k}} = \aleph_{0}
+    \end{array}
+    \]
+\end{proof}
+
+\bigskip
+
+\begin{lemma} \label{an:lem:N-times-N-is-countable}
+    \[
+    \abs*{\N \times \N} = \aleph_{0}
+    \]
+\end{lemma}
+
+\begin{proof}
+    Define $f: \N \times \N \to \N$ as
+    \[
+    \forall m, n \in \N, f(m, n) = \frac{(m + n - 1)(m + n - 2)}{2} + m
+    \]
+    We will show that $f$ is bijective.
+    \begin{itemize}
+        \item \textbf{Injectivity:} Let $(m_{1}, n_{1}) \neq (m_{2}, n_{2})$ be given for
+        $m_{1}, n_{1}, m_{2}, n_{2} \in \N$. If
+        \[
+        m_{1} + n_{1} = m_{2} + n_{2}
+        \]
+        then
+        \[
+        \begin{array}{c}
+            m_{1} \neq m_{2} \\
+            \Downarrow \\
+            f(m_{1}, n_{1}) \neq f(m_{2}, n_{2})
+        \end{array}
+        \]
+        Otherwise, $m_{1} + n_{1} \neq m_{2} + n_{2}$ (\emph{WLOG} $m_{1} + n_{1} < m_{2} + n_{2}$). Then
+        \begin{align*}
+            f(m_{1}, n_{1}) &= \frac{(m_{1} + n_{1} - 1)(m_{1} + n_{1} - 2)}{2} + m_{1} \\
+            &\leq \frac{(m_{1} + n_{1} - 1)(m_{1} + n_{1} - 2)}{2} + (m_{1} + n_{1} - 1) \\
+            &= \frac{(m_{1} + n_{1})(m_{1} + n_{1} - 1)}{2} \\
+            &\leq \frac{(m_{2} + n_{2} - 1)(m_{2} + n_{2} - 2)}{2} \\
+            &< \frac{(m_{2} + n_{2} - 1)(m_{2} + n_{2} - 2)}{2} + m_{2} = f(m_{2}, n_{2})
+        \end{align*}
+        \item \textbf{Surjectivity:} Let $k \in \N$ be given. Define $t_{k}, s_{k}$ as in the proof of
+        \Cref{an:thm:countable-union-of-countable-sets-is-countable}. Then
+        \[
+        f(s_{k}, t_{k} - s_{k} + 1) =  k
+        \]
+    \end{itemize}
+    Therefore,
+    \[
+    \abs*{\N \times \N} = \aleph_{0}
+    \]
+\end{proof}

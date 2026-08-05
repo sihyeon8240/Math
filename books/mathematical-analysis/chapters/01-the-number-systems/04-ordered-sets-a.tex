@@ -1,0 +1,173 @@
+\section{Ordered Sets}
+
+A set $S$ is called an \textbf{ordered set} if it is equipped with a relation $<$
+such that for every $x, y, z \in S$, the following properties hold:
+\begin{itemize}
+    \item $x < y \land y < z \implies x < z$
+    \item Only one of the relations $x < y$, $x = y$, or $x > y$ holds
+\end{itemize}
+The relation $<$ is called an \textbf{(total) order} on $S$.
+
+\bigskip
+
+\begin{definition} \label{an:def:order-relations}
+    The relations $>$, $\leq$, and $\geq$ are defined as
+    \begin{itemize}
+        \item $x > y \iff y < x$
+        \item $x \geq y \iff x > y \lor x = y$
+        \item $x \leq y \iff y \geq x$
+    \end{itemize}
+\end{definition}
+
+\bigskip
+
+\begin{example}
+    $\N, \Z, \Q$ are ordered sets with the following relations:
+    \begin{itemize}
+        \item $\forall n, m \in \N, m < n \iff \exists k \in \N, n = m + k$
+        \item $\forall n, m \in \Z, m < n \iff \exists k \in \Z^{+}, n = m + k$
+        \item $\forall p, q \in \Q, q < p \iff \exists r \in \Q^{+}, p = q + r$
+    \end{itemize}
+    where
+    \[
+    \Q^{+} \coloneqq \setbuilder*{[(p, q)] \in \Q}{p, q \in \Z^{+}} \subseteq \Q
+    \]
+\end{example}
+
+\bigskip
+
+\begin{definition} \label{an:def:boundedness}
+    Let $S$ be an ordered set and $E \subseteq S$.
+    \begin{itemize}
+        \item $E$ is said to be \textbf{bounded above} if
+        \[
+        \exists M \in S, \forall x \in E, x \leq M
+        \]
+        Such an $M$ is called an \textbf{upper bound} of $E$.
+        \item $E$ is said to be \textbf{bounded below} if
+        \[
+        \exists m \in S, \forall x \in E, m \leq x
+        \]
+        Such an $m$ is called a \textbf{lower bound} of $E$.
+    \end{itemize}
+\end{definition}
+
+\bigskip
+
+\begin{theorem} \label{an:thm:bounded-subset-of-Z-in-Z-has-extremum}
+    Let $E \subseteq \Z$ be nonempty. Then
+    \begin{enumerate}[label=\textbf{(\Alph*)}]
+        \item $E$ is bounded below $\implies E$ has a least element
+        \item $E$ is bounded above $\implies E$ has a greatest element
+    \end{enumerate}
+\end{theorem}
+
+\begin{proof}
+    \begin{enumerate}[label=\textbf{(\Alph*)}]
+        \item Let $E$ be bounded below. Then,
+        \[
+        \begin{array}{c}
+            E \text{ is bounded below} \\
+            \Downarrow \\
+            \exists m \in \Z, \forall x \in E, m \leq x
+        \end{array}
+        \]
+        Define
+        \[
+        F \coloneqq \setbuilder*{x - m + 1}{x \in E} \subseteq \N
+        \]
+        Then
+        \[
+        \begin{array}{c}
+            E \neq \vnot \\
+            \Downarrow \\
+            F \neq \vnot
+        \end{array}
+        \]
+        By \Cref{an:thm:well-ordering-property},
+        \[
+        \begin{array}{c}
+            \exists n \in F, n = \min F \\
+            \Downarrow \\
+            \forall x \in E, n \leq x - m + 1 \\
+            \Downarrow \\
+            \forall x \in E, n + m - 1 \leq x
+        \end{array}
+        \]
+        Since $n = \min F$,
+        \[
+        \begin{array}{c}
+            n \in F \\
+            \Downarrow \\
+            \exists x_{0} \in E, n = x_{0} - m + 1 \\
+            \Downarrow \\
+            x_{0} = n + m - 1 = \min E
+        \end{array}
+        \]
+        \item Let $E$ be bounded above. Then,
+        \[
+        \begin{array}{c}
+            E \text{ is bounded above} \\
+            \Downarrow \\
+            \exists M \in \Z, \forall x \in E, x \leq M
+        \end{array}
+        \]
+        Define
+        \[
+        F \coloneqq \setbuilder*{-x + M + 1}{x \in E} \subseteq \N
+        \]
+        Then
+        \[
+        \begin{array}{c}
+            E \neq \vnot \\
+            \Downarrow \\
+            F \neq \vnot
+        \end{array}
+        \]
+        By \Cref{an:thm:well-ordering-property},
+        \[
+        \begin{array}{c}
+            \exists n \in F, n = \min F \\
+            \Downarrow \\
+            \forall x \in E, n \leq - x + M + 1 \\
+            \Downarrow \\
+            \forall x \in E, x \leq M - n + 1 \\
+        \end{array}
+        \]
+        Since $n = \min F$,
+        \[
+        \begin{array}{c}
+            n \in F \\
+            \Downarrow \\
+            \exists x_{0} \in E, n = -x_{0} + M + 1 \\
+            \Downarrow \\
+            x_{0} = M - n + 1 = \max E
+        \end{array}
+        \]
+    \end{enumerate}
+\end{proof}
+
+\bigskip
+
+\begin{definition} \label{an:def:supremum-infimum}
+    Let $S$ be an ordered set, and let $E \subseteq S$ be bounded above.
+    An element $\alpha \in S$ is called a \textbf{supremum} (or \emph{least upper bound}) of $E$ if
+    \begin{itemize}
+        \item $\alpha$ is an upper bound of $E$
+        \item $\forall \beta \in S, \beta < \alpha \implies \beta$ is not an upper bound of $E$
+    \end{itemize}
+    A supremum of $E$ is denoted by
+    \[
+    \alpha = \sup E
+    \]
+    Similarly, let $E \subseteq S$ be bounded below.
+    An element $\alpha \in S$ is called an \textbf{infimum} (or \emph{greatest lower bound}) of $E$ if
+    \begin{itemize}
+        \item $\alpha$ is a lower bound of $E$
+        \item $\forall \beta \in S, \beta > \alpha \implies \beta$ is not a lower bound of $E$
+    \end{itemize}
+    An infimum of $E$ is denoted by
+    \[
+    \alpha = \inf E
+    \]
+\end{definition}

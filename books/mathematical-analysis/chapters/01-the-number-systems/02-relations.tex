@@ -1,0 +1,216 @@
+\section{Relations}
+
+Let $S$ be a set. A \textbf{relation} $\sim$ on $S$ is a subset of $S \times S$.
+Equivalently, a subset $R$ of $S \times S$ is a relation on $S$. That is, for every $x, y \in S$,
+\begin{itemize}
+    \item $R = \setbuilder*{(x, y) \in S \times S}{x \sim y}$
+    \item $x \sim y \iff (x, y) \in R$
+\end{itemize}
+
+\bigskip
+
+\begin{definition} \label{an:def:equivalence-relation}
+    Let $S$ be a set. A relation $\sim$ on $S$ is called an \textbf{equivalence relation} if it satisfies the following properties:
+    \begin{itemize}
+        \item \textbf{Reflexivity}: $\forall x \in S, x \sim x$
+        \item \textbf{Symmetry}: $\forall x, y \in S, x \sim y \implies y \sim x$
+        \item \textbf{Transitivity}: $\forall x, y, z \in S, x \sim y \land y \sim z \implies x \sim z$
+    \end{itemize}
+\end{definition}
+
+\bigskip
+
+\begin{definition} \label{an:def:partition}
+    Let $S$ be a set. A collection $\set*{A_{\alpha}}_{\alpha \in I}$ of sets is called a \textbf{partition} of $S$ if
+    \begin{itemize}
+        \item $\forall \alpha \in I, A_{\alpha} \neq \vnot \land A_{\alpha} \subseteq S$
+        \item $\forall \alpha, \beta \in I, \alpha \neq \beta \implies A_{\alpha} \cap A_{\beta} = \vnot$
+        \item $\bigcup_{\alpha \in I} A_{\alpha} = S$
+    \end{itemize}
+\end{definition}
+
+\bigskip
+
+\begin{definition} \label{an:def:equivalence-class}
+    Let $S$ be a set, and let $\sim$ be an equivalence relation on $S$. For each $x \in S$,
+    the \textbf{equivalence class} of $x$ is defined as
+    \[
+    [x] \coloneqq \setbuilder*{y \in S}{y \sim x}
+    \]
+    We denote the set of all equivalence classes of $S$ by
+    \[
+    S / \sim \; \coloneqq \setbuilder*{[x]}{x \in S}
+    \]
+\end{definition}
+
+\bigskip
+
+\begin{theorem} \label{an:thm:equivalence-classes-form-a-partition}
+    Let $S$ be a set, and let $\sim$ be an equivalence relation on $S$. Then
+    \[
+    \forall x, y \in S, [x] \cap [y] \neq \vnot \implies [x] = [y]
+    \]
+\end{theorem}
+
+\begin{proof}
+    If $[x] \cap [y] \neq \vnot$, then
+    \[
+    \begin{array}{c}
+        \exists z \in S, z \in [x] \cap [y] \\
+        \Downarrow \\
+        z \in [x] \land z \in [y] \\
+        \Downarrow \\
+        z \sim x \land z \sim y \\
+        \Downarrow \\
+        x \sim z \land z \sim y \\
+        \Downarrow \\
+        x \sim y
+    \end{array}
+    \]
+    Therefore, for every $w \in [x]$,
+    \[
+    \begin{array}{c}
+        w \sim x \land x \sim y \\
+        \Downarrow \\
+        w \sim y \\
+        \Downarrow \\
+        w \in [y]
+    \end{array}
+    \]
+    Therefore,
+    \[
+    [x] \subseteq [y]
+    \]
+    Similarly,
+    \[
+    [y] \subseteq [x]
+    \]
+\end{proof}
+
+\bigskip
+
+\begin{theorem} \label{an:thm:partition-defines-equivalence-relation}
+    Let $S$ be a set, and let $\set*{A_{\alpha}}_{\alpha \in I}$ be a partition of $S$. Define
+    \[
+    x \sim y \iff \exists \alpha \in I, x \in A_{\alpha} \land y \in A_{\alpha}
+    \]
+    for all $x, y \in S$. Then
+    \begin{enumerate}[label=\textbf{(\Alph*)}]
+        \item $\sim$ is an equivalence relation on $S$
+        \item $\set*{A_{\alpha}}_{\alpha \in I} = S / \sim$
+    \end{enumerate}
+\end{theorem}
+
+\begin{proof}
+    \begin{enumerate}[label=\textbf{(\Alph*)}]
+        \item Let $x, y, z \in S$ be given.
+        \begin{itemize}
+            \item \textbf{Reflexivity}: Since $x \in S$,
+            \[
+            \begin{array}{c}
+            x \in S \\
+            \Downarrow \\
+            x \in \bigcup_{\alpha \in I} A_{\alpha} \\
+            \Downarrow \\
+            \exists \alpha \in I, x \in A_{\alpha} \\
+            \Downarrow \\
+            x \sim x
+            \end{array}
+            \]
+            \item \textbf{Symmetry}: If $x \sim y$, then
+            \[
+            \begin{array}{c}
+            \exists \alpha \in I, x \in A_{\alpha} \land y \in A_{\alpha} \\
+            \Downarrow \\
+            y \in A_{\alpha} \land x \in A_{\alpha} \\
+            \Downarrow \\
+            y \sim x
+            \end{array}
+            \]
+            \item \textbf{Transitivity}: If $x \sim y \land y \sim z$, then
+            \begin{itemize}
+                \item $\exists \alpha \in I, x \in A_{\alpha} \land y \in A_{\alpha}$
+                \item $\exists \beta \in I, y \in A_{\beta} \land z \in A_{\beta}$
+            \end{itemize}
+            Therefore,
+            \[
+            \begin{array}{c}
+            y \in A_{\alpha} \land y \in A_{\beta} \\
+            \Downarrow \\
+            A_{\alpha} \cap A_{\beta} \neq \vnot \\
+            \Downarrow \\
+            \alpha = \beta \\
+            \Downarrow \\
+            x \in A_{\alpha} \land z \in A_{\alpha} \\
+            \Downarrow \\
+            x \sim z
+            \end{array}
+            \]
+        \end{itemize}
+        \item Let $x \in S$ be given. Then
+        \[
+        \begin{array}{c}
+            x \in S \\
+            \Downarrow \\
+            x \in \bigcup_{\alpha \in I} A_{\alpha} \\
+            \Downarrow \\
+            \exists \alpha \in I, x \in A_{\alpha} \\
+        \end{array}
+        \]
+        We will show that $A_{\alpha} = [x]$.
+        \begin{itemize}
+            \item \textbf{($\subseteq$)} Let $y \in A_{\alpha}$ be given. Then
+            \[
+            \begin{array}{c}
+                y \in A_{\alpha} \land x \in A_{\alpha} \\
+                \Downarrow \\
+                y \sim x \\
+                \Downarrow \\
+                y \in [x]
+            \end{array}
+            \]
+            \item \textbf{($\supseteq$)} Let $y \in [x]$ be given. Then
+            \[
+            \begin{array}{c}
+                y \sim x \\
+                \Downarrow \\
+                \exists \beta \in I, y \in A_{\beta} \land x \in A_{\beta} \\
+                \Downarrow \\
+                x \in A_{\alpha} \land x \in A_{\beta} \\
+                \Downarrow \\
+                x \in A_{\alpha} \cap A_{\beta} \\
+                \Downarrow \\
+                A_{\alpha} \cap A_{\beta} \neq \vnot \\
+                \Downarrow \\
+                \alpha = \beta \\
+                \Downarrow \\
+                y \in A_{\alpha}
+            \end{array}
+            \]
+        \end{itemize}
+        To sum up,
+        \[
+        \begin{array}{c}
+            \forall x \in S, \exists \alpha \in I, A_{\alpha} = [x] \\
+            \Downarrow \\
+            S / \sim \; \subseteq \set*{A_{\alpha}}_{\alpha \in I}
+        \end{array}
+        \]
+        Also,
+        \[
+        \begin{array}{c}
+            \forall \alpha \in I, A_{\alpha} \neq \vnot \\
+            \Downarrow \\
+            \exists x \in A_{\alpha} \subseteq S \\
+            \Downarrow \\
+            A_{\alpha} = [x] \\
+            \Downarrow \\
+            \set*{A_{\alpha}}_{\alpha \in I} \subseteq S / \sim
+        \end{array}
+        \]
+        Therefore,
+        \[
+        \set*{A_{\alpha}}_{\alpha \in I} = S / \sim
+        \]
+    \end{enumerate}
+\end{proof}

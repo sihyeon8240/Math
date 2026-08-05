@@ -1,0 +1,72 @@
+\section{The Extended Real Number System}
+
+The Extended real number system $\overline{\R}$ is defined as
+\[
+\overline{\R} \coloneqq \R \cup \set*{- \infty, + \infty}
+\]
+We define the following operations on $\overline{\R}$:
+\begin{itemize}
+    \item $\forall x \in \R \cup \set*{+ \infty}, x + (+ \infty) \coloneqq + \infty$
+    \item $\forall x \in \R \cup \set*{- \infty}, x + (- \infty) \coloneqq - \infty$
+    \item $\forall x \in \R^{+} \cup \set*{+ \infty}, x \cdot (\pm \infty) \coloneqq \pm \infty$
+    \item $\forall x \in \R^{-} \cup \set*{- \infty}, x \cdot (\pm \infty) \coloneqq \mp \infty$
+    \item $\forall x \in \R, \frac{x}{\pm \infty} \coloneqq 0$
+\end{itemize}
+The following operations are undefined in $\overline{\R}$:
+\begin{itemize}
+    \item $(\pm \infty) + (\mp \infty)$
+    \item $0 \cdot (\pm \infty)$
+    \item $\frac{(\pm \infty)}{(\pm \infty)}$ and $\frac{(\pm \infty)}{(\mp \infty)}$
+    \item $\frac{x}{0}$ for all $x \in \overline{\R}$
+\end{itemize}
+$\overline{\R}$ is not a field, but it is an ordered set with the following order relation:
+\[
+\forall x \in \R, - \infty < x < + \infty
+\]
+
+\bigskip
+
+\begin{remark}
+    We can identify the following intervals in $\overline{\R}$:
+    \begin{itemize}
+        \item $\forall a \in \R, (- \infty, a) = \setbuilder*{x \in \R}{x < a}$
+        \item $\forall a \in \R, (a, + \infty) = \setbuilder*{x \in \R}{x > a}$
+        \item $(- \infty, + \infty) = \R$.
+    \end{itemize}
+\end{remark}
+
+\bigskip
+
+\begin{theorem} \label{an:thm:supremum-infimum-in-extended-real-number-system}
+    For all $E \subseteq \overline{\R}$,
+    \begin{itemize}
+        \item $\exists x \in \overline{\R}, x = \sup E$
+        \item $\exists y \in \overline{\R}, y = \inf E$
+    \end{itemize}
+\end{theorem}
+
+\begin{proof}
+    If $E = \vnot$, then
+    \begin{itemize}
+        \item $\sup E = - \infty$
+        \item $\inf E = + \infty$
+    \end{itemize}
+    Otherwise,
+    \begin{itemize}
+        \item If $E$ is bounded above in $\R$, then
+        \[
+        \exists x \in \R, x = \sup E
+        \]
+        by the \emph{least upper bound property}.
+        \item Otherwise, $\sup E = + \infty$
+    \end{itemize}
+    Also,
+    \begin{itemize}
+        \item If $E$ is bounded below in $\R$, then
+        \[
+        \exists y \in \R, y = \inf E
+        \]
+        by \Cref{an:thm:greatest-lower-bound-property}.
+        \item Otherwise, $\inf E = - \infty$
+    \end{itemize}
+\end{proof}

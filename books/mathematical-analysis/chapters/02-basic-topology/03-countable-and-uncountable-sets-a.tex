@@ -1,0 +1,199 @@
+\section{Countable and Uncountable Sets}
+
+\begin{theorem} \label{an:thm:infinite-set-minus-finite-set-is-infinite}
+    \[
+    \forall X \forall Y, \abs*{X} \geq \aleph_{0} \land
+    \abs*{Y} < \aleph_{0} \implies \abs*{X \setminus Y} \geq \aleph_{0}
+    \]
+\end{theorem}
+
+\begin{proof}
+    Assume that
+    \[
+    \exists X \exists Y, \abs*{X} \geq \aleph_{0} \land
+    \abs*{Y} < \aleph_{0} \land \abs*{X \setminus Y} < \aleph_{0}
+    \]
+    By \Cref{an:thm:union-of-two-finite-sets-is-finite},
+    \[
+    \abs*{(X \setminus Y) \cup Y} < \aleph_{0}
+    \]
+    By \Cref{an:thm:subset-of-finite-set-is-finite},
+    \[
+    \begin{array}{c}
+        X = (X \setminus Y) \cup (X \cap Y) \\
+        \Downarrow \\
+        X \subseteq (X \setminus Y) \cup Y \\
+        \Downarrow \\
+        \abs*{X} < \aleph_{0} \\
+        \Downarrow \\
+        \bot
+    \end{array}
+    \]
+    Therefore,
+    \[
+    \forall X \forall Y, \abs*{X} \geq \aleph_{0} \land
+    \abs*{Y} < \aleph_{0} \implies \abs*{X \setminus Y} \geq \aleph_{0}
+    \]
+\end{proof}
+
+\bigskip
+
+\begin{theorem} \label{an:thm:injection-from-infinite-set-implies-infinite}
+    \[
+    \forall X \forall Y, \abs*{X} \geq \aleph_{0} \land
+    \paren*{\exists f: X \hookrightarrow Y} \implies \abs*{Y} \geq \aleph_{0}
+    \]
+\end{theorem}
+
+\begin{proof}
+    Assume that
+    \[
+    \exists X \exists Y, \abs*{X} \geq \aleph_{0} \land
+    \paren*{\exists f: X \hookrightarrow Y} \land \abs*{Y} < \aleph_{0}
+    \]
+    Define $g: Y \twoheadrightarrow X$ as
+    \[
+    \forall y \in Y, g(y) = \begin{dcases}
+        f^{-1}(y) & \text{if } y \in f(X) \\
+        f^{-1}(y_{0}) & \text{otherwise}
+    \end{dcases}
+    \]
+    where $y_{0} \in f(X)$ is fixed. By \Cref{an:thm:surjection-from-finite-set-implies-finite},
+    \[
+    \begin{array}{c}
+        \exists g: Y \twoheadrightarrow X \\
+        \Downarrow \\
+        \abs*{X} < \aleph_{0} \\
+        \Downarrow \\
+        \bot
+    \end{array}
+    \]
+    Therefore,
+    \[
+    \forall X \forall Y, \abs*{X} \geq \aleph_{0} \land
+    \paren*{\exists f: X \hookrightarrow Y} \implies \abs*{Y} \geq \aleph_{0}
+    \]
+\end{proof}
+
+\bigskip
+
+\begin{lemma} \label{an:lem:N-is-infinite}
+    \[
+    \abs*{\N} \geq \aleph_{0}
+    \]
+\end{lemma}
+
+\begin{proof}
+    Assume that
+    \[
+    \abs*{\N} < \aleph_{0}
+    \]
+    By \Cref{an:thm:finite-ordered-set-has-extremum},
+    \[
+    \exists m \in \N, \forall x \in \N, x \leq m
+    \]
+    Then
+    \[
+    \begin{array}{c}
+        m < m + 1 \\
+        \Downarrow \\
+        m + 1 \notin \N \\
+        \Downarrow \\
+        \bot
+    \end{array}
+    \]
+    Therefore,
+    \[
+    \abs*{\N} \geq \aleph_{0}
+    \]
+\end{proof}
+
+\bigskip
+
+\begin{theorem} \label{an:thm:countable-set-is-infinite}
+    \[
+    \forall X, \abs*{X} = \aleph_{0} \implies \abs*{X} \geq \aleph_{0}
+    \]
+\end{theorem}
+
+\begin{proof}
+    Let $\abs*{X} = \aleph_{0}$ be given. Then
+    \[
+    \exists f: \N \xrightarrow{\sim} X
+    \]
+    By \Cref{an:thm:injection-from-infinite-set-implies-infinite,an:lem:N-is-infinite},
+    \[
+    \abs*{X} \geq \aleph_{0}
+    \]
+\end{proof}
+
+\bigskip
+
+\begin{theorem} \label{an:thm:Z-is-countable}
+    \[
+    \abs*{\Z} = \aleph_{0}
+    \]
+\end{theorem}
+
+\begin{proof}
+    Define $f: \N \to \Z$ as
+    \[
+    \forall n \in \N, f(n) = \begin{dcases}
+        - \frac{n}{2} & \text{if } n \text{ is even} \\
+        \frac{n - 1}{2} & \text{if } n \text{ is odd}
+    \end{dcases}
+    \]
+    We will show that
+    \[
+    \begin{array}{c}
+        f \text{ is bijective} \\
+        \Downarrow \\
+        \abs*{\Z} = \aleph_{0}
+    \end{array}
+    \]
+    \begin{itemize}
+        \item \textbf{Injectivity:} Let $f(n_{1}) = f(n_{2})$ be given for $n_{1}, n_{2} \in \N$. Since
+        \begin{itemize}
+            \item $n$ is even $\implies f(n) = - \frac{n}{2} < 0$
+            \item $n$ is odd $\implies f(n) = \frac{n - 1}{2} \geq 0$
+        \end{itemize}
+        ${n_{1}}$ and ${n_{2}}$ are both even or both odd.
+        \begin{itemize}
+            \item If both $n_{1}$ and $n_{2}$ are even, then
+            \[
+            \begin{array}{c}
+                - \frac{n_{1}}{2} = - \frac{n_{2}}{2} \\
+                \Downarrow \\
+                n_{1} = n_{2}
+            \end{array}
+            \]
+            \item If both $n_{1}$ and $n_{2}$ are odd, then
+            \[
+            \begin{array}{c}
+                \frac{n_{1} - 1}{2} = \frac{n_{2} - 1}{2} \\
+                \Downarrow \\
+                n_{1} = n_{2}
+            \end{array}
+            \]
+        \end{itemize}
+        \item \textbf{Surjectivity:} Let $k \in \Z$ be given.
+        \begin{itemize}
+            \item If $k \geq 0$, then
+            \[
+            \begin{array}{c}
+                2k + 1 \in \N \\
+                \Downarrow \\
+                f(2k + 1) = \frac{(2k + 1) - 1}{2} = \frac{2k}{2} = k
+            \end{array}
+            \]
+            \item If $k < 0$, then
+            \[
+            \begin{array}{c}
+                -2k \in \N \\
+                \Downarrow \\
+                f(-2k) = - \frac{-2k}{2} = k
+            \end{array}
+            \]
+        \end{itemize}
+    \end{itemize}
+\end{proof}

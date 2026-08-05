@@ -1,0 +1,175 @@
+\section{The Real Number System}
+
+An ordered field $(\R, +, \cdot)$ has the \emph{least upper bound property}. The construction of $\R$ from $\Q$
+is rather complicated, so it will be discussed separately in \hyperref[an:ch:construction-of-R]{Appendix}.
+In this section, we will just assume that $\R$ exists.
+
+\bigskip
+
+\begin{theorem} \label{an:thm:archimedean-property}
+    $\R$ has the \textbf{Archimedean property}, which states that
+    \[
+    \forall x \in \R^{+}, \forall y \in \R, \exists n \in \N, nx > y
+    \]
+    where
+    \[
+    \R^{+} \coloneqq \setbuilder*{x \in \R}{x > 0}
+    \]
+\end{theorem}
+
+\begin{proof}
+    Define
+    \[
+    E \coloneqq \setbuilder*{nx}{nx \leq y, \; n \in \N} \subseteq \R
+    \]
+    If $E = \vnot$, then
+    \[
+    \begin{array}{c}
+        1 \in \N \land 1 \cdot x \notin E \\
+        \Downarrow \\
+        1 \cdot x > y \\
+    \end{array}
+    \]
+    Otherwise,
+    \[
+    E \neq \vnot
+    \]
+    $E$ is bounded above by $y$. By the \emph{least upper bound property},
+    \[
+    \exists \alpha \in \R, \alpha = \sup E
+    \]
+    Since $\alpha = \sup E$,
+    \[
+    \begin{array}{c}
+        \alpha - x < \alpha \\
+        \Downarrow \\
+        \alpha - x \text{ is not an upper bound of } E \\
+        \Downarrow \\
+        \exists m \in \N, mx > \alpha - x \\
+        \Downarrow \\
+        (m + 1)x > \alpha \\
+        \Downarrow \\
+        m + 1 \in \N \land (m + 1)x \notin E \\
+        \Downarrow \\
+        (m + 1)x > y
+    \end{array}
+    \]
+    Therefore, we can take $n = m + 1$ to complete the proof.
+\end{proof}
+
+\bigskip
+
+\begin{corollary} \label{an:cor:archimedean-property-corollary}
+    \[
+    \forall \veps \in \R^{+}, \forall b \in (1, + \infty), \exists n \in \N, b^{-n} < \veps
+    \]
+\end{corollary}
+
+\begin{proof}
+    The \textbf{Bernoulli's inequality} states that
+    \[
+    \forall x \in [-1, + \infty), \forall n \in \N, (1 + x)^{n} \geq 1 + nx
+    \]
+    By \Cref{an:thm:archimedean-property},
+    \[
+    \begin{array}{c}
+        \forall a \in \R^{+}, \exists n \in \N, na > \frac{1}{\veps} \\
+        \Downarrow \\
+        (1 + a)^{n} \geq 1 + na > \frac{1}{\veps} \implies (1 + a)^{-n} < \veps
+    \end{array}
+    \]
+    Then
+    \[
+    \begin{array}{c}
+        b \in (1, + \infty) \\
+        \Downarrow \\
+        b - 1 \in \R^{+} \\
+        \Downarrow \\
+        \exists n \in \N, n(b - 1) > \frac{1}{\veps} \\
+        \Downarrow \\
+        (1 + (b - 1))^{n} \geq 1 + n(b - 1) > \frac{1}{\veps} \implies (1 + (b - 1))^{-n} < \veps \\
+        \Downarrow \\
+        b^{-n} < \veps
+    \end{array}
+    \]
+\end{proof}
+
+\bigskip
+
+\begin{theorem} \label{an:thm:bounded-subset-of-Z-in-R-has-extremum}
+    Let $E \subseteq \Z$ be nonempty. Then
+    \begin{enumerate}[label=\textbf{(\Alph*)}]
+        \item $E$ is bounded below in $\R$ $\implies E$ has a least element
+        \item $E$ is bounded above in $\R$ $\implies E$ has a greatest element
+    \end{enumerate}
+\end{theorem}
+
+\begin{proof}
+    \begin{enumerate}[label=\textbf{(\Alph*)}]
+        \item Let $E$ be bounded below in $\R$. Then
+        \[
+        \exists \alpha \in \R, \forall x \in E, \alpha \leq x
+        \]
+        If $\alpha \geq 0$, then
+        \[
+        \begin{array}{c}
+            \forall x \in E, 0 \leq \alpha \leq x \\
+            \Downarrow \\
+            0 \in \Z \text{ is a lower bound of } E
+        \end{array}
+        \]
+        Otherwise, by \Cref{an:thm:archimedean-property},
+        \[
+        \begin{array}{c}
+            - \alpha \in \R \\
+            \Downarrow \\
+            \exists n \in \N, n > - \alpha \\
+            \Downarrow \\
+            \forall x \in E, - n < \alpha \leq x \\
+            \Downarrow \\
+            -n \in \Z \text{ is a lower bound of } E
+        \end{array}
+        \]
+        Therefore, $E$ is bounded below in $\Z$.
+        By \Cref{an:thm:bounded-subset-of-Z-in-Z-has-extremum}, $E$ has a least element.
+        \item Let $E$ be bounded above in $\R$. Then
+        \[
+        \exists \alpha \in \R, \forall x \in E, x \leq \alpha
+        \]
+        Then
+        \[
+        \begin{array}{c}
+            \alpha \in \R \\
+            \Downarrow \\
+            \exists n \in \N, n > \alpha \\
+            \Downarrow \\
+            \forall x \in E, x \leq \alpha < n \\
+            \Downarrow \\
+            n \in \Z \text{ is an upper bound of } E
+        \end{array}
+        \]
+        Therefore, $E$ is bounded above in $\Z$.
+        By \Cref{an:thm:bounded-subset-of-Z-in-Z-has-extremum}, $E$ has a greatest element.
+    \end{enumerate}
+\end{proof}
+
+\bigskip
+
+\begin{definition} \label{an:def:floor-ceiling-functions}
+    Let $x \in \R$ be given. The \textbf{floor function} $\floor{x}$
+    and \textbf{ceiling function} $\ceil{x}$ are defined as
+    \begin{itemize}
+        \item $\floor{x} \coloneqq \max\setbuilder*{k \in \Z}{k \leq x}$
+        \item $\ceil{x} \coloneqq \min\setbuilder*{k \in \Z}{k \geq x}$
+    \end{itemize}
+    \Cref{an:thm:bounded-subset-of-Z-in-R-has-extremum} guarantees the \emph{existence} of $\floor{x}$ and $\ceil{x}$.
+\end{definition}
+
+\bigskip
+
+\begin{theorem} \label{an:thm:Q-is-dense-in-R}
+    $\Q$ is \textbf{dense} in $\R$, which states that
+    \[
+    \forall x,y \in \R, x < y \implies \exists p \in \Q, x < p < y
+    \]
+\end{theorem}

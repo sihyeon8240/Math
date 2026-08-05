@@ -1,0 +1,190 @@
+\bigskip
+
+\begin{example}
+    Define
+    \[
+    S \coloneqq \setbuilder*{p \in \Q^{+}}{p^{2} < 2}
+    \]
+    \begin{itemize}
+        \item Let $p \in S$ be given. Define
+        \[
+        q \coloneqq p - \frac{p^{2} - 2}{p + 2} = \frac{2p + 2}{p + 2} > p
+        \]
+        Then
+        \[
+        \begin{array}{c}
+            q^{2} - 2 = \frac{2(p^{2} - 2)}{(p + 2)^{2}} < 0 \\
+            \Downarrow \\
+            q \in S
+        \end{array}
+        \]
+        This implies that $p \in S$ is not an upper bound of $S$.
+        \item Let $p \in \Q^{+} \setminus S$ be given.
+        \[
+        \nexists q \in \Q^{+}, q^{2} = 2
+        \]
+        Therefore,
+        \[
+        \begin{array}{c}
+            p^{2} \geq 2 \\
+            \Downarrow \\
+            p^{2} > 2 \\
+            \Downarrow \\
+            \forall x \in S, x^{2} < 2 < p^{2} \\
+            \Downarrow \\
+            \forall x \in S, x < p \\
+            \Downarrow \\
+            p \text{ is an upper bound of } S
+        \end{array}
+        \]
+        Define
+        \[
+        q \coloneqq p - \frac{p^{2} - 2}{p + 2} = \frac{2p + 2}{p + 2} < p
+        \]
+        Then
+        \[
+        \begin{array}{c}
+            q^{2} - 2 = \frac{2(p^{2} - 2)}{(p + 2)^{2}} > 0 \\
+            \Downarrow \\
+            q^{2} > 2 \\
+            \Downarrow \\
+            \forall x \in S, x^{2} < 2 < q^{2} \\
+            \Downarrow \\
+            \forall x \in S, x < q \\
+            \Downarrow \\
+            q \text{ is an upper bound of } S
+        \end{array}
+        \]
+        This implies that $p$ is not a least upper bound of $S$.
+    \end{itemize}
+    To sum up,
+    \[
+    \nexists \alpha \in \Q^{+}, \alpha = \sup S
+    \]
+\end{example}
+
+\bigskip
+
+\begin{definition} \label{an:def:least-upper-bound-property}
+    Let $S$ be an ordered set and $E \subseteq S$. If
+    \begin{itemize}
+        \item $E \neq \vnot$
+        \item $E$ is bounded above
+    \end{itemize}
+    implies that
+    \[
+    \exists \alpha \in S, \alpha = \sup E
+    \]
+    then $S$ is said to have the \textbf{least upper bound property}.
+\end{definition}
+
+\bigskip
+
+\begin{theorem} \label{an:thm:greatest-lower-bound-property}
+    Let $S$ be an ordered set and $E \subseteq S$. Then
+    \begin{itemize}
+        \item $S$ has the least upper bound property
+        \item $E \neq \vnot$
+        \item $E$ is bounded below
+    \end{itemize}
+    implies that
+    \[
+    \exists \alpha \in S, \alpha = \inf E
+    \]
+\end{theorem}
+
+\begin{proof}
+    Assume that
+    \begin{itemize}
+        \item $S$ has the \emph{least upper bound property}
+        \item $E \neq \vnot$
+        \item $E$ is bounded below
+    \end{itemize}
+    Define
+    \[
+    L \coloneqq \setbuilder*{\lambda \in S}{\forall x \in E, \lambda \leq x} \subseteq S
+    \]
+    Then
+    \[
+    \begin{array}{c}
+        E \text{ is bounded below} \\
+        \Downarrow \\
+        L \neq \vnot
+    \end{array}
+    \]
+    Also,
+    \[
+    \begin{array}{c}
+        E \neq \vnot \\
+        \Downarrow \\
+        \exists \beta \in E \\
+        \Downarrow \\
+        \forall \lambda \in L, \lambda \leq \beta \\
+        \Downarrow \\
+        L \text{ is bounded above}
+    \end{array}
+    \]
+    By the \emph{least upper bound property},
+    \[
+    \exists \alpha \in S, \alpha = \sup L
+    \]
+    We will show that
+    \[
+    \alpha = \inf E
+    \]
+    Assume that $\alpha \notin L$. Then
+    \[
+    \begin{array}{c}
+        \alpha \notin L \\
+        \Downarrow \\
+        \exists \beta \in E, \beta < \alpha \\
+    \end{array}
+    \]
+    Since $\alpha = \sup L$,
+    \[
+    \begin{array}{c}
+        \alpha = \sup L \\
+        \Downarrow \\
+        \beta \text{ is not an upper bound of } L \\
+        \Downarrow \\
+        \exists \gamma \in L, \beta < \gamma \leq \alpha
+    \end{array}
+    \]
+    Then
+    \[
+    \begin{array}{c}
+        \gamma \in L \\
+        \Downarrow \\
+        \forall x \in E, \gamma \leq x \\
+        \Downarrow \\
+        \gamma \leq \beta \\
+        \Downarrow \\
+        \beta < \gamma \leq \beta \\
+        \Downarrow \\
+        \bot
+    \end{array}
+    \]
+    Therefore,
+    \[
+    \begin{array}{c}
+        \alpha \in L \\
+        \Downarrow \\
+        \alpha \text{ is a lower bound of } E \\
+    \end{array}
+    \]
+    Since $\alpha = \sup L$,
+    \[
+    \forall \delta \in S, \delta > \alpha \implies \delta \notin L \\
+    \]
+    To sum up,
+    \begin{itemize}
+        \item $\alpha$ is a lower bound of $E$
+        \item $\forall \delta \in S, \delta > \alpha \implies \delta$ is not a lower bound of $E$
+    \end{itemize}
+    Therefore,
+    \[
+    \alpha = \inf E
+    \]
+\end{proof}
+
+

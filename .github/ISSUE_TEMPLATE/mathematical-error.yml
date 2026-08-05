@@ -1,0 +1,33 @@
+name: Mathematical error
+description: Report a possible error in a definition, theorem, proof, or formula
+title: "[Math] "
+labels: [mathematical-error]
+body:
+  - type: dropdown
+    id: book
+    attributes:
+      label: Textbook
+      options: [Elementary Number Theory, Linear Algebra, Mathematical Analysis]
+    validations: {required: true}
+  - type: input
+    id: section
+    attributes: {label: Chapter / section}
+    validations: {required: true}
+  - type: input
+    id: numbered-item
+    attributes: {label: Theorem, definition, or equation number}
+  - type: textarea
+    id: current
+    attributes: {label: Current content}
+    validations: {required: true}
+  - type: textarea
+    id: correction
+    attributes: {label: Expected correction}
+    validations: {required: true}
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Reason or reference
+      description: >-
+        Provide a derivation, counterexample, or bibliographic reference.
+    validations: {required: true}

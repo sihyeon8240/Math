@@ -1,0 +1,31 @@
+schema_version: 1
+
+defaults:
+  build: true
+  check: true
+  release: false
+  site: false
+
+books:
+  - slug: elementary-number-theory
+    title: Elementary Number Theory
+    short_title: Number Theory
+    status: draft
+    order: 10
+    release: false
+    site: true
+
+  - slug: linear-algebra
+    title: Linear Algebra
+    status: draft
+    order: 20
+    release: false
+    site: true
+
+  - slug: mathematical-analysis
+    title: Mathematical Analysis I & II
+    short_title: Mathematical Analysis
+    status: review
+    order: 30
+    release: true
+    site: true

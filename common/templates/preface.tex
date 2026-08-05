@@ -1,0 +1,41 @@
+\chapter{Preface}
+
+Throughout this textbook, \textbf{logical formulas} are interpreted according to the following conventions:
+\begin{itemize}
+    \item \textbf{Parentheses} have the highest precedence. For example,
+    \[
+    (P \lor Q) \land R
+    \]
+    is evaluated by first computing $P \lor Q$.
+    \item The \textbf{logical connectives} are interpreted in the order
+    \[
+    \neg \; > \; \land \; > \; \lor \; > \; \implies \; > \; \iff
+    \]
+    Hence
+    \[
+    \neg P \land Q \lor R \implies S \iff T
+    \]
+    is understood as
+    \[
+    ((((\neg P) \land Q) \lor R) \implies S) \iff T
+    \]
+    \item A \textbf{quantifier} binds the entire formula that follows it. Thus
+    \[
+    \forall x, P(x) \land Q(x) \implies R(x)
+    \]
+    means
+    \[
+    \forall x\, ((P(x)\land Q(x))\implies R(x))
+    \]
+    \item The symbol $\Downarrow$ is \textbf{not} a logical connective;
+    it is used only to indicate the flow of a proof or an explanation. For example,
+    \[
+    \begin{array}{c}
+        P \\
+        \Downarrow \\
+        Q
+    \end{array}
+    \]
+    merely expresses that $P$ is true, and therefore $Q$ is true in the current discussion;
+    it is not itself a proposition.
+\end{itemize}

@@ -1,0 +1,163 @@
+\section{Convergent Sequences}
+
+Let $(X, d)$ be a metric space. A \textbf{sequence} $\paren*{x_{n}}_{n = 1}^{\infty}$
+is a function $f: \N \to X$, where $x_{n} = f(n)$ for each $n \in \N$.
+\\[6mm]
+A sequence $\paren*{x_{n}}_{n = 1}^{\infty}$ is said to be \textbf{convergent} if there exists $x \in X$ such that
+\[
+\text{For every } \veps \in \R^{+}, \text{ there exists } N \in \N \text{ such that } n \geq N \implies d(x_{n}, x) < \veps.
+\]
+In this case, we say that
+\begin{itemize}
+    \item $\paren*{x_{n}}_{n = 1}^{\infty}$ \textbf{converges} to $x$.
+    \item $x$ is the \textbf{limit} of $\paren*{x_{n}}_{n = 1}^{\infty}$.
+\end{itemize}
+We denote the limit of $\paren*{x_{n}}_{n = 1}^{\infty}$ by
+\begin{itemize}
+    \item $\lim_{n \to \infty} x_{n} = x$.
+    \item $x_{n} \to x$ as $n \to \infty$.
+\end{itemize}
+If $\paren*{x_{n}}_{n = 1}^{\infty}$ is not convergent, it is said to be \textbf{divergent}.
+
+\bigskip
+
+\begin{example}
+    Let $\paren*{\R, \norm*{\cdot}}$ be given. Let $\paren*{x_{n}}_{n = 1}^{\infty}$ be a sequence defined as
+    \[
+    x_{n} = \frac{1}{n} \quad \text{for each } n \in \N.
+    \]
+    Then, for each $\veps \in \R^{+}$, we have
+    \[
+    n > \frac{1}{\veps} \implies \norm*{x_{n} - 0} = \abs*{\frac{1}{n} - 0} = \frac{1}{n} < \veps.
+    \]
+    Therefore, $\paren*{x_{n}}_{n = 1}^{\infty}$ converges to $0$.
+    \\[6mm]
+    Let $\paren*{\R^{+}, \norm*{\cdot}}$ be a subspace of $\paren*{\R, \norm*{\cdot}}$.
+    Let $\paren*{x_{n}}_{n = 1}^{\infty}$ be a sequence defined as
+    \[
+    x_{n} = \frac{1}{n} \quad \text{for each } n \in \N.
+    \]
+    By \Cref{an:thm:archimedean-property}, for each $y \in \R^{+}$, there exists $N_{y} \in \N$ such that $N_{y} >
+    \frac{1}{y}$. Let
+    \[
+    \veps_{y} \coloneqq y - \frac{1}{N_{y}} \in \R^{+} \quad \text{for each } y \in \R^{+}.
+    \]
+    Then we have
+    \[
+    n > N_{y} \implies \norm*{x_{n} - y} = \abs*{\frac{1}{n} - y} > \abs*{\frac{1}{N_{y}} - y} = \veps_{y}.
+    \]
+    Therefore, $\paren*{x_{n}}_{n = 1}^{\infty}$ diverges in $\paren*{\R^{+}, \norm*{\cdot}}$.
+\end{example}
+
+\bigskip
+
+\begin{remark}
+    Let $(X, d)$ be a metric space. In this textbook, $\paren*{x_{n}}_{n = 1}^{\infty}$ represents
+    a sequence in $(X, d)$, while $\set*{x_{n}}_{n = 1}^{\infty}$ represents a set defined as
+    \[
+    \set*{x_{n}}_{n = 1}^{\infty} \coloneqq \setbuilder*{x_{n}}{n \in \N} \subseteq X.
+    \]
+\end{remark}
+
+\bigskip
+
+\begin{definition} \label{an:def:bounded-sequence}
+    Let $(X, d)$ be a metric space. A sequence $\paren*{x_{n}}_{n = 1}^{\infty}$
+    is said to be \textbf{Bounded} if $\set*{x_{n}}_{n = 1}^{\infty}$ is bounded.
+\end{definition}
+
+\bigskip
+
+\begin{theorem} \label{an:thm:convergent-sequence-is-bounded}
+    Let $(X, d)$ be a metric space. Let $\paren*{x_{n}}_{n = 1}^{\infty}$ be a convergent sequence. Then we have
+    \begin{enumerate}[label=\textbf{(\Alph*)}]
+        \item $\paren*{x_{n}}_{n = 1}^{\infty}$ is bounded.
+        \item The limit of $\paren*{x_{n}}_{n = 1}^{\infty}$ is unique.
+    \end{enumerate}
+\end{theorem}
+
+\begin{proof}
+    Let $x$ be the limit of $\paren*{x_{n}}_{n = 1}^{\infty}$.
+    \begin{enumerate}[label=\textbf{(\Alph*)}]
+        \item Let $\veps = 1$. Then there exists $N \in \N$ such that
+        \[
+        n \geq N \implies d(x_{n}, x) < 1.
+        \]
+        Let $S$ be a set defined as
+        \[
+        S \coloneqq \setbuilder*{d(x_{n}, x)}{1 \leq n \leq N} \subseteq [0, \infty).
+        \]
+        Let $f: \N^{N} \to S$ be a function defined as
+        \[
+        f(k) = d(x_{k}, x) \quad \text{for all } k \in \N^{N}.
+        \]
+        Then $f$ is surjective. By \Cref{an:lem:surjection-from-Nn-implies-finite}, $S$ is finite. Then, by
+        \Cref{an:thm:finite-ordered-set-has-extremum}, $S$ has a greatest element, say $M = \max S$. Then we have
+        \[
+        d(x_{n}, x) < M + 1 \quad \text{for all } n \in \N.
+        \]
+        Therefore, $\paren*{x_{n}}_{n = 1}^{\infty}$ is bounded.
+        \item Let $y$ be the limit of $\paren*{x_{n}}_{n = 1}^{\infty}$. Assume that $x \neq y$.
+        Then we have $r \coloneqq d(x, y) > 0$. Let $\veps = \frac{r}{2}$. Then we have
+        \begin{itemize}
+            \item There exists $N_{x} \in \N$ such that $n \geq N_{x} \implies d(x_{n}, x) < \frac{r}{2}$.
+            \item There exists $N_{y} \in \N$ such that $n \geq N_{y} \implies d(x_{n}, y) < \frac{r}{2}$.
+        \end{itemize}
+        Thus we have
+        \[
+        n \geq \max\set*{N_{x}, N_{y}} \implies d(x, y) \leq d(x, x_{n}) + d(x_{n}, y) < r,
+        \]
+        which is a contradiction. Therefore, we have $x = y$.
+    \end{enumerate}
+\end{proof}
+
+\bigskip
+
+\begin{theorem} \label{an:thm:neighborhood}
+    Let $(X, d)$ be a metric space. Then the following statements hold:
+    \begin{enumerate}[label=\textbf{(\Alph*)}]
+        \item A sequence $\paren*{x_{n}}_{n = 1}^{\infty}$ converges to $x \in X$ if and only if
+        \[
+        \text{For every } \veps \in \R^{+}, N_{\veps}(x) \text{ contains all but
+        finitely many terms of } \paren*{x_{n}}_{n = 1}^{\infty}.
+        \]
+        \item Let $E \subseteq X$ be given. If $x$ is a limit point of $E$, then there exists
+        a sequence $\paren*{x_{n}}_{n = 1}^{\infty}$ in $(X, d)$ such that
+        \[
+        \lim_{n \to \infty} x_{n} = x.
+        \]
+    \end{enumerate}
+\end{theorem}
+
+\begin{proof}
+    \begin{enumerate}[label=\textbf{(\Alph*)}]
+        \item \textbf{($\implies$)} Let $\paren*{x_{n}}_{n = 1}^{\infty}$ converge to $x \in X$. Then, for each
+        $\veps \in \R^{+}$, there exists $M_{\veps} \in \N$ such that
+        \[
+        n \geq M_{\veps} \implies d(x_{n}, x) < \veps,
+        \]
+        which implies that
+        \[
+        \set*{x_{n}}_{n = M_{\veps}}^{\infty} \subseteq N_{\veps}(x).
+        \]
+        \\[6mm]
+        \textbf{($\impliedby$)} Let $\paren*{x_{n}}_{n = 1}^{\infty}$ be a sequence in $(X, d)$ such that
+        \[
+        \text{For every } \veps \in \R^{+}, N_{\veps}(x) \text{ contains all but
+        finitely many terms of } \paren*{x_{n}}_{n = 1}^{\infty}.
+        \]
+        \item Let $E \subseteq X$ be given. Assume that $x$ is a limit point of $E$. Then for every $\veps \in
+        \R^{+}$, we have $(N_{\veps}(x) - \set*{x}) \cap E \neq \vnot$. Thus we can choose a sequence
+        $\paren*{y_{n}}_{n = 1}^{\infty}$ in $(X, d)$ such that
+        \[
+        y_{n} \in (N_{\frac{1}{n}}(x) \setminus \set*{x}) \cap E.
+        \]
+        Then we have
+        \[
+        d(y_{n}, x) < \frac{1}{n} \quad \text{for each } n \in \N,
+        \]
+        which implies that $\lim_{n \to \infty} y_{n} = x$.
+    \end{enumerate}
+\end{proof}
+
+

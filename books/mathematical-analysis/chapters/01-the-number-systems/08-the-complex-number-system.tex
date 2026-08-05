@@ -1,0 +1,179 @@
+\section{The Complex Number System}
+
+The complex number system $\C$ is defined as
+\[
+\C \coloneqq \setbuilder*{(x, y)}{x, y \in \R}
+\]
+The binary operations on $\C$ are defined as
+\begin{itemize}
+    \item $\forall x,y,u,v \in \R, (x, y) + (u, v) \coloneqq (x + u, y + v)$
+    \item $\forall x,y,u,v \in \R, (x, y) \cdot (u, v) \coloneqq (xu - yv, xv + yu)$
+\end{itemize}
+
+One can verify that $\C$ is a field with the following properties:
+\begin{itemize}
+    \item The \textbf{additive identity} is $(0, 0)$
+    \item The \textbf{multiplicative identity} is $(1, 0)$
+    \item The \textbf{additive inverse} of $(x, y)$ is $(-x, -y)$
+    \item The \textbf{multiplicative inverse} of $(x, y)$ is
+    \[
+    \paren*{\frac{x}{x^{2} + y^{2}}, - \frac{y}{x^{2} + y^{2}}}
+    \]
+    for $(x, y) \neq (0, 0)$
+\end{itemize}
+The \textbf{imaginary unit} $i$ is defined as
+\[
+i \coloneqq (0, 1) \in \C
+\]
+Then
+\[
+i^{2} = (0, 1) \cdot (0, 1) = (-1, 0)
+\]
+There is a \textbf{canonical embedding}
+\[
+\R \xrightarrow{\cong} \C \text{ such that } x \mapsto (x, 0)
+\]
+Therefore, we identify $\R$ with its image in $\C$ and write
+\[
+\R \subseteq \C
+\]
+Then, for every complex number $(x, y) \in \C$,
+\[
+(x, y) = (x, 0) + (0, y) = (x, 0) + (y, 0) \cdot (0, 1) = x + yi
+\]
+
+\bigskip
+
+\begin{definition} \label{an:def:real-part-imaginary-part-complex-conjugate}
+    Let $z = (x, y) \in \C$ be given.
+    \begin{itemize}
+        \item The \textbf{real part} of $z$ is defined as
+        \begin{itemize}
+            \item $\Re(z) \coloneqq x$
+            \item $\Real(z) \coloneqq x$
+        \end{itemize}
+        \item The \textbf{imaginary part} of $z$ is defined as
+        \begin{itemize}
+            \item $\Im(z) \coloneqq y$
+            \item $\Imag(z) \coloneqq y$
+        \end{itemize}
+        \item The \textbf{complex conjugate} of $z$ is defined as
+        \[
+        \overline{z} \coloneqq (x, -y) = x - yi
+        \]
+    \end{itemize}
+\end{definition}
+
+\bigskip
+
+\begin{theorem} \label{an:thm:properties-of-complex-conjugate}
+    Let $z = (x, y) \in \C$ and $w = (u, v) \in \C$ be given. Then the following properties hold:
+    \begin{itemize}
+        \item $\overline{\paren*{\overline{z}}} = z$
+        \item $z = \overline{z} \iff z \in \R$
+        \item $\overline{z + w} = \overline{z} + \overline{w}$
+        \item $\overline{zw} = \overline{z} \cdot \overline{w}$
+        \item $z + \overline{z} = 2\Real(z)$
+        \item $z - \overline{z} = 2i\Imag(z)$
+        \item $z\overline{z} = x^{2} + y^{2} \in \R^{+} \cup \set*{0}$
+    \end{itemize}
+\end{theorem}
+
+\begin{proof}
+    The proof follows directly from \Cref{an:def:real-part-imaginary-part-complex-conjugate}.
+\end{proof}
+
+\bigskip
+
+\begin{definition} \label{an:def:modulus}
+    Let $z = (x, y) \in \C$ be given. The \textbf{modulus} of $z$ is defined as
+    \[
+    |z| \coloneqq \sqrt{z\overline{z}} = \sqrt{x^{2} + y^{2}} \in \R^{+} \cup \set*{0}
+    \]
+    The \emph{existence} and \emph{uniqueness} of $|z|$
+    are guaranteed by \Cref{an:thm:properties-of-complex-conjugate,an:thm:existence-of-nth-roots}
+\end{definition}
+
+\bigskip
+
+\begin{theorem} \label{an:thm:cauchy-schwarz-inequality}
+    Let $a_{1}, a_{2}, \ldots, a_{n} \in \C$ and $b_{1}, b_{2}, \ldots, b_{n} \in \C$ be given. Then
+    \[
+    \abs*{\sum_{k = 1}^{n} a_{k} \overline{b_{k}}}^{2}
+    \leq \sum_{k = 1}^{n} |a_{k}|^{2} \cdot \sum_{k = 1}^{n} |b_{k}|^{2}
+    \]
+    This theorem is called the \textbf{Cauchy-Schwarz inequality}.
+\end{theorem}
+
+\begin{proof}
+    Let $1 \leq i < j \leq n$ be given. Then
+    \begin{align*}
+        \abs*{{a_{i} b_{j} - a_{j} b_{i}}}^{2} &= (a_{i} b_{j} - a_{j} b_{i}) \overline{(a_{i} b_{j} - a_{j} b_{i})} \\
+        &= |a_{i}|^{2} |b_{j}|^{2} + |a_{j}|^{2} |b_{i}|^{2} - (a_{i} \overline{b_{i}} \cdot
+        \overline{a_{j}} b_{j} + \overline{a_{i}} b_{i} \cdot a_{j} \overline{b_{j}})
+    \end{align*}
+    Consider the following sums:
+    \begin{align*}
+        \sum_{i < j} (|a_{i}|^{2} |b_{j}|^{2} + |a_{j}|^{2} |b_{i}|^{2})
+        &= \sum_{i < j} (|a_{i}|^{2} |b_{j}|^{2}) + \sum_{j < i} (|a_{i}|^{2} |b_{j}|^{2}) \\
+        &= \sum_{i \neq j} (|a_{i}|^{2} |b_{j}|^{2}) \\
+        &= \sum_{k = 1}^{n} |a_{k}|^{2}
+        \cdot \sum_{k = 1}^{n} |b_{k}|^{2} - \sum_{k = 1}^{n} |a_{k}|^{2} |b_{k}|^{2}
+    \end{align*}
+    \begin{align*}
+        \sum_{i < j} (a_{i} \overline{b_{i}} \cdot \overline{a_{j}} b_{j}
+        + \overline{a_{i}} b_{i} \cdot a_{j} \overline{b_{j}})
+        &= \sum_{i \neq j} (a_{i} \overline{b_{i}} \cdot \overline{a_{j}} b_{j}) \\
+        &= \sum_{i = 1}^{n} a_{i} \overline{b_{i}} \cdot \sum_{j = 1}^{n} \overline{a_{j}} b_{j}
+        - \sum_{k = 1}^{n} a_{k} \overline{b_{k}} \cdot \overline{a_{k}} b_{k} \\
+        &= \abs*{\sum_{k = 1}^{n} a_{k} \overline{b_{k}}}^{2} - \sum_{k = 1}^{n} |a_{k}|^{2} |b_{k}|^{2}
+    \end{align*}
+    Therefore,
+    \[
+    \sum_{i < j} \abs*{{a_{i} b_{j} - a_{j} b_{i}}}^{2} = \sum_{k = 1}^{n} |a_{k}|^{2} \cdot
+    \sum_{k = 1}^{n} |b_{k}|^{2} - \abs*{\sum_{k = 1}^{n} a_{k} \overline{b_{k}}}^{2} \geq 0
+    \]
+\end{proof}
+
+\begin{corollary} \label{an:cor:cauchy-schwarz-inequality-for-real-numbers}
+    Let $a_{1}, a_{2}, \ldots, a_{n} \in \R$ and $b_{1}, b_{2}, \ldots, b_{n} \in \R$ be given. Then
+    \[
+    \paren*{\sum_{k = 1}^{n} a_{k} b_{k}}^{2} \leq \sum_{k = 1}^{n} a_{k}^{2} \cdot \sum_{k = 1}^{n} b_{k}^{2}
+    \]
+\end{corollary}
+
+\bigskip
+
+\begin{theorem} \label{an:thm:properties-of-modulus}
+    Let $z, w \in \C$ be given. Then the following properties hold:
+    \begin{enumerate}[label=\textbf{(\Alph*)}]
+        \item $|zw| = |z| \cdot |w|$
+        \item $|z + w| \leq |z| + |w|$
+        \item $\abs*{|z| - |w|} \leq |z - w|$
+    \end{enumerate}
+\end{theorem}
+
+\begin{proof}
+    Let $z = (x, y) \in \C$ and $w = (u, v) \in \C$ be given.
+    \begin{enumerate}[label=\textbf{(\Alph*)}]
+        \item $|zw|^{2} = (xu - yv)^{2} + (xv + yu)^{2} = (x^{2} + y^{2})(u^{2} + v^{2}) = |z|^{2} \cdot |w|^{2}$
+        \item By \Cref{an:cor:cauchy-schwarz-inequality-for-real-numbers},
+        \[
+        (xu + yv)^{2} \leq (x^{2} + y^{2})(u^{2} + v^{2})
+        \]
+        Then
+        \begin{align*}
+            |z + w|^{2} &= (x + u)^{2} + (y + v)^{2} \\
+            &= x^{2} + y^{2} + u^{2} + v^{2} + 2(xu + yv) \\
+            &\leq x^{2} + y^{2} + u^{2} + v^{2} + 2\sqrt{x^{2} + y^{2}} \cdot \sqrt{u^{2} + v^{2}} \\
+            &= (|z| + |w|)^{2}
+        \end{align*}
+        \item Again, by \Cref{an:cor:cauchy-schwarz-inequality-for-real-numbers},
+        \begin{align*}
+            |z - w|^{2} &= (x - u)^{2} + (y - v)^{2} \\
+            &= x^{2} + y^{2} + u^{2} + v^{2} - 2(xu + yv) \\
+            &\geq x^{2} + y^{2} + u^{2} + v^{2} - 2\sqrt{x^{2} + y^{2}} \cdot \sqrt{u^{2} + v^{2}} \\
+            &= (|z| - |w|)^{2}
+        \end{align*}
+    \end{enumerate}
+\end{proof}

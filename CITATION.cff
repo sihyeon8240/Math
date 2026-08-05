@@ -1,0 +1,9 @@
+cff-version: 1.2.0
+message: "If you use these textbooks, please cite this repository."
+type: software
+title: "Undergraduate Mathematics Textbooks"
+authors:
+  - family-names: "Choi"
+    given-names: "Muho"
+version: 0.1.0
+repository-code: "https://github.com/sihyeon8240/math"

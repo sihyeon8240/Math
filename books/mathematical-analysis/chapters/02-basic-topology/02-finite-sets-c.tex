@@ -1,0 +1,205 @@
+\bigskip
+
+\begin{lemma} \label{an:lem:properties-of-Nm-Nn-converse}
+    Let $n, m \in \N_{0}$ be given. Then
+    \begin{enumerate}[label=\textbf{(\Alph*)}]
+        \item $n \leq m \implies \exists f: \N^{n} \hookrightarrow \N^{m}$
+        \item $n \geq m \implies \exists f: \N^{n} \twoheadrightarrow \N^{m}$
+        \item $n = m \implies \exists f: \N^{n} \xrightarrow{\sim} \N^{m}$
+    \end{enumerate}
+    This lemma is the converse of \Cref{an:lem:properties-of-Nm-Nn}.
+\end{lemma}
+
+\begin{proof}
+    \begin{enumerate}[label=\textbf{(\Alph*)}]
+        \item If $n \leq m$, define $f: \N^{n} \hookrightarrow \N^{m}$ as
+        \[
+        \forall i \in \N^{n}, f(i) = i
+        \]
+        \item If $n \geq m$, define $f: \N^{n} \to \N^{m}$ as
+        \[
+        \forall i \in \N^{n}, f(i) = \begin{dcases}
+            i, & \text{if } i \leq m \\
+            m, & \text{if } i > m
+        \end{dcases}
+        \]
+        \item follows from \textbf{(A)} and \textbf{(B)}.
+    \end{enumerate}
+\end{proof}
+
+\bigskip
+
+\begin{theorem} \label{an:thm:properties-of-cardinality}
+    Let $X, Y$ be finite. Then
+    \begin{enumerate}[label=\textbf{(\Alph*)}]
+        \item $\abs*{X} \leq \abs*{Y} \iff \exists f: X \hookrightarrow Y$
+        \item $\abs*{X} \geq \abs*{Y} \iff \exists f: X \twoheadrightarrow Y$
+        \item $\abs*{X} = \abs*{Y} \iff \exists f: X \xrightarrow{\sim} Y$
+    \end{enumerate}
+    The contraposition of \textbf{(A, $\impliedby$)} is called the \textbf{pigeonhole principle}.
+\end{theorem}
+
+\begin{proof}
+    Since $X$ and $Y$ are finite,
+    \begin{itemize}
+        \item $\exists n \in \N_{0}, \exists f_{X}: \N^{n} \xrightarrow{\sim} X$
+        \item $\exists m \in \N_{0}, \exists f_{Y}: \N^{m} \xrightarrow{\sim} Y$
+    \end{itemize}
+    \textbf{($\impliedby$)} Define $f: X \to Y$ and $F: \N^{n} \to \N^{m}$ as
+    \[
+    F \equiv (f_{Y})^{-1} \circ f \circ f_{X}
+    \]
+    By \Cref{an:thm:inverse-function-is-bijective,an:thm:properties-of-composition-functions},
+    \begin{itemize}
+        \item $f$ is injective $\implies F$ is injective
+        \item $f$ is surjective $\implies F$ is surjective
+    \end{itemize}
+    By \Cref{an:lem:properties-of-Nm-Nn},
+    \begin{enumerate}[label=\textbf{(\Alph*)}]
+        \item $\paren*{\exists f: X \hookrightarrow Y} \implies
+        \paren*{\exists F: \N^{n} \hookrightarrow \N^{m}} \implies n \leq m$
+        \item $\paren*{\exists f: X \twoheadrightarrow Y} \implies
+        \paren*{\exists F: \N^{n} \twoheadrightarrow \N^{m}} \implies n \geq m$
+        \item follows from \textbf{(A)} and \textbf{(B)}.
+    \end{enumerate}
+    \textbf{($\implies$)} Define $f: X \to Y$ and $G: \N^{m} \to \N^{n}$ as
+    \[
+    f \equiv f_{Y} \circ G \circ (f_{X})^{-1}
+    \]
+    By \Cref{an:thm:inverse-function-is-bijective,an:thm:properties-of-composition-functions},
+    \begin{enumerate}[label=\textbf{(\Alph*)}]
+        \item $G$ is injective $\implies f$ is injective
+        \item $G$ is surjective $\implies f$ is surjective
+    \end{enumerate}
+    By \Cref{an:lem:properties-of-Nm-Nn-converse},
+    \begin{enumerate}[label=\textbf{(\Alph*)}]
+        \item $n \leq m \implies \paren*{\exists G: \N^{n} \hookrightarrow \N^{m}}
+        \implies \paren*{\exists f: X \hookrightarrow Y}$
+        \item $n \geq m \implies \paren*{\exists G: \N^{n} \twoheadrightarrow \N^{m}}
+        \implies \paren*{\exists f: X \twoheadrightarrow Y}$
+        \item follows from \textbf{(A)} and \textbf{(B)}.
+    \end{enumerate}
+\end{proof}
+
+\bigskip
+
+\begin{lemma} \label{an:lem:union-of-two-disjoint-finite-sets-is-finite}
+    \[
+    \forall X \forall Y, \abs*{X} < \aleph_{0} \land \abs*{Y} < \aleph_{0}
+    \land X \cap Y = \vnot \implies \abs*{X \cup Y} < \aleph_{0}
+    \]
+\end{lemma}
+
+\begin{proof}
+    Assume that
+    \[
+    \abs*{X} < \aleph_{0} \land \abs*{Y} < \aleph_{0} \land X \cap Y = \vnot
+    \]
+    Then
+    \begin{itemize}
+        \item $\exists n \in \N_{0}, \exists f: \N^{n} \xrightarrow{\sim} X$
+        \item $\exists m \in \N_{0}, \exists g: \N^{m} \xrightarrow{\sim} Y$
+    \end{itemize}
+    Define $h: \N^{m + n} \xrightarrow{\sim} X \cup Y$ as
+    \[
+    \forall i \in \N^{m + n}, h(i) = \begin{dcases}
+        f(i), & \text{if } i \leq n \\
+        g(i - n), & \text{if } n < i \leq n + m
+    \end{dcases}
+    \]
+    Then
+    \[
+    \abs*{X \cup Y} = m + n < \aleph_{0}
+    \]
+\end{proof}
+
+\bigskip
+
+\begin{theorem} \label{an:thm:union-of-two-finite-sets-is-finite}
+    \[
+    \forall X \forall Y, \abs*{X} < \aleph_{0} \land \abs*{Y} < \aleph_{0} \implies \abs*{X \cup Y} < \aleph_{0}
+    \]
+\end{theorem}
+
+\begin{proof}
+    Assume that
+    \[
+    \abs*{X} < \aleph_{0} \land \abs*{Y} < \aleph_{0}
+    \]
+    Define
+    \begin{itemize}
+        \item $A = X \setminus Y \subseteq X$
+        \item $B = Y \setminus X \subseteq Y$
+        \item $C = X \cap Y \subseteq X$
+    \end{itemize}
+    By \Cref{an:thm:subset-of-finite-set-is-finite},
+    \begin{itemize}
+        \item $\abs*{A} < \aleph_{0}$, $\abs*{B} < \aleph_{0}$, and $\abs*{C} < \aleph_{0}$
+        \item $A \cap B = \vnot$, $B \cap C = \vnot$, and $C \cap A = \vnot$
+    \end{itemize}
+    Consider the following:
+    \begin{itemize}
+        \item $X = (X \setminus Y) \cup (X \cap Y) = A \cup C$
+        \item $Y = (Y \setminus X) \cup (X \cap Y) = B \cup C$
+        \item $X \cup Y = ((X \setminus Y) \cup (Y \setminus X)) \cup (X \cap Y) = (A \cup B) \cup C$
+    \end{itemize}
+    By \Cref{an:lem:union-of-two-disjoint-finite-sets-is-finite},
+    \[
+    \begin{array}{c}
+        \abs*{A \cup B} < \aleph_{0} \\
+        \Downarrow \\
+        \abs*{(A \cup B) \cup C} < \aleph_{0} \\
+        \Downarrow \\
+        \abs*{X \cup Y} < \aleph_{0}
+    \end{array}
+    \]
+\end{proof}
+
+\bigskip
+
+\begin{theorem} \label{an:thm:finite-union-of-finite-sets-is-finite}
+    \[
+    \forall n \in \N, \paren*{\forall k \in \N^{n}, \abs*{X_{k}} < \aleph_{0}}
+    \implies \abs*{\bigcup_{k = 1}^{n} X_{k}} < \aleph_{0}
+    \]
+\end{theorem}
+
+\begin{proof}
+    Define
+    \[
+    P(n): \paren*{\forall k \in \N^{n}, \abs*{X_{k}} < \aleph_{0}} \implies \abs*{\bigcup_{k = 1}^{n} X_{k}} < \aleph_{0}
+    \]
+    We will show that $P(n)$ is true for all $n \in \N$.
+    \begin{itemize}
+        \item \textbf{Base case:} Let $\abs*{X_{1}} < \aleph_{0}$ be given. Then
+        \[
+        \begin{array}{c}
+            \abs*{X_{1}} < \aleph_{0} \\
+            \Downarrow \\
+            \abs*{\bigcup_{k = 1}^{1} X_{k}} < \aleph_{0} \\
+            \Downarrow \\
+            P(1) \text{ is true}
+        \end{array}
+        \]
+        \item \textbf{Inductive step:} Let $P(n)$ be true for $n \in \N$. Assume that
+        \[
+        \forall k \in \N^{n + 1}, \abs*{X_{k}} < \aleph_{0}
+        \]
+        By the inductive hypothesis,
+        \begin{itemize}
+            \item $\abs*{\bigcup_{k = 1}^{n} X_{k}} < \aleph_{0}$
+            \item $\abs*{X_{n + 1}} < \aleph_{0}$
+        \end{itemize}
+        By \Cref{an:thm:union-of-two-finite-sets-is-finite},
+        \[
+        \begin{array}{c}
+            \bigcup_{k = 1}^{n + 1} X_{k} = \paren*{\bigcup_{k = 1}^{n} X_{k}} \cup X_{n + 1} \\
+            \Downarrow \\
+            \abs*{\bigcup_{k = 1}^{n + 1} X_{k}} < \aleph_{0} \\
+            \Downarrow \\
+            P(n + 1) \text{ is true}
+        \end{array}
+        \]
+    \end{itemize}
+    By the \emph{principle of mathematical induction}, $P(n)$ is true for all $n \in \N$.
+\end{proof}
