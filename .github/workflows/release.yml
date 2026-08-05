@@ -1,0 +1,44 @@
+name: Release textbooks
+on:
+  push:
+    tags:
+      - '*-v*'
+permissions:
+  contents: write
+concurrency:
+  group: release-${{ github.ref }}
+  cancel-in-progress: false
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v7
+        with:
+          python-version: '3.12'
+      - name: Install repository check dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install --no-install-recommends --yes ripgrep
+          command -v rg
+      - run: python3 -m pip install --disable-pip-version-check PyYAML==6.0.2
+      - name: Require the tagged commit to be on main
+        shell: bash
+        run: |
+          git fetch --no-tags origin main
+          git merge-base --is-ancestor HEAD origin/main || {
+            echo "error: release tag must point to a commit contained in main" >&2
+            exit 1
+          }
+      - name: Check repository sources
+        run: ./scripts/check-repository.sh
+      - name: Validate tag and metadata versions
+        shell: bash
+        run: ./scripts/release-plan.sh "${GITHUB_REF_NAME}"
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v3
+        with:
+          generate_release_notes: true

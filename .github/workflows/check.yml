@@ -1,0 +1,73 @@
+name: Check sources
+on:
+  pull_request:
+  push:
+    branches: [main]
+permissions:
+  contents: read
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+      - id: changes
+        name: Classify changed files
+        env:
+          BASE_SHA: >-
+            ${{
+              github.event_name == 'pull_request'
+              && github.event.pull_request.base.sha
+              || github.event.before
+            }}
+        shell: bash
+        run: |
+          paths="$(git diff --name-only "$BASE_SHA" HEAD 2>/dev/null || git ls-files)"
+          if grep -Eq '^(scripts/.*\.py|tests/|Makefile)' <<< "$paths"; then
+            echo "python=true" >> "$GITHUB_OUTPUT"
+          fi
+
+          if grep -Eq '^(scripts/.*\.sh|Makefile)' <<< "$paths"; then
+            echo "shell=true" >> "$GITHUB_OUTPUT"
+          fi
+
+          structured_pattern='^(\.github/.*\.yml|books\.yml|CITATION\.cff'
+          structured_pattern+='|\.devcontainer/devcontainer\.json)'
+          if grep -Eq "$structured_pattern" <<< "$paths"; then
+            echo "structured=true" >> "$GITHUB_OUTPUT"
+          fi
+      - uses: actions/setup-python@v7
+        with:
+          python-version: '3.12'
+      - name: Install repository check dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install --no-install-recommends --yes ripgrep
+          command -v rg
+      - run: python3 -m pip install --disable-pip-version-check PyYAML==6.0.2
+      - name: Repository, Python, labels, generated files, and draft markers
+        run: ./scripts/check-repository.sh
+      - name: Unit tests
+        if: steps.changes.outputs.python == 'true'
+        run: make test
+      - name: YAML and JSON syntax
+        if: steps.changes.outputs.structured == 'true'
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import json
+          import yaml
+          for path in sorted(Path('.github').rglob('*.yml')):
+              yaml.safe_load(path.read_text(encoding='utf-8'))
+              print(path)
+          yaml.safe_load(Path('CITATION.cff').read_text(encoding='utf-8'))
+          json.loads(Path('.devcontainer/devcontainer.json').read_text(encoding='utf-8'))
+          PY
+      - name: Shell syntax
+        if: steps.changes.outputs.shell == 'true'
+        run: bash -n scripts/*.sh
+      - name: Shell lint
+        if: steps.changes.outputs.shell == 'true'
+        run: shellcheck --severity=error scripts/*.sh

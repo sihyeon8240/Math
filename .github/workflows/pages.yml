@@ -1,0 +1,65 @@
+name: Deploy static site
+on:
+  workflow_call:
+    inputs:
+      source_sha:
+        required: true
+        type: string
+  workflow_dispatch:
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+concurrency:
+  group: pages
+  cancel-in-progress: true
+jobs:
+  deploy:
+    timeout-minutes: 15
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Resolve source commit
+        id: source
+        env:
+          EVENT_NAME: ${{ github.event_name }}
+          CALL_SHA: ${{ inputs.source_sha }}
+        shell: bash
+        run: |
+          if [[ "$EVENT_NAME" == workflow_call ]]; then
+            echo "sha=$CALL_SHA" >> "$GITHUB_OUTPUT"
+          else
+            echo "sha=main" >> "$GITHUB_OUTPUT"
+          fi
+      - uses: actions/checkout@v7
+        with:
+          ref: ${{ steps.source.outputs.sha }}
+      - uses: actions/checkout@v7
+        with:
+          ref: generated-pdfs
+          path: pdf-snapshot
+      - uses: actions/setup-python@v7
+        with:
+          python-version: '3.12'
+      - run: python3 -m pip install --disable-pip-version-check PyYAML==6.0.2
+      - name: Validate and generate site from books.yml
+        run: |
+          make site
+          make site-check
+      - uses: actions/configure-pages@v6
+      - uses: actions/jekyll-build-pages@v1
+        with:
+          source: site
+          destination: _site
+      - name: Prepare PDF destination
+        run: sudo install -d -o "$(id -u)" -g "$(id -g)" _site/pdf
+      - name: Validate and add the complete PDF snapshot
+        run: python3 scripts/stage-site-pdfs.py pdf-snapshot _site/pdf
+      - uses: actions/upload-pages-artifact@v5
+        with:
+          path: _site
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v5
