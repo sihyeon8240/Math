@@ -191,7 +191,8 @@ h1 {
 }
 
 .section-heading p {
-  max-width: 35rem;
+  width: min(100%, 31rem);
+  max-width: 31rem;
   margin: 0;
   color: var(--muted);
 }
@@ -471,6 +472,7 @@ h1 {
     overflow-wrap: anywhere;
   }
   .section-heading { align-items: start; flex-direction: column; gap: 0.5rem; }
+  .section-heading p { width: 100%; max-width: none; }
   .link-grid { grid-template-columns: 1fr; }
   .project-link { min-height: 6rem; }
   .book-card__action {
