@@ -112,30 +112,53 @@
 \bigskip
 
 \begin{theorem} \label{an:thm:supremum-in-closure}
-    Let $\paren*{\R, \norm*{\cdot}}$ be given. Let $E \subseteq \R$ be nonempty and bounded above. Then we have
+    Let $\paren*{\R, \norm*{\cdot}}$ be given. If $E \subseteq \R$ satisfies
+    \begin{itemize}
+        \item $E \neq \vnot$
+        \item $E$ is bounded above
+    \end{itemize}
+    then
     \[
-    \sup E \in \overline{E},
+    \exists \sup E \in \overline{E}
     \]
-    which implies that
+    Also,
     \[
-    E \text{ is closed} \implies \sup E \in E.
+    E \text{ is closed} \implies \exists \sup E \in E
     \]
 \end{theorem}
 
 \begin{proof}
     By the \emph{least upper bound property},
-    there exists $\alpha = \sup E \in \R$. Assume that $\alpha \in E$. Then we have
     \[
-    E \subseteq \overline{E} \implies \alpha \in \overline{E}.
+    \exists \alpha \in \R, \alpha = \sup E
     \]
-    Otherwise, for every $x \in \R^{+}$, $\alpha - x$ is not an upper bound of $E$.
-    Thus there exists some $p \in E$ such that
+    If $\alpha \in E$, then
     \[
-    \alpha - x < p < \alpha \implies p \in \widetilde{N}_{x}(\alpha) \cap E,
+    \begin{array}{c}
+        E \subseteq \overline{E} \\
+        \Downarrow \\
+        \alpha \in \overline{E}
+    \end{array}
     \]
-    which implies that $\alpha \in E'$. Therefore, we have
+    Otherwise,
     \[
-    E' \subseteq \overline{E} \implies \alpha \in \overline{E}.
+    \begin{array}{c}
+        \forall x \in \R^{+}, \alpha - x \text{ is not an upper bound of } E \\
+        \Downarrow \\
+        \exists p \in E, \alpha - x < p < \alpha \\
+        \Downarrow \\
+        p \in \widetilde{N}_{x}(\alpha) \cap E \\
+        \Downarrow \\
+        \alpha \in E'
+    \end{array}
+    \]
+    Therefore,
+    \[
+    \begin{array}{c}
+        E' \subseteq \overline{E} \\
+        \Downarrow \\
+        \alpha \in \overline{E}
+    \end{array}
     \]
 \end{proof}
 
@@ -143,65 +166,47 @@
 \bigskip
 
 \begin{theorem} \label{an:thm:isolated-points}
-    Let $(X, d)$ be a metric space and $E \subseteq X$. Then we have
+    Let $(X, d)$ be a metric space and $E \subseteq X$. Then
     \[
-    E \setminus E' = \setbuilder*{p \in X}{p \text{ is an isolated point of } E}.
+    E \setminus E' = \setbuilder*{p \in X}{p \text{ is an isolated point of } E}
     \]
 \end{theorem}
 
 \begin{proof}
-    \textbf{($\subseteq$)} Let $p \in E \setminus E'$ be given.
-    Since $p \notin E'$, there exists some $r \in \R^{+}$ such that
+    \textbf{($\subseteq$)} Let $p \in E \setminus E'$ be given. Then
     \[
-    E \cap \widetilde{N}_{r}(p) = \vnot \implies \paren*{E \cap N_{r}(p)} \setminus \set*{p} = \vnot.
+    \begin{array}{c}
+        p \notin E' \\
+        \Downarrow \\
+        \exists r \in \R^{+}, E \cap \widetilde{N}_{r}(p) = \vnot \\
+        \Downarrow \\
+        \paren*{E \cap N_{r}(p)} \setminus \set*{p} = \vnot
+    \end{array}
     \]
-    Since $p \in E$ and $p \in N_{r}(p)$, we have
+    Therefore,
     \[
-    E \cap N_{r}(p) = \set*{p},
+    \begin{array}{c}
+        p \in E \land p \in N_{r}(p) \\
+        \Downarrow \\
+        E \cap N_{r}(p) = \set*{p} \\
+        \Downarrow \\
+        p \text{ is an isolated point of } E
+    \end{array}
     \]
-    which implies that $p$ is an isolated point of $E$.
-    \\[6mm]
-    \textbf{($\supseteq$)} Let $p$ be an isolated point of $E$. Then there exists some $r \in \R^{+}$ such that
+    \textbf{($\supseteq$)} Let $p$ be an isolated point of $E$. Then
     \[
-    E \cap N_{r}(p) = \set*{p}.
+    \exists r \in \R^{+}, E \cap N_{r}(p) = \set*{p}
     \]
-    Then we have
-    \begin{itemize}
-        \item $E \cap \widetilde{N}_{r}(p) = \vnot \implies p \notin E'$.
-        \item $p \in E$.
-    \end{itemize}
-    Therefore, we have $p \in E \setminus E'$.
-\end{proof}
-
-\bigskip
-
-\begin{definition} \label{an:def:boundary}
-    Let $(X, d)$ be a metric space and $E \subseteq X$. The \textbf{boundary} of $E$,
-    which is denoted by $\partial E$, is defined as
+    Therefore,
     \[
-    \partial E \coloneqq \overline{E} \cap \overline{E^{c}}.
-    \]
-\end{definition}
-
-\bigskip
-
-\begin{lemma} \label{an:lem:deleted-neighborhood-in-rn-is-non-empty}
-    Let $(\R^{n}, \norm*{\cdot})$ be given for $n \in \N$. Then we have
-    \[
-    \widetilde{N}_r(\bm{p}) \neq \vnot \quad \text{for all } \bm{p} \in \R^{n} \text{ and } r \in \R^{+}.
-    \]
-\end{lemma}
-
-\begin{proof}
-    Let $\bm{p} = (p_{1}, p_{2}, \dots, p_{n}) \in \R^{n}$ and $r \in \R^{+}$ be given. Then we have
-    \[
-    d\paren*{\bm{p} + \frac{r}{2} \bm{e_{1}}, \bm{p}} = \norm*{\paren*{\bm{p} + \frac{r}{2} \bm{e_{1}}}
-    - \bm{p}} = \norm*{\frac{r}{2} \bm{e_{1}}} = \frac{r}{2} \norm*{\bm{e_{1}}} = \frac{r}{2} < r.
-    \]
-    where $\bm{e_{1}} = (1, 0, 0, \dots, 0) \in \R^{n}$. Therefore, we have
-    \[
-    \bm{p} \neq \paren*{\bm{p} + \frac{r}{2} \bm{e_{1}}} \in \widetilde{N}_r(\bm{p}) \implies \widetilde{N}_r(\bm{p}) \neq \vnot.
+    \begin{array}{c}
+        p \in E \\
+        \Downarrow \\
+        E \cap \widetilde{N}_{r}(p) = \vnot \\
+        \Downarrow \\
+        p \notin E' \\
+        \Downarrow \\
+        p \in E \setminus E'
+    \end{array}
     \]
 \end{proof}
-
-\bigskip
