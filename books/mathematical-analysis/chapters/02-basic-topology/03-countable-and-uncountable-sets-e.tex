@@ -72,7 +72,7 @@
     Define
     \[
     Z_{N} \coloneqq \setbuilder*{\paren*{a_{n}}_{n = 1}^{\infty} \in
-    \prod_{n = 1}^{\infty} \set*{0, 1}}{\forall n \in \N_{N}, a_{n} = 1}
+    \prod_{n = 1}^{\infty} \set*{0, 1}}{\forall n \in \N_{N}, a_{n} = 1} \neq \vnot
     \]
     for each $N \in \N$. Define $F_{N}: \prod_{n = 1}^{N - 1} \set*{0, 1} \twoheadrightarrow Z_{N}$ as
     \[
@@ -81,7 +81,15 @@
     \]
     By \Cref{an:thm:product-of-finite-sets-is-finite,an:thm:surjection-from-finite-set-implies-finite},
     \[
-    \forall N \in \N, 0 < \abs*{Z_{N}} < \aleph_{0}
+    \forall N \in \N, \abs*{Z_{N}} < \aleph_{0}
+    \]
+    By definition,
+    \[
+    \begin{array}{c}
+        \forall N, M \in \N, N \neq M \implies Z_{N} \cap Z_{M} = \vnot \\
+        \Downarrow \\
+        \abs*{\bigcup_{N = 1}^{\infty} Z_{N}} \geq \aleph_{0}
+    \end{array}
     \]
     By \Cref{an:thm:countable-union-of-finite-sets-is-at-most-countable},
     \[

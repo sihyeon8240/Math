@@ -47,6 +47,24 @@
 \end{theorem}
 
 \begin{proof}
+    Assume that
+    \[
+    \abs*{\bigcup_{n = 1}^{\infty} X_{n}} < \aleph_{0}
+    \]
+    By \Cref{an:thm:subset-of-finite-set-is-finite},
+    \[
+    \begin{array}{c}
+        X_{1} \subseteq \bigcup_{n = 1}^{\infty} X_{n} \\
+        \Downarrow \\
+        \abs*{X_{1}} < \aleph_{0} \\
+        \Downarrow \\
+        \bot
+    \end{array}
+    \]
+    Therefore,
+    \[
+    \abs*{\bigcup_{n = 1}^{\infty} X_{n}} \geq \aleph_{0}
+    \]
     Define
     \[
     T_{n} \coloneqq \setbuilder*{k \in \N}{n \leq \frac{k(k + 1)}{2}}
