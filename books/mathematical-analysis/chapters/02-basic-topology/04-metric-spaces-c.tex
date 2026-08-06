@@ -1,69 +1,111 @@
 \begin{proof}
-    By \Cref{an:cor:closed-set-complement-is-open-set}, $(E_{k})^{c}$ is open for each $k = 1, 2, \dots, n$.
-    Then, by \Cref{an:thm:finite-intersection-of-open-sets-is-open}, we have
+    By \Cref{an:cor:closed-set-complement-is-open-set},
     \[
-    \bigcap_{k = 1}^{n} (E_{k})^{c} \text{ is open.}
+    \forall k \in \N^{n}, (E_{k})^{c} \text{ is open}
     \]
-    By \Cref{an:thm:open-set-complement-is-closed-set}, we have
+    By \Cref{an:thm:finite-intersection-of-open-sets-is-open},
     \[
-    \bigcup_{k = 1}^{n} E_{k} = \paren*{\bigcap_{k = 1}^{n} (E_{k})^{c}}^{c} \text{ is closed.}
+    \bigcap_{k = 1}^{n} (E_{k})^{c} \text{ is open}
+    \]
+    By \Cref{an:thm:open-set-complement-is-closed-set},
+    \[
+    \bigcup_{k = 1}^{n} E_{k} = \paren*{\bigcap_{k = 1}^{n} (E_{k})^{c}}^{c} \text{ is closed}
     \]
 \end{proof}
 
 \bigskip
 
 \begin{definition} \label{an:def:closure}
-    Let $(X, d)$ be a metric space and $E \subseteq X$. Let $E'$ be the set of all limit points of $E$.
-    The \textbf{closure} of $E$, which is denoted by $\overline{E}$, is defined as
+    Let $(X, d)$ be a metric space and $E \subseteq X$. The \textbf{closure} $\overline{E}$ of $E$ is defined as
     \[
-    \overline{E} \coloneqq E \cup E'.
+    \overline{E} \coloneqq E \cup E'
     \]
 \end{definition}
 
 \bigskip
 
 \begin{theorem} \label{an:thm:properties-of-closure}
-    Let $(X, d)$ be a metric space and $E \subseteq X$. Then we have the following properties:
+    Let $(X, d)$ be a metric space and $E \subseteq X$. Then
     \begin{enumerate}[label=\textbf{(\Alph*)}]
-        \item $\overline{E}$ is closed.
-        \item $E = \overline{E} \iff E$ is closed.
-        \item For every closed subset $F \subseteq X$ such that $E \subseteq F$, we have $\overline{E} \subseteq F$.
+        \item $\overline{E}$ is closed
+        \item $E = \overline{E} \iff E$ is closed
+        \item If $F \subseteq X$ satisfies
+        \begin{itemize}
+            \item $E \subseteq F$
+            \item $F$ is closed
+        \end{itemize}
+        then $\overline{E} \subseteq F$
     \end{enumerate}
-    \textbf{(C)} states that the closure of $E$ is the smallest closed set containing $E$.
 \end{theorem}
 
 \begin{proof}
     \begin{enumerate}[label=\textbf{(\Alph*)}]
-        \item We will show that $\paren*{\overline{E}}^{c}$ is open. Let $p \in \paren*{\overline{E}}^{c}$ be given.
-        Since $p \notin E$ and $p \notin E'$, there exists some $r \in \R^{+}$ such that
+        \item Let $p \in \paren*{\overline{E}}^{c}$ be given. Then
         \[
-        E \cap \widetilde{N}_{r}(p) = \vnot \implies E \cap N_{r}(p) = \vnot \implies N_{r}(p) \subseteq E^{c}.
+        \begin{array}{c}
+            p \notin E \land p \notin E' \\
+            \Downarrow \\
+            \exists r \in \R^{+}, E \cap \widetilde{N}_{r}(p) = \vnot \\
+            \Downarrow \\
+            E \cap N_{r}(p) = \vnot \\
+            \Downarrow \\
+            N_{r}(p) \subseteq E^{c}
+        \end{array}
         \]
-        By \Cref{an:thm:neighborhood-is-open}, $N_{r}(p)$ is open. Then, for every $q \in N_{r}(p)$,
-        there exists $\veps \in \R^{+}$ such that
-        \begin{align*}
-            N_{\veps}(q) \subseteq N_{r}(p) \subseteq E^{c}
-            \implies &E \cap N_{\veps}(q) = \vnot \\
-            \implies &E \cap \paren*{\widetilde{N}_{\veps}(q) \cup \set*{q}} = \vnot \\
-            \implies &\paren*{E \cap \widetilde{N}_{\veps}(q)} \cup \paren*{E \cap \set*{q}} = \vnot \\
-            \implies &E \cap \widetilde{N}_{\veps}(q) = \vnot \\
-            \implies &q \notin E'.
-        \end{align*}
-        Since $q$ is arbitrary, we have
+        By \Cref{an:thm:neighborhood-is-open}, $N_{r}(p)$ is open. Then
         \[
-        N_{r}(p) \subseteq \paren*{E'}^{c} \implies N_{r}(p) \subseteq
-        \paren*{\overline{E}}^{c} = E^{c} \cap \paren*{E'}^{c},
+        \begin{array}{c}
+            \forall q \in N_{r}(p), \exists \veps \in \R^{+}, N_{\veps}(q) \subseteq N_{r}(p) \subseteq E^{c} \\
+            \Downarrow \\
+            E \cap N_{\veps}(q) = \vnot \\
+            \Downarrow \\
+            E \cap \widetilde{N}_{\veps}(q) = \vnot \\
+            \Downarrow \\
+            q \notin E'
+        \end{array}
         \]
-        which implies that $p$ is an interior point of $\paren*{\overline{E}}^{c}$. Since $p$ is arbitrary, $\paren*{
-        \overline{E}}^{c}$ is open, which implies that $\overline{E}$ is closed by \Cref{an:cor:closed-set-complement-is-open-set}.
-        \item $E$ is closed $\iff E' \subseteq E \iff E \cup E' = E \iff \overline{E} = E$.
-        \item Let $F \subseteq X$ be a closed set such that $E \subseteq F$. Let $p \in E'$ be given.
-        Then, for every $r \in \R^{+}$, we have
+        Since $q$ is arbitrary,
         \[
-        E \cap \widetilde{N}_{r}(p) \neq \vnot \implies F \cap \widetilde{N}_{r}(p) \neq \vnot,
+        \begin{array}{c}
+            N_{r}(p) \subseteq \paren*{E'}^{c} \\
+            \Downarrow \\
+            N_{r}(p) \subseteq \paren*{\overline{E}}^{c} = E^{c} \cap \paren*{E'}^{c} \\
+            \Downarrow \\
+            p \text{ is an interior point of } \paren*{\overline{E}}^{c}
+        \end{array}
         \]
-        which implies that $p \in F' \subseteq F$. Therefore, we have $E' \subseteq F$.
-        Since $E \subseteq F$, we have $\overline{E} = E \cup E' \subseteq F$.
+        Since $p$ is arbitrary,
+        \[
+        \paren*{\overline{E}}^{c} \text{ is open}
+        \]
+        By \Cref{an:cor:closed-set-complement-is-open-set},
+        \[
+        \overline{E} \text{ is closed}
+        \]
+        \item $E$ is closed $\iff E' \subseteq E \iff E \cup E' = E \iff \overline{E} = E$
+        \item Let $F \subseteq X$ satisfy
+        \begin{itemize}
+            \item $E \subseteq F$
+            \item $F$ is closed
+        \end{itemize}
+        Let $p \in E'$ be given. Then,
+        \[
+        \begin{array}{c}
+            \forall r \in \R^{+}, E \cap \widetilde{N}_{r}(p) \neq \vnot \\
+            \Downarrow \\
+            F \cap \widetilde{N}_{r}(p) \neq \vnot \\
+            \Downarrow \\
+            p \in F' \subseteq F
+        \end{array}
+        \]
+        Since $p$ is arbitrary,
+        \[
+        \begin{array}{c}
+            E' \subseteq F' \subseteq F \\
+            \Downarrow \\
+            \overline{E} = E \cup E' \subseteq F
+        \end{array}
+        \]
     \end{enumerate}
 \end{proof}
 

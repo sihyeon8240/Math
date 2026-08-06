@@ -91,86 +91,106 @@
 \bigskip
 
 \begin{theorem} \label{an:thm:arbitrary-union-of-open-sets-is-open}
-    Let $(X, d)$ be a metric space. Let $E_{y} \subseteq X$ be an open set for each $y \in Y$. Then we have
+    Let $(X, d)$ be a metric space.
     \[
-    \bigcup_{y \in Y} E_{y} \text{ is open}
+    \forall Y, \paren*{\forall y \in Y, E_{y} \subseteq X \text{ is open}} \implies \bigcup_{y \in Y} E_{y} \text{ is open}
     \]
-    whether $Y$ is finite, countable, or uncountable. This theorem states that an arbitrary union of open sets is open.
 \end{theorem}
 
 \begin{proof}
-    Let $p \in \bigcup_{y \in Y} E_{y}$ be given. Then there exists some $y_{0} \in Y$
-    such that $p \in E_{y_{0}}$. Since $E_{y_{0}}$ is open, there exists some $r \in \R^{+}$
-    such that $N_{r}(p) \subseteq E_{y_{0}}$. Then we have
+    Let $p \in \bigcup_{y \in Y} E_{y}$ be given. Then
     \[
-    N_{r}(p) \subseteq E_{y_{0}} \subseteq \bigcup_{y \in Y} E_{y},
+    \exists y_{0} \in Y, p \in E_{y_{0}}
     \]
-    which implies that $p$ is an interior point of $\bigcup_{y \in Y} E_{y}$.
+    Since $E_{y_{0}}$ is open,
+    \[
+    \begin{array}{c}
+        \exists r \in \R^{+}, N_{r}(p) \subseteq E_{y_{0}} \\
+        \Downarrow \\
+        N_{r}(p) \subseteq E_{y_{0}} \subseteq \bigcup_{y \in Y} E_{y} \\
+        \Downarrow \\
+        p \text{ is an interior point of } \bigcup_{y \in Y} E_{y}
+    \end{array}
+    \]
     Since $p$ is arbitrary, $\bigcup_{y \in Y} E_{y}$ is open.
 \end{proof}
 
 \bigskip
 
 \begin{corollary} \label{an:cor:arbitrary-intersection-of-closed-sets-is-closed}
-    Let $(X, d)$ be a metric space. Let $E_{y} \subseteq X$ be a closed set for each $y \in Y$. Then we have
+    Let $(X, d)$ be a metric space.
     \[
-    \bigcap_{y \in Y} E_{y} \text{ is closed}
+    \forall Y, \paren*{\forall y \in Y, E_{y} \subseteq X \text{ is closed}} \implies \bigcap_{y \in Y} E_{y} \text{ is closed}
     \]
-    whether $Y$ is finite, countable, or uncountable. This corollary states
-    that an arbitrary intersection of closed sets is closed.
 \end{corollary}
 
 \begin{proof}
-    By \Cref{an:cor:closed-set-complement-is-open-set}, $(E_{y})^{c}$ is open for each $y \in Y$.
-    Then, by \Cref{an:thm:arbitrary-union-of-open-sets-is-open}, we have
+    By \Cref{an:cor:closed-set-complement-is-open-set},
     \[
-    \bigcup_{y \in Y} (E_{y})^{c} \text{ is open.}
+    \forall y \in Y, (E_{y})^{c} \text{ is open}
     \]
-    By \Cref{an:thm:open-set-complement-is-closed-set}, we have
+    By \Cref{an:thm:arbitrary-union-of-open-sets-is-open},
     \[
-    \bigcap_{y \in Y} E_{y} = \paren*{\bigcup_{y \in Y} (E_{y})^{c}}^{c} \text{ is closed.}
+    \bigcup_{y \in Y} (E_{y})^{c} \text{ is open}
+    \]
+    By \Cref{an:thm:open-set-complement-is-closed-set},
+    \[
+    \bigcap_{y \in Y} E_{y} = \paren*{\bigcup_{y \in Y} (E_{y})^{c}}^{c} \text{ is closed}
     \]
 \end{proof}
 
 \bigskip
 
 \begin{theorem} \label{an:thm:finite-intersection-of-open-sets-is-open}
-    Let $(X, d)$ be a metric space. Let $E_{1}, E_{2}, \dots, E_{n} \subseteq X$
-    be open sets for $n \in \N$. Then we have
+    Let $(X, d)$ be a metric space.
     \[
-    \bigcap_{k = 1}^{n} E_{k} \text{ is open.}
+    \paren*{\forall k \in \N^{n}, E_{k} \subseteq X \text{ is open}} \implies \bigcap_{k = 1}^{n} E_{k} \text{ is open}
     \]
-    This theorem states that a finite intersection of open sets is open.
 \end{theorem}
 
 \begin{proof}
-    Let $p \in \bigcap_{k = 1}^{n} E_{k}$ be given. Then we have $p \in E_{j}$ for all $j = 1, 2, \dots, n$.
-    Since $E_{j}$ is open, there exists some $r_{j} \in \R^{+}$ such that $N_{r_{j}}(p) \subseteq E_{j}$ for each $j =
-    1, 2, \dots, n$. Let $R$ be a set defined as
+    Let $p \in \bigcap_{k = 1}^{n} E_{k}$ be given. Then
     \[
-    R \coloneqq \setbuilder*{r_{j}}{j = 1, 2, \dots, n} \subseteq \R^{+}.
+    \forall j \in \N^{n}, p \in E_{j}
     \]
-    Let $f: \N^{n} \to R$ be a function defined as
+    Since each $E_{j}$ is open,
     \[
-    f(j) = r_{j}.
+    \exists r_{j} \in \R^{+}, N_{r_{j}}(p) \subseteq E_{j}
     \]
-    Then $f$ is surjective. By \Cref{an:lem:subset-of-Nn-is-finite,an:thm:surjection-from-finite-set-implies-finite}, $R$ is finite.
-    Then, by \Cref{an:thm:finite-ordered-set-has-extremum}, $R$ has a minimum element, say $r = \min R > 0$. Then we have
+    for each $j \in \N^{n}$. Define
     \[
-    N_{r}(p) \subseteq N_{r_{j}}(p) \subseteq E_{j} \text{ for all } j = 1, 2, \dots, n
-    \implies N_{r}(p) \subseteq \bigcap_{k = 1}^{n} E_{k},
+    R \coloneqq \setbuilder*{r_{j}}{j \in \N^{n}} \subseteq \R^{+}
     \]
-    which implies that $p$ is an interior point of $\bigcap_{k = 1}^{n} E_{k}$.
+    Define $f: \N^{n} \twoheadrightarrow R$ as
+    \[
+    f(j) = r_{j}
+    \]
+    By \Cref{an:lem:subset-of-Nn-is-finite,an:thm:surjection-from-finite-set-implies-finite},
+    \[
+    \abs*{R} < \aleph_{0}
+    \]
+    By \Cref{an:thm:finite-ordered-set-has-extremum},
+    \[
+    \exists r \in \R^{+}, r = \min R
+    \]
+    Then
+    \[
+    \begin{array}{c}
+        \forall j \in \N^{n}, N_{r}(p) \subseteq N_{r_{j}}(p) \subseteq E_{j} \\
+        \Downarrow \\
+        N_{r}(p) \subseteq \bigcap_{k = 1}^{n} E_{k} \\
+        \Downarrow \\
+        p \text{ is an interior point of } \bigcap_{k = 1}^{n} E_{k}
+    \end{array}
+    \]
     Since $p$ is arbitrary, $\bigcap_{k = 1}^{n} E_{k}$ is open.
 \end{proof}
 
 \bigskip
 
 \begin{corollary} \label{an:cor:finite-union-of-closed-sets-is-closed}
-    Let $(X, d)$ be a metric space. Let $E_{1}, E_{2}, \dots, E_{n} \subseteq X$
-    be closed sets for $n \in \N$. Then we have
+    Let $(X, d)$ be a metric space.
     \[
-    \bigcup_{k = 1}^{n} E_{k} \text{ is closed.}
+    \paren*{\forall k \in \N^{n}, E_{k} \subseteq X \text{ is closed}} \implies \bigcup_{k = 1}^{n} E_{k} \text{ is closed}
     \]
-    This corollary states that a finite union of closed sets is closed.
 \end{corollary}
