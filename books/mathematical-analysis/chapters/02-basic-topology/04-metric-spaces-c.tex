@@ -1,4 +1,113 @@
 \begin{proof}
+    By \Cref{an:cor:closed-set-complement-is-open-set}, $(E_{k})^{c}$ is open for each $k = 1, 2, \dots, n$.
+    Then, by \Cref{an:thm:finite-intersection-of-open-sets-is-open}, we have
+    \[
+    \bigcap_{k = 1}^{n} (E_{k})^{c} \text{ is open.}
+    \]
+    By \Cref{an:thm:open-set-complement-is-closed-set}, we have
+    \[
+    \bigcup_{k = 1}^{n} E_{k} = \paren*{\bigcap_{k = 1}^{n} (E_{k})^{c}}^{c} \text{ is closed.}
+    \]
+\end{proof}
+
+\bigskip
+
+\begin{definition} \label{an:def:closure}
+    Let $(X, d)$ be a metric space and $E \subseteq X$. Let $E'$ be the set of all limit points of $E$.
+    The \textbf{closure} of $E$, which is denoted by $\overline{E}$, is defined as
+    \[
+    \overline{E} \coloneqq E \cup E'.
+    \]
+\end{definition}
+
+\bigskip
+
+\begin{theorem} \label{an:thm:properties-of-closure}
+    Let $(X, d)$ be a metric space and $E \subseteq X$. Then we have the following properties:
+    \begin{enumerate}[label=\textbf{(\Alph*)}]
+        \item $\overline{E}$ is closed.
+        \item $E = \overline{E} \iff E$ is closed.
+        \item For every closed subset $F \subseteq X$ such that $E \subseteq F$, we have $\overline{E} \subseteq F$.
+    \end{enumerate}
+    \textbf{(C)} states that the closure of $E$ is the smallest closed set containing $E$.
+\end{theorem}
+
+\begin{proof}
+    \begin{enumerate}[label=\textbf{(\Alph*)}]
+        \item We will show that $\paren*{\overline{E}}^{c}$ is open. Let $p \in \paren*{\overline{E}}^{c}$ be given.
+        Since $p \notin E$ and $p \notin E'$, there exists some $r \in \R^{+}$ such that
+        \[
+        E \cap \widetilde{N}_{r}(p) = \vnot \implies E \cap N_{r}(p) = \vnot \implies N_{r}(p) \subseteq E^{c}.
+        \]
+        By \Cref{an:thm:neighborhood-is-open}, $N_{r}(p)$ is open. Then, for every $q \in N_{r}(p)$,
+        there exists $\veps \in \R^{+}$ such that
+        \begin{align*}
+            N_{\veps}(q) \subseteq N_{r}(p) \subseteq E^{c}
+            \implies &E \cap N_{\veps}(q) = \vnot \\
+            \implies &E \cap \paren*{\widetilde{N}_{\veps}(q) \cup \set*{q}} = \vnot \\
+            \implies &\paren*{E \cap \widetilde{N}_{\veps}(q)} \cup \paren*{E \cap \set*{q}} = \vnot \\
+            \implies &E \cap \widetilde{N}_{\veps}(q) = \vnot \\
+            \implies &q \notin E'.
+        \end{align*}
+        Since $q$ is arbitrary, we have
+        \[
+        N_{r}(p) \subseteq \paren*{E'}^{c} \implies N_{r}(p) \subseteq
+        \paren*{\overline{E}}^{c} = E^{c} \cap \paren*{E'}^{c},
+        \]
+        which implies that $p$ is an interior point of $\paren*{\overline{E}}^{c}$. Since $p$ is arbitrary, $\paren*{
+        \overline{E}}^{c}$ is open, which implies that $\overline{E}$ is closed by \Cref{an:cor:closed-set-complement-is-open-set}.
+        \item $E$ is closed $\iff E' \subseteq E \iff E \cup E' = E \iff \overline{E} = E$.
+        \item Let $F \subseteq X$ be a closed set such that $E \subseteq F$. Let $p \in E'$ be given.
+        Then, for every $r \in \R^{+}$, we have
+        \[
+        E \cap \widetilde{N}_{r}(p) \neq \vnot \implies F \cap \widetilde{N}_{r}(p) \neq \vnot,
+        \]
+        which implies that $p \in F' \subseteq F$. Therefore, we have $E' \subseteq F$.
+        Since $E \subseteq F$, we have $\overline{E} = E \cup E' \subseteq F$.
+    \end{enumerate}
+\end{proof}
+
+\bigskip
+
+\begin{theorem} \label{an:thm:supremum-in-closure}
+    Let $\paren*{\R, \norm*{\cdot}}$ be given. Let $E \subseteq \R$ be nonempty and bounded above. Then we have
+    \[
+    \sup E \in \overline{E},
+    \]
+    which implies that
+    \[
+    E \text{ is closed} \implies \sup E \in E.
+    \]
+\end{theorem}
+
+\begin{proof}
+    By the \emph{least upper bound property},
+    there exists $\alpha = \sup E \in \R$. Assume that $\alpha \in E$. Then we have
+    \[
+    E \subseteq \overline{E} \implies \alpha \in \overline{E}.
+    \]
+    Otherwise, for every $x \in \R^{+}$, $\alpha - x$ is not an upper bound of $E$.
+    Thus there exists some $p \in E$ such that
+    \[
+    \alpha - x < p < \alpha \implies p \in \widetilde{N}_{x}(\alpha) \cap E,
+    \]
+    which implies that $\alpha \in E'$. Therefore, we have
+    \[
+    E' \subseteq \overline{E} \implies \alpha \in \overline{E}.
+    \]
+\end{proof}
+
+
+\bigskip
+
+\begin{theorem} \label{an:thm:isolated-points}
+    Let $(X, d)$ be a metric space and $E \subseteq X$. Then we have
+    \[
+    E \setminus E' = \setbuilder*{p \in X}{p \text{ is an isolated point of } E}.
+    \]
+\end{theorem}
+
+\begin{proof}
     \textbf{($\subseteq$)} Let $p \in E \setminus E'$ be given.
     Since $p \notin E'$, there exists some $r \in \R^{+}$ such that
     \[
@@ -54,134 +163,3 @@
 \end{proof}
 
 \bigskip
-
-\begin{theorem} \label{an:thm:properties-of-boundary-in-rn}
-    Let $(\R^{n}, \norm*{\cdot})$ be given for $n \in \N$ and $E \subseteq \R^{n}$. Then we have
-    \[
-    \partial E = \paren*{E \setminus E'} \cup \paren*{E^{c} \setminus (E^{c})'} \cup \paren*{E' \cap (E^{c})'},
-    \]
-    which states that the boundary of $E$ consists the following three disjoint sets:
-    \begin{itemize}
-        \item The set of all isolated points of $E$.
-        \item The set of all isolated points of $E^{c}$.
-        \item The set of all limit points of both $E$ and $E^{c}$.
-    \end{itemize}
-\end{theorem}
-
-\begin{proof}
-    By the definition of the boundary, we have
-    \begin{align*}
-        \partial E &= \overline{E} \cap \overline{E^{c}} \\
-        &= \paren*{E \cup E'} \cap \paren*{E^{c} \cup (E^{c})'} \\
-        &= \paren*{E \cap E^{c}} \cup \paren*{E \cap (E^{c})'}
-        \cup \paren*{E' \cap E^{c}} \cup \paren*{E' \cap (E^{c})'}.
-    \end{align*}
-    Consider the following equivalences:
-    \begin{itemize}
-        \item $E = \paren*{E \setminus E'} \cup \paren*{E \cap E'}$.
-        \item $E^{c} = \paren*{E^{c} \setminus (E^{c})'} \cup \paren*{E^{c} \cap (E^{c})'}$.
-    \end{itemize}
-    Then we have the following equalities:
-    \begin{itemize}
-        \item $E \cap (E^{c})' = \paren*{\paren*{E \setminus E'} \cap (E^{c})'}
-        \cup \paren*{\paren*{E \cap E'} \cap (E^{c})'}$.
-        \item $E' \cap E^{c} = \paren*{E' \cap \paren*{E^{c} \setminus (E^{c})'}}
-        \cup \paren*{E' \cap \paren*{E^{c} \cap (E^{c})'}}$.
-    \end{itemize}
-    Consider the last two terms of the above equalities:
-    \begin{itemize}
-        \item $\paren*{\paren*{E \cap E'} \cap (E^{c})'} \subseteq E' \cap (E^{c})'$.
-        \item $\paren*{E' \cap \paren*{E^{c} \cap (E^{c})'}} \subseteq E' \cap (E^{c})'$.
-    \end{itemize}
-    Then we have
-    \begin{align*}
-        \partial E &= \vnot \cup \paren*{\paren*{E \setminus E'} \cap (E^{c})'}
-        \cup \paren*{E' \cap \paren*{E^{c} \setminus (E^{c})'}} \cup \paren*{E' \cap (E^{c})'} \\
-        &= \paren*{\paren*{E \setminus E'} \cap (E^{c})'}
-        \cup \paren*{E' \cap \paren*{E^{c} \setminus (E^{c})'}} \cup \paren*{E' \cap (E^{c})'}
-    \end{align*}
-    For every $\bm{p} \in E \setminus E'$, there exists some $r \in \R^{+}$ such that
-    \[
-    E \cap \widetilde{N}_{r}(\bm{p}) = \vnot \implies \widetilde{N}_{r}(\bm{p}) \subseteq E^{c}.
-    \]
-    By \Cref{an:lem:deleted-neighborhood-in-rn-is-non-empty}, we have
-    \[
-    \widetilde{N}_{s}(\bm{p}) \cap \widetilde{N}_{r}(\bm{p}) = \widetilde{N}_{\min(s,r)}(\bm{p}) \neq \vnot\quad \text{for all } s \in \R^{+}.
-    \]
-    Then, for every $s \in \R^{+}$, we have
-    \begin{align*}
-        \widetilde{N}_{s}(\bm{p}) \cap \widetilde{N}_{r}(\bm{p}) \neq \vnot &\implies \widetilde{N}_{s}(\bm{p}) \cap
-        \paren*{\widetilde{N}_{r}(\bm{p}) \cap E^{c}} \neq \vnot \\
-        &\implies \vnot \neq \paren*{\widetilde{N}_{s}(\bm{p}) \cap E^{c}} \cap \widetilde{N}_{r}(\bm{p})
-        \subseteq \widetilde{N}_{s}(\bm{p}) \cap E^{c} \\
-        &\implies E^{c} \cap \widetilde{N}_{s}(\bm{p}) \neq \vnot,
-    \end{align*}
-    which implies that $\bm{p} \in (E^{c})'$. Then we have
-    \[
-    E \setminus E' \subseteq (E^{c})' \implies \paren*{E \setminus E'} \cap (E^{c})' = E \setminus E'.
-    \]
-    Similarly, we can show that
-    \[
-    E^{c} \setminus (E^{c})' \subseteq E' \implies E' \cap \paren*{E^{c} \setminus (E^{c})'} = E^{c} \setminus (E^{c})'.
-    \]
-    Therefore, we have
-    \[
-    \partial E = \paren*{E \setminus E'} \cup \paren*{E^{c} \setminus (E^{c})'} \cup \paren*{E' \cap (E^{c})'}.
-    \]
-\end{proof}
-
-\bigskip
-
-\begin{remark}
-    Let $(X, d)$ be a metric space and $Y \subseteq X$. Then, $(Y, d|_{Y \times Y})$ is also a metric space, since
-    \[
-    d|_{Y \times Y}: Y \times Y \to \R
-    \]
-    satisfies the properties of a metric. We call $(Y, d|_{Y \times Y})$ a \textbf{subspace} of $(X, d)$. For the
-    sake of simplicity, we will denote $d|_{Y \times Y}$ by $d$ and write $(Y, d)$ instead of $(Y, d|_{Y \times Y})$.
-\end{remark}
-
-\bigskip
-
-\begin{definition} \label{an:def:open-set-relative-to-subspace}
-    Let $(X, d)$ be a metric space and $E \subseteq Y \subseteq X$. $E$ is called \textbf{open relative} to $Y$
-    if $E$ is open in the subspace $(Y, d)$. That is, for every $p \in E$, there exists some $r \in \R^{+}$ such that
-    \[
-    Y \cap N_{r}(p) \subseteq E.
-    \]
-\end{definition}
-
-\bigskip
-
-\begin{theorem} \label{an:thm:open-set-relative-to-subspace}
-    Let $(X, d)$ be a metric space and $E \subseteq Y \subseteq X$. Then $E$ is open relative to $Y$
-    if and only if there exists an open set $V$ in $X$ such that $E = V \cap Y$.
-\end{theorem}
-
-\begin{proof}
-    \textbf{($\implies$)} Let $E$ be an open set relative to $Y$.
-    Then, for each $p \in E$, there exists some $r_{p} \in \R^{+}$ such that
-    \[
-    Y \cap N_{r_{p}}(p) \subseteq E.
-    \]
-    Let $V$ be a set defined as
-    \[
-    V \coloneqq \bigcup_{p \in E} N_{r_{p}}(p).
-    \]
-    By \Cref{an:thm:neighborhood-is-open,an:thm:arbitrary-union-of-open-sets-is-open}, $V$ is open in $X$.
-    Since $p \in N_{r_{p}}(p) \subseteq V$ for each $p \in E$, we have
-    \begin{itemize}
-        \item $E \subseteq Y$ and $E \subseteq V \implies E \subseteq V \cap Y$.
-        \item $\bigcup_{p \in E} \paren*{Y \cap N_{r_{p}}(p)} \subseteq E \implies Y \cap
-        \bigcup_{p \in E} N_{r_{p}}(p) \subseteq E \implies Y \cap V \subseteq E$.
-    \end{itemize}
-    Therefore, we have $E = V \cap Y$.
-    \\[6mm]
-    \textbf{($\impliedby$)} Let $V$ be an open set in $X$ such that $E = V \cap Y$.
-    Then, for each $p \in E \subseteq V$, there exists some $r_{p} \in \R^{+}$ such that
-    \[
-    N_{r_{p}}(p) \subseteq V \implies Y \cap N_{r_{p}}(p) \subseteq V \cap Y = E.
-    \]
-\end{proof}
-
-

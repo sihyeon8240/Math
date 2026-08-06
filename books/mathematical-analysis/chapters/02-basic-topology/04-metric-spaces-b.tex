@@ -1,5 +1,95 @@
 \bigskip
 
+\begin{theorem} \label{an:thm:open-set-complement-is-closed-set}
+    Let $(X, d)$ be a metric space and $E \subseteq X$. Then
+    \[
+    E \text{ is open} \iff E^{c} \text{ is closed}
+    \]
+\end{theorem}
+
+\begin{proof}
+    \textbf{($\implies$)} Let $E$ be open. Let $p \in \paren*{E^{c}}'$ be given. Then
+    \[
+    \forall r \in \R^{+}, E^{c} \cap \widetilde{N}_{r}(p) \neq \vnot
+    \]
+    If $p \in E$, then
+    \[
+    \begin{array}{c}
+        p \in E \\
+        \Downarrow \\
+        \exists \veps \in \R^{+}, N_{\veps}(p) \subseteq E \\
+        \Downarrow \\
+        E^{c} \cap \widetilde{N}_{\veps}(p) = \vnot \\
+        \Downarrow \\
+        \bot
+    \end{array}
+    \]
+    Therefore,
+    \[
+    \begin{array}{c}
+        p \notin E \\
+        \Downarrow \\
+        p \in E^{c}
+    \end{array}
+    \]
+    Since $p$ is arbitrary,
+    \[
+    \begin{array}{c}
+        \paren*{E^{c}}' \subseteq E^{c} \\
+        \Downarrow \\
+        E^{c} \text{ is closed}
+    \end{array}
+    \]
+    \textbf{($\impliedby$)} Let $E^{c}$ be closed. Let $p \in E$ be given. If
+    \[
+    \nexists r \in \R^{+}, N_{r}(p) \subseteq E,
+    \]
+    then
+    \[
+    \forall r \in \R^{+}, E^{c} \cap N_{r}(p) \neq \vnot
+    \]
+    Since $p \in E$,
+    \[
+    \begin{array}{c}
+        p \notin E^{c} \\
+        \Downarrow \\
+        E^{c} \cap \widetilde{N}_{r}(p) \neq \vnot \\
+        \Downarrow \\
+        p \in \paren*{E^{c}}'
+    \end{array}
+    \]
+    Since $E^{c}$ is closed,
+    \[
+    \begin{array}{c}
+        p \in \paren*{E^{c}}' \\
+        \Downarrow \\
+        p \in E^{c} \\
+        \Downarrow \\
+        \bot
+    \end{array}
+    \]
+    Therefore,
+    \[
+    \begin{array}{c}
+        \exists r \in \R^{+}, N_{r}(p) \subseteq E \\
+        \Downarrow \\
+        p \text{ is an interior point of } E
+    \end{array}
+    \]
+    Since $p$ is arbitrary, $E$ is open.
+\end{proof}
+
+\bigskip
+
+\begin{corollary} \label{an:cor:closed-set-complement-is-open-set}
+    Let $(X, d)$ be a metric space and $E \subseteq X$. Then
+    \[
+    E \text{ is closed} \iff E^{c} \text{ is open}
+    \]
+\end{corollary}
+
+\bigskip
+
 \begin{theorem} \label{an:thm:arbitrary-union-of-open-sets-is-open}
     Let $(X, d)$ be a metric space. Let $E_{y} \subseteq X$ be an open set for each $y \in Y$. Then we have
     \[
@@ -84,112 +174,3 @@
     \]
     This corollary states that a finite union of closed sets is closed.
 \end{corollary}
-
-\begin{proof}
-    By \Cref{an:cor:closed-set-complement-is-open-set}, $(E_{k})^{c}$ is open for each $k = 1, 2, \dots, n$.
-    Then, by \Cref{an:thm:finite-intersection-of-open-sets-is-open}, we have
-    \[
-    \bigcap_{k = 1}^{n} (E_{k})^{c} \text{ is open.}
-    \]
-    By \Cref{an:thm:open-set-complement-is-closed-set}, we have
-    \[
-    \bigcup_{k = 1}^{n} E_{k} = \paren*{\bigcap_{k = 1}^{n} (E_{k})^{c}}^{c} \text{ is closed.}
-    \]
-\end{proof}
-
-\bigskip
-
-\begin{definition} \label{an:def:closure}
-    Let $(X, d)$ be a metric space and $E \subseteq X$. Let $E'$ be the set of all limit points of $E$.
-    The \textbf{closure} of $E$, which is denoted by $\overline{E}$, is defined as
-    \[
-    \overline{E} \coloneqq E \cup E'.
-    \]
-\end{definition}
-
-\bigskip
-
-\begin{theorem} \label{an:thm:properties-of-closure}
-    Let $(X, d)$ be a metric space and $E \subseteq X$. Then we have the following properties:
-    \begin{enumerate}[label=\textbf{(\Alph*)}]
-        \item $\overline{E}$ is closed.
-        \item $E = \overline{E} \iff E$ is closed.
-        \item For every closed subset $F \subseteq X$ such that $E \subseteq F$, we have $\overline{E} \subseteq F$.
-    \end{enumerate}
-    \textbf{(C)} states that the closure of $E$ is the smallest closed set containing $E$.
-\end{theorem}
-
-\begin{proof}
-    \begin{enumerate}[label=\textbf{(\Alph*)}]
-        \item We will show that $\paren*{\overline{E}}^{c}$ is open. Let $p \in \paren*{\overline{E}}^{c}$ be given.
-        Since $p \notin E$ and $p \notin E'$, there exists some $r \in \R^{+}$ such that
-        \[
-        E \cap \widetilde{N}_{r}(p) = \vnot \implies E \cap N_{r}(p) = \vnot \implies N_{r}(p) \subseteq E^{c}.
-        \]
-        By \Cref{an:thm:neighborhood-is-open}, $N_{r}(p)$ is open. Then, for every $q \in N_{r}(p)$,
-        there exists $\veps \in \R^{+}$ such that
-        \begin{align*}
-            N_{\veps}(q) \subseteq N_{r}(p) \subseteq E^{c}
-            \implies &E \cap N_{\veps}(q) = \vnot \\
-            \implies &E \cap \paren*{\widetilde{N}_{\veps}(q) \cup \set*{q}} = \vnot \\
-            \implies &\paren*{E \cap \widetilde{N}_{\veps}(q)} \cup \paren*{E \cap \set*{q}} = \vnot \\
-            \implies &E \cap \widetilde{N}_{\veps}(q) = \vnot \\
-            \implies &q \notin E'.
-        \end{align*}
-        Since $q$ is arbitrary, we have
-        \[
-        N_{r}(p) \subseteq \paren*{E'}^{c} \implies N_{r}(p) \subseteq
-        \paren*{\overline{E}}^{c} = E^{c} \cap \paren*{E'}^{c},
-        \]
-        which implies that $p$ is an interior point of $\paren*{\overline{E}}^{c}$. Since $p$ is arbitrary, $\paren*{
-        \overline{E}}^{c}$ is open, which implies that $\overline{E}$ is closed by \Cref{an:cor:closed-set-complement-is-open-set}.
-        \item $E$ is closed $\iff E' \subseteq E \iff E \cup E' = E \iff \overline{E} = E$.
-        \item Let $F \subseteq X$ be a closed set such that $E \subseteq F$. Let $p \in E'$ be given.
-        Then, for every $r \in \R^{+}$, we have
-        \[
-        E \cap \widetilde{N}_{r}(p) \neq \vnot \implies F \cap \widetilde{N}_{r}(p) \neq \vnot,
-        \]
-        which implies that $p \in F' \subseteq F$. Therefore, we have $E' \subseteq F$.
-        Since $E \subseteq F$, we have $\overline{E} = E \cup E' \subseteq F$.
-    \end{enumerate}
-\end{proof}
-
-\bigskip
-
-\begin{theorem} \label{an:thm:supremum-in-closure}
-    Let $\paren*{\R, \norm*{\cdot}}$ be given. Let $E \subseteq \R$ be nonempty and bounded above. Then we have
-    \[
-    \sup E \in \overline{E},
-    \]
-    which implies that
-    \[
-    E \text{ is closed} \implies \sup E \in E.
-    \]
-\end{theorem}
-
-\begin{proof}
-    By the \emph{least upper bound property},
-    there exists $\alpha = \sup E \in \R$. Assume that $\alpha \in E$. Then we have
-    \[
-    E \subseteq \overline{E} \implies \alpha \in \overline{E}.
-    \]
-    Otherwise, for every $x \in \R^{+}$, $\alpha - x$ is not an upper bound of $E$.
-    Thus there exists some $p \in E$ such that
-    \[
-    \alpha - x < p < \alpha \implies p \in \widetilde{N}_{x}(\alpha) \cap E,
-    \]
-    which implies that $\alpha \in E'$. Therefore, we have
-    \[
-    E' \subseteq \overline{E} \implies \alpha \in \overline{E}.
-    \]
-\end{proof}
-
-
-\bigskip
-
-\begin{theorem} \label{an:thm:isolated-points}
-    Let $(X, d)$ be a metric space and $E \subseteq X$. Then we have
-    \[
-    E \setminus E' = \setbuilder*{p \in X}{p \text{ is an isolated point of } E}.
-    \]
-\end{theorem}
