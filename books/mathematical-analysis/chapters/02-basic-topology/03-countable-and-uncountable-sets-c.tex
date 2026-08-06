@@ -1,8 +1,8 @@
 \bigskip
 
-\begin{theorem} \label{an:thm:countable-union-of-finite-sets-is-countable}
+\begin{theorem} \label{an:thm:countable-union-of-finite-sets-is-at-most-countable}
     \[
-    \paren*{\forall n \in \N, 0 < \abs*{X_{n}} < \aleph_{0}} \implies \abs*{\bigcup_{n = 1}^{\infty} X_{n}} = \aleph_{0}
+    \paren*{\forall n \in \N, \abs*{X_{n}} < \aleph_{0}} \implies \abs*{\bigcup_{n = 1}^{\infty} X_{n}} \leq \aleph_{0}
     \]
 \end{theorem}
 
@@ -10,10 +10,18 @@
     Assume that
     \[
     \begin{array}{c}
-        \forall n \in \N, 0 < \abs*{X_{n}} < \aleph_{0} \\
+        \forall n \in \N, \abs*{X_{n}} < \aleph_{0} \\
         \Downarrow \\
-        \forall n \in \N, \exists m_{n} \in \N, \exists g_{n}: \N^{m_{n}} \xrightarrow{\sim} X_{n}
+        \forall n \in \N, \exists m_{n} \in \N_{0}, \exists g_{n}: \N^{m_{n}} \xrightarrow{\sim} X_{n}
     \end{array}
+    \]
+    If
+    \[
+    \abs*{\bigcup_{n = 1}^{\infty} X_{n}} < \aleph_{0}
+    \]
+    then the proof is complete. Otherwise,
+    \[
+    \abs*{\bigcup_{n = 1}^{\infty} X_{n}} \geq \aleph_{0}
     \]
     Define $h: \N \twoheadrightarrow \bigcup_{n = 1}^{\infty} X_{n}$ as
     \begin{itemize}
@@ -22,7 +30,11 @@
     \end{itemize}
     By \Cref{an:thm:surjection-from-N},
     \[
-    \abs*{\bigcup_{n = 1}^{\infty} X_{n}} = \aleph_{0}
+    \begin{array}{c}
+        \abs*{\bigcup_{n = 1}^{\infty} X_{n}} \geq \aleph_{0} \\
+        \Downarrow \\
+        \abs*{\bigcup_{n = 1}^{\infty} X_{n}} = \aleph_{0}
+    \end{array}
     \]
 \end{proof}
 
@@ -176,43 +188,3 @@
     \abs*{\N \times \N} = \aleph_{0}
     \]
 \end{lemma}
-
-\begin{proof}
-    Define $f: \N \times \N \to \N$ as
-    \[
-    \forall m, n \in \N, f(m, n) = \frac{(m + n - 1)(m + n - 2)}{2} + m
-    \]
-    We will show that $f$ is bijective.
-    \begin{itemize}
-        \item \textbf{Injectivity:} Let $(m_{1}, n_{1}) \neq (m_{2}, n_{2})$ be given for
-        $m_{1}, n_{1}, m_{2}, n_{2} \in \N$. If
-        \[
-        m_{1} + n_{1} = m_{2} + n_{2}
-        \]
-        then
-        \[
-        \begin{array}{c}
-            m_{1} \neq m_{2} \\
-            \Downarrow \\
-            f(m_{1}, n_{1}) \neq f(m_{2}, n_{2})
-        \end{array}
-        \]
-        Otherwise, $m_{1} + n_{1} \neq m_{2} + n_{2}$ (\emph{WLOG} $m_{1} + n_{1} < m_{2} + n_{2}$). Then
-        \begin{align*}
-            f(m_{1}, n_{1}) &= \frac{(m_{1} + n_{1} - 1)(m_{1} + n_{1} - 2)}{2} + m_{1} \\
-            &\leq \frac{(m_{1} + n_{1} - 1)(m_{1} + n_{1} - 2)}{2} + (m_{1} + n_{1} - 1) \\
-            &= \frac{(m_{1} + n_{1})(m_{1} + n_{1} - 1)}{2} \\
-            &\leq \frac{(m_{2} + n_{2} - 1)(m_{2} + n_{2} - 2)}{2} \\
-            &< \frac{(m_{2} + n_{2} - 1)(m_{2} + n_{2} - 2)}{2} + m_{2} = f(m_{2}, n_{2})
-        \end{align*}
-        \item \textbf{Surjectivity:} Let $k \in \N$ be given. Define $t_{k}, s_{k}$ as in the proof of
-        \Cref{an:thm:countable-union-of-countable-sets-is-countable}. Then
-        \[
-        f(s_{k}, t_{k} - s_{k} + 1) =  k
-        \]
-    \end{itemize}
-    Therefore,
-    \[
-    \abs*{\N \times \N} = \aleph_{0}
-    \]
-\end{proof}
