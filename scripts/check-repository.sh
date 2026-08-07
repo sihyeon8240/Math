@@ -11,7 +11,6 @@ fi
 "$PYTHON" scripts/check-architecture.py
 "$PYTHON" scripts/generate-readme-books.py --check
 "$PYTHON" scripts/generate-site-data.py --check
-mapfile -t books < <("$PYTHON" scripts/books.py list --for check)
 
 required=(
   Makefile
@@ -31,14 +30,6 @@ for path in "${required[@]}"; do
   fi
 done
 
-for book in "${books[@]}"; do
-  for file in book.tex metadata.tex README.md; do
-    if [[ ! -f "books/$book/$file" ]]; then
-      echo "error: books/$book/$file is missing" >&2
-      exit 1
-    fi
-  done
-done
 mapfile -t python_files < <(find scripts -type f -name '*.py' -print | sort)
 if ((${#python_files[@]})); then
   "$PYTHON" -m py_compile "${python_files[@]}"

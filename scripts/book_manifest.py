@@ -33,17 +33,22 @@ BOOK_FIELDS = {
 }
 
 
-def read_raw_manifest() -> dict[str, Any]:
+def _read_yaml(path: Path) -> dict[str, Any]:
     try:
-        with MANIFEST_PATH.open(encoding="utf-8") as file:
+        with path.open(encoding="utf-8") as file:
             data = yaml.safe_load(file)
     except FileNotFoundError as error:
-        raise ValueError(f"manifest not found: {MANIFEST_PATH}") from error
+        raise ValueError(f"manifest not found: {path}") from error
     except yaml.YAMLError as error:
-        raise ValueError(f"invalid YAML in {MANIFEST_PATH}: {error}") from error
+        raise ValueError(f"invalid YAML in {path}: {error}") from error
 
     if not isinstance(data, dict):
         raise ValueError("manifest root must be a mapping")
+    return data
+
+
+def read_raw_manifest() -> dict[str, Any]:
+    data = _read_yaml(MANIFEST_PATH)
     if not isinstance(data.get("books"), list):
         raise ValueError("'books' must be a list")
     return data
@@ -166,15 +171,7 @@ def load_manifest(
     if repository_root is None:
         repository_root = REPO_ROOT
 
-    try:
-        with path.open(encoding="utf-8") as file:
-            data = yaml.safe_load(file)
-    except FileNotFoundError:
-        raise ValueError(f"manifest not found: {path}")
-    except yaml.YAMLError as error:
-        raise ValueError(f"invalid YAML in {path}: {error}") from error
-    if not isinstance(data, dict):
-        raise ValueError("manifest root must be a mapping")
+    data = _read_yaml(path)
 
     unknown_root_fields = set(data) - ROOT_FIELDS
     if unknown_root_fields:

@@ -84,9 +84,10 @@ for dependency in "${tex_dependencies[@]}"; do
     check_tex_file "$dependency"
 done
 
-if [[ "${CHECK_ENVIRONMENT_TOOLS_ONLY:-0}" == 1 ]]; then
+skip_repository_checks="${CHECK_ENVIRONMENT_SKIP_REPOSITORY:-${CHECK_ENVIRONMENT_TOOLS_ONLY:-0}}"
+if [[ "$skip_repository_checks" == 1 ]]; then
     echo
-    echo "Image toolchain is ready."
+    echo "Toolchain dependencies are ready."
     exit 0
 fi
 
