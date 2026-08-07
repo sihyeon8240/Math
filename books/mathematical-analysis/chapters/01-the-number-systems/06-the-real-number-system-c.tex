@@ -1,14 +1,14 @@
 \begin{proof}
     Define
     \[
-    \begin{array}{c@{\qquad\quad}c@{\qquad\quad}c}
-        t_{1} \coloneqq by & T_{1} \coloneqq \setbuilder*{t \in S_{b}}{t \leq t_{1}} &
+    \begin{array}{c@{\qquad}c@{\qquad}c}
+        t_{1} \coloneqq by & T_{1} \coloneqq \setbuilder*{t \in \N_{0}^{b - 1}}{t \leq t_{1}} &
         a_{1} \coloneqq \max T_{1} \\
-        t_{2} \coloneqq b^{2}y - ba_{1} & T_{2} \coloneqq \setbuilder*{t \in S_{b}}{t \leq t_{2}} &
+        t_{2} \coloneqq b^{2}y - ba_{1} & T_{2} \coloneqq \setbuilder*{t \in \N_{0}^{b - 1}}{t \leq t_{2}} &
         a_{2} \coloneqq \max T_{2} \\
         \vdots & \vdots & \vdots \\
         t_{n} \coloneqq b^{n}y - \sum_{k = 1}^{n - 1} a_{k}b^{n - k} &
-        T_{n} \coloneqq \setbuilder*{t \in S_{b}}{t \leq t_{n}} & a_{n} \coloneqq \max T_{n}
+        T_{n} \coloneqq \setbuilder*{t \in \N_{0}^{b - 1}}{t \leq t_{n}} & a_{n} \coloneqq \max T_{n}
     \end{array}
     \]
     Let $m \in \N$ be given. If $0 \leq t_{m} < b$, then
@@ -19,7 +19,7 @@
     By \Cref{an:thm:bounded-subset-of-Z-in-Z-has-extremum},
     \[
     \begin{array}{c}
-        \exists M \in S_{b}, M = \max T_{m} \\
+        \exists M \in \N_{0}^{b - 1}, M = \max T_{m} \\
         \Downarrow \\
         a_{m} = M \text{ is well-defined}
     \end{array}
@@ -87,7 +87,7 @@
     \end{itemize}
     where
     \[
-    \forall k \in \N, a_{k} \in S_{b} \land c_{k} \in S_{b}
+    \forall k \in \N, a_{k} \in \N_{0}^{b - 1} \land c_{k} \in \N_{0}^{b - 1}
     \]
     We will show that
     \[

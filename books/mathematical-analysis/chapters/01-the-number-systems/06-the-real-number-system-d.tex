@@ -37,7 +37,7 @@
 \begin{theorem} \label{an:thm:no-real-number-matching-greedy-base-expansion}
     Let $b \in \N_{2}$ be given. Let $\paren*{a_{n}}_{n = 1}^{\infty}$ be such that
     \[
-    \forall k \in \N, a_{k} \in S_{b}
+    \forall k \in \N, a_{k} \in \N_{0}^{b - 1}
     \]
     If
     \[
@@ -69,7 +69,7 @@
     for each $n \in \N$. Then
     \[
     \begin{array}{c}
-        \forall k \in \N, a_{k} \in S_{b} \\
+        \forall k \in \N, a_{k} \in \N_{0}^{b - 1} \\
         \Downarrow \\
         x_{n} = \sum_{k = 1}^{n} \frac{a_{k}}{b^{k}} \leq \sum_{k = 1}^{n} \frac{b - 1}{b^{k}} = 1 - \frac{1}{b^{n}} < 1
     \end{array}
@@ -145,7 +145,7 @@
 \begin{theorem} \label{an:thm:no-real-number-matching-greedy-base-expansion-converse}
     Let $b \in \N_{2}$ be given. Let $\paren*{a_{n}}_{n = 1}^{\infty}$ be such that
     \[
-    \forall k \in \N, a_{k} \in S_{b}
+    \forall k \in \N, a_{k} \in \N_{0}^{b - 1}
     \]
     If
     \[
