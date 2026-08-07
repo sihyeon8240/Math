@@ -9,33 +9,33 @@ manifest-check:
 test:
 	@$(PYTHON) -m unittest discover -s tests -p 'test_*.py' -v
 
-book: manifest-check
+book:
 	@test -n "$(BOOK)" || \
 		(echo "error: BOOK is required (example: make book BOOK=linear-algebra)" >&2; exit 2)
 	@./scripts/build-book.sh "$(BOOK)"
 
-all: manifest-check
+all:
 	@./scripts/build-all.sh
 
-readme: manifest-check
+readme:
 	@$(PYTHON) scripts/generate-readme-books.py
 
-readme-check: manifest-check
+readme-check:
 	@$(PYTHON) scripts/generate-readme-books.py --check
 
-site: manifest-check
+site:
 	@$(PYTHON) scripts/generate-site-data.py
 
-site-check: manifest-check
+site-check:
 	@$(PYTHON) scripts/generate-site-data.py --check
 
 clean:
 	@./scripts/clean.sh
 
-check: manifest-check
+check:
 	@./scripts/check.sh
 
-check-strict: manifest-check
+check-strict:
 	@env CHECK_LOG_STRICT=1 ./scripts/check.sh
 
 publish:
