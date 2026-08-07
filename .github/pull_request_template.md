@@ -7,7 +7,7 @@
 - [ ] I built each affected textbook locally.
 - [ ] I ran `make check` or documented the equivalent focused checks below.
 - [ ] I reviewed the LaTeX build logs and documented intentional warnings.
-- [ ] I did not commit PDFs, `build/`, or other generated files.
+- [ ] I did not commit PDFs, `build/`, or generated files that are not explicitly tracked by repository policy.
 - [ ] I did not unintentionally change existing mathematical content.
 - [ ] I checked the sources and copyright status of new material.
 - [ ] I checked label and file-name conventions.

@@ -108,4 +108,4 @@ Detailed writing conventions are in [docs/writing-guide.md](docs/writing-guide.m
 
 ## Maintainer documentation
 
-The stable contract is documented in [ARCHITECTURE.md](ARCHITECTURE.md). Its rationale, workflows, maintenance checklists, and incremental roadmap live under [`docs/`](docs/developer-workflow.md); these documents cross-reference the canonical policy rather than redefining it.
+The stable contract is documented in [ARCHITECTURE.md](ARCHITECTURE.md). Its rationale, workflows, and maintenance checklists live under [`docs/`](docs/developer-workflow.md); these documents cross-reference the canonical policy rather than redefining it.

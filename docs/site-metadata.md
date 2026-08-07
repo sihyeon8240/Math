@@ -8,4 +8,4 @@ The Pages job downloads the build artifacts but stages PDFs only for `site: true
 
 The index and common book layout consume generated canonical titles, compact-title fallbacks, machine statuses, display labels, and manifest order. `site/books/<slug>.md` files contain only their join slug and hand-written narrative prose; generation validates but never rewrites them.
 
-Status labels and the `short_title` fallback are defined once in the generator. See `docs/metadata-architecture.md` for the field audit, ownership rules, validation policy, and update workflow.
+Status labels and the `short_title` fallback are defined once in the generator. See [Repository architecture](../ARCHITECTURE.md#metadata-and-automation) for metadata ownership and automation policy.
