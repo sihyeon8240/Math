@@ -59,6 +59,13 @@ class SiteStylesheetTests(unittest.TestCase):
                     contracts,
                 )
 
+    def test_book_preview_is_cache_busted_for_each_site_build(self):
+        layout = (REPO_ROOT / "site/_layouts/book.html").read_text(encoding="utf-8")
+
+        self.assertIn("pdf_preview_version = site.time | date: '%s'", layout)
+        self.assertIn('data="{{ pdf_url }}?v={{ pdf_preview_version }}"', layout)
+        self.assertIn('href="{{ pdf_url }}"', layout)
+
 
 if __name__ == "__main__":
     unittest.main()

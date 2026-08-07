@@ -48,6 +48,7 @@
 
         {% assign pdf_path = '/pdf/' | append: book.slug | append: '.pdf' %}
         {% assign pdf_url = pdf_path | relative_url %}
+        {% assign pdf_preview_version = site.time | date: '%s' %}
         <section class="book-pdf card" aria-labelledby="book-pdf-title">
           <div class="book-pdf__header">
             <div>
@@ -76,7 +77,7 @@
           <div class="book-pdf__frame">
             <object
               class="book-pdf__viewer"
-              data="{{ pdf_url }}"
+              data="{{ pdf_url }}?v={{ pdf_preview_version }}"
               type="application/pdf"
               aria-label="{{ book.title }} PDF preview"
               tabindex="0"
