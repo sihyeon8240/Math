@@ -1,6 +1,6 @@
 # Mathematical Analysis I & II
 
-The real number system. Set theory. Topological properties of R^n, metric
+The real number system. Set theory. Topological properties of ℝⁿ, metric
 spaces. Numerical sequences and series, Continuity, connectedness,
 compactness. Differentiation and integration.
 
@@ -23,7 +23,7 @@ transformation of multiple integrals. Integration of Differential forms.
 10. Integration of Differential Forms
 11. The Lebesgue Theory
 
-Appendix: Construction of R.
+Appendix: Construction of ℝ.
 
 ## Main references
 

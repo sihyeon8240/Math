@@ -3,7 +3,7 @@ layout: book
 slug: mathematical-analysis
 ---
 
-The real number system. Set theory. Topological properties of R^n, metric
+The real number system. Set theory. Topological properties of ℝⁿ, metric
 spaces. Numerical sequences and series, Continuity, connectedness,
 compactness. Differentiation and integration.
 
